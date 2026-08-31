@@ -1,0 +1,23 @@
+{
+    "asset": "af271160434f6044697d2e5d1405da4c",
+    "fileName": "01a046b5-4582-773c-9696-f3cdac5ced77.fbx",
+    "prompt": "A flat-head screwdriver, realistic PBR textures, polished steel shaft, molded plastic handle with grip texture, clean tool look",
+    "negativePrompt": "",
+    "model": "model3d-tripo3-texturing",
+    "modelName": "Tripo 3.0 Texturing",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Texturing",
+    "promptImageReferenceGuid": "7af24569ea715b540a53da57e0fb29b3",
+    "modelReferenceGuid": "af271160434f6044697d2e5d1405da4c",
+    "multiviewFrontGuid": "",
+    "multiviewBackGuid": "",
+    "multiviewLeftGuid": "",
+    "multiviewRightGuid": "",
+    "multiviewTopGuid": "",
+    "multiviewBottomGuid": "",
+    "multiviewLeftFrontGuid": "",
+    "multiviewRightFrontGuid": "",
+    "faceLimit": -1
+}

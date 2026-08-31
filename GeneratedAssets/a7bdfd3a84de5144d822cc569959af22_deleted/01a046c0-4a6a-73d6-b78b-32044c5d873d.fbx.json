@@ -1,0 +1,23 @@
+{
+    "asset": "a7bdfd3a84de5144d822cc569959af22",
+    "fileName": "01a046c0-4a6a-73d6-b78b-32044c5d873d.fbx",
+    "prompt": "A part retriever tool with claw tip, low poly, simple clean geometry, single object",
+    "negativePrompt": "",
+    "model": "model3d-tripo-p1",
+    "modelName": "Tripo P1",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "promptImageReferenceGuid": "3617838e8986390489c040fc09bdebf5",
+    "modelReferenceGuid": "",
+    "multiviewFrontGuid": "",
+    "multiviewBackGuid": "",
+    "multiviewLeftGuid": "",
+    "multiviewRightGuid": "",
+    "multiviewTopGuid": "",
+    "multiviewBottomGuid": "",
+    "multiviewLeftFrontGuid": "",
+    "multiviewRightFrontGuid": "",
+    "faceLimit": -1
+}

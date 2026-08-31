@@ -1,0 +1,23 @@
+{
+    "asset": "0261c015b39f5854ca98d75e2ffc13cb",
+    "fileName": "01a043f2-afc5-714e-80a5-9fe364c2ea5e.fbx",
+    "prompt": "Low-poly 3D precision tweezers game asset",
+    "negativePrompt": "",
+    "model": "model3d-tripo-p1",
+    "modelName": "Tripo P1",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "promptImageReferenceGuid": "c81e45837f7631f47bc62c4d0b358732",
+    "modelReferenceGuid": "",
+    "multiviewFrontGuid": "",
+    "multiviewBackGuid": "",
+    "multiviewLeftGuid": "",
+    "multiviewRightGuid": "",
+    "multiviewTopGuid": "",
+    "multiviewBottomGuid": "",
+    "multiviewLeftFrontGuid": "",
+    "multiviewRightFrontGuid": "",
+    "faceLimit": -1
+}

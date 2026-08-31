@@ -1,0 +1,23 @@
+{
+    "asset": "dce09c45fb6a31b45b118ca2bb5c98ac",
+    "fileName": "01a046c0-3885-708e-b0f7-233ff833f2bb.fbx",
+    "prompt": "A soldering iron, low poly, simple clean geometry, single object",
+    "negativePrompt": "",
+    "model": "model3d-tripo-p1",
+    "modelName": "Tripo P1",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "promptImageReferenceGuid": "36f22fa090e1ffc4ba33741298b5031b",
+    "modelReferenceGuid": "",
+    "multiviewFrontGuid": "",
+    "multiviewBackGuid": "",
+    "multiviewLeftGuid": "",
+    "multiviewRightGuid": "",
+    "multiviewTopGuid": "",
+    "multiviewBottomGuid": "",
+    "multiviewLeftFrontGuid": "",
+    "multiviewRightFrontGuid": "",
+    "faceLimit": -1
+}

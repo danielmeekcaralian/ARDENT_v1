@@ -1,0 +1,23 @@
+{
+    "asset": "8198c9f2300b6ac4c9bbda1d9c09acb8",
+    "fileName": "01a046c0-245a-702a-bd5f-1ab585d46703.fbx",
+    "prompt": "A Philips-head screwdriver, low poly, simple clean geometry, single object",
+    "negativePrompt": "",
+    "model": "model3d-tripo-p1",
+    "modelName": "Tripo P1",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "promptImageReferenceGuid": "ce9ad747c8e99d64d881039a9d68302a",
+    "modelReferenceGuid": "",
+    "multiviewFrontGuid": "",
+    "multiviewBackGuid": "",
+    "multiviewLeftGuid": "",
+    "multiviewRightGuid": "",
+    "multiviewTopGuid": "",
+    "multiviewBottomGuid": "",
+    "multiviewLeftFrontGuid": "",
+    "multiviewRightFrontGuid": "",
+    "faceLimit": -1
+}

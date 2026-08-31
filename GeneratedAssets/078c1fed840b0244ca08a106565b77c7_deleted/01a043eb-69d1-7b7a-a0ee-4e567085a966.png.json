@@ -1,0 +1,31 @@
+{
+    "asset": "078c1fed840b0244ca08a106565b77c7",
+    "fileName": "01a043eb-69d1-7b7a-a0ee-4e567085a966.png",
+    "prompt": "A low-poly 3D needle-nose pliers tool with blue rubber insulated handles and long tapered steel jaws, clean isolated game asset on pure white background, 3D render style, low poly",
+    "negativePrompt": "",
+    "model": "gemini-3.1-flash",
+    "modelName": "Gemini 3.1 Nano Banana 2",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelatePixelGridSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0,
+    "dimensions": {
+        "width": 1024,
+        "height": 1024
+    },
+    "spriteSheet": false,
+    "duration": 0.0,
+    "dynamicParams": {
+        "serializedData": []
+    }
+}

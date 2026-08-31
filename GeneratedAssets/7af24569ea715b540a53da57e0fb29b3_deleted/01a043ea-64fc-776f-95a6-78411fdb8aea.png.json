@@ -1,0 +1,31 @@
+{
+    "asset": "7af24569ea715b540a53da57e0fb29b3",
+    "fileName": "01a043ea-64fc-776f-95a6-78411fdb8aea.png",
+    "prompt": "A low-poly 3D flat head screwdriver tool with a yellow and black grip handle and steel flat tip, clean isolated game asset on pure white background, 3D render style, low poly",
+    "negativePrompt": "",
+    "model": "gemini-3.1-flash",
+    "modelName": "Gemini 3.1 Nano Banana 2",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelatePixelGridSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0,
+    "dimensions": {
+        "width": 1024,
+        "height": 1024
+    },
+    "spriteSheet": false,
+    "duration": 0.0,
+    "dynamicParams": {
+        "serializedData": []
+    }
+}

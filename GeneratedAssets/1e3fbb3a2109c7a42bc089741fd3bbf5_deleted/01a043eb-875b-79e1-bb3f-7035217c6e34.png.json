@@ -1,0 +1,31 @@
+{
+    "asset": "1e3fbb3a2109c7a42bc089741fd3bbf5",
+    "fileName": "01a043eb-875b-79e1-bb3f-7035217c6e34.png",
+    "prompt": "A low-poly 3D desoldering pump solder sucker tool, aluminum cylinder body with push plunger and teflon nozzle, clean isolated game asset on pure white background, 3D render style, low poly",
+    "negativePrompt": "",
+    "model": "gemini-3.1-flash",
+    "modelName": "Gemini 3.1 Nano Banana 2",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelatePixelGridSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0,
+    "dimensions": {
+        "width": 1024,
+        "height": 1024
+    },
+    "spriteSheet": false,
+    "duration": 0.0,
+    "dynamicParams": {
+        "serializedData": []
+    }
+}

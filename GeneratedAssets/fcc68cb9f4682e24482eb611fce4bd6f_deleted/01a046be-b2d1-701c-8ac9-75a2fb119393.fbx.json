@@ -1,0 +1,23 @@
+{
+    "asset": "fcc68cb9f4682e24482eb611fce4bd6f",
+    "fileName": "01a046be-b2d1-701c-8ac9-75a2fb119393.fbx",
+    "prompt": "A handheld flashlight, low poly, simple clean geometry, single object",
+    "negativePrompt": "",
+    "model": "model3d-tripo-p1",
+    "modelName": "Tripo P1",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "promptImageReferenceGuid": "03249acf341866a4c818a326d032cfc7",
+    "modelReferenceGuid": "",
+    "multiviewFrontGuid": "",
+    "multiviewBackGuid": "",
+    "multiviewLeftGuid": "",
+    "multiviewRightGuid": "",
+    "multiviewTopGuid": "",
+    "multiviewBottomGuid": "",
+    "multiviewLeftFrontGuid": "",
+    "multiviewRightFrontGuid": "",
+    "faceLimit": -1
+}

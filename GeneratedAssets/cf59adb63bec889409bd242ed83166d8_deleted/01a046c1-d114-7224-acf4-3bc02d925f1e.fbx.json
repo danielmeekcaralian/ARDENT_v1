@@ -1,0 +1,23 @@
+{
+    "asset": "cf59adb63bec889409bd242ed83166d8",
+    "fileName": "01a046c1-d114-7224-acf4-3bc02d925f1e.fbx",
+    "prompt": "A wire cutter tool, low poly, simple clean geometry, single object",
+    "negativePrompt": "",
+    "model": "model3d-tripo-p1",
+    "modelName": "Tripo P1",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "promptImageReferenceGuid": "2681c79f95e745b4a9109fc0bb53fe5c",
+    "modelReferenceGuid": "",
+    "multiviewFrontGuid": "",
+    "multiviewBackGuid": "",
+    "multiviewLeftGuid": "",
+    "multiviewRightGuid": "",
+    "multiviewTopGuid": "",
+    "multiviewBottomGuid": "",
+    "multiviewLeftFrontGuid": "",
+    "multiviewRightFrontGuid": "",
+    "faceLimit": -1
+}

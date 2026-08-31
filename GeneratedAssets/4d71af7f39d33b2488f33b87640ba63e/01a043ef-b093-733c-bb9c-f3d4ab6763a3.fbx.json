@@ -1,0 +1,23 @@
+{
+    "asset": "4d71af7f39d33b2488f33b87640ba63e",
+    "fileName": "01a043ef-b093-733c-bb9c-f3d4ab6763a3.fbx",
+    "prompt": "Low-poly 3D Philips head screwdriver game asset",
+    "negativePrompt": "",
+    "model": "model3d-tripo-p1",
+    "modelName": "Tripo P1",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "promptImageReferenceGuid": "ce9ad747c8e99d64d881039a9d68302a",
+    "modelReferenceGuid": "",
+    "multiviewFrontGuid": "",
+    "multiviewBackGuid": "",
+    "multiviewLeftGuid": "",
+    "multiviewRightGuid": "",
+    "multiviewTopGuid": "",
+    "multiviewBottomGuid": "",
+    "multiviewLeftFrontGuid": "",
+    "multiviewRightFrontGuid": "",
+    "faceLimit": -1
+}

@@ -1,0 +1,23 @@
+{
+    "asset": "424b92fb3bd086444b52bc677b765930",
+    "fileName": "01a046b5-584d-7d46-947b-76007920fc29.fbx",
+    "prompt": "A handheld flashlight, realistic PBR textures, metallic body with rubberized grip, glass lens, clean industrial tool look",
+    "negativePrompt": "",
+    "model": "model3d-tripo3-texturing",
+    "modelName": "Tripo 3.0 Texturing",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Texturing",
+    "promptImageReferenceGuid": "03249acf341866a4c818a326d032cfc7",
+    "modelReferenceGuid": "424b92fb3bd086444b52bc677b765930",
+    "multiviewFrontGuid": "",
+    "multiviewBackGuid": "",
+    "multiviewLeftGuid": "",
+    "multiviewRightGuid": "",
+    "multiviewTopGuid": "",
+    "multiviewBottomGuid": "",
+    "multiviewLeftFrontGuid": "",
+    "multiviewRightFrontGuid": "",
+    "faceLimit": -1
+}

@@ -1,0 +1,23 @@
+{
+    "asset": "4e0eb2550bb91e147b89eff0af732c68",
+    "fileName": "01a043f5-09d2-76ef-8ce1-7f3ce66d812a.fbx",
+    "prompt": "Low-poly 3D electronics soldering iron tool game asset",
+    "negativePrompt": "",
+    "model": "model3d-tripo-p1",
+    "modelName": "Tripo P1",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "promptImageReferenceGuid": "36f22fa090e1ffc4ba33741298b5031b",
+    "modelReferenceGuid": "",
+    "multiviewFrontGuid": "",
+    "multiviewBackGuid": "",
+    "multiviewLeftGuid": "",
+    "multiviewRightGuid": "",
+    "multiviewTopGuid": "",
+    "multiviewBottomGuid": "",
+    "multiviewLeftFrontGuid": "",
+    "multiviewRightFrontGuid": "",
+    "faceLimit": -1
+}

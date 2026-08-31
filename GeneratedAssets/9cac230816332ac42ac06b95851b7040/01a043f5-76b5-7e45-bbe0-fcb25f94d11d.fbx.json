@@ -1,0 +1,23 @@
+{
+    "asset": "9cac230816332ac42ac06b95851b7040",
+    "fileName": "01a043f5-76b5-7e45-bbe0-fcb25f94d11d.fbx",
+    "prompt": "Low-poly 3D 4-prong claw mechanical part retriever tool game asset",
+    "negativePrompt": "",
+    "model": "model3d-tripo-p1",
+    "modelName": "Tripo P1",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "promptImageReferenceGuid": "3617838e8986390489c040fc09bdebf5",
+    "modelReferenceGuid": "",
+    "multiviewFrontGuid": "",
+    "multiviewBackGuid": "",
+    "multiviewLeftGuid": "",
+    "multiviewRightGuid": "",
+    "multiviewTopGuid": "",
+    "multiviewBottomGuid": "",
+    "multiviewLeftFrontGuid": "",
+    "multiviewRightFrontGuid": "",
+    "faceLimit": -1
+}

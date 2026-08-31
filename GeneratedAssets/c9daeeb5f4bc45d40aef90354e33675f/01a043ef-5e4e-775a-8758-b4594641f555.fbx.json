@@ -1,0 +1,23 @@
+{
+    "asset": "c9daeeb5f4bc45d40aef90354e33675f",
+    "fileName": "01a043ef-5e4e-775a-8758-b4594641f555.fbx",
+    "prompt": "Low-poly 3D flat head screwdriver game asset",
+    "negativePrompt": "",
+    "model": "model3d-tripo-p1",
+    "modelName": "Tripo P1",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "promptImageReferenceGuid": "7af24569ea715b540a53da57e0fb29b3",
+    "modelReferenceGuid": "",
+    "multiviewFrontGuid": "",
+    "multiviewBackGuid": "",
+    "multiviewLeftGuid": "",
+    "multiviewRightGuid": "",
+    "multiviewTopGuid": "",
+    "multiviewBottomGuid": "",
+    "multiviewLeftFrontGuid": "",
+    "multiviewRightFrontGuid": "",
+    "faceLimit": -1
+}

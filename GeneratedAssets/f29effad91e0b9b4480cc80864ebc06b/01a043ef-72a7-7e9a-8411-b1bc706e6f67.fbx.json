@@ -1,0 +1,23 @@
+{
+    "asset": "f29effad91e0b9b4480cc80864ebc06b",
+    "fileName": "01a043ef-72a7-7e9a-8411-b1bc706e6f67.fbx",
+    "prompt": "Low-poly 3D hex driver nut driver game asset",
+    "negativePrompt": "",
+    "model": "model3d-tripo-p1",
+    "modelName": "Tripo P1",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "promptImageReferenceGuid": "6b15272f6b952f84c88590f31e868022",
+    "modelReferenceGuid": "",
+    "multiviewFrontGuid": "",
+    "multiviewBackGuid": "",
+    "multiviewLeftGuid": "",
+    "multiviewRightGuid": "",
+    "multiviewTopGuid": "",
+    "multiviewBottomGuid": "",
+    "multiviewLeftFrontGuid": "",
+    "multiviewRightFrontGuid": "",
+    "faceLimit": -1
+}

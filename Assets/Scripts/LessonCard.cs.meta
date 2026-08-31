@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 3da1582e9a688824f8d4c54c88a9e738
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - titleText: {instanceID: 0}
+  - descriptionText: {instanceID: 0}
+  - startButton: {instanceID: 0}
+  - lockIcon: {instanceID: 0}
+  - medalIcon: {instanceID: 0}
+  - bronzeSprite: {fileID: -374776885, guid: a5e645d0b2507ac42807ef8e886f7d45, type: 3}
+  - silverSprite: {fileID: -1298529376, guid: a5e645d0b2507ac42807ef8e886f7d45, type: 3}
+  - goldSprite: {fileID: -1737005464, guid: a5e645d0b2507ac42807ef8e886f7d45, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

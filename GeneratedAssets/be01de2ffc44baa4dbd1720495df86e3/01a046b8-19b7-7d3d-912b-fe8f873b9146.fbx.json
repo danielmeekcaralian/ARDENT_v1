@@ -1,0 +1,23 @@
+{
+    "asset": "be01de2ffc44baa4dbd1720495df86e3",
+    "fileName": "01a046b8-19b7-7d3d-912b-fe8f873b9146.fbx",
+    "prompt": "A Torx / star-head screwdriver, realistic PBR textures, polished steel shaft, molded plastic handle with grip texture, clean tool look",
+    "negativePrompt": "",
+    "model": "model3d-tripo3-texturing",
+    "modelName": "Tripo 3.0 Texturing",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Texturing",
+    "promptImageReferenceGuid": "da92025c170945f47a0391d516100994",
+    "modelReferenceGuid": "be01de2ffc44baa4dbd1720495df86e3",
+    "multiviewFrontGuid": "",
+    "multiviewBackGuid": "",
+    "multiviewLeftGuid": "",
+    "multiviewRightGuid": "",
+    "multiviewTopGuid": "",
+    "multiviewBottomGuid": "",
+    "multiviewLeftFrontGuid": "",
+    "multiviewRightFrontGuid": "",
+    "faceLimit": -1
+}

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 035a2531ee473eb48b75e12ca5d634d6, type: 3}
+  m_Name: COC1_L3
+  m_EditorClassIdentifier: Assembly-CSharp::LessonData
+  lessonID: 3
+  lessonTitle: Computer Hardware
+  description: "\tLearn the basic components, functions, terms, and concepts of computers
+    to better understand how computer systems work.\r\n"
+  lessonSceneName: LessonScene
+  requiredGoldLessonID: 2
+  learningObjectives:
+  - "\u2022 Identify the basic PC terms and concepts.\n"
+  - "\u2022 Explain The PC system.\n"
+  - "\u2022 Discuss the computer system unit case and its form factor.\n"
+  - "\u2022 Identify the major components of a computer system unit and its peripherals.\n"
+  - "\u2022 Identify the computer hardware peripherals.\n"
+  slides: []
+  arActivity: {fileID: 0}
+  quizData: {fileID: 0}

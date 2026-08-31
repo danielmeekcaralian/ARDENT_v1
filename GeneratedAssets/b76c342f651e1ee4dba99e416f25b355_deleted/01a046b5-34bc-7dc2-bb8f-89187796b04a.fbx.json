@@ -1,0 +1,23 @@
+{
+    "asset": "b76c342f651e1ee4dba99e416f25b355",
+    "fileName": "01a046b5-34bc-7dc2-bb8f-89187796b04a.fbx",
+    "prompt": "A hex driver / nut driver, realistic PBR textures, polished steel shaft, molded plastic handle with grip texture, clean tool look",
+    "negativePrompt": "",
+    "model": "model3d-tripo3-texturing",
+    "modelName": "Tripo 3.0 Texturing",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Texturing",
+    "promptImageReferenceGuid": "6b15272f6b952f84c88590f31e868022",
+    "modelReferenceGuid": "b76c342f651e1ee4dba99e416f25b355",
+    "multiviewFrontGuid": "",
+    "multiviewBackGuid": "",
+    "multiviewLeftGuid": "",
+    "multiviewRightGuid": "",
+    "multiviewTopGuid": "",
+    "multiviewBottomGuid": "",
+    "multiviewLeftFrontGuid": "",
+    "multiviewRightFrontGuid": "",
+    "faceLimit": -1
+}

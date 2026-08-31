@@ -1,0 +1,31 @@
+{
+    "asset": "2681c79f95e745b4a9109fc0bb53fe5c",
+    "fileName": "01a043eb-4afe-7a2d-89f0-df90d7ff7785.png",
+    "prompt": "A low-poly 3D diagonal wire cutter plier tool with red rubber insulated handles and sharp steel angled cutting blades, clean isolated game asset on pure white background, 3D render style, low poly",
+    "negativePrompt": "",
+    "model": "gemini-3.1-flash",
+    "modelName": "Gemini 3.1 Nano Banana 2",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelatePixelGridSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0,
+    "dimensions": {
+        "width": 1024,
+        "height": 1024
+    },
+    "spriteSheet": false,
+    "duration": 0.0,
+    "dynamicParams": {
+        "serializedData": []
+    }
+}

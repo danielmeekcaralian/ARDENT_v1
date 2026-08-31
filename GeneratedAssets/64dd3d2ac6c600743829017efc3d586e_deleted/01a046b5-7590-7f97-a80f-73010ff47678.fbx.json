@@ -1,0 +1,23 @@
+{
+    "asset": "64dd3d2ac6c600743829017efc3d586e",
+    "fileName": "01a046b5-7590-7f97-a80f-73010ff47678.fbx",
+    "prompt": "A Philips-head screwdriver, realistic PBR textures, polished steel shaft, molded plastic handle with grip texture, clean tool look",
+    "negativePrompt": "",
+    "model": "model3d-tripo3-texturing",
+    "modelName": "Tripo 3.0 Texturing",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Texturing",
+    "promptImageReferenceGuid": "ce9ad747c8e99d64d881039a9d68302a",
+    "modelReferenceGuid": "64dd3d2ac6c600743829017efc3d586e",
+    "multiviewFrontGuid": "",
+    "multiviewBackGuid": "",
+    "multiviewLeftGuid": "",
+    "multiviewRightGuid": "",
+    "multiviewTopGuid": "",
+    "multiviewBottomGuid": "",
+    "multiviewLeftFrontGuid": "",
+    "multiviewRightFrontGuid": "",
+    "faceLimit": -1
+}

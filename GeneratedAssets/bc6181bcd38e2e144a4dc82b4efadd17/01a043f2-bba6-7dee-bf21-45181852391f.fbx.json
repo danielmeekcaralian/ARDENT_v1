@@ -1,0 +1,23 @@
+{
+    "asset": "bc6181bcd38e2e144a4dc82b4efadd17",
+    "fileName": "01a043f2-bba6-7dee-bf21-45181852391f.fbx",
+    "prompt": "Low-poly 3D handheld tactical flashlight torch game asset",
+    "negativePrompt": "",
+    "model": "model3d-tripo-p1",
+    "modelName": "Tripo P1",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "promptImageReferenceGuid": "03249acf341866a4c818a326d032cfc7",
+    "modelReferenceGuid": "",
+    "multiviewFrontGuid": "",
+    "multiviewBackGuid": "",
+    "multiviewLeftGuid": "",
+    "multiviewRightGuid": "",
+    "multiviewTopGuid": "",
+    "multiviewBottomGuid": "",
+    "multiviewLeftFrontGuid": "",
+    "multiviewRightFrontGuid": "",
+    "faceLimit": -1
+}

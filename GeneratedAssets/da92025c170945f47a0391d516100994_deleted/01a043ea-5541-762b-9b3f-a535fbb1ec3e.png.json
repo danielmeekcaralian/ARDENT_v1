@@ -1,0 +1,31 @@
+{
+    "asset": "da92025c170945f47a0391d516100994",
+    "fileName": "01a043ea-5541-762b-9b3f-a535fbb1ec3e.png",
+    "prompt": "A low-poly 3D Torx star screwdriver tool with an orange handle and star-shaped steel tip, clean isolated game asset on pure white background, 3D render style, low poly",
+    "negativePrompt": "",
+    "model": "gemini-3.1-flash",
+    "modelName": "Gemini 3.1 Nano Banana 2",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelatePixelGridSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0,
+    "dimensions": {
+        "width": 1024,
+        "height": 1024
+    },
+    "spriteSheet": false,
+    "duration": 0.0,
+    "dynamicParams": {
+        "serializedData": []
+    }
+}

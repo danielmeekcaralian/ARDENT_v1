@@ -1,0 +1,124 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 035a2531ee473eb48b75e12ca5d634d6, type: 3}
+  m_Name: COC1_L1
+  m_EditorClassIdentifier: Assembly-CSharp::LessonData
+  lessonID: 1
+  lessonTitle: OHS Policies and Procedures
+  description: "\tThis lesson introduces Occupational Health and Safety (OHS) practices
+    to help protect workers, others, and equipment from potential hazards."
+  lessonSceneName: LessonScene
+  requiredGoldLessonID: 0
+  learningObjectives:
+  - "\u2022 Discuss the Occupational Health and Safety (OHS) policies and procedures.\n"
+  - "\u2022 Elaborate the three steps used to manage health and safety at work.\n"
+  - "\u2022 Point-out the common hazards encountered by computer technicians and
+    users.\n"
+  - "\u2022 Identify the elements of the Occupational Health and Safety Standards.\n"
+  - "\u2022 Explain the 5S Principles.\n"
+  slides:
+  - slideType: 0
+    content: "\tOccupational Safety and Health (OSH) is a planned system of working
+      to prevent illness and injury where you work by recognizing and identifying
+      hazards and risks.\n\nThere are three steps used to manage health and safety
+      at work:\n\n1. Spot the Hazard (Hazard Identification)\n\n2. Assess the Risk
+      (Risk Assessment)\n\n3. Make the Changes (Risk Control)\n\nAt work you can
+      use these three Think Safe steps to help prevent accidents. Using the Think
+      Safe Steps."
+    image: {fileID: 0}
+  - slideType: 1
+    content: "\tA hazard is anything that could hurt you or someone else. Examples
+      of workplace hazards include:\n\n\u2022 frayed electrical cords (could result
+      in electrical shock)\n\n\u2022 boxes stacked precariously (they could fall
+      on someone)\n\n\u2022 noisy machinery (could result in damage to your hearing)\n"
+    image: {fileID: -1379164851, guid: 26accc8416e9f68419becb7f4528ad39, type: 3}
+  - slideType: 0
+    content: "\tDuring work experience, you must remain alert to anything that may
+      be dangerous. If you see, hear or smell anything odd, take note. If you think
+      it could be a hazard, tell someone. \n\n\t"
+    image: {fileID: 0}
+  - slideType: 0
+    content: "\tAssessing the risk means working out how likely it is that a hazard
+      will harm someone and how serious the harm could be. Whenever you spot a hazard,
+      assess the risk by asking yourself two questions:\n\n\u2022 How likely is it
+      that the hazard could harm me or someone else?\n\n\u2022 How badly could I
+      or someone else be harmed?\n\nIf you are not sure of the safest way to do something
+      during work experience, always ask your work experience supervisor."
+    image: {fileID: 0}
+  - slideType: 1
+    content: "Mechanical Hazard\n\t\n\tWhen working on electronic equipment, always
+      ask, \u201CCould this equipment hurt me?\u201D Be alert for moving parts, hot
+      components, and sharp edges that could cause injury."
+    image: {fileID: 852546510, guid: 2eb36148423c36049a41bad6c14f2806, type: 3}
+  - slideType: 1
+    content: "Physical Hazard\n\n\tOne common hazard for computer technicians is
+      cables across the floor. Someone could trip, fall, and get injured, creating
+      a legal negligence issue. If a cable must cross the floor temporarily, place
+      a Danger sign to warn people."
+    image: {fileID: 397530054, guid: 0165cc06b85e5a34bb2d324f851d700b, type: 3}
+  - slideType: 1
+    content: "Chemical Hazard\n\n\tThere are many chemicals used with electronic
+      equipment, such as cleaners, compressed air, and solvents. Some can be harmful
+      if swallowed or exposed to the skin or eyes. Always read the label and follow
+      safety instructions. Be careful with printer ink and toner, as they can stain
+      skin, clothing, and carpets."
+    image: {fileID: 221726296, guid: 42e4763059ae8ca46aa4ee77249e7263, type: 3}
+  - slideType: 1
+    content: "Electric Shock Hazard\n\n\tInside computers, most voltages are low,
+      but the power supply can contain lethal 220V line voltage. Always unplug equipment
+      before working inside. If you must work while it is powered, remove all jewelry
+      and watches to reduce the risk of electrical injury."
+    image: {fileID: -813718166, guid: 8578f1bc93ea4cd48a5520dd7c525dd8, type: 3}
+  - slideType: 1
+    content: "Occupational Health and Safety Standards\n\n\tEveryone is responsible
+      for identifying, addressing, and reporting workplace hazards to help maintain
+      a safe environment."
+    image: {fileID: 1060451888, guid: 6a567d5d88d6fc84bba860d7f3334f10, type: 3}
+  - slideType: 0
+    content: "\u2022 Identify the hazard.\n\n\u2022Clear the area near the hazard.\n\n\u2022Isolate
+      or mark the hazard to protect others.\n\n\u2022Safely remove the hazard if
+      possible.\n\n\u2022Report the hazard to the appropriate person if it cannot
+      be safely removed.\n\n\u2022Complete the required report after the hazard is
+      addressed."
+    image: {fileID: 0}
+  - slideType: 1
+    content: "Accident Reports\n\n\tAccident reports document specific details about
+      incidents that occur during laboratory activities.\t"
+    image: {fileID: -763154279, guid: 750da39e79467a44482bf4a4aa04cb91, type: 3}
+  - slideType: 1
+    content: "Accident Reports\n\n\t\u2022 Name of the person injured\n\r\n\t\u2022
+      Date and time of the accident\n\r\n\t\u2022 Type of injury\n\r\n\t\u2022 First
+      aid given\n\r\n\t\u2022 Action taken to prevent further accidents\t"
+    image: {fileID: -763154279, guid: 750da39e79467a44482bf4a4aa04cb91, type: 3}
+  - slideType: 1
+    content: "Fire Exits\n\n\tKeep fire exits and corridors clear of obstacles to
+      ensure safe and easy evacuation during emergencies."
+    image: {fileID: -1422242266, guid: c2de2cdf689aeb8468030add18e16159, type: 3}
+  - slideType: 0
+    content: "Personal Safety While Working with PC\u2019s\n\n\u2022 Always ground
+      yourself before touching any part of the computer\n\r\n\u2022 Do not work alone\n\r\n\u2022
+      Be careful with tools that may cause short circuit\n\r\n\u2022 Replace only
+      fuses with those proper ratings\n\r\n\u2022 Wear safety glasses for protection
+      against sparks and metal fragmented\n\r\n\u2022 Use only grounded plugs and
+      receptacles\n\r\n\u2022 Working area should have ventilations, trash can, fire
+      exit and capable of being disinfected\n"
+    image: {fileID: 0}
+  - slideType: 0
+    content: "Personal Safety While Working with PC\u2019s\n\n\u2022 Keep one hand
+      in your pocket when working live circuit.\n\r\n\u2022 Wear rubber sole shoes
+      when standing on the ground or in a concrete floor.\n\r\n\u2022 Always power
+      off and unplug the computer before working on it.\n\r\n\u2022 Wear hard hat
+      when someone working above you\n\r\n\u2022 When making circuit changes, switch
+      off and unplug the power cord from the equipment then discharge the capacitors."
+    image: {fileID: 0}
+  arActivity: {fileID: 0}
+  quizData: {fileID: 11400000, guid: 60a7df15bc161704e98efbe014e68758, type: 2}

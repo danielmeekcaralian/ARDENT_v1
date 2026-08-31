@@ -1,0 +1,23 @@
+{
+    "asset": "56a1845fbd670ef49ab63cf0c1fb6ddf",
+    "fileName": "01a043f2-c813-7b3b-a372-6418c64ffd6b.fbx",
+    "prompt": "Low-poly 3D diagonal wire cutter pliers game asset",
+    "negativePrompt": "",
+    "model": "model3d-tripo-p1",
+    "modelName": "Tripo P1",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "promptImageReferenceGuid": "2681c79f95e745b4a9109fc0bb53fe5c",
+    "modelReferenceGuid": "",
+    "multiviewFrontGuid": "",
+    "multiviewBackGuid": "",
+    "multiviewLeftGuid": "",
+    "multiviewRightGuid": "",
+    "multiviewTopGuid": "",
+    "multiviewBottomGuid": "",
+    "multiviewLeftFrontGuid": "",
+    "multiviewRightFrontGuid": "",
+    "faceLimit": -1
+}

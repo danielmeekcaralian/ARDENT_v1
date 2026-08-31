@@ -1,0 +1,23 @@
+{
+    "asset": "4361d74582df8924ca6f5a73dfac16f0",
+    "fileName": "01a043f3-089c-79d7-8244-6f860cff334e.fbx",
+    "prompt": "Low-poly 3D needle-nose pliers game asset",
+    "negativePrompt": "",
+    "model": "model3d-tripo-p1",
+    "modelName": "Tripo P1",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "promptImageReferenceGuid": "078c1fed840b0244ca08a106565b77c7",
+    "modelReferenceGuid": "",
+    "multiviewFrontGuid": "",
+    "multiviewBackGuid": "",
+    "multiviewLeftGuid": "",
+    "multiviewRightGuid": "",
+    "multiviewTopGuid": "",
+    "multiviewBottomGuid": "",
+    "multiviewLeftFrontGuid": "",
+    "multiviewRightFrontGuid": "",
+    "faceLimit": -1
+}

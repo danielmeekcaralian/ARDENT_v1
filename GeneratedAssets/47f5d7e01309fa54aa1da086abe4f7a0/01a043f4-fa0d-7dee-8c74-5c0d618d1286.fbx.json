@@ -1,0 +1,23 @@
+{
+    "asset": "47f5d7e01309fa54aa1da086abe4f7a0",
+    "fileName": "01a043f4-fa0d-7dee-8c74-5c0d618d1286.fbx",
+    "prompt": "Low-poly 3D desoldering pump sucker tool game asset",
+    "negativePrompt": "",
+    "model": "model3d-tripo-p1",
+    "modelName": "Tripo P1",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "promptImageReferenceGuid": "1e3fbb3a2109c7a42bc089741fd3bbf5",
+    "modelReferenceGuid": "",
+    "multiviewFrontGuid": "",
+    "multiviewBackGuid": "",
+    "multiviewLeftGuid": "",
+    "multiviewRightGuid": "",
+    "multiviewTopGuid": "",
+    "multiviewBottomGuid": "",
+    "multiviewLeftFrontGuid": "",
+    "multiviewRightFrontGuid": "",
+    "faceLimit": -1
+}

@@ -6,8 +6,38 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 4755b35b590504809a7525fd2109c2e2
+    path: Assets/Scenes/MainMenu.unity
+    guid: 4aa6733805a83234b94fbba20b1a7692
+  - enabled: 1
+    path: Assets/Scenes/Start_Learning.unity
+    guid: 839a32567052e2540aa83666d26930c7
+  - enabled: 1
+    path: Assets/Scenes/Hardware_Library.unity
+    guid: a30265b96fa4cec4bb42aeb7c47cfde0
+  - enabled: 1
+    path: Assets/Scenes/UI_Scene.unity
+    guid: b0fab6b8242410b4cb3accedecadf0f2
+  - enabled: 1
+    path: Assets/Scenes/COC_01.unity
+    guid: f303b126ae15f9c439feaaf154989274
+  - enabled: 1
+    path: Assets/Scenes/COC_02.unity
+    guid: f72c118c6f9b74947876e5523cfe81a5
+  - enabled: 0
+    path: Assets/Scenes/01_L1.unity
+    guid: 97c44b05ff6462a458179bb8db9cbe18
+  - enabled: 1
+    path: Assets/Scenes/LessonScene.unity
+    guid: 2006b5c2f1bc50c4684a31002834ec1c
+  - enabled: 1
+    path: Assets/Scenes/ActivitySelectionScene.unity
+    guid: 70496c3612b84f646a5b167916c688bd
+  - enabled: 1
+    path: Assets/Scenes/QuizScene.unity
+    guid: 72be9c6f6d7d299458d41edaeec0cd12
+  - enabled: 1
+    path: Assets/Scenes/ARScene.unity
+    guid: 97c4c55fb060f2341b45baf05ddd5181
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 6ee72d15cf39dd748a13eac57397b9af, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 0465d33c6aee55f44b0237db8b0e0259, type: 2}
