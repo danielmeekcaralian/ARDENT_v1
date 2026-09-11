@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: COC1_L1
   m_EditorClassIdentifier: Assembly-CSharp::LessonData
   lessonID: 1
+  cocID: COC_01
   lessonTitle: OHS Policies and Procedures
   description: "\tThis lesson introduces Occupational Health and Safety (OHS) practices
     to help protect workers, others, and equipment from potential hazards."
@@ -25,100 +26,272 @@ MonoBehaviour:
     users.\n"
   - "\u2022 Identify the elements of the Occupational Health and Safety Standards.\n"
   - "\u2022 Explain the 5S Principles.\n"
+  subtopics:
+  - subtopicID: 0101
+    subtopicName: Occupational Health and Safety Policies
+  - subtopicID: 0102
+    subtopicName: Common Hazards
+  - subtopicID: 0103
+    subtopicName: Common Hazards 2
+  - subtopicID: 0104
+    subtopicName: 'Occupational Health and Safety Standards '
+  - subtopicID: 0105
+    subtopicName: Accident Reports
+  - subtopicID: 0106
+    subtopicName: Fire Exits
+  - subtopicID: 0107
+    subtopicName: "Personal Safety While Working with PC\u2019s"
+  - subtopicID: 0108
+    subtopicName: Anti-Static and Safety Precautions
+  - subtopicID: 0109
+    subtopicName: The 5 'S' Process
+  - subtopicID: 0110
+    subtopicName: Make Yourself a Desktop Cleaner
   slides:
-  - slideType: 0
-    content: "\tOccupational Safety and Health (OSH) is a planned system of working
-      to prevent illness and injury where you work by recognizing and identifying
-      hazards and risks.\n\nThere are three steps used to manage health and safety
-      at work:\n\n1. Spot the Hazard (Hazard Identification)\n\n2. Assess the Risk
-      (Risk Assessment)\n\n3. Make the Changes (Risk Control)\n\nAt work you can
-      use these three Think Safe steps to help prevent accidents. Using the Think
-      Safe Steps."
+  - subtopicID: 0101
+    slideType: 0
+    content: "Occupational Safety and Health (OSH) \n\n\tis a system designed to
+      prevent workplace illnesses and injuries. It focuses on identifying hazards
+      and assessing the risks they may cause. Everyone in the computer and technology
+      industries is responsible for maintaining a safe workplace. Hazards should
+      be eliminated or modified to reduce the risks they present. This module provides
+      guidelines to help users and technicians understand health and safety responsibilities
+      in the computer industry."
     image: {fileID: 0}
-  - slideType: 1
-    content: "\tA hazard is anything that could hurt you or someone else. Examples
-      of workplace hazards include:\n\n\u2022 frayed electrical cords (could result
-      in electrical shock)\n\n\u2022 boxes stacked precariously (they could fall
-      on someone)\n\n\u2022 noisy machinery (could result in damage to your hearing)\n"
+  - subtopicID: 0101
+    slideType: 0
+    content: "There are three steps used to manage health and safety at work:\n\r\n\t1.
+      Spot the Hazard (Hazard Identification)\n\r\n\t2. Assess the Risk (Risk Assessment)\n\r\n\t3.
+      Make the Changes (Risk Control)\n\r\n\tAt work you can use these three Think
+      Safe steps to help prevent\r\naccidents. Using the Think Safe Steps."
+    image: {fileID: 0}
+  - subtopicID: 0102
+    slideType: 0
+    content: "Common Hazards\n\n\tA hazard is anything that could hurt you or someone
+      else.\n\t\n\tExamples of workplace hazards include:\n\r\n\t\u2022 frayed electrical
+      cords (could result in electrical shock)\n\r\n\t\u2022 boxes stacked precariously
+      (they could fall on someone)\n\r\n\t\u2022 noisy machinery (could result in
+      damage to your hearing)\r\n\n\tDuring work experience, you must remain alert
+      to anything that may be dangerous. If you see, hear or smell anything odd,
+      take note. If you think it could be a hazard, tell someone.\t"
+    image: {fileID: 0}
+  - subtopicID: 0102
+    slideType: 1
+    content: "Common Hazards\n\n\tA hazard is anything that could hurt you or someone
+      else.\r\n\n\tDuring work experience, you must remain alert to anything that
+      may be dangerous. If you see, hear or smell anything odd, take note. If you
+      think it could be a hazard, tell someone.\t"
     image: {fileID: -1379164851, guid: 26accc8416e9f68419becb7f4528ad39, type: 3}
-  - slideType: 0
-    content: "\tDuring work experience, you must remain alert to anything that may
-      be dangerous. If you see, hear or smell anything odd, take note. If you think
-      it could be a hazard, tell someone. \n\n\t"
-    image: {fileID: 0}
-  - slideType: 0
+  - subtopicID: 0102
+    slideType: 0
     content: "\tAssessing the risk means working out how likely it is that a hazard
       will harm someone and how serious the harm could be. Whenever you spot a hazard,
-      assess the risk by asking yourself two questions:\n\n\u2022 How likely is it
-      that the hazard could harm me or someone else?\n\n\u2022 How badly could I
-      or someone else be harmed?\n\nIf you are not sure of the safest way to do something
-      during work experience, always ask your work experience supervisor."
+      assess the risk by asking yourself two questions:\r\n\n\t\u2022 How likely
+      is it that the hazard could harm me or someone else?\n\r\n\t\u2022 How badly
+      could I or someone else be harmed?\t"
     image: {fileID: 0}
-  - slideType: 1
-    content: "Mechanical Hazard\n\t\n\tWhen working on electronic equipment, always
-      ask, \u201CCould this equipment hurt me?\u201D Be alert for moving parts, hot
-      components, and sharp edges that could cause injury."
-    image: {fileID: 852546510, guid: 2eb36148423c36049a41bad6c14f2806, type: 3}
-  - slideType: 1
-    content: "Physical Hazard\n\n\tOne common hazard for computer technicians is
-      cables across the floor. Someone could trip, fall, and get injured, creating
-      a legal negligence issue. If a cable must cross the floor temporarily, place
-      a Danger sign to warn people."
+  - subtopicID: 0103
+    slideType: 1
+    content: "Physical Hazards\n\n\tComputer technicians should be aware of hazards
+      such as cables across floors, unstable equipment, and tools left on ladders.
+      Temporary cables should be marked with warning signs or secured with gaffers
+      tape. Permanent cables should be organized using cable ties, wraps, or raceways.
+      Proper organization and secure equipment placement help prevent workplace accidents
+      and injuries.\t"
     image: {fileID: 397530054, guid: 0165cc06b85e5a34bb2d324f851d700b, type: 3}
-  - slideType: 1
-    content: "Chemical Hazard\n\n\tThere are many chemicals used with electronic
-      equipment, such as cleaners, compressed air, and solvents. Some can be harmful
-      if swallowed or exposed to the skin or eyes. Always read the label and follow
-      safety instructions. Be careful with printer ink and toner, as they can stain
-      skin, clothing, and carpets."
+  - subtopicID: 0103
+    slideType: 1
+    content: "Mechanical Hazards\n\n\tWhen working with electronic equipment, always
+      consider how it could cause injury. Be careful of moving parts, hot components,
+      and sharp edges that can cause serious harm. Staying alert and handling equipment
+      carefully can help prevent accidents and injuries.\t"
+    image: {fileID: 852546510, guid: 2eb36148423c36049a41bad6c14f2806, type: 3}
+  - subtopicID: 0103
+    slideType: 1
+    content: "Chemical Hazards\n\n\tChemicals used for electronic equipment can be
+      harmful if swallowed or if they contact the skin or eyes. Always read and follow
+      the warnings and instructions on chemical labels before use. Be especially
+      careful when handling printer ink and toner, as they can stain skin, clothing,
+      and surfaces.\t"
     image: {fileID: 221726296, guid: 42e4763059ae8ca46aa4ee77249e7263, type: 3}
-  - slideType: 1
-    content: "Electric Shock Hazard\n\n\tInside computers, most voltages are low,
-      but the power supply can contain lethal 220V line voltage. Always unplug equipment
-      before working inside. If you must work while it is powered, remove all jewelry
-      and watches to reduce the risk of electrical injury."
+  - subtopicID: 0103
+    slideType: 1
+    content: "Electric Shock Hazard\n\n\tComputers contain different voltages, but
+      the power supply can have a dangerous 220 volts. Always unplug equipment before
+      working inside it whenever possible. If you must work on powered equipment,
+      remove jewelry and wristwatches to reduce the risk of electrical injury."
     image: {fileID: -813718166, guid: 8578f1bc93ea4cd48a5520dd7c525dd8, type: 3}
-  - slideType: 1
-    content: "Occupational Health and Safety Standards\n\n\tEveryone is responsible
-      for identifying, addressing, and reporting workplace hazards to help maintain
-      a safe environment."
-    image: {fileID: 1060451888, guid: 6a567d5d88d6fc84bba860d7f3334f10, type: 3}
-  - slideType: 0
-    content: "\u2022 Identify the hazard.\n\n\u2022Clear the area near the hazard.\n\n\u2022Isolate
-      or mark the hazard to protect others.\n\n\u2022Safely remove the hazard if
-      possible.\n\n\u2022Report the hazard to the appropriate person if it cannot
-      be safely removed.\n\n\u2022Complete the required report after the hazard is
-      addressed."
+  - subtopicID: 0103
+    slideType: 1
+    content: "CRT Monitor High-Voltage Hazard\n\n\tCRT monitors can be extremely
+      dangerous because they contain high-voltage components that may hold a charge
+      even after being unplugged. A CRT\u2019s anode can carry up to 25,000 volts,
+      so repairs should be handled by qualified professionals whenever possible.
+      If opening one is unavoidable, proper discharge procedures must be followed
+      to prevent electrical shock."
+    image: {fileID: -1760798639, guid: a15350d8dff77ae4bbc9faea882c0b2e, type: 3}
+  - subtopicID: 0104
+    slideType: 0
+    content: "Occupational Health and Safety Standards\n\n\tEveryone has a responsibility
+      to report and address workplace hazards to protect others.\n\nProcedure:\n\n\t\u2022
+      Identify the hazard.\n\n\t\u2022 Clear the area around the hazard.\n\n\t\u2022
+      Partition or clearly mark the hazard area.\n\n\t\u2022 Safely clear the hazard
+      if possible.\n\n\t\u2022 If it cannot be safely cleared, report it to the appropriate
+      person.\n\n\t\u2022 Complete the proper documentation after the hazard is cleared.\n\nAll
+      hazards should be reported using an Accident Report Form to help prevent future
+      incidents."
     image: {fileID: 0}
-  - slideType: 1
-    content: "Accident Reports\n\n\tAccident reports document specific details about
-      incidents that occur during laboratory activities.\t"
-    image: {fileID: -763154279, guid: 750da39e79467a44482bf4a4aa04cb91, type: 3}
-  - slideType: 1
-    content: "Accident Reports\n\n\t\u2022 Name of the person injured\n\r\n\t\u2022
-      Date and time of the accident\n\r\n\t\u2022 Type of injury\n\r\n\t\u2022 First
-      aid given\n\r\n\t\u2022 Action taken to prevent further accidents\t"
-    image: {fileID: -763154279, guid: 750da39e79467a44482bf4a4aa04cb91, type: 3}
-  - slideType: 1
-    content: "Fire Exits\n\n\tKeep fire exits and corridors clear of obstacles to
-      ensure safe and easy evacuation during emergencies."
+  - subtopicID: 0105
+    slideType: 0
+    content: "Accident Reports\n\t\n\tForms are used to give specific details with
+      regards to the accidents happened in the laboratory during practical activities.
+      Accident reports contain the following details:\n\r\n\t\u2022 Name of the person
+      injured\n\r\n\t\u2022 Date and time of the accident\n\r\n\t\u2022 Type of injury\n\r\n\t\u2022
+      First aid given\n\r\n\t\u2022 Action taken to prevent further accidents\t"
+    image: {fileID: 0}
+  - subtopicID: 0106
+    slideType: 1
+    content: "FIre Exits\n\t\n\tAll fire exits must be kept clear of obstacles such
+      as chairs and boxes. Everyone is responsible for keeping fire exit doorways
+      and nearby areas unobstructed. Corridors should have equipment stored on only
+      one side to ensure a clear path during emergencies.\t"
     image: {fileID: -1422242266, guid: c2de2cdf689aeb8468030add18e16159, type: 3}
-  - slideType: 0
-    content: "Personal Safety While Working with PC\u2019s\n\n\u2022 Always ground
-      yourself before touching any part of the computer\n\r\n\u2022 Do not work alone\n\r\n\u2022
-      Be careful with tools that may cause short circuit\n\r\n\u2022 Replace only
-      fuses with those proper ratings\n\r\n\u2022 Wear safety glasses for protection
-      against sparks and metal fragmented\n\r\n\u2022 Use only grounded plugs and
-      receptacles\n\r\n\u2022 Working area should have ventilations, trash can, fire
-      exit and capable of being disinfected\n"
+  - subtopicID: 0107
+    slideType: 1
+    content: "Personal Safety While Working with PC\u2019s\n\t\n\tComputer equipment
+      can cause serious injury or even death if proper safety guidelines are not
+      followed. Before working with any computer equipment, technicians should take
+      the necessary precautions to ensure their safety and the safety of others.\t"
+    image: {fileID: 1060451888, guid: 6a567d5d88d6fc84bba860d7f3334f10, type: 3}
+  - subtopicID: 0107
+    slideType: 0
+    content: "\tThe following are some precautionary measures to take before working
+      with any computer equipment:\n\r\n\t\u2022 Always ground yourself before touching
+      any part of the computer\n\r\n\t\u2022 Do not work alone\n\r\n\t\u2022 Be careful
+      with tools that may cause short circuit\n\r\n\t\u2022 Replace only fuses with
+      those proper ratings\n\r\n\t\u2022 Wear safety glasses for protection against
+      sparks and metal fragmented\n\r\n\t\u2022 Use only grounded plugs and receptacles\n\r\n\t\u2022
+      Working area should have ventilations, trash can, fire exit and capable of
+      being disinfect.\t"
     image: {fileID: 0}
-  - slideType: 0
-    content: "Personal Safety While Working with PC\u2019s\n\n\u2022 Keep one hand
-      in your pocket when working live circuit.\n\r\n\u2022 Wear rubber sole shoes
-      when standing on the ground or in a concrete floor.\n\r\n\u2022 Always power
-      off and unplug the computer before working on it.\n\r\n\u2022 Wear hard hat
-      when someone working above you\n\r\n\u2022 When making circuit changes, switch
-      off and unplug the power cord from the equipment then discharge the capacitors."
+  - subtopicID: 0107
+    slideType: 0
+    content: "\t\u2022 Keep one hand in your pocket when working live circuit.\n\r\n\t\u2022
+      Wear rubber sole shoes when standing on the ground or in a concrete floor.\n\r\n\t\u2022
+      Always power off and unplug the computer before working on it.\n\r\n\t\u2022
+      Wear hard hat when someone working above you\n\r\n\t\u2022 When making circuit
+      changes, switch off and unplug the power cord from the equipment then discharge
+      the capacitors."
     image: {fileID: 0}
-  arActivity: {fileID: 0}
+  - subtopicID: 0108
+    slideType: 0
+    content: "Anti-Static and Safety Precautions\n\n\tStatic electricity is a small
+      electrical discharge that can occur when two objects have different electrical
+      potentials. Although people may not feel static shocks until they reach several
+      thousand volts, even less than 30 volts can damage sensitive computer components.
+      Computer technicians must therefore protect equipment from static electricity
+      to prevent damage. They should also take proper precautions to avoid electrical
+      injury."
+    image: {fileID: 0}
+  - subtopicID: 0108
+    slideType: 0
+    content: "Safety and Anti-Static Rules\n\r\n\t\u2022 When possible, try to avoid
+      working in carpeted areas. Carpeting greatly increases static buildup within
+      your body.\n\r\n\t\u2022 Always use an anti-static wrist strap when working
+      on a computer (except when working on monitors)\n\r\n\t\u2022 Always disconnect
+      a computer from the AC power and from any powered peripherals while you are
+      working on it.\n\r\n\t\u2022 Always grasp a metal part of the computer chassis
+      with your bare hand before you touch anything inside. Do this even if you are
+      wearing an anti-static wristband."
+    image: {fileID: 0}
+  - subtopicID: 0108
+    slideType: 0
+    content: "\t\u2022 Always handle electronic components by a non-conducting (nonmetallic)
+      edge. Don't touch the pins or other connectors.\r\n\t\n\t\u2022 Never plug
+      an ATX power supply into AC power unless it is connected either to a computer's
+      motherboard or to a dummy test load.\r\n\t\n\t\u2022 Always use a UL-approved
+      surge protector or an Uninterruptible Power Supply that incorporates surge
+      and spike protection.\r\n\t\n\t\u2022 Never eat, drink, or smoke while working
+      on a computer."
+    image: {fileID: 0}
+  - subtopicID: 0109
+    slideType: 0
+    content: "The 5 'S' Process: Seiri, Seiton, Seiso, Seiketsu, Shitsuke\n\n\tThe
+      5S Process is a workplace organization system focused on cleanliness, efficiency,
+      safety, and standardization. It was developed in Japan and is based on five
+      Japanese terms: Seiri, Seiton, Seiso, Seiketsu, and Shitsuke. In English, these
+      are commonly represented as Sort, Set in Place, Shine, Standardize, and Sustain.
+      A well-organized workplace can improve safety, productivity, worker morale,
+      and responsibility.\n\t"
+    image: {fileID: 0}
+  - subtopicID: 0109
+    slideType: 0
+    content: "Seiri\n\n\tSeiri (Sort) is the first step of the 5S process, which
+      involves removing unwanted, unnecessary, and unrelated items from the workplace.
+      Only materials needed for work should remain, and even necessary items should
+      be kept to a minimum. This helps simplify tasks, make better use of space,
+      and avoid unnecessary purchases.\n\t"
+    image: {fileID: 0}
+  - subtopicID: 0109
+    slideType: 0
+    content: "Seiton\n\n\tSeiton (Set in Place) focuses on organizing items for efficiency.
+      Every tool, material, and item should have an assigned place where it can be
+      quickly accessed and returned. Proper organization improves workflow and worker
+      productivity. Each location should also be clearly labeled for easy identification.\t"
+    image: {fileID: 0}
+  - subtopicID: 0109
+    slideType: 0
+    content: "Seiso\n\n\tSeiso (Shine) is the third step of 5S, which focuses on
+      keeping the workplace clean. Everyone in the organization, from workers to
+      managers, is responsible for cleaning their assigned areas. No area should
+      be left uncleaned, and the workplace should always be kept presentable."
+    image: {fileID: 0}
+  - subtopicID: 0109
+    slideType: 0
+    content: "Seiketsu\n\n\tSeiketsu (Standardize) is the fourth step of 5S, which
+      focuses on creating standards for maintaining cleanliness and order. It includes
+      keeping both the workplace and personnel clean and organized. Visual management,
+      such as color-coding, helps identify problems or abnormalities easily. Workers
+      should be trained to recognize and correct these issues immediately.\t"
+    image: {fileID: 0}
+  - subtopicID: 0109
+    slideType: 0
+    content: "Shitsuke\n\n\tShitsuke (Sustain/Discipline) is the fifth and final
+      step of 5S, which focuses on maintaining orderliness and practicing the first
+      four S consistently. It involves eliminating bad habits and developing good
+      ones through regular practice. The goal is for workers to maintain cleanliness
+      and organization voluntarily, without constant reminders from management."
+    image: {fileID: 0}
+  - subtopicID: 0110
+    slideType: 0
+    content: "Make Yourself a Desktop Cleaner\n\n\tHow to manage your desktop:\n\n1)
+      Create 5 folders in My Documents called:\n\n\t\u2022 Inbox \u2013 Store unprocessed
+      files that do not have a specific place yet, such as downloads and files from
+      colleagues.\n\n\t\u2022 Action Items \u2013 Store files that require actions
+      taking more than 2 minutes, such as forms and files to upload.\n\n\t\u2022
+      On Hold \u2013 Store items you are not ready to work on yet, such as articles,
+      project ideas, and class information.\n\n\t\u2022 Current Projects \u2013 Store
+      files related to active projects, with a separate folder for each project.\n\n\t\u2022
+      Archive \u2013 Store completed projects, reference materials, and files you
+      may need again.\t"
+    image: {fileID: 0}
+  - subtopicID: 0110
+    slideType: 0
+    content: 'Tip: Adding an underscore (_) before a folder name makes it appear
+      at the top of the list in My Documents.
+
+
+      2) Move all relevant files
+      from your desktop into these folders. If you have many files, move them all
+      into the Inbox first and organize them later.
+
+
+      3) Keep only program
+      icons on the desktop to maintain a clean and organized workspace.'
+    image: {fileID: 0}
+  hasARActivity: 0
+  hasQuiz: 1
+  requiresARActivity: 0
+  requiresQuiz: 1
+  arActivity: {fileID: 11400000, guid: 2424b83f512745e449f6ec42c3e4a19e, type: 2}
   quizData: {fileID: 11400000, guid: 60a7df15bc161704e98efbe014e68758, type: 2}

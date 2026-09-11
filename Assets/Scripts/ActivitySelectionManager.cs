@@ -14,8 +14,6 @@ public class ActivitySelectionManager : MonoBehaviour
     [SerializeField] private Button arActivityButton;
     [SerializeField] private Button quizButton;
 
-    [Header("Unavailable Settings")]
-    [SerializeField] private bool hideUnavailableButtons = false;
 
     private LessonData currentLesson;
 
@@ -53,9 +51,6 @@ public class ActivitySelectionManager : MonoBehaviour
 
     private void ConfigureActivities()
     {
-        // -----------------------------------------
-        // LESSON
-        // -----------------------------------------
 
         bool hasLesson =
             currentLesson.slides != null &&
@@ -66,11 +61,8 @@ public class ActivitySelectionManager : MonoBehaviour
             hasLesson
         );
 
-        // -----------------------------------------
-        // AR ACTIVITY
-        // -----------------------------------------
-
         bool hasARActivity =
+            currentLesson.hasARActivity &&
             currentLesson.arActivity != null;
 
         ConfigureButton(
@@ -78,11 +70,8 @@ public class ActivitySelectionManager : MonoBehaviour
             hasARActivity
         );
 
-        // -----------------------------------------
-        // QUIZ
-        // -----------------------------------------
-
         bool hasQuiz =
+            currentLesson.hasQuiz &&
             currentLesson.quizData != null;
 
         ConfigureButton(
@@ -92,25 +81,15 @@ public class ActivitySelectionManager : MonoBehaviour
     }
 
     private void ConfigureButton(
-        Button button,
-        bool available)
+    Button button,
+    bool available)
     {
         if (button == null)
             return;
 
-        if (hideUnavailableButtons)
-        {
-            button.gameObject.SetActive(available);
-        }
-        else
-        {
-            button.interactable = available;
-        }
+        button.gameObject.SetActive(true);
+        button.interactable = available;
     }
-
-    // =====================================================
-    // OPEN ACTIVITIES
-    // =====================================================
 
     public void OpenLesson()
     {
@@ -166,10 +145,6 @@ public class ActivitySelectionManager : MonoBehaviour
         SceneManager.LoadScene("QuizScene");
     }
 
-    // =====================================================
-    // BACK
-    // =====================================================
-
     public void GoBack()
     {
         if (string.IsNullOrEmpty(
@@ -182,8 +157,6 @@ public class ActivitySelectionManager : MonoBehaviour
             return;
         }
 
-        SceneManager.LoadScene(
-            LessonSession.CurrentCOC
-        );
+        SceneManager.LoadScene("COCScene");
     }
 }

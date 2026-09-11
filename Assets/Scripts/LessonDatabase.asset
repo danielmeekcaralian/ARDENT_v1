@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 947e8df5465077c488b9ff5aa8185d8a, type: 3}
+  m_Name: LessonDatabase
+  m_EditorClassIdentifier: Assembly-CSharp::LessonDatabase
+  lessons:
+  - {fileID: 11400000, guid: c525d11082777f54f91c70b99d26b1a8, type: 2}
+  - {fileID: 11400000, guid: ac93c9b9aacac2646b284a170bfcd28c, type: 2}
+  - {fileID: 11400000, guid: abbcefda0d48c954d9c60a6aa37d7be6, type: 2}
+  - {fileID: 11400000, guid: 3c87d50162058e94780dcbdcca2f55be, type: 2}
+  - {fileID: 11400000, guid: 2786654cbc8a55644b4fa6f43adf86b3, type: 2}
+  - {fileID: 11400000, guid: ea9554af5aa29a24e893df6b9e849ca6, type: 2}
+  - {fileID: 11400000, guid: 97bff53d006fc7343937345c90459767, type: 2}
+  - {fileID: 11400000, guid: 50e3ec8428244644da6e6462b9067a95, type: 2}
+  - {fileID: 11400000, guid: 6675ea839dc586a4f959a9263538bdc9, type: 2}
+  - {fileID: 11400000, guid: cd9414d049bf6974d96a3c6b904c8690, type: 2}
+  - {fileID: 11400000, guid: 1d306a5896a95b84f967c9c4bedbce6f, type: 2}
+  - {fileID: 11400000, guid: 7f7bb4bb621db9d48b647499b2049e73, type: 2}
+  - {fileID: 11400000, guid: 6dd5893c555654b47b9e8349b11b2438, type: 2}

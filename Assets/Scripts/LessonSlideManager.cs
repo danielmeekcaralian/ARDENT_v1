@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LessonSlideManager : MonoBehaviour
 {
@@ -12,20 +13,39 @@ public class LessonSlideManager : MonoBehaviour
     [Header("Slide Container")]
     [SerializeField] private Transform slideContainer;
 
+    [Header("Lesson Progress")]
+    [SerializeField] private LessonProgressUI lessonProgressUI;
+
+    [Header("Lesson Complete Popup")]
+    [SerializeField] private GameObject lessonCompletePopup;
+    [SerializeField] private TMP_Text lessonCompleteTitleText;
+    [SerializeField] private Button arActivityButton;
+    [SerializeField] private Button quizButton;
+    [SerializeField] private Button lessonsMenuButton;
+
+    private LessonData currentLesson;
     private GameObject[] slides;
     private int currentSlide = 0;
 
     private void Start()
     {
-        LessonData lesson = LessonSession.CurrentLesson;
+        currentLesson = LessonSession.CurrentLesson;
 
-        if (lesson == null)
+        if (currentLesson == null)
         {
             Debug.LogError("No lesson selected!");
             return;
         }
 
-        CreateSlides(lesson);
+        CreateSlides(currentLesson);
+
+        if (lessonProgressUI != null)
+        {
+            lessonProgressUI.CreateSegments(
+                currentLesson.subtopics.Length
+            );
+        }
+
         ShowSlide();
     }
 
@@ -109,12 +129,9 @@ public class LessonSlideManager : MonoBehaviour
         // CONTENT
         // ==========================================
 
-        // Get all TMP text components in the slide.
         TMP_Text[] texts =
             slide.GetComponentsInChildren<TMP_Text>(true);
 
-        // The first TMP_Text is assumed to be the
-        // content text of the slide.
         if (texts.Length > 0)
         {
             texts[0].text = data.content;
@@ -177,6 +194,10 @@ public class LessonSlideManager : MonoBehaviour
             return;
         }
 
+        // Check whether the current slide completes
+        // the current subtopic.
+        CheckSubtopicCompletion();
+
         if (currentSlide < slides.Length - 1)
         {
             currentSlide++;
@@ -189,7 +210,7 @@ public class LessonSlideManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Already on the last slide.");
+            ShowLessonCompletePopup();
         }
     }
 
@@ -229,5 +250,214 @@ public class LessonSlideManager : MonoBehaviour
                 slides[i].SetActive(i == currentSlide);
             }
         }
+
+        UpdateCurrentSubtopicUI();
+    }
+
+    private void CheckSubtopicCompletion()
+    {
+        // Learning Objectives is not a subtopic.
+        if (currentSlide == 0)
+            return;
+
+        int lessonSlideIndex = currentSlide - 1;
+
+        if (lessonSlideIndex < 0 ||
+            lessonSlideIndex >= currentLesson.slides.Length)
+            return;
+
+        string currentSubtopicID =
+            currentLesson.slides[lessonSlideIndex].subtopicID;
+
+        bool isLastSlideOfSubtopic =
+            lessonSlideIndex ==
+            currentLesson.slides.Length - 1 ||
+            currentLesson.slides[lessonSlideIndex + 1].subtopicID
+            != currentSubtopicID;
+
+        if (!isLastSlideOfSubtopic)
+            return;
+
+        for (int i = 0;
+             i < currentLesson.subtopics.Length;
+             i++)
+        {
+            if (currentLesson.subtopics[i].subtopicID ==
+                currentSubtopicID)
+            {
+                if (lessonProgressUI != null)
+                {
+                    lessonProgressUI.CompleteSubtopic(i);
+                }
+
+                Debug.Log(
+                    $"Subtopic completed: " +
+                    $"{currentLesson.subtopics[i].subtopicName}"
+                );
+
+                break;
+            }
+        }
+    }
+
+    private void UpdateCurrentSubtopicUI()
+    {
+        if (lessonProgressUI == null)
+            return;
+
+        if (currentLesson == null ||
+            currentLesson.subtopics == null ||
+            currentLesson.subtopics.Length == 0)
+            return;
+
+        // ==========================================
+        // LEARNING OBJECTIVES
+        // ==========================================
+
+        if (currentSlide == 0)
+        {
+            lessonProgressUI.SetCurrentSubtopic(
+                "Learning Objectives"
+            );
+
+            return;
+        }
+
+        // ==========================================
+        // CURRENT LESSON SLIDE
+        // ==========================================
+
+        int lessonSlideIndex = currentSlide - 1;
+
+        if (lessonSlideIndex < 0 ||
+            lessonSlideIndex >= currentLesson.slides.Length)
+            return;
+
+        string currentSubtopicID =
+            currentLesson.slides[lessonSlideIndex].subtopicID;
+
+        // Find the subtopic that belongs to this slide.
+        for (int i = 0;
+             i < currentLesson.subtopics.Length;
+             i++)
+        {
+            if (currentLesson.subtopics[i].subtopicID ==
+                currentSubtopicID)
+            {
+                // Only update the name.
+                //
+                // The counter is handled by
+                // CompleteSubtopic().
+                lessonProgressUI.SetCurrentSubtopic(
+                    currentLesson.subtopics[i].subtopicName
+                );
+
+                return;
+            }
+        }
+
+        Debug.LogWarning(
+            $"No matching subtopic found for ID: " +
+            $"{currentSubtopicID}"
+        );
+    }
+
+    private void ShowLessonCompletePopup()
+    {
+        if (lessonCompletePopup == null)
+        {
+            Debug.LogError(
+                "Lesson Complete Popup is not assigned!"
+            );
+
+            return;
+        }
+
+        lessonCompletePopup.SetActive(true);
+
+        if (lessonCompleteTitleText != null &&
+        currentLesson != null)
+        {
+            lessonCompleteTitleText.text =
+                currentLesson.lessonTitle;
+        }
+
+        // ==========================================
+        // CHECK AR ACTIVITY AVAILABILITY
+        // ==========================================
+
+        bool hasARActivity =
+            currentLesson != null &&
+            currentLesson.hasARActivity &&
+            currentLesson.arActivity != null;
+
+        if (arActivityButton != null)
+        {
+            arActivityButton.gameObject.SetActive(true);
+            arActivityButton.interactable = hasARActivity;
+
+            arActivityButton.onClick.RemoveAllListeners();
+
+            if (hasARActivity)
+            {
+                arActivityButton.onClick.AddListener(
+                    OpenARActivity
+                );
+            }
+        }
+
+        // ==========================================
+        // CHECK QUIZ AVAILABILITY
+        // ==========================================
+
+        bool hasQuiz =
+            currentLesson != null &&
+            currentLesson.hasQuiz &&
+            currentLesson.quizData != null;
+
+        if (quizButton != null)
+        {
+            quizButton.gameObject.SetActive(true);
+            quizButton.interactable = hasQuiz;
+
+            quizButton.onClick.RemoveAllListeners();
+
+            if (hasQuiz)
+            {
+                quizButton.onClick.AddListener(
+                    OpenQuiz
+                );
+            }
+        }
+
+        // ==========================================
+        // LESSONS MENU
+        // ==========================================
+
+        if (lessonsMenuButton != null)
+        {
+            lessonsMenuButton.gameObject.SetActive(true);
+            lessonsMenuButton.interactable = true;
+
+            lessonsMenuButton.onClick.RemoveAllListeners();
+            lessonsMenuButton.onClick.AddListener(
+                ReturnToLessonsMenu
+            );
+        }
+    }
+
+    private void OpenARActivity()
+    {
+        SceneManager.LoadScene("ARScene");
+    }
+
+    private void OpenQuiz()
+    {
+        SceneManager.LoadScene("QuizScene");
+    }
+
+    private void ReturnToLessonsMenu()
+    {
+        SceneManager.LoadScene("COCScene");
     }
 }

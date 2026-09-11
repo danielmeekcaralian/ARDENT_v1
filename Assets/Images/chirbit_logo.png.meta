@@ -123,72 +123,6 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: chirbit_logo_0
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 964
-        width: 44
-        height: 54
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ab8a401e105268f4da7de9f19addf333
-      internalID: 404046363
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: chirbit_logo_1
-      rect:
-        serializedVersion: 2
-        x: 77
-        y: 1001
-        width: 47
-        height: 58
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5131d6a8dafd2d04e803b715dbfca298
-      internalID: -291556057
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: chirbit_logo_2
-      rect:
-        serializedVersion: 2
-        x: 79
-        y: 600
-        width: 419
-        height: 511
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: aa02e75d0eeb9a74791030b005404b7f
-      internalID: 1393122233
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: chirbit_logo_3
       rect:
         serializedVersion: 2
@@ -206,6 +140,28 @@ TextureImporter:
       bones: []
       spriteID: fddaa5d1e00ce1246aeecd6e31251ca8
       internalID: 1972995072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chirbit_logo_2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 600
+        width: 450
+        height: 511
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67103af7ba178ee40ad486ea05992f22
+      internalID: 1393122233
       vertices: []
       indices: 
       edges: []

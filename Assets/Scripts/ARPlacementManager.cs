@@ -60,6 +60,14 @@ public class ARPlacementManager : MonoBehaviour
         Vector2 mousePosition =
             Mouse.current.position.ReadValue();
 
+        if (float.IsNaN(mousePosition.x) ||
+            float.IsNaN(mousePosition.y) ||
+            float.IsInfinity(mousePosition.x) ||
+            float.IsInfinity(mousePosition.y))
+        {
+            return;
+        }
+
         UpdatePlacementPose(mousePosition);
 
         if (Mouse.current.leftButton.wasPressedThisFrame)

@@ -6,9 +6,9 @@ public static class LessonSession
 
     public static string CurrentCOC { get; private set; }
 
-    public static void SetCOC(string cocSceneName)
+    public static void SetCOC(string cocID)
     {
-        CurrentCOC = cocSceneName;
+        CurrentCOC = cocID;
     }
 
     public static void SetLesson(LessonData lesson)

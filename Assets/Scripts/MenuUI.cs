@@ -7,31 +7,40 @@ public class MenuUI : MonoBehaviour
 
     void Start()
     {
-        SceneManager.LoadScene("UI_Scene", LoadSceneMode.Additive);
+        if (UIManager.Instance == null)
+        {
+            SceneManager.LoadScene(
+                "UI_Scene",
+                LoadSceneMode.Additive
+            );
+        }
     }
 
     public void OpenSettings()
     {
         if (!uiReady) return;
+
         UIManager.Instance.OpenSettings();
     }
 
     public void OpenInfo()
     {
         if (!uiReady) return;
+
         UIManager.Instance.OpenInfo();
     }
 
     public void OpenHelp()
     {
         if (!uiReady) return;
+
         UIManager.Instance.OpenHelp();
     }
 
     public void OpenMenu()
     {
         if (!uiReady) return;
+
         UIManager.Instance.ShowMenu();
     }
-
 }

@@ -18,9 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/UI_Scene.unity
     guid: b0fab6b8242410b4cb3accedecadf0f2
   - enabled: 1
-    path: Assets/Scenes/COC_01.unity
+    path: Assets/Scenes/COCScene.unity
     guid: f303b126ae15f9c439feaaf154989274
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/COC_02.unity
     guid: f72c118c6f9b74947876e5523cfe81a5
   - enabled: 0

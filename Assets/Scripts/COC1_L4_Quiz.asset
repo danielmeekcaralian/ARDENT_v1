@@ -12,4 +12,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a04c719109ce6384c9cc79f646513864, type: 3}
   m_Name: COC1_L4_Quiz
   m_EditorClassIdentifier: Assembly-CSharp::QuizData
-  questions: []
+  passingPercentage: 100
+  questions:
+  - question: 'Personal Computer Disassembly: First procedure'
+    answers:
+    - Opening the outer shell / case
+    - Unplugging all the cables and wires
+    - Removing the system fan
+    correctAnswerIndex: 1
+  - question: 'Personal Computer Disassembly: Second procedure'
+    answers:
+    - Opening the outer shell / case
+    - Unplugging all the cables and wires
+    - Removing the system fan
+    correctAnswerIndex: 0
+  - question: 'Personal Computer Disassembly: Third procedure'
+    answers:
+    - Opening the outer shell / case
+    - Unplugging all the cables and wires
+    - Removing the system fan
+    correctAnswerIndex: 2
+  - question: 'Personal Computer Disassembly: Fourth procedure'
+    answers:
+    - Removing the CPU fan
+    - Removing the CD / DVD Drives
+    - Detaching the power supply
+    correctAnswerIndex: 0
+  - question: 'Personal Computer Disassembly: Fifth procedure'
+    answers:
+    - Removing the CPU fan
+    - Removing the CD / DVD Drives
+    - Detaching the power supply
+    correctAnswerIndex: 2
+  - question: 'Personal Computer Disassembly: Sixth procedure'
+    answers:
+    - Removing the CPU fan
+    - Removing the CD / DVD Drives
+    - Detaching the power supply
+    correctAnswerIndex: 1
+  - question: 'Personal Computer Disassembly: Seventh procedure'
+    answers:
+    - Pull Out the Motherboard
+    - Detaching the Hard Drive
+    correctAnswerIndex: 1
+  - question: 'Personal Computer Disassembly: Eighth procedure'
+    answers:
+    - Pull Out the Motherboard
+    - Detaching the Hard Drive
+    correctAnswerIndex: 0

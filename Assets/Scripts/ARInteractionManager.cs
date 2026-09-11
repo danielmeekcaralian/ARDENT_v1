@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 public class ARInteractionManager : MonoBehaviour
 {
@@ -15,6 +16,10 @@ public class ARInteractionManager : MonoBehaviour
     private ARObjectManipulator selectedObject;
 
     private Vector2 previousMousePosition;
+
+    private Vector2 previousFirstTouchPosition;
+    private Vector2 previousSecondTouchPosition;
+    private bool twoFingerGestureActive;
 
     private void Awake()
     {
@@ -188,13 +193,28 @@ public class ARInteractionManager : MonoBehaviour
                 activeTouches++;
         }
 
-        // One finger
+        // -----------------------------------------
+        // RESET TWO-FINGER GESTURE
+        // -----------------------------------------
+
+        if (activeTouches < 2)
+        {
+            twoFingerGestureActive = false;
+        }
+
+        // -----------------------------------------
+        // ONE FINGER
+        // -----------------------------------------
+
         if (activeTouches == 1)
         {
             HandleSingleTouch();
         }
 
-        // Two fingers
+        // -----------------------------------------
+        // TWO FINGERS
+        // -----------------------------------------
+
         if (activeTouches == 2)
         {
             HandleTwoFingerGesture();
@@ -255,40 +275,123 @@ public class ARInteractionManager : MonoBehaviour
     }
 
     private void HandleTwoFingerGesture()
+{
+    var touches =
+        Touchscreen.current.touches;
+
+    TouchControl first = null;
+    TouchControl second = null;
+
+    foreach (var touch in touches)
     {
-        var touches =
-            Touchscreen.current.touches;
+        if (!touch.press.isPressed)
+            continue;
 
-        TouchControl first = null;
-        TouchControl second = null;
+        if (first == null)
+            first = touch;
 
-        foreach (var touch in touches)
+        else if (second == null)
         {
-            if (!touch.press.isPressed)
-                continue;
-
-            if (first == null)
-                first = touch;
-
-            else if (second == null)
-            {
-                second = touch;
-                break;
-            }
+            second = touch;
+            break;
         }
-
-        if (first == null || second == null)
-            return;
-
-        Vector2 firstPosition =
-            first.position.ReadValue();
-
-        Vector2 secondPosition =
-            second.position.ReadValue();
-
-        // Two-finger distance can later be used for scaling.
-        // For now, this is intentionally left simple.
     }
+
+    if (first == null || second == null)
+        return;
+
+    if (selectedObject == null)
+        return;
+
+    Vector2 firstPosition =
+        first.position.ReadValue();
+
+    Vector2 secondPosition =
+        second.position.ReadValue();
+
+    // -----------------------------------------
+    // INITIALIZE TWO-FINGER GESTURE
+    // -----------------------------------------
+
+    if (!twoFingerGestureActive)
+    {
+        previousFirstTouchPosition = firstPosition;
+        previousSecondTouchPosition = secondPosition;
+
+        twoFingerGestureActive = true;
+
+        return;
+    }
+
+    // -----------------------------------------
+    // SCALE
+    // -----------------------------------------
+
+    float previousDistance =
+        Vector2.Distance(
+            previousFirstTouchPosition,
+            previousSecondTouchPosition
+        );
+
+    float currentDistance =
+        Vector2.Distance(
+            firstPosition,
+            secondPosition
+        );
+
+    float distanceDelta =
+        currentDistance - previousDistance;
+
+    float scaleAmount =
+        distanceDelta * scaleSpeed;
+
+    selectedObject.ChangeScale(
+        scaleAmount,
+        minimumScale,
+        maximumScale
+    );
+
+    // -----------------------------------------
+    // ROTATION
+    // -----------------------------------------
+
+    Vector2 previousDirection =
+        previousSecondTouchPosition -
+        previousFirstTouchPosition;
+
+    Vector2 currentDirection =
+        secondPosition -
+        firstPosition;
+
+    float previousAngle =
+        Mathf.Atan2(
+            previousDirection.y,
+            previousDirection.x
+        ) * Mathf.Rad2Deg;
+
+    float currentAngle =
+        Mathf.Atan2(
+            currentDirection.y,
+            currentDirection.x
+        ) * Mathf.Rad2Deg;
+
+    float angleDelta =
+        Mathf.DeltaAngle(
+            previousAngle,
+            currentAngle
+        );
+
+    selectedObject.Rotate(
+        -angleDelta * rotationSpeed
+    );
+
+    // -----------------------------------------
+    // SAVE POSITIONS
+    // -----------------------------------------
+
+    previousFirstTouchPosition = firstPosition;
+    previousSecondTouchPosition = secondPosition;
+}
 
 #endif
 

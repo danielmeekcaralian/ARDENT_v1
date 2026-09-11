@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: COC1_L3
   m_EditorClassIdentifier: Assembly-CSharp::LessonData
   lessonID: 3
+  cocID: COC_01
   lessonTitle: Computer Hardware
   description: "\tLearn the basic components, functions, terms, and concepts of computers
     to better understand how computer systems work.\r\n"
@@ -26,4 +27,4 @@ MonoBehaviour:
   - "\u2022 Identify the computer hardware peripherals.\n"
   slides: []
   arActivity: {fileID: 0}
-  quizData: {fileID: 0}
+  quizData: {fileID: 11400000, guid: a3c67d2e103adbe4abd4e97cba874d11, type: 2}

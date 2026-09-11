@@ -14,15 +14,74 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::QuizData
   passingPercentage: 100
   questions:
-  - question: What is 1 + 1?
+  - question: Health and safety procedure is the responsibility of all persons in
+      the computer and technology industries
     answers:
-    - 1
-    - 2
+    - True
+    - False
+    correctAnswerIndex: 0
+  - question: Spotting the hazards means working out how likely it is that a hazard
+      will harm someone and how serious the harm could be.
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 0
+  - question: If you need to temporarily run a cable across the floor, place a Danger
+      sign similar to those "wet floor" signs used by cleaning services.
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 0
+  - question: An LCD monitor has a high-voltage anode inside it, which can carry
+      a charge of up to 25,000 volts, and it can still be holding a high charge days
+      after the power is removed.
+    answers:
+    - True
+    - False
     correctAnswerIndex: 1
-  - question: What is love?
+  - question: Inkjet printer cartridges, or laser printer toner cartridges are hazardous
+      to users.
     answers:
-    - Baby don't hurt me.
-    - Love is like a rosary
-    - Love. Never knew what I was missing.
-    - Love me like you do
+    - True
+    - False
+    correctAnswerIndex: 0
+  - question: What 5S that suggests throwing away all rubbish and unrelated materials
+      in the workplace.
+    answers:
+    - Seiso
+    - Seiri
+    - Seiton
+    - Seiketsu
+    correctAnswerIndex: 1
+  - question: ESD can be done by periodically touching an unpainted metal surface
+      on the computer chassis to dissipate any static electricity that might harm
+      internal components. What is the meaning of ESD?
+    answers:
+    - Electronic System Discharge
+    - Electronic Security Discharge
+    - Electro-Signal Distribution
+    - Electro-Static Discharge
+    correctAnswerIndex: 3
+  - question: What 5S that uses color-coding and standardized coloration of surroundings
+      for easier visual identification of anomalies in the surroundings?
+    answers:
+    - Seiketsu
+    - Seiton
+    - Seiri
+    - Seiso
+    correctAnswerIndex: 0
+  - question: It is a structured program to systematically achieve total organization,
+      cleanliness, and standardization in the workplace.
+    answers:
+    - 3S
+    - 4S
+    - 5S
+    - 6S
+    correctAnswerIndex: 2
+  - question: "It literally means \u201Cdiscipline.\u201D"
+    answers:
+    - Shitsuke
+    - Seiton
+    - Seiri
+    - Seiketsu
     correctAnswerIndex: 0

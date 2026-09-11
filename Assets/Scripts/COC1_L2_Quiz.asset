@@ -12,4 +12,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a04c719109ce6384c9cc79f646513864, type: 3}
   m_Name: COC1_L2_Quiz
   m_EditorClassIdentifier: Assembly-CSharp::QuizData
-  questions: []
+  passingPercentage: 100
+  questions:
+  - question: "Selecting the best tool for each task requires training in the proper
+      use of the tools, field experience in their safe use, and following the manufacturer\u2019s
+      guidance and instructions for that specific tool."
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 0
+  - question: When obtaining the tool, all the associated tooling and consumable
+      parts, as recommended by the manufacturer, must be included.
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 0
+  - question: The safe use of a tool depends on using the tool for the purpose for
+      which it was designed and also for other purposes where it can be used As substitute
+      where the tool is not available.
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 0
+  - question: Preparing for a task includes only knowing the task to be done.
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 1
+  - question: Preparing for a task includes also the sequence of tasks to be done.
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 0

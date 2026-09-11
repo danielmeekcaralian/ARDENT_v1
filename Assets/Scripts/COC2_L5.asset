@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 035a2531ee473eb48b75e12ca5d634d6, type: 3}
+  m_Name: COC2_L5
+  m_EditorClassIdentifier: Assembly-CSharp::LessonData
+  lessonID: 9
+  cocID: COC_02
+  lessonTitle: Splicing
+  description: 
+  lessonSceneName: LessonScene
+  requiredGoldLessonID: 8
+  learningObjectives: []
+  slides: []
+  arActivity: {fileID: 0}
+  quizData: {fileID: 0}

@@ -1,11 +1,15 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class QuizManager : MonoBehaviour
 {
     [Header("Quiz Data")]
-    [SerializeField] private QuizData quizData;
+    private QuizData quizData;
+
+    [Header("Lesson Database")]
+    [SerializeField] private LessonDatabase lessonDatabase;
 
     [Header("UI")]
     [SerializeField] private TMP_Text questionText;
@@ -20,8 +24,9 @@ public class QuizManager : MonoBehaviour
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private TMP_Text percentageText;
     [SerializeField] private TMP_Text resultMessage;
+    [SerializeField] private Button activityMenuButton;
     [SerializeField] private Button retryButton;
-    [SerializeField] private Button continueButton;
+    [SerializeField] private Button nextLessonButton;
 
     [SerializeField] private Image resultMascot;
     [SerializeField] private Sprite happyMascotSprite;
@@ -32,19 +37,40 @@ public class QuizManager : MonoBehaviour
 
     private void Start()
     {
+        LessonData currentLesson = LessonSession.CurrentLesson;
+
+        if (currentLesson == null)
+        {
+            Debug.LogError(
+                "QuizScene: No lesson selected."
+            );
+
+            return;
+        }
+
+        quizData = currentLesson.quizData;
+
         if (quizData == null)
         {
-            Debug.LogError("QuizData is not assigned.");
+            Debug.LogError(
+                "QuizScene: The selected lesson has no QuizData."
+            );
+
             return;
         }
 
-        if (quizData.questions == null || quizData.questions.Length == 0)
+        if (quizData.questions == null ||
+            quizData.questions.Length == 0)
         {
-            Debug.LogError("QuizData contains no questions.");
+            Debug.LogError(
+                "QuizScene: QuizData contains no questions."
+            );
+
             return;
         }
 
-        selectedAnswers = new int[quizData.questions.Length];
+        selectedAnswers =
+            new int[quizData.questions.Length];
 
         for (int i = 0; i < selectedAnswers.Length; i++)
         {
@@ -55,7 +81,9 @@ public class QuizManager : MonoBehaviour
 
         nextButton.onClick.AddListener(NextQuestion);
         backButton.onClick.AddListener(PreviousQuestion);
+        activityMenuButton.onClick.AddListener(BackToActivities);
         retryButton.onClick.AddListener(RetryQuiz);
+        nextLessonButton.onClick.AddListener(NextLesson);
 
         DisplayQuestion();
     }
@@ -63,24 +91,19 @@ public class QuizManager : MonoBehaviour
     private void DisplayQuestion()
     {
         QuizQuestion question = quizData.questions[currentQuestionIndex];
-
-        // Display question
+        
         questionText.text = question.question;
-
-        // Display question number
+        
         questionCounter.text =
             $"Question {currentQuestionIndex + 1} of {quizData.questions.Length}";
-
-        // Get the saved answer for this question
+        
         int savedAnswer = selectedAnswers[currentQuestionIndex];
 
-        // Remove old answer buttons
         foreach (Transform child in answerContainer)
         {
             Destroy(child.gameObject);
         }
 
-        // Create new answer buttons
         for (int i = 0; i < question.answers.Length; i++)
         {
             GameObject buttonObject =
@@ -91,17 +114,14 @@ public class QuizManager : MonoBehaviour
 
             answerButton.Setup(question.answers[i], i, this);
 
-            // Restore previously selected answer
             if (i == savedAnswer)
             {
                 answerButton.SetSelected(true);
             }
         }
 
-        // Update Back button
         backButton.interactable = currentQuestionIndex > 0;
 
-        // Update Next button text
         TMP_Text nextText = nextButton.GetComponentInChildren<TMP_Text>();
 
         if (currentQuestionIndex == quizData.questions.Length - 1)
@@ -133,14 +153,12 @@ public class QuizManager : MonoBehaviour
 
     private void NextQuestion()
     {
-        // Don't allow the player to continue without answering
         if (selectedAnswers[currentQuestionIndex] == -1)
         {
             Debug.Log("Please select an answer first.");
             return;
         }
 
-        // If this is the last question, submit the quiz
         if (currentQuestionIndex == quizData.questions.Length - 1)
         {
             SubmitQuiz();
@@ -182,6 +200,15 @@ public class QuizManager : MonoBehaviour
         float percentage =
             (float)score / totalQuestions * 100f;
 
+        int roundedPercentage = Mathf.RoundToInt(percentage);
+
+        if (nextLessonButton != null)
+        {
+            nextLessonButton.interactable = roundedPercentage >= 100;
+        }
+
+        SaveQuizProgress(roundedPercentage);
+
         scoreText.text =
             $"Score: {score}/{totalQuestions}";
 
@@ -199,18 +226,59 @@ public class QuizManager : MonoBehaviour
             resultMascot.sprite = sadMascotSprite;
         }
 
-        // Hide quiz UI
         questionText.gameObject.SetActive(false);
         questionCounter.gameObject.SetActive(false);
         answerContainer.gameObject.SetActive(false);
         nextButton.gameObject.SetActive(false);
         backButton.gameObject.SetActive(false);
 
-        // Show results
         resultsPanel.SetActive(true);
 
         Debug.Log(
             $"Quiz Complete! Score: {score}/{totalQuestions} ({percentage:0}%)"
+        );
+    }
+
+    private void SaveQuizProgress(int percentage)
+    {
+        LessonData currentLesson =
+            LessonSession.CurrentLesson;
+
+        if (currentLesson == null)
+        {
+            Debug.LogError(
+                "QuizManager: No current lesson found."
+            );
+
+            return;
+        }
+
+        int previousBestScore =
+            PlayerPrefs.GetInt(
+                $"Lesson{currentLesson.lessonID}BestScore",
+                0
+            );
+
+        if (percentage > previousBestScore)
+        {
+            PlayerPrefs.SetInt(
+                $"Lesson{currentLesson.lessonID}BestScore",
+                percentage
+            );
+
+            PlayerPrefs.Save();
+        }
+
+        if (ProgressManager.Instance != null)
+        {
+            ProgressManager.Instance.UpdateLessonMedal(
+                currentLesson
+            );
+        }
+
+        Debug.Log(
+            $"Lesson {currentLesson.lessonID} - " +
+            $"Quiz Score: {percentage}%"
         );
     }
 
@@ -232,5 +300,83 @@ public class QuizManager : MonoBehaviour
         backButton.gameObject.SetActive(true);
 
         DisplayQuestion();
+    }
+
+    private void BackToActivities()
+    {
+        SceneManager.LoadScene("ActivitySelectionScene");
+    }
+
+    private void NextLesson()
+    {
+        LessonData currentLesson =
+            LessonSession.CurrentLesson;
+
+        if (currentLesson == null)
+        {
+            Debug.LogError(
+                "QuizManager: No current lesson found."
+            );
+
+            return;
+        }
+
+        if (lessonDatabase == null)
+        {
+            Debug.LogError(
+                "QuizManager: LessonDatabase is not assigned."
+            );
+
+            return;
+        }
+
+        if (ProgressManager.Instance == null)
+        {
+            Debug.LogError(
+                "QuizManager: ProgressManager instance not found."
+            );
+
+            return;
+        }
+
+        if (!ProgressManager.Instance.IsLessonComplete(
+                currentLesson))
+        {
+            Debug.LogWarning(
+                "Next lesson is locked. " +
+                "Complete all required activities " +
+                "and achieve 100% on the quiz."
+            );
+
+            return;
+        }
+
+        LessonData nextLesson =
+            lessonDatabase.GetNextLesson(
+                currentLesson.lessonID
+            );
+
+        if (nextLesson == null)
+        {
+            Debug.Log(
+                "There is no next lesson."
+            );
+
+            return;
+        }
+
+        LessonSession.SetLesson(nextLesson);
+
+        SceneManager.LoadScene(
+            "ActivitySelectionScene"
+        );
+    }
+
+    private void UpdateNextLessonButton(int scorePercentage)
+    {
+        if (nextLessonButton == null)
+            return;
+
+        nextLessonButton.interactable = scorePercentage >= 100;
     }
 }

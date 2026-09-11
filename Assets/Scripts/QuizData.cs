@@ -4,7 +4,7 @@ using UnityEngine;
 public class QuizData : ScriptableObject
 {
     [Range(0, 100)]
-    public int passingPercentage = 70;
+    public int passingPercentage = 100;
 
     public QuizQuestion[] questions;
 }

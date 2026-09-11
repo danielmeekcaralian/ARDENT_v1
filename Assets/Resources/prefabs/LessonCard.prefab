@@ -175,9 +175,9 @@ MonoBehaviour:
   startButton: {fileID: 4452676435211910081}
   lockIcon: {fileID: 8715082311555883749}
   medalIcon: {fileID: 4686513999377110422}
-  bronzeSprite: {fileID: -374776885, guid: a5e645d0b2507ac42807ef8e886f7d45, type: 3}
-  silverSprite: {fileID: -1298529376, guid: a5e645d0b2507ac42807ef8e886f7d45, type: 3}
-  goldSprite: {fileID: -1737005464, guid: a5e645d0b2507ac42807ef8e886f7d45, type: 3}
+  bronzeSprite: {fileID: -6992607889860988662, guid: 77b4f5c63719c424cb80bb42f0efb56c, type: 3}
+  silverSprite: {fileID: -8336007284100039187, guid: 4bb15722e6c483144ba5e00f706db3d0, type: 3}
+  goldSprite: {fileID: 4631533237677809803, guid: 2e688ec7bcc551d439e9f2117ef2e203, type: 3}
 --- !u!114 &4996777038122934865
 MonoBehaviour:
   m_ObjectHideFlags: 0

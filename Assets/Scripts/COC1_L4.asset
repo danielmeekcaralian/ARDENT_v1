@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: COC1_L4
   m_EditorClassIdentifier: Assembly-CSharp::LessonData
   lessonID: 4
+  cocID: COC_01
   lessonTitle: Assemble/Disassemble Computer Hardware
   description: "\tLearn to assemble and disassemble a PC safely and efficiently using
     a logical and methodical approach."
@@ -22,3 +23,5 @@ MonoBehaviour:
   - "\u2022 Identify procedures in assembling/ disassembling computer.\n"
   - "\u2022 Assemble/disassemble computer system unit.\n"
   slides: []
+  arActivity: {fileID: 0}
+  quizData: {fileID: 11400000, guid: a0358e317d186764bbca88c94ef4ed68, type: 2}

@@ -12,4 +12,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a04c719109ce6384c9cc79f646513864, type: 3}
   m_Name: COC1_L3_Quiz
   m_EditorClassIdentifier: Assembly-CSharp::QuizData
-  questions: []
+  passingPercentage: 100
+  questions:
+  - question: "AGP (Accelerated Graphics Port) is a high-speed point-to-point channel
+      for attaching a graphics card to a computer\u2019s motherboard, primarily to
+      assist in the acceleration of 3D computer graphics."
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 0
+  - question: External hard drive is an example of a non-removable storage device
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 1
+  - question: Removable Storage the same kinds of CD and DVD drives that could come
+      built-in on your computer can also be attached externally
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 0
+  - question: The PS/2 connector is used for connecting some keyboards, mice, soundcard,
+      LAN car, video card to a PC compatible computer system.
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 1
+  - question: USB (Universal Serial Bus) is a serial bus standard to interface and
+      slot.
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 1
+  - question: "Keyboard \u2013 The most familiar computer input device, the keyboard
+      is used to introduce characters and commands into the system."
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 0
+  - question: "Mouse \u2013 An output device used with graphical user interfaces
+      (GUI) to point to, select, or activate images on the video monitor. By moving
+      the mouse along a surface, the user can cause a cursor on the display to move
+      in a corresponding manner."
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 1
+  - question: "Video display \u2013 A Visual output device that displays characters
+      and graphics on screen."
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 0
+  - question: "Printers \u2013 A hard copy input device that applies data to paper.
+      Normally, methods of placing information on a page include dotmatrix printer,
+      inkjet printer and laser printer."
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 1
+  - question: "Speakers \u2013 Audio input devices used to deliver voice, music and
+      coded messages."
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 1
