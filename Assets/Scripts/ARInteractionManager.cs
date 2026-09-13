@@ -277,11 +277,7 @@ public class ARInteractionManager : MonoBehaviour
         if (Touchscreen.current == null)
             return;
 
-        var touchscreen =
-            Touchscreen.current;
-
-        var touches =
-            touchscreen.touches;
+        var touches = Touchscreen.current.touches;
 
         int activeTouches = 0;
 
@@ -292,12 +288,23 @@ public class ARInteractionManager : MonoBehaviour
         }
 
         // -----------------------------------------
-        // RESET TWO-FINGER GESTURE
+        // NO TOUCHES
         // -----------------------------------------
 
-        if (activeTouches < 2)
+        if (activeTouches == 0)
         {
             twoFingerGestureActive = false;
+            return;
+        }
+
+        // -----------------------------------------
+        // TWO FINGERS
+        // -----------------------------------------
+
+        if (activeTouches >= 2)
+        {
+            HandleTwoFingerGesture();
+            return;
         }
 
         // -----------------------------------------
@@ -307,15 +314,6 @@ public class ARInteractionManager : MonoBehaviour
         if (activeTouches == 1)
         {
             HandleSingleTouch();
-        }
-
-        // -----------------------------------------
-        // TWO FINGERS
-        // -----------------------------------------
-
-        if (activeTouches == 2)
-        {
-            HandleTwoFingerGesture();
         }
     }
 
@@ -327,19 +325,38 @@ public class ARInteractionManager : MonoBehaviour
         Vector2 position =
             touch.position.ReadValue();
 
+        // -----------------------------------------
+        // TOUCH START
+        // -----------------------------------------
+
         if (touch.press.wasPressedThisFrame)
         {
+            // Ignore touches on UI
+            if (EventSystem.current != null &&
+                EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+
+            // Ignore the frame where an object was placed
             if (placementManager != null &&
                 placementManager.WasObjectPlacedThisFrame())
             {
                 return;
             }
 
-            ARInteractionMode mode = GetCurrentMode();
+            ARInteractionMode mode =
+                GetCurrentMode();
 
+            Debug.Log(
+                "Mobile AR Mode: " + mode
+            );
+
+            // Placement mode handles its own tap
             if (mode == ARInteractionMode.Place)
+            {
                 return;
-
+            }
 
             Ray ray =
                 mainCamera.ScreenPointToRay(position);
@@ -353,13 +370,14 @@ public class ARInteractionManager : MonoBehaviour
 
                 if (manipulator != null)
                 {
-                    // =========================
+                    // =====================================
                     // DELETE MODE
-                    // =========================
+                    // =====================================
 
                     if (mode == ARInteractionMode.Delete)
                     {
-                        string objectName = manipulator.gameObject.name;
+                        string objectName =
+                            manipulator.gameObject.name;
 
                         Destroy(manipulator.gameObject);
 
@@ -381,9 +399,9 @@ public class ARInteractionManager : MonoBehaviour
                         return;
                     }
 
-                    // =========================
+                    // =====================================
                     // EDIT MODE
-                    // =========================
+                    // =====================================
 
                     if (mode == ARInteractionMode.Edit)
                     {
@@ -392,24 +410,59 @@ public class ARInteractionManager : MonoBehaviour
                         ARObjectInfo objectInfo =
                             selectedObject.GetComponent<ARObjectInfo>();
 
-                        if (objectInfo != null &&
-                            infoCardManager != null)
+                        if (objectInfo != null)
                         {
-                            infoCardManager.ShowInfo(objectInfo);
+                            if (infoCardManager != null)
+                            {
+                                infoCardManager.ShowInfo(
+                                    objectInfo
+                                );
+                            }
+
+                            if (activityProgress != null)
+                            {
+                                activityProgress.MarkObjectInspected(
+                                    objectInfo
+                                );
+                            }
                         }
+
+                        Debug.Log(
+                            "Selected AR object: " +
+                            manipulator.gameObject.name
+                        );
 
                         return;
                     }
                 }
             }
 
-            // Nothing was selected
+            // Nothing was hit
             DeselectObject();
+
+            return;
         }
+
+        // -----------------------------------------
+        // ONE-FINGER DRAG
+        // -----------------------------------------
 
         if (touch.press.isPressed &&
             selectedObject != null)
         {
+            // Don't move while touching UI
+            if (EventSystem.current != null &&
+                EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+
+            // Don't move in Delete mode
+            if (GetCurrentMode() != ARInteractionMode.Edit)
+            {
+                return;
+            }
+
             MoveObjectMobile(position);
         }
     }
@@ -447,8 +500,9 @@ public class ARInteractionManager : MonoBehaviour
                 continue;
 
             if (first == null)
+            {
                 first = touch;
-
+            }
             else if (second == null)
             {
                 second = touch;
@@ -459,7 +513,12 @@ public class ARInteractionManager : MonoBehaviour
         if (first == null || second == null)
             return;
 
+        // No object selected
         if (selectedObject == null)
+            return;
+
+        // Don't manipulate objects outside Edit mode
+        if (GetCurrentMode() != ARInteractionMode.Edit)
             return;
 
         Vector2 firstPosition =
@@ -469,13 +528,16 @@ public class ARInteractionManager : MonoBehaviour
             second.position.ReadValue();
 
         // -----------------------------------------
-        // INITIALIZE TWO-FINGER GESTURE
+        // START TWO-FINGER GESTURE
         // -----------------------------------------
 
         if (!twoFingerGestureActive)
         {
-            previousFirstTouchPosition = firstPosition;
-            previousSecondTouchPosition = secondPosition;
+            previousFirstTouchPosition =
+                firstPosition;
+
+            previousSecondTouchPosition =
+                secondPosition;
 
             twoFingerGestureActive = true;
 
@@ -545,11 +607,14 @@ public class ARInteractionManager : MonoBehaviour
         );
 
         // -----------------------------------------
-        // SAVE POSITIONS
+        // SAVE TOUCH POSITIONS
         // -----------------------------------------
 
-        previousFirstTouchPosition = firstPosition;
-        previousSecondTouchPosition = secondPosition;
+        previousFirstTouchPosition =
+            firstPosition;
+
+        previousSecondTouchPosition =
+            secondPosition;
     }
 
 #endif

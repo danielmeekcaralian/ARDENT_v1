@@ -19,9 +19,14 @@ public class ARInfoCard : MonoBehaviour
                 return;
         }
 
-        transform.LookAt(
-            transform.position + mainCamera.transform.rotation * Vector3.forward,
-            mainCamera.transform.rotation * Vector3.up
-        );
+        // Make the canvas face the camera
+        Vector3 direction =
+            transform.position - mainCamera.transform.position;
+
+        if (direction.sqrMagnitude < 0.001f)
+            return;
+
+        transform.rotation =
+            Quaternion.LookRotation(direction, Vector3.up);
     }
 }

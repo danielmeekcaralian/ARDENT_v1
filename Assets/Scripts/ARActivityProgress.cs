@@ -1,11 +1,16 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ARActivityProgress : MonoBehaviour
 {
     [Header("Progress UI")]
     [SerializeField] private TMP_Text progressText;
+
+    [Header("Completion UI")]
+    [SerializeField] private GameObject completionButton;
+    [SerializeField] private GameObject completionPanel;
 
     private HashSet<string> inspectedObjects =
         new HashSet<string>();
@@ -17,6 +22,16 @@ public class ARActivityProgress : MonoBehaviour
         currentActivity = activity;
 
         inspectedObjects.Clear();
+
+        if (completionButton != null)
+        {
+            completionButton.SetActive(false);
+        }
+
+        if (completionPanel != null)
+        {
+            completionPanel.SetActive(false);
+        }
 
         UpdateProgressUI();
 
@@ -108,8 +123,39 @@ public class ARActivityProgress : MonoBehaviour
             return;
         }
 
+        // Save AR activity completion
         ProgressManager.Instance.CompleteARActivity(
             currentLesson
         );
+
+        // Show the button that allows the user
+        // to open the completion popup.
+        if (completionButton != null)
+        {
+            completionButton.SetActive(true);
+        }
+
+        Debug.Log(
+            "AR Activity completed. Completion button shown."
+        );
+    }
+
+    public void ShowCompletionPanel()
+    {
+        if (completionPanel == null)
+        {
+            Debug.LogWarning(
+                "ARActivityProgress: Completion panel is not assigned."
+            );
+
+            return;
+        }
+
+        completionPanel.SetActive(true);
+    }
+
+    public void ContinueFromCompletion()
+    {
+        SceneManager.LoadScene("ActivitySelectionScene");
     }
 }

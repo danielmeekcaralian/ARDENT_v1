@@ -24,8 +24,11 @@ public class ARInfoCardManager : MonoBehaviour
         if (currentObject == null || infoCard == null)
             return;
 
-        infoCard.transform.position =
+        Vector3 targetPosition =
             currentObject.transform.position + cardOffset;
+
+        infoCard.transform.position =
+            targetPosition;
     }
 
     public void ShowInfo(ARObjectInfo objectInfo)
