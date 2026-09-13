@@ -1,5 +1,13 @@
 using UnityEngine;
 
+public enum ARActivityType
+{
+    ToolIdentification,
+    HardwareIdentification,
+    Assembly,
+    Disassembly
+}
+
 [CreateAssetMenu(
     fileName = "ARActivity",
     menuName = "ARDENT/AR Activity Data"
@@ -10,11 +18,13 @@ public class ARActivityData : ScriptableObject
     public string activityID;
     public string activityTitle;
 
+    public ARActivityType activityType;
+
     [TextArea(2, 5)]
     public string instruction;
 
-    [Header("AR Content")]
-    public GameObject modelPrefab;
+    [Header("Available AR Objects")]
+    public ARObjectData[] availableObjects;
 
     [Header("Placement")]
     public bool requirePlanePlacement = true;

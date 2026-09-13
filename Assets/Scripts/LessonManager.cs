@@ -75,13 +75,30 @@ public class LessonManager : MonoBehaviour
 
     private bool IsUnlocked(LessonData lesson)
     {
+        // First lesson is always unlocked
         if (lesson.requiredGoldLessonID == 0)
             return true;
 
-        Medal previous =
-            GetMedal(lesson.requiredGoldLessonID);
+        LessonData previousLesson =
+            lessonDatabase.GetLessonByID(
+                lesson.requiredGoldLessonID
+            );
 
-        return previous == Medal.Gold;
+        if (previousLesson == null)
+        {
+            Debug.LogError(
+                $"LessonManager: Required lesson " +
+                $"{lesson.requiredGoldLessonID} not found."
+            );
+
+            return false;
+        }
+
+        // Unlock based on the actual completion requirements
+        return ProgressManager.Instance != null &&
+               ProgressManager.Instance.IsLessonComplete(
+                   previousLesson
+               );
     }
 
     private Medal GetMedal(int lessonID)

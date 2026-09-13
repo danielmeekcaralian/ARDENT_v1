@@ -17,11 +17,13 @@ public class ARPlacementManager : MonoBehaviour
 
     private GameObject currentObject;
     private ARActivityData currentActivity;
+    private ARObjectData selectedObjectData;
+    private bool isPlacing;
 
     private static readonly List<ARRaycastHit> hits =
         new List<ARRaycastHit>();
 
-    private bool placementPoseIsValid;
+    private int lastPlacedFrame = -1;
     private Pose placementPose;
 
     public void SetActivity(ARActivityData activity)
@@ -34,15 +36,37 @@ public class ARPlacementManager : MonoBehaviour
         );
     }
 
+    public void SelectObject(ARObjectData objectData)
+    {
+        if (objectData == null)
+            return;
+
+        if (objectData.prefab == null)
+        {
+            Debug.LogError("Selected AR object has no prefab assigned.");
+            return;
+        }
+
+        selectedObjectData = objectData;
+        isPlacing = true;
+
+        Debug.Log(
+            "AR object selected for placement: " +
+            objectData.prefab.name
+        );
+    }
+
     private void Update()
     {
         if (currentActivity == null)
             return;
 
+        UpdatePlacementIndicator();
+
 #if UNITY_EDITOR
         HandleEditorInput();
 #else
-        HandleTouchInput();
+    HandleTouchInput();
 #endif
     }
 
@@ -57,6 +81,9 @@ public class ARPlacementManager : MonoBehaviour
         if (Mouse.current == null)
             return;
 
+        if (!isPlacing)
+            return;
+
         Vector2 mousePosition =
             Mouse.current.position.ReadValue();
 
@@ -68,11 +95,9 @@ public class ARPlacementManager : MonoBehaviour
             return;
         }
 
-        UpdatePlacementPose(mousePosition);
-
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            PlaceObject();
+            PlaceObjectAtPosition(mousePosition);
         }
     }
 
@@ -85,25 +110,61 @@ public class ARPlacementManager : MonoBehaviour
 #if !UNITY_EDITOR
 
     private void HandleTouchInput()
+{
+    if (Touchscreen.current == null)
+        return;
+
+    var touch =
+        Touchscreen.current.primaryTouch;
+
+    Vector2 touchPosition =
+        touch.position.ReadValue();
+
+    if (touch.press.wasPressedThisFrame)
     {
-        if (Touchscreen.current == null)
+        if (IsExistingObject(touchPosition))
             return;
 
-        var touch =
-            Touchscreen.current.primaryTouch;
-
-        Vector2 touchPosition =
-            touch.position.ReadValue();
-
-        UpdatePlacementPose(touchPosition);
-
-        if (touch.press.wasPressedThisFrame)
-        {
-            PlaceObject();
-        }
+        PlaceObjectAtPosition(touchPosition);
     }
+}
 
 #endif
+
+    // =========================================================
+    // CHECK EXISTING AR OBJECT
+    // =========================================================
+
+    private bool IsExistingObject(Vector2 screenPosition)
+    {
+        Camera cam = Camera.main;
+
+        if (cam == null)
+            return false;
+
+        Ray ray =
+            cam.ScreenPointToRay(screenPosition);
+
+        if (Physics.Raycast(
+                ray,
+                out RaycastHit hit))
+        {
+            ARObjectManipulator manipulator =
+                hit.collider.GetComponentInParent<ARObjectManipulator>();
+
+            if (manipulator != null)
+            {
+                Debug.Log(
+                    "Tapped existing object: " +
+                    manipulator.gameObject.name
+                );
+
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     // =========================================================
     // UPDATE PLACEMENT POSITION
@@ -119,7 +180,6 @@ public class ARPlacementManager : MonoBehaviour
                 hits,
                 TrackableType.PlaneWithinPolygon))
         {
-            placementPoseIsValid = true;
             placementPose = hits[0].pose;
 
             if (placementIndicator != null)
@@ -134,8 +194,48 @@ public class ARPlacementManager : MonoBehaviour
         }
         else
         {
-            placementPoseIsValid = false;
+            if (placementIndicator != null)
+            {
+                placementIndicator.SetActive(false);
+            }
+        }
+    }
 
+    private void UpdatePlacementIndicator()
+    {
+        if (raycastManager == null)
+            return;
+
+        Camera cam = Camera.main;
+
+        if (cam == null)
+            return;
+
+        Vector2 screenCenter =
+            new Vector2(
+                Screen.width / 2f,
+                Screen.height / 2f
+            );
+
+        if (raycastManager.Raycast(
+                screenCenter,
+                hits,
+                TrackableType.PlaneWithinPolygon))
+        {
+            placementPose = hits[0].pose;
+
+            if (placementIndicator != null)
+            {
+                placementIndicator.SetActive(true);
+
+                placementIndicator.transform.SetPositionAndRotation(
+                    placementPose.position,
+                    placementPose.rotation
+                );
+            }
+        }
+        else
+        {
             if (placementIndicator != null)
             {
                 placementIndicator.SetActive(false);
@@ -147,58 +247,65 @@ public class ARPlacementManager : MonoBehaviour
     // PLACE OBJECT
     // =========================================================
 
-    private void PlaceObject()
+    private void PlaceObjectAtPosition(Vector2 screenPosition)
     {
-        if (!placementPoseIsValid)
+        if (!isPlacing)
         {
-            Debug.Log(
-                "Cannot place object: " +
-                "no AR surface detected."
-            );
-
             return;
         }
+        if (raycastManager == null)
+            return;
 
         if (currentActivity == null)
             return;
 
-        if (currentActivity.modelPrefab == null)
+        if (selectedObjectData == null)
+        {
+            Debug.Log("No AR object selected.");
+
+            return;
+        }
+
+        if (selectedObjectData.prefab == null)
         {
             Debug.LogError(
-                "No model prefab assigned to AR Activity."
+                "Selected AR object has no prefab assigned."
             );
 
             return;
         }
 
-        if (currentObject == null)
+        if (!raycastManager.Raycast(
+                screenPosition,
+                hits,
+                TrackableType.PlaneWithinPolygon))
         {
-            currentObject = Instantiate(
-                currentActivity.modelPrefab,
-                placementPose.position,
-                placementPose.rotation,
-                contentParent
-            );
-
             Debug.Log(
-                "AR object placed: " +
-                currentActivity.modelPrefab.name
+                "Cannot place object: no AR plane detected at tap position."
             );
 
-            if (placementIndicator != null)
-            {
-                placementIndicator.SetActive(false);
-            }
+            return;
         }
-        else
-        {
-            currentObject.transform.SetPositionAndRotation(
-                placementPose.position,
-                placementPose.rotation
-            );
 
-            Debug.Log("AR object moved.");
-        }
+        Pose tapPose = hits[0].pose;
+
+        GameObject newObject = Instantiate(
+            selectedObjectData.prefab,
+            tapPose.position,
+            tapPose.rotation,
+            contentParent
+        );
+
+        currentObject = newObject;
+        lastPlacedFrame = Time.frameCount;
+
+        isPlacing = false;
+        selectedObjectData = null;
+
+        Debug.Log(
+            "AR object placed at tap position: " +
+            newObject.name
+        );
     }
 
     // =========================================================
@@ -218,6 +325,10 @@ public class ARPlacementManager : MonoBehaviour
             placementIndicator.SetActive(true);
         }
 
-        Debug.Log("AR object reset.");
+        Debug.Log("Last placed AR object reset.");
+    }
+    public bool WasObjectPlacedThisFrame()
+    {
+        return lastPlacedFrame == Time.frameCount;
     }
 }

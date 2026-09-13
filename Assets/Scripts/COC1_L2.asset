@@ -104,9 +104,9 @@ MonoBehaviour:
       drive - RAM that can retain data without electrical power. It is widely used
       for BIOS chips and for digital camera and digital music storage."
     image: {fileID: 0}
-  hasARActivity: 0
+  hasARActivity: 1
   hasQuiz: 1
-  requiresARActivity: 0
+  requiresARActivity: 1
   requiresQuiz: 1
-  arActivity: {fileID: 0}
+  arActivity: {fileID: 11400000, guid: 0132fac342693234abe644ba7d1a3567, type: 2}
   quizData: {fileID: 11400000, guid: ae552b28c222c484daad0e8352a4d5ec, type: 2}

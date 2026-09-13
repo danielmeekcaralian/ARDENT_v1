@@ -51,6 +51,17 @@ public class ProgressManager : MonoBehaviour
         if (lesson == null)
             return false;
 
+        // Quiz must ALWAYS be 100%
+        int bestScore =
+            PlayerPrefs.GetInt(
+                $"Lesson{lesson.lessonID}BestScore",
+                0
+            );
+
+        if (bestScore < 100)
+            return false;
+
+        // AR is required only when the lesson says so
         if (lesson.requiresARActivity)
         {
             bool arCompleted =
@@ -60,22 +71,6 @@ public class ProgressManager : MonoBehaviour
                 ) == 1;
 
             if (!arCompleted)
-                return false;
-        }
-
-        if (lesson.requiresQuiz)
-        {
-            int bestScore =
-                PlayerPrefs.GetInt(
-                    $"Lesson{lesson.lessonID}BestScore",
-                    0
-                );
-
-            Debug.Log(
-                $"Lesson {lesson.lessonID} Best Score: {bestScore}%"
-            );
-
-            if (bestScore < 100)
                 return false;
         }
 
@@ -241,12 +236,6 @@ public class ProgressManager : MonoBehaviour
                 0
             ) == 1;
 
-        bool quizCompleted =
-            PlayerPrefs.GetInt(
-                $"Lesson{lessonID}QuizCompleted",
-                0
-            ) == 1;
-
         int bestScore =
             PlayerPrefs.GetInt(
                 $"Lesson{lessonID}BestScore",
@@ -254,21 +243,21 @@ public class ProgressManager : MonoBehaviour
             );
 
         bool quizPerfect =
-            bestScore == 100;
+            bestScore >= 100;
 
-        Medal medal = Medal.Bronze;
+        Medal medal;
 
+        // GOLD
         if (arCompleted && quizPerfect)
         {
             medal = Medal.Gold;
         }
-
-        else if (arCompleted || quizCompleted)
+        // SILVER
+        else if (arCompleted || quizPerfect)
         {
             medal = Medal.Silver;
         }
-
-
+        // BRONZE
         else
         {
             medal = Medal.Bronze;

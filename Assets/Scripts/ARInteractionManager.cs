@@ -1,16 +1,26 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using UnityEngine.EventSystems;
 
 public class ARInteractionManager : MonoBehaviour
 {
     [Header("Interaction Settings")]
-    [SerializeField] private float rotationSpeed = 0.2f;
-    [SerializeField] private float scaleSpeed = 0.01f;
+    [SerializeField] private float rotationSpeed = 0.8f;
+    [SerializeField] private float scaleSpeed = 0.003f;
 
     [Header("Scale Limits")]
     [SerializeField] private float minimumScale = 0.25f;
-    [SerializeField] private float maximumScale = 2.0f;
+    [SerializeField] private float maximumScale = 3.0f;
+
+    [Header("Info Card")]
+    [SerializeField] private ARInfoCardManager infoCardManager;
+    [SerializeField] private ARActivityProgress activityProgress;
+
+    [SerializeField] private ARModeManager modeManager;
+
+    [Header("Placement")]
+    [SerializeField] private ARPlacementManager placementManager;
 
     private Camera mainCamera;
     private ARObjectManipulator selectedObject;
@@ -55,6 +65,12 @@ public class ARInteractionManager : MonoBehaviour
 
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
+            if (EventSystem.current != null &&
+                EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+
             SelectObject();
         }
 
@@ -63,7 +79,8 @@ public class ARInteractionManager : MonoBehaviour
         // -----------------------------------------
 
         if (Mouse.current.leftButton.isPressed &&
-            selectedObject != null)
+            selectedObject != null &&
+            !IsPointerOverUI())
         {
             MoveObject();
         }
@@ -94,8 +111,37 @@ public class ARInteractionManager : MonoBehaviour
         }
     }
 
+    private bool IsPointerOverUI()
+    {
+        if (EventSystem.current == null)
+            return false;
+
+        return EventSystem.current.IsPointerOverGameObject();
+    }
+
     private void SelectObject()
     {
+        Debug.Log("ARInteractionManager: SelectObject called");
+
+        if (EventSystem.current != null &&
+            EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
+        
+        if (placementManager != null &&
+            placementManager.WasObjectPlacedThisFrame())
+        {
+            return;
+        }
+
+        ARInteractionMode mode = GetCurrentMode();
+        Debug.Log("Current AR Mode: " + mode);
+
+        // Do not select objects while placing
+        if (mode == ARInteractionMode.Place)
+            return;
+
         Vector2 mousePosition =
             Mouse.current.position.ReadValue();
 
@@ -111,14 +157,66 @@ public class ARInteractionManager : MonoBehaviour
 
             if (manipulator != null)
             {
-                selectedObject = manipulator;
+                // =========================
+                // DELETE MODE
+                // =========================
 
-                Debug.Log(
-                    "Selected: " +
-                    selectedObject.gameObject.name
-                );
+                if (mode == ARInteractionMode.Delete)
+                {
+                    string objectName =
+                        manipulator.gameObject.name;
+
+                    Destroy(manipulator.gameObject);
+
+                    if (selectedObject == manipulator)
+                    {
+                        selectedObject = null;
+                    }
+
+                    if (infoCardManager != null)
+                    {
+                        infoCardManager.HideInfo();
+                    }
+
+                    Debug.Log(
+                        "Deleted object: " +
+                        objectName
+                    );
+
+                    return;
+                }
+
+                // =========================
+                // EDIT MODE
+                // =========================
+
+                if (mode == ARInteractionMode.Edit)
+                {
+                    selectedObject = manipulator;
+
+                    ARObjectInfo objectInfo =
+                    selectedObject.GetComponent<ARObjectInfo>();
+
+                    if (objectInfo != null)
+                    {
+                        if (infoCardManager != null)
+                        {
+                            infoCardManager.ShowInfo(objectInfo);
+                        }
+
+                        if (activityProgress != null)
+                        {
+                            activityProgress.MarkObjectInspected(objectInfo);
+                        }
+                    }
+
+                    return;
+                }
             }
         }
+
+        // Nothing was selected
+        DeselectObject();
     }
 
     private void MoveObject()
@@ -231,6 +329,18 @@ public class ARInteractionManager : MonoBehaviour
 
         if (touch.press.wasPressedThisFrame)
         {
+            if (placementManager != null &&
+                placementManager.WasObjectPlacedThisFrame())
+            {
+                return;
+            }
+
+            ARInteractionMode mode = GetCurrentMode();
+
+            if (mode == ARInteractionMode.Place)
+                return;
+
+
             Ray ray =
                 mainCamera.ScreenPointToRay(position);
 
@@ -243,9 +353,58 @@ public class ARInteractionManager : MonoBehaviour
 
                 if (manipulator != null)
                 {
-                    selectedObject = manipulator;
+                    // =========================
+                    // DELETE MODE
+                    // =========================
+
+                    if (mode == ARInteractionMode.Delete)
+                    {
+                        string objectName = manipulator.gameObject.name;
+
+                        Destroy(manipulator.gameObject);
+
+                        if (selectedObject == manipulator)
+                        {
+                            selectedObject = null;
+                        }
+
+                        if (infoCardManager != null)
+                        {
+                            infoCardManager.HideInfo();
+                        }
+
+                        Debug.Log(
+                            "Deleted object: " +
+                            objectName
+                        );
+
+                        return;
+                    }
+
+                    // =========================
+                    // EDIT MODE
+                    // =========================
+
+                    if (mode == ARInteractionMode.Edit)
+                    {
+                        selectedObject = manipulator;
+
+                        ARObjectInfo objectInfo =
+                            selectedObject.GetComponent<ARObjectInfo>();
+
+                        if (objectInfo != null &&
+                            infoCardManager != null)
+                        {
+                            infoCardManager.ShowInfo(objectInfo);
+                        }
+
+                        return;
+                    }
                 }
             }
+
+            // Nothing was selected
+            DeselectObject();
         }
 
         if (touch.press.isPressed &&
@@ -275,128 +434,141 @@ public class ARInteractionManager : MonoBehaviour
     }
 
     private void HandleTwoFingerGesture()
-{
-    var touches =
-        Touchscreen.current.touches;
-
-    TouchControl first = null;
-    TouchControl second = null;
-
-    foreach (var touch in touches)
     {
-        if (!touch.press.isPressed)
-            continue;
+        var touches =
+            Touchscreen.current.touches;
 
-        if (first == null)
-            first = touch;
+        TouchControl first = null;
+        TouchControl second = null;
 
-        else if (second == null)
+        foreach (var touch in touches)
         {
-            second = touch;
-            break;
+            if (!touch.press.isPressed)
+                continue;
+
+            if (first == null)
+                first = touch;
+
+            else if (second == null)
+            {
+                second = touch;
+                break;
+            }
         }
-    }
 
-    if (first == null || second == null)
-        return;
+        if (first == null || second == null)
+            return;
 
-    if (selectedObject == null)
-        return;
+        if (selectedObject == null)
+            return;
 
-    Vector2 firstPosition =
-        first.position.ReadValue();
+        Vector2 firstPosition =
+            first.position.ReadValue();
 
-    Vector2 secondPosition =
-        second.position.ReadValue();
+        Vector2 secondPosition =
+            second.position.ReadValue();
 
-    // -----------------------------------------
-    // INITIALIZE TWO-FINGER GESTURE
-    // -----------------------------------------
+        // -----------------------------------------
+        // INITIALIZE TWO-FINGER GESTURE
+        // -----------------------------------------
 
-    if (!twoFingerGestureActive)
-    {
+        if (!twoFingerGestureActive)
+        {
+            previousFirstTouchPosition = firstPosition;
+            previousSecondTouchPosition = secondPosition;
+
+            twoFingerGestureActive = true;
+
+            return;
+        }
+
+        // -----------------------------------------
+        // SCALE
+        // -----------------------------------------
+
+        float previousDistance =
+            Vector2.Distance(
+                previousFirstTouchPosition,
+                previousSecondTouchPosition
+            );
+
+        float currentDistance =
+            Vector2.Distance(
+                firstPosition,
+                secondPosition
+            );
+
+        float distanceDelta =
+            currentDistance - previousDistance;
+
+        float scaleAmount =
+            distanceDelta * scaleSpeed;
+
+        selectedObject.ChangeScale(
+            scaleAmount,
+            minimumScale,
+            maximumScale
+        );
+
+        // -----------------------------------------
+        // ROTATION
+        // -----------------------------------------
+
+        Vector2 previousDirection =
+            previousSecondTouchPosition -
+            previousFirstTouchPosition;
+
+        Vector2 currentDirection =
+            secondPosition -
+            firstPosition;
+
+        float previousAngle =
+            Mathf.Atan2(
+                previousDirection.y,
+                previousDirection.x
+            ) * Mathf.Rad2Deg;
+
+        float currentAngle =
+            Mathf.Atan2(
+                currentDirection.y,
+                currentDirection.x
+            ) * Mathf.Rad2Deg;
+
+        float angleDelta =
+            Mathf.DeltaAngle(
+                previousAngle,
+                currentAngle
+            );
+
+        selectedObject.Rotate(
+            -angleDelta * rotationSpeed
+        );
+
+        // -----------------------------------------
+        // SAVE POSITIONS
+        // -----------------------------------------
+
         previousFirstTouchPosition = firstPosition;
         previousSecondTouchPosition = secondPosition;
-
-        twoFingerGestureActive = true;
-
-        return;
     }
-
-    // -----------------------------------------
-    // SCALE
-    // -----------------------------------------
-
-    float previousDistance =
-        Vector2.Distance(
-            previousFirstTouchPosition,
-            previousSecondTouchPosition
-        );
-
-    float currentDistance =
-        Vector2.Distance(
-            firstPosition,
-            secondPosition
-        );
-
-    float distanceDelta =
-        currentDistance - previousDistance;
-
-    float scaleAmount =
-        distanceDelta * scaleSpeed;
-
-    selectedObject.ChangeScale(
-        scaleAmount,
-        minimumScale,
-        maximumScale
-    );
-
-    // -----------------------------------------
-    // ROTATION
-    // -----------------------------------------
-
-    Vector2 previousDirection =
-        previousSecondTouchPosition -
-        previousFirstTouchPosition;
-
-    Vector2 currentDirection =
-        secondPosition -
-        firstPosition;
-
-    float previousAngle =
-        Mathf.Atan2(
-            previousDirection.y,
-            previousDirection.x
-        ) * Mathf.Rad2Deg;
-
-    float currentAngle =
-        Mathf.Atan2(
-            currentDirection.y,
-            currentDirection.x
-        ) * Mathf.Rad2Deg;
-
-    float angleDelta =
-        Mathf.DeltaAngle(
-            previousAngle,
-            currentAngle
-        );
-
-    selectedObject.Rotate(
-        -angleDelta * rotationSpeed
-    );
-
-    // -----------------------------------------
-    // SAVE POSITIONS
-    // -----------------------------------------
-
-    previousFirstTouchPosition = firstPosition;
-    previousSecondTouchPosition = secondPosition;
-}
 
 #endif
 
     public void DeselectObject()
     {
         selectedObject = null;
+
+        if (infoCardManager != null)
+        {
+            infoCardManager.HideInfo();
+        }
+    }
+
+    private ARInteractionMode GetCurrentMode()
+    {
+        if (modeManager == null)
+            return ARInteractionMode.Edit;
+
+        return modeManager.CurrentMode;
     }
 }

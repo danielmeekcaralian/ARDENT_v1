@@ -25,6 +25,11 @@ MonoBehaviour:
   - "\u2022 Discuss the computer system unit case and its form factor.\n"
   - "\u2022 Identify the major components of a computer system unit and its peripherals.\n"
   - "\u2022 Identify the computer hardware peripherals.\n"
+  subtopics: []
   slides: []
-  arActivity: {fileID: 0}
+  hasARActivity: 0
+  hasQuiz: 0
+  requiresARActivity: 0
+  requiresQuiz: 0
+  arActivity: {fileID: 11400000, guid: 1184b5a670009564d8da7de247472175, type: 2}
   quizData: {fileID: 11400000, guid: a3c67d2e103adbe4abd4e97cba874d11, type: 2}

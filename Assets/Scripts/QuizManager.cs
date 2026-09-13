@@ -253,28 +253,19 @@ public class QuizManager : MonoBehaviour
             return;
         }
 
-        int previousBestScore =
-            PlayerPrefs.GetInt(
-                $"Lesson{currentLesson.lessonID}BestScore",
-                0
-            );
-
-        if (percentage > previousBestScore)
+        if (ProgressManager.Instance == null)
         {
-            PlayerPrefs.SetInt(
-                $"Lesson{currentLesson.lessonID}BestScore",
-                percentage
+            Debug.LogError(
+                "QuizManager: ProgressManager instance not found."
             );
 
-            PlayerPrefs.Save();
+            return;
         }
 
-        if (ProgressManager.Instance != null)
-        {
-            ProgressManager.Instance.UpdateLessonMedal(
-                currentLesson
-            );
-        }
+        ProgressManager.Instance.CompleteQuiz(
+            currentLesson,
+            percentage
+        );
 
         Debug.Log(
             $"Lesson {currentLesson.lessonID} - " +
@@ -370,13 +361,5 @@ public class QuizManager : MonoBehaviour
         SceneManager.LoadScene(
             "ActivitySelectionScene"
         );
-    }
-
-    private void UpdateNextLessonButton(int scorePercentage)
-    {
-        if (nextLessonButton == null)
-            return;
-
-        nextLessonButton.interactable = scorePercentage >= 100;
     }
 }
