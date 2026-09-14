@@ -22,9 +22,6 @@ public class ARInteractionManager : MonoBehaviour
     [Header("Placement")]
     [SerializeField] private ARPlacementManager placementManager;
 
-    [Header("Assembly")]
-    [SerializeField] private ARAssemblyManager assemblyManager;
-
     private Camera mainCamera;
     private ARObjectManipulator selectedObject;
 
@@ -86,12 +83,6 @@ public class ARInteractionManager : MonoBehaviour
             !IsPointerOverUI())
         {
             MoveObject();
-        }
-
-        if (Mouse.current.leftButton.wasReleasedThisFrame &&
-            selectedObject != null)
-        {
-            CheckAssemblyPlacement();
         }
 
         // -----------------------------------------
@@ -474,12 +465,6 @@ public class ARInteractionManager : MonoBehaviour
 
             MoveObjectMobile(position);
         }
-
-        if (touch.press.wasReleasedThisFrame &&
-            selectedObject != null)
-        {
-            CheckAssemblyPlacement();
-        }
     }
 
     private void MoveObjectMobile(Vector2 screenPosition)
@@ -642,19 +627,6 @@ public class ARInteractionManager : MonoBehaviour
         {
             infoCardManager.HideInfo();
         }
-    }
-
-    private void CheckAssemblyPlacement()
-    {
-        if (assemblyManager == null)
-            return;
-
-        if (selectedObject == null)
-            return;
-
-        assemblyManager.CheckComponentPlacement(
-            selectedObject
-        );
     }
 
     private ARInteractionMode GetCurrentMode()

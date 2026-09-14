@@ -14,6 +14,7 @@ public class ARSceneController : MonoBehaviour
     private LessonData currentLesson;
     private ARActivityData activityData;
 
+
     private void Start()
     {
         LoadCurrentLesson();
@@ -47,6 +48,11 @@ public class ARSceneController : MonoBehaviour
         }
 
         activityData = currentLesson.arActivity;
+
+        Debug.Log(
+            "AR Activity Type: " +
+            activityData.activityType
+        );
 
         if (activityData == null)
         {
