@@ -50,6 +50,11 @@ public class ARPlacementManager : MonoBehaviour
         selectedObjectData = objectData;
         isPlacing = true;
 
+        if (placementIndicator != null)
+        {
+            placementIndicator.SetActive(true);
+        }
+
         Debug.Log(
             "AR object selected for placement: " +
             objectData.prefab.name
@@ -203,6 +208,16 @@ public class ARPlacementManager : MonoBehaviour
 
     private void UpdatePlacementIndicator()
     {
+        if (!isPlacing)
+        {
+            if (placementIndicator != null)
+            {
+                placementIndicator.SetActive(false);
+            }
+
+            return;
+        }
+
         if (raycastManager == null)
             return;
 
@@ -296,11 +311,30 @@ public class ARPlacementManager : MonoBehaviour
             contentParent
         );
 
+        ARAssemblyManager assemblyManager = FindFirstObjectByType<ARAssemblyManager>();
+
+        if (assemblyManager != null)
+        {
+            ARObjectInfo objectInfo =
+                newObject.GetComponent<ARObjectInfo>();
+
+            if (objectInfo != null &&
+                objectInfo.objectName == "Motherboard")
+            {
+                assemblyManager.SetAssemblyAnchor(newObject);
+            }
+        }
+
         currentObject = newObject;
         lastPlacedFrame = Time.frameCount;
 
         isPlacing = false;
         selectedObjectData = null;
+
+        if (placementIndicator != null)
+        {
+            placementIndicator.SetActive(false);
+        }
 
         Debug.Log(
             "AR object placed at tap position: " +

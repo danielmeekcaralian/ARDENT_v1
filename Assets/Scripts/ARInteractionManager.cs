@@ -22,6 +22,9 @@ public class ARInteractionManager : MonoBehaviour
     [Header("Placement")]
     [SerializeField] private ARPlacementManager placementManager;
 
+    [Header("Assembly")]
+    [SerializeField] private ARAssemblyManager assemblyManager;
+
     private Camera mainCamera;
     private ARObjectManipulator selectedObject;
 
@@ -83,6 +86,12 @@ public class ARInteractionManager : MonoBehaviour
             !IsPointerOverUI())
         {
             MoveObject();
+        }
+
+        if (Mouse.current.leftButton.wasReleasedThisFrame &&
+            selectedObject != null)
+        {
+            CheckAssemblyStep(selectedObject.gameObject);
         }
 
         // -----------------------------------------
@@ -635,5 +644,16 @@ public class ARInteractionManager : MonoBehaviour
             return ARInteractionMode.Edit;
 
         return modeManager.CurrentMode;
+    }
+
+    private void CheckAssemblyStep(GameObject selectedObject)
+    {
+        if (assemblyManager == null)
+            return;
+
+        if (selectedObject == null)
+            return;
+
+        assemblyManager.TryCompleteCurrentStep(selectedObject);
     }
 }

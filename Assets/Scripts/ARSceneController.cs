@@ -11,6 +11,9 @@ public class ARSceneController : MonoBehaviour
     [Header("AR UI")]
     [SerializeField] private TMP_Text activityTitleText;
 
+    [Header("Activity Routing")]
+    [SerializeField] private ARActivityRouter activityRouter;
+
     private LessonData currentLesson;
     private ARActivityData activityData;
 
@@ -48,6 +51,11 @@ public class ARSceneController : MonoBehaviour
         }
 
         activityData = currentLesson.arActivity;
+
+        if (activityRouter != null)
+        {
+            activityRouter.RouteActivity(activityData);
+        }
 
         Debug.Log(
             "AR Activity Type: " +

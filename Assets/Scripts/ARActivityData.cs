@@ -20,6 +20,9 @@ public class ARActivityData : ScriptableObject
 
     public ARActivityType activityType;
 
+    [Header("Assembly")]
+    public ARAssemblyActivityData assemblyActivity;
+
     [TextArea(2, 5)]
     public string instruction;
 

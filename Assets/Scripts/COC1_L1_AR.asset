@@ -13,14 +13,11 @@ MonoBehaviour:
   m_Name: COC1_L1_AR
   m_EditorClassIdentifier: Assembly-CSharp::ARActivityData
   activityID: 1
-  activityTitle: Occupational Health and Safety
-  activityType: 2
+  activityTitle: Occupational Health & Safety
+  activityType: 0
+  assemblyActivity: {fileID: 0}
   instruction: 
-  availableObjects:
-  - inventoryImage: {fileID: 21300000, guid: 8e3ecb6d5ab98fc4a9ee3803a6e64fcc, type: 3}
-    prefab: {fileID: 8574308832660259014, guid: 051bca7d5fba6734f9acaacea2a2e602, type: 3}
-  - inventoryImage: {fileID: 21300000, guid: 8e3ecb6d5ab98fc4a9ee3803a6e64fcc, type: 3}
-    prefab: {fileID: 8114202452644393756, guid: fe70ac0b47fcb5a41a556642887c6e76, type: 3}
+  availableObjects: []
   requirePlanePlacement: 1
   allowRotation: 1
   allowScaling: 1
