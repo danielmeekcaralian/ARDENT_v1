@@ -331,6 +331,15 @@ public class ARPlacementManager : MonoBehaviour
         isPlacing = false;
         selectedObjectData = null;
 
+        // Return to Edit mode after placing
+        ARModeManager modeManager =
+            FindFirstObjectByType<ARModeManager>();
+
+        if (modeManager != null)
+        {
+            modeManager.SetEditMode();
+        }
+
         if (placementIndicator != null)
         {
             placementIndicator.SetActive(false);

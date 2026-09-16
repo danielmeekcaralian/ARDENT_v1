@@ -197,10 +197,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97794132a81ad1848a3c24cdbb262d7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARInteractionManager
-  rotationSpeed: 0.2
-  scaleSpeed: 0.01
-  minimumScale: 0.25
-  maximumScale: 2
+  rotationSpeed: 0.6
+  scaleSpeed: 0.007
+  minimumScale: 3
+  maximumScale: 6
   infoCardManager: {fileID: 1430908587}
   activityProgress: {fileID: 1575005734}
   modeManager: {fileID: 1690403817}
@@ -2097,8 +2097,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a16cced5a41111c499b905a68d8a7de4, type: 2}
+  m_sharedMaterial: {fileID: -817240582491115089, guid: a16cced5a41111c499b905a68d8a7de4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3045,7 +3045,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1430908583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3204,7 +3204,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARAssemblyManager
   assemblyActivity: {fileID: 11400000, guid: 79193c3d995147e4b894f336c3cb1a5b, type: 2}
-  assemblyTargets: {fileID: 93098347}
+  stepTitleText: {fileID: 887414858}
+  instructionsText: {fileID: 1726237727}
 --- !u!1 &1517736521
 GameObject:
   m_ObjectHideFlags: 0
@@ -3900,7 +3901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 961372b8dfc11624683f4a89d3d53cd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARModeManager
-  currentMode: 1
+  currentMode: 0
 --- !u!4 &1690403818
 Transform:
   m_ObjectHideFlags: 0
@@ -3956,7 +3957,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1100}
+  m_SizeDelta: {x: 2500, y: 1500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1692192867
 MonoBehaviour:
@@ -3971,7 +3972,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.20804836, g: 0.10693307, b: 0.254717, a: 0.9647059}
+  m_Color: {r: 0.20804836, g: 0.10693307, b: 0.254717, a: 0.54509807}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4055,8 +4056,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a16cced5a41111c499b905a68d8a7de4, type: 2}
+  m_sharedMaterial: {fileID: -817240582491115089, guid: a16cced5a41111c499b905a68d8a7de4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

@@ -76,14 +76,41 @@ public class ARActivityProgress : MonoBehaviour
         if (progressText == null)
             return;
 
+        string label = "Objects Inspected";
+
+        if (currentActivity != null)
+        {
+            switch (currentActivity.activityType)
+            {
+                case ARActivityType.ToolIdentification:
+                    label = "Tools Inspected";
+                    break;
+
+                case ARActivityType.HardwareIdentification:
+                    label = "Hardware Inspected";
+                    break;
+            }
+        }
+
         progressText.text =
-            $"Tools Inspected: " +
+            $"{label}: " +
             $"{inspectedObjects.Count} / " +
             $"{GetRequiredObjectCount()}";
     }
 
     private void CheckCompletion()
     {
+        if (currentActivity == null)
+            return;
+
+        // Inspection-based completion only applies to
+        // Tool Identification and Hardware Identification.
+        if (currentActivity.activityType != ARActivityType.ToolIdentification &&
+            currentActivity.activityType != ARActivityType.HardwareIdentification)
+        {
+            return;
+        }
+
         int requiredCount =
             GetRequiredObjectCount();
 
@@ -93,7 +120,7 @@ public class ARActivityProgress : MonoBehaviour
         if (inspectedObjects.Count >= requiredCount)
         {
             Debug.Log(
-                "AR ACTIVITY COMPLETE!"
+                "AR Identification Activity COMPLETE!"
             );
 
             CompleteActivity();
@@ -136,7 +163,8 @@ public class ARActivityProgress : MonoBehaviour
         }
 
         Debug.Log(
-            "AR Activity completed. Completion button shown."
+            "AR Identification Activity completed. " +
+            "Completion button shown."
         );
     }
 

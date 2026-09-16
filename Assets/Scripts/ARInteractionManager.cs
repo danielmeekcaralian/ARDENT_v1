@@ -6,12 +6,12 @@ using UnityEngine.EventSystems;
 public class ARInteractionManager : MonoBehaviour
 {
     [Header("Interaction Settings")]
-    [SerializeField] private float rotationSpeed = 0.8f;
-    [SerializeField] private float scaleSpeed = 0.003f;
+    [SerializeField] private float rotationSpeed = 0.6f;
+    [SerializeField] private float scaleSpeed = 0.007f;
 
     [Header("Scale Limits")]
-    [SerializeField] private float minimumScale = 0.25f;
-    [SerializeField] private float maximumScale = 3.0f;
+    [SerializeField] private float minimumScale = 3.0f;
+    [SerializeField] private float maximumScale = 6.0f;
 
     [Header("Info Card")]
     [SerializeField] private ARInfoCardManager infoCardManager;
@@ -288,6 +288,29 @@ public class ARInteractionManager : MonoBehaviour
 
         var touches = Touchscreen.current.touches;
 
+        // -----------------------------------------
+        // TOUCH RELEASE
+        // -----------------------------------------
+
+        var primaryTouch =
+            Touchscreen.current.primaryTouch;
+
+        if (primaryTouch.press.wasReleasedThisFrame &&
+            selectedObject != null)
+        {
+            Debug.Log(
+                "Mobile: Released object - checking assembly"
+            );
+
+            CheckAssemblyStep(
+                selectedObject.gameObject
+            );
+
+            twoFingerGestureActive = false;
+
+            return;
+        }
+
         int activeTouches = 0;
 
         foreach (var touch in touches)
@@ -459,20 +482,24 @@ public class ARInteractionManager : MonoBehaviour
         if (touch.press.isPressed &&
             selectedObject != null)
         {
-            // Don't move while touching UI
             if (EventSystem.current != null &&
                 EventSystem.current.IsPointerOverGameObject())
             {
                 return;
             }
 
-            // Don't move in Delete mode
             if (GetCurrentMode() != ARInteractionMode.Edit)
             {
                 return;
             }
 
             MoveObjectMobile(position);
+        }
+
+        if (touch.press.wasReleasedThisFrame &&
+            selectedObject != null)
+        {
+            CheckAssemblyStep(selectedObject.gameObject);
         }
     }
 

@@ -11,6 +11,7 @@ public class ARAssemblyManager : MonoBehaviour
     [SerializeField] private TMP_Text instructionsText;
 
     private Transform assemblyTargets;
+    private GameObject assemblyAnchor;
 
     private int currentStepIndex = 0;
 
@@ -58,6 +59,7 @@ public class ARAssemblyManager : MonoBehaviour
             return;
         }
 
+        assemblyAnchor = motherboard;
         assemblyTargets = targets;
 
         Debug.Log(
@@ -208,11 +210,30 @@ public class ARAssemblyManager : MonoBehaviour
             return false;
         }
 
+        // Snap component to target
         placedObject.transform.position =
             target.transform.position;
 
         placedObject.transform.rotation =
             target.transform.rotation;
+
+        // Attach component to motherboard
+        if (assemblyAnchor != null)
+        {
+            placedObject.transform.SetParent(
+                assemblyAnchor.transform,
+                true
+            );
+        }
+
+        // Lock individual manipulation
+        ARObjectManipulator manipulator =
+            placedObject.GetComponent<ARObjectManipulator>();
+
+        if (manipulator != null)
+        {
+            manipulator.SetLocked(true);
+        }
 
         Debug.Log(
             "Assembly step completed: " +
@@ -232,6 +253,37 @@ public class ARAssemblyManager : MonoBehaviour
             assemblyActivity.steps.Length)
         {
             Debug.Log("Assembly completed!");
+
+            LessonData currentLesson =
+                LessonSession.CurrentLesson;
+
+            if (currentLesson == null)
+            {
+                Debug.LogError(
+                    "ARAssemblyManager: No current lesson found."
+                );
+
+                return;
+            }
+
+            if (ProgressManager.Instance == null)
+            {
+                Debug.LogError(
+                    "ARAssemblyManager: ProgressManager not found."
+                );
+
+                return;
+            }
+
+            // Save AR activity completion
+            ProgressManager.Instance.CompleteARActivity(
+                currentLesson
+            );
+
+            Debug.Log(
+                "Assembly AR activity completed and saved."
+            );
+
             return;
         }
 
