@@ -8,16 +8,10 @@ public class ARInventoryUI : MonoBehaviour
     [SerializeField] private Transform toolContainer;
     [SerializeField] private GameObject toolButtonPrefab;
 
-    [Header("AR Activity")]
-    [SerializeField] private ARActivityData currentActivity;
-
     [Header("Placement")]
     [SerializeField] private ARPlacementManager placementManager;
 
-    private void Start()
-    {
-        PopulateInventory();
-    }
+    private ARActivityData currentActivity;
 
     public void PopulateInventory()
     {
@@ -36,6 +30,15 @@ public class ARInventoryUI : MonoBehaviour
         if (toolButtonPrefab == null)
         {
             Debug.LogError("Tool Button Prefab is not assigned.");
+            return;
+        }
+
+        if (currentActivity.availableObjects == null)
+        {
+            Debug.LogWarning(
+                "ARInventoryUI: Activity has no available objects."
+            );
+
             return;
         }
 

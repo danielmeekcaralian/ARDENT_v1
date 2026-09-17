@@ -1,27 +1,41 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class ARAssemblyManager : MonoBehaviour
 {
-    [Header("Assembly Activity")]
-    [SerializeField] private ARAssemblyActivityData assemblyActivity;
+    private ARAssemblyActivityData assemblyActivity;
 
     [Header("Assembly UI")]
     [SerializeField] private TMP_Text stepTitleText;
     [SerializeField] private TMP_Text instructionsText;
 
-    private Transform assemblyTargets;
-    private GameObject assemblyAnchor;
+    private readonly Dictionary<string, AssemblyAnchor>
+        assemblyAnchors =
+            new Dictionary<string, AssemblyAnchor>();
 
     private int currentStepIndex = 0;
 
-    private void Start()
+    // =========================================================
+    // SET ACTIVITY
+    // =========================================================
+
+    public void SetActivity(
+        ARAssemblyActivityData activity)
     {
+        assemblyActivity = activity;
+
+        currentStepIndex = 0;
+
+        assemblyAnchors.Clear();
+
         if (assemblyActivity == null)
         {
             Debug.LogError(
-                "ARAssemblyManager: No Assembly Activity assigned."
+                "ARAssemblyManager: " +
+                "No Assembly Activity provided."
             );
+
             return;
         }
 
@@ -29,8 +43,10 @@ public class ARAssemblyManager : MonoBehaviour
             assemblyActivity.steps.Length == 0)
         {
             Debug.LogError(
-                "ARAssemblyManager: No assembly steps found."
+                "ARAssemblyManager: " +
+                "No assembly steps found."
             );
+
             return;
         }
 
@@ -42,36 +58,66 @@ public class ARAssemblyManager : MonoBehaviour
         ShowCurrentStep();
     }
 
-    public void SetAssemblyAnchor(GameObject motherboard)
+    // =========================================================
+    // REGISTER ANCHOR
+    // =========================================================
+
+    public void RegisterAssemblyAnchor(
+        AssemblyAnchor anchor)
     {
-        if (motherboard == null)
+        if (anchor == null)
             return;
 
-        Transform targets =
-            motherboard.transform.Find("AssemblyTargets");
-
-        if (targets == null)
+        if (string.IsNullOrWhiteSpace(
+                anchor.anchorID))
         {
             Debug.LogError(
-                "ARAssemblyManager: AssemblyTargets not found on motherboard."
+                "ARAssemblyManager: " +
+                "AssemblyAnchor has no Anchor ID."
             );
 
             return;
         }
 
-        assemblyAnchor = motherboard;
-        assemblyTargets = targets;
+        if (assemblyAnchors.ContainsKey(
+                anchor.anchorID))
+        {
+            Debug.LogWarning(
+                "ARAssemblyManager: Replacing existing " +
+                "assembly anchor: " +
+                anchor.anchorID
+            );
+        }
+
+        assemblyAnchors[anchor.anchorID] =
+            anchor;
 
         Debug.Log(
-            "Assembly anchor set to motherboard: " +
-            motherboard.name
+            "Assembly anchor registered: " +
+            anchor.anchorID
         );
     }
 
+    // =========================================================
+    // SHOW CURRENT STEP
+    // =========================================================
+
     private void ShowCurrentStep()
     {
+        if (assemblyActivity == null)
+            return;
+
+        if (currentStepIndex < 0 ||
+            currentStepIndex >=
+            assemblyActivity.steps.Length)
+        {
+            return;
+        }
+
         AssemblyStepData step =
-            assemblyActivity.steps[currentStepIndex];
+            assemblyActivity.steps[
+                currentStepIndex
+            ];
 
         if (stepTitleText != null)
         {
@@ -98,29 +144,27 @@ public class ARAssemblyManager : MonoBehaviour
         );
     }
 
+    // =========================================================
+    // COMPLETE CURRENT STEP
+    // =========================================================
+
     public bool TryCompleteCurrentStep(
-    GameObject placedObject)
+        GameObject placedObject)
     {
         if (assemblyActivity == null)
         {
-            Debug.LogError(
-                "ARAssemblyManager: No assembly activity assigned."
-            );
-
             return false;
         }
 
-        if (assemblyActivity.steps.Length == 0)
+        if (assemblyActivity.steps == null ||
+            assemblyActivity.steps.Length == 0)
         {
-            Debug.LogError(
-                "ARAssemblyManager: No assembly steps available."
-            );
-
             return false;
         }
 
         if (currentStepIndex < 0 ||
-            currentStepIndex >= assemblyActivity.steps.Length)
+            currentStepIndex >=
+            assemblyActivity.steps.Length)
         {
             Debug.Log(
                 "Assembly activity is already completed."
@@ -133,7 +177,13 @@ public class ARAssemblyManager : MonoBehaviour
             return false;
 
         AssemblyStepData step =
-            assemblyActivity.steps[currentStepIndex];
+            assemblyActivity.steps[
+                currentStepIndex
+            ];
+
+        // -----------------------------------------------------
+        // CHECK COMPONENT
+        // -----------------------------------------------------
 
         ARObjectInfo objectInfo =
             placedObject.GetComponent<ARObjectInfo>();
@@ -151,19 +201,22 @@ public class ARAssemblyManager : MonoBehaviour
             step.component.prefab == null)
         {
             Debug.LogError(
-                "Assembly step has no component assigned."
+                "Assembly step has no " +
+                "component assigned."
             );
 
             return false;
         }
 
         ARObjectInfo requiredObjectInfo =
-            step.component.prefab.GetComponent<ARObjectInfo>();
+            step.component.prefab
+                .GetComponent<ARObjectInfo>();
 
         if (requiredObjectInfo == null)
         {
             Debug.LogError(
-                "Required component prefab has no ARObjectInfo."
+                "Required component prefab " +
+                "has no ARObjectInfo."
             );
 
             return false;
@@ -172,7 +225,8 @@ public class ARAssemblyManager : MonoBehaviour
         string requiredName =
             requiredObjectInfo.objectName;
 
-        if (objectInfo.objectName != requiredName)
+        if (objectInfo.objectName !=
+            requiredName)
         {
             Debug.Log(
                 "Wrong component. Required: " +
@@ -182,18 +236,49 @@ public class ARAssemblyManager : MonoBehaviour
             return false;
         }
 
+        // -----------------------------------------------------
+        // FIND ANCHOR
+        // -----------------------------------------------------
+
+        AssemblyAnchor anchor =
+            FindAnchor(step.anchorID);
+
+        if (anchor == null)
+        {
+            Debug.Log(
+                "Required assembly anchor " +
+                "has not been placed: " +
+                step.anchorID
+            );
+
+            return false;
+        }
+
+        // -----------------------------------------------------
+        // FIND TARGET
+        // -----------------------------------------------------
+
         AssemblyTarget target =
-            FindTarget(step.targetID);
+            anchor.FindTarget(
+                step.targetID
+            );
 
         if (target == null)
         {
             Debug.LogError(
-                "Assembly target not found: " +
+                "Assembly target not found. " +
+                "Anchor: " +
+                step.anchorID +
+                ", Target: " +
                 step.targetID
             );
 
             return false;
         }
+
+        // -----------------------------------------------------
+        // CHECK DISTANCE
+        // -----------------------------------------------------
 
         float distance =
             Vector3.Distance(
@@ -201,34 +286,40 @@ public class ARAssemblyManager : MonoBehaviour
                 target.transform.position
             );
 
-        if (distance > step.snapDistance)
+        if (distance >
+            step.snapDistance)
         {
             Debug.Log(
-                "Component is not close enough to the target."
+                "Component is not close enough " +
+                "to the target."
             );
 
             return false;
         }
 
-        // Snap component to target
+        // -----------------------------------------------------
+        // SNAP COMPONENT
+        // -----------------------------------------------------
+
         placedObject.transform.position =
             target.transform.position;
 
         placedObject.transform.rotation =
             target.transform.rotation;
 
-        // Attach component to motherboard
-        if (assemblyAnchor != null)
-        {
-            placedObject.transform.SetParent(
-                assemblyAnchor.transform,
-                true
-            );
-        }
+        // Parent component to the anchor.
+        placedObject.transform.SetParent(
+            anchor.transform,
+            true
+        );
 
-        // Lock individual manipulation
+        // -----------------------------------------------------
+        // LOCK COMPONENT
+        // -----------------------------------------------------
+
         ARObjectManipulator manipulator =
-            placedObject.GetComponent<ARObjectManipulator>();
+            placedObject
+                .GetComponent<ARObjectManipulator>();
 
         if (manipulator != null)
         {
@@ -245,65 +336,63 @@ public class ARAssemblyManager : MonoBehaviour
         return true;
     }
 
+    // =========================================================
+    // FIND ANCHOR
+    // =========================================================
+
+    private AssemblyAnchor FindAnchor(
+        string anchorID)
+    {
+        if (string.IsNullOrWhiteSpace(
+                anchorID))
+        {
+            Debug.LogError(
+                "Assembly step has no Anchor ID."
+            );
+
+            return null;
+        }
+
+        if (assemblyAnchors.TryGetValue(
+                anchorID,
+                out AssemblyAnchor anchor))
+        {
+            return anchor;
+        }
+
+        return null;
+    }
+
+    // =========================================================
+    // ADVANCE STEP
+    // =========================================================
+
     private void AdvanceStep()
     {
         currentStepIndex++;
 
-        if (currentStepIndex >=
-            assemblyActivity.steps.Length)
+        if (currentStepIndex >= assemblyActivity.steps.Length)
         {
             Debug.Log("Assembly completed!");
 
-            LessonData currentLesson =
-                LessonSession.CurrentLesson;
+            ARActivityProgress activityProgress =
+                FindFirstObjectByType<ARActivityProgress>();
 
-            if (currentLesson == null)
+            if (activityProgress == null)
             {
                 Debug.LogError(
-                    "ARAssemblyManager: No current lesson found."
+                    "ARAssemblyManager: ARActivityProgress not found."
                 );
 
                 return;
             }
 
-            if (ProgressManager.Instance == null)
-            {
-                Debug.LogError(
-                    "ARAssemblyManager: ProgressManager not found."
-                );
-
-                return;
-            }
-
-            // Save AR activity completion
-            ProgressManager.Instance.CompleteARActivity(
-                currentLesson
-            );
-
-            Debug.Log(
-                "Assembly AR activity completed and saved."
-            );
+            // Save completion and show ViewCompletionButton.
+            activityProgress.CompleteActivity();
 
             return;
         }
 
         ShowCurrentStep();
-    }
-
-    private AssemblyTarget FindTarget(string targetID)
-    {
-        if (assemblyTargets == null)
-            return null;
-
-        AssemblyTarget[] targets =
-            assemblyTargets.GetComponentsInChildren<AssemblyTarget>();
-
-        foreach (AssemblyTarget target in targets)
-        {
-            if (target.targetID == targetID)
-                return target;
-        }
-
-        return null;
     }
 }

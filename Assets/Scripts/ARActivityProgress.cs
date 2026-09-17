@@ -127,7 +127,7 @@ public class ARActivityProgress : MonoBehaviour
         }
     }
 
-    private void CompleteActivity()
+    public void CompleteActivity()
     {
         LessonData currentLesson =
             LessonSession.CurrentLesson;

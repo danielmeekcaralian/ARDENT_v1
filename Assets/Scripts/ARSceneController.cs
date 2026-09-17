@@ -52,16 +52,6 @@ public class ARSceneController : MonoBehaviour
 
         activityData = currentLesson.arActivity;
 
-        if (activityRouter != null)
-        {
-            activityRouter.RouteActivity(activityData);
-        }
-
-        Debug.Log(
-            "AR Activity Type: " +
-            activityData.activityType
-        );
-
         if (activityData == null)
         {
             Debug.LogError(
@@ -71,6 +61,16 @@ public class ARSceneController : MonoBehaviour
 
             return;
         }
+
+        if (activityRouter != null)
+        {
+            activityRouter.RouteActivity(activityData);
+        }
+
+        Debug.Log(
+            "AR Activity Type: " +
+            activityData.activityType
+        );
 
         // Set AR activity
         if (placementManager != null)

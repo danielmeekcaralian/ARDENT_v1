@@ -1006,6 +1006,7 @@ MonoBehaviour:
   hardwareIdentificationSystem: {fileID: 0}
   assemblySystem: {fileID: 0}
   disassemblySystem: {fileID: 0}
+  assemblyManager: {fileID: 1472036443}
 --- !u!4 &565695909
 Transform:
   m_ObjectHideFlags: 0
@@ -3045,7 +3046,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1430908583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3203,7 +3204,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 453c2fa13b94f714fb37efda3135f64d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARAssemblyManager
-  assemblyActivity: {fileID: 11400000, guid: 79193c3d995147e4b894f336c3cb1a5b, type: 2}
   stepTitleText: {fileID: 887414858}
   instructionsText: {fileID: 1726237727}
 --- !u!1 &1517736521
@@ -3738,7 +3738,6 @@ MonoBehaviour:
   inventoryPanel: {fileID: 1554034733}
   toolContainer: {fileID: 581518771}
   toolButtonPrefab: {fileID: 1920235704724668044, guid: 0aa41d125a8c3e5409c63a964f287b93, type: 3}
-  currentActivity: {fileID: 11400000, guid: 14db1ecf50090334b9bacd11ed688c06, type: 2}
   placementManager: {fileID: 62413082}
 --- !u!1 &1677819783
 GameObject:

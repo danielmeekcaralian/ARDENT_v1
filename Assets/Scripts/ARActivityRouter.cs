@@ -8,6 +8,9 @@ public class ARActivityRouter : MonoBehaviour
     [SerializeField] private GameObject assemblySystem;
     [SerializeField] private GameObject disassemblySystem;
 
+    [Header("Activity Managers")]
+    [SerializeField] private ARAssemblyManager assemblyManager;
+
     public void RouteActivity(ARActivityData activityData)
     {
         if (activityData == null)
@@ -47,8 +50,27 @@ public class ARActivityRouter : MonoBehaviour
 
             case ARActivityType.Assembly:
 
+                if (activityData.assemblyActivity == null)
+                {
+                    Debug.LogError(
+                        "ARActivityRouter: Assembly activity has no " +
+                        "ARAssemblyActivityData assigned."
+                    );
+
+                    break;
+                }
+
+                if (assemblyManager != null)
+                {
+                    assemblyManager.SetActivity(
+                        activityData.assemblyActivity
+                    );
+                }
+
                 if (assemblySystem != null)
+                {
                     assemblySystem.SetActive(true);
+                }
 
                 Debug.Log(
                     "ARActivityRouter: Assembly selected."
