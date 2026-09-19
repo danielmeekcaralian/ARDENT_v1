@@ -22,7 +22,31 @@ MonoBehaviour:
   learningObjectives:
   - "\u2022 Identify procedures in assembling/ disassembling computer.\n"
   - "\u2022 Assemble/disassemble computer system unit.\n"
-  subtopics: []
+  subtopics:
+  - subtopicID: 0401
+    subtopicName: 'Step 1: Prepare the Motherboard'
+  - subtopicID: 0402
+    subtopicName: 'Step 2: Prepare the Motherboard'
+  - subtopicID: 0403
+    subtopicName: 'Step 3: Install the CPU'
+  - subtopicID: 0404
+    subtopicName: 'Step 4: Install the CPU Heat Sink'
+  - subtopicID: 0405
+    subtopicName: 'Step 5: Install Memory (RAM)'
+  - subtopicID: 0406
+    subtopicName: 'Step 6: Place Motherboard into the Case'
+  - subtopicID: 0407
+    subtopicName: 'Step 7: Connect the Power Supply'
+  - subtopicID: 0408
+    subtopicName: 'Step 8: Install Graphics/Video Cards'
+  - subtopicID: 0409
+    subtopicName: 'Step 9: Install Internal Drives'
+  - subtopicID: 0410
+    subtopicName: 'Step 10: Install Add-in Cards'
+  - subtopicID: 0411
+    subtopicName: Connecting Peripherals of a PC
+  - subtopicID: 0412
+    subtopicName: Personal Computer Disassembly/Assembly Procedure
   slides: []
   hasARActivity: 0
   hasQuiz: 0

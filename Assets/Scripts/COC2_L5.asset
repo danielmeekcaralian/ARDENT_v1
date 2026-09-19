@@ -15,10 +15,55 @@ MonoBehaviour:
   lessonID: 9
   cocID: COC_02
   lessonTitle: Splicing
-  description: 
+  description: Learn the standards and step-by-step procedures for structured cabling,
+    including wall-plate installation, T568-A/B wiring schemes, and how to terminate
+    RJ45, CAT5e, and keystone jack connections.
   lessonSceneName: LessonScene
   requiredGoldLessonID: 8
   learningObjectives: []
+  subtopics:
+  - subtopicID: 0501
+    subtopicName: Structured Cabling and Standardization
+  - subtopicID: 0502
+    subtopicName: American National Standards Institute (ANSI)
+  - subtopicID: 0503
+    subtopicName: Electronic Industries Alliance (EIA)
+  - subtopicID: 0504
+    subtopicName: Telecommunications Industry Association (TIA)
+  - subtopicID: 0505
+    subtopicName: 110-Blocks
+  - subtopicID: 0506
+    subtopicName: Wall-Plate Location
+  - subtopicID: 0507
+    subtopicName: Vertical Position
+  - subtopicID: 0508
+    subtopicName: Horizontal Position
+  - subtopicID: 0509
+    subtopicName: Wall-Plate Mounting System
+  - subtopicID: 0510
+    subtopicName: Outlet Boxes
+  - subtopicID: 0511
+    subtopicName: Cut-In Mounting
+  - subtopicID: 0512
+    subtopicName: Remodel Boxes
+  - subtopicID: 0513
+    subtopicName: Surface-Mount Outlet Boxes
+  - subtopicID: 0514
+    subtopicName: Fixed-Design Wall Plates
+  - subtopicID: 0515
+    subtopicName: Wiring Scheme for T568-A
+  - subtopicID: 0516
+    subtopicName: Wiring Scheme for T568-B
+  - subtopicID: 0517
+    subtopicName: Steps in Making RJ45 and CAT5E Network Cable
+  - subtopicID: 0518
+    subtopicName: How to Terminate Punch Down Style Keystone Jacks
+  - subtopicID: 0519
+    subtopicName: Steps on Punching Down Ethernet Cat 5e & Cat 6 to a Patch Panel
   slides: []
+  hasARActivity: 0
+  hasQuiz: 0
+  requiresARActivity: 0
+  requiresQuiz: 0
   arActivity: {fileID: 0}
   quizData: {fileID: 0}

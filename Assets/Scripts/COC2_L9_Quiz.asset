@@ -13,4 +13,45 @@ MonoBehaviour:
   m_Name: COC2_L9_Quiz
   m_EditorClassIdentifier: Assembly-CSharp::QuizData
   passingPercentage: 100
-  questions: []
+  questions:
+  - question: 'Call a few local companies and ask about prices and transportation.   '
+    answers:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    correctAnswerIndex: 3
+  - question: Keep/Store in box or any storage and not in a garbage bin.
+    answers:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    correctAnswerIndex: 0
+  - question: 'Tell the scrap metal representative if you have insulated copper wire. '
+    answers:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    correctAnswerIndex: 4
+  - question: 'Find a scrap metal company online or in your local phone book.  '
+    answers:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    correctAnswerIndex: 2
+  - question: ' Bundle your copper wire to make it manageable to handle, and weigh
+      it. '
+    answers:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    correctAnswerIndex: 1

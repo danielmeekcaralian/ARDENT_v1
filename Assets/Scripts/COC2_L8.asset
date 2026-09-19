@@ -15,10 +15,21 @@ MonoBehaviour:
   lessonID: 12
   cocID: COC_02
   lessonTitle: OHS Standards and 5S
-  description: 
+  description: 'Description: Learn the occupational safety standards to follow while
+    working, and apply the 5S principles (Seiri, Seiton, Seiso, Seiketsu, Shitsuke)
+    for maintaining an organized and safe workplace.'
   lessonSceneName: LessonScene
   requiredGoldLessonID: 11
   learningObjectives: []
+  subtopics:
+  - subtopicID: 0801
+    subtopicName: OHS Standards
+  - subtopicID: 0802
+    subtopicName: Don't Forget to Follow the 5S in Working
   slides: []
+  hasARActivity: 0
+  hasQuiz: 0
+  requiresARActivity: 0
+  requiresQuiz: 0
   arActivity: {fileID: 0}
   quizData: {fileID: 0}

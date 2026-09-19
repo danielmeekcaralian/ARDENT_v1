@@ -25,7 +25,19 @@ MonoBehaviour:
   - "\u2022 Discuss the computer system unit case and its form factor.\n"
   - "\u2022 Identify the major components of a computer system unit and its peripherals.\n"
   - "\u2022 Identify the computer hardware peripherals.\n"
-  subtopics: []
+  subtopics:
+  - subtopicID: 0301
+    subtopicName: Basic PC Terms and Concepts
+  - subtopicID: 0302
+    subtopicName: The PC System
+  - subtopicID: 0303
+    subtopicName: Computer System Unit Case
+  - subtopicID: 0304
+    subtopicName: Form Factor
+  - subtopicID: 0305
+    subtopicName: Major Components of the Computer System Unit
+  - subtopicID: 0306
+    subtopicName: Computer Hardware Peripherals
   slides: []
   hasARActivity: 0
   hasQuiz: 0

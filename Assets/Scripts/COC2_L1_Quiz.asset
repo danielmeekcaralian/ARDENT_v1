@@ -13,4 +13,31 @@ MonoBehaviour:
   m_Name: COC2_L1_Quiz
   m_EditorClassIdentifier: Assembly-CSharp::QuizData
   passingPercentage: 100
-  questions: []
+  questions:
+  - question: ' Bus Topology is most simple and low-cost and can send multiple message
+      to other computer anytime.'
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 1
+  - question: ' One of the advantages of peer-to-peer networks that it is easy to
+      configure. '
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 0
+  - question: 'Many cable network wiring has been replaced with hybrid fiber-coax.  '
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 0
+  - question: 'One example of a WAN is a Network inside the Student Computer Room '
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 1
+  - question: 'Peer-to-peer network is also called workgroup  '
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 0

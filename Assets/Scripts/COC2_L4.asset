@@ -15,10 +15,20 @@ MonoBehaviour:
   lessonID: 8
   cocID: COC_02
   lessonTitle: OHS Policies and PPE
-  description: 
+  description: Learn the occupational safety procedures and personal protective equipment
+    (PPE) used to stay safe while working on network installations.
   lessonSceneName: LessonScene
   requiredGoldLessonID: 7
   learningObjectives: []
+  subtopics:
+  - subtopicID: 0401
+    subtopicName: Occupational Safety and Health Procedures
+  - subtopicID: 0402
+    subtopicName: Personal Protective Equipment
   slides: []
+  hasARActivity: 0
+  hasQuiz: 0
+  requiresARActivity: 0
+  requiresQuiz: 0
   arActivity: {fileID: 0}
   quizData: {fileID: 0}

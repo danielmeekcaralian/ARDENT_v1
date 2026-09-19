@@ -13,4 +13,30 @@ MonoBehaviour:
   m_Name: COC2_L6_Quiz
   m_EditorClassIdentifier: Assembly-CSharp::QuizData
   passingPercentage: 100
-  questions: []
+  questions:
+  - question: ' Tensile strength is one that has to be kept in mind while pulling
+      a cable. '
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 0
+  - question: 'Last thing to do when done in installing cable is to test. '
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 0
+  - question: 'Two-way radio is one thing to be used in installing network cable '
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 0
+  - question: 'In installing cable, pen and paper are not needed. '
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 1
+  - question: 'A rope could be used to pull strings through small spaces.  '
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 1

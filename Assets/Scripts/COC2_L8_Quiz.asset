@@ -13,4 +13,30 @@ MonoBehaviour:
   m_Name: COC2_L8_Quiz
   m_EditorClassIdentifier: Assembly-CSharp::QuizData
   passingPercentage: 100
-  questions: []
+  questions:
+  - question: ' Seiri means sorting or putting things in order. '
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 0
+  - question: 'Always wear PPE while working to the computer hardware components. '
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 0
+  - question: "Do not use excessive force if there are parts that doesn\u2019t fit
+      to its place. "
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 0
+  - question: 'Seiso means sustaining the cleanliness of the workplace. '
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 1
+  - question: 'Seiketsu  means orderliness, by everything to its place. '
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 1

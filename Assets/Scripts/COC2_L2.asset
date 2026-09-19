@@ -15,10 +15,27 @@ MonoBehaviour:
   lessonID: 6
   cocID: COC_02
   lessonTitle: Network Materials
-  description: 
+  description: Identify the different cable types used in setting up computer networks.
   lessonSceneName: LessonScene
   requiredGoldLessonID: 5
   learningObjectives: []
+  subtopics:
+  - subtopicID: 0201
+    subtopicName: Unshielded Twisted-Pair (UTP)
+  - subtopicID: 0202
+    subtopicName: Shielded Twisted-Pair (STP)
+  - subtopicID: 0203
+    subtopicName: Categories of UTP Cables
+  - subtopicID: 0204
+    subtopicName: Coaxial Cables
+  - subtopicID: 0205
+    subtopicName: Coaxial Cables
+  - subtopicID: 0206
+    subtopicName: Advantages and Disadvantages
   slides: []
+  hasARActivity: 0
+  hasQuiz: 0
+  requiresARActivity: 0
+  requiresQuiz: 0
   arActivity: {fileID: 0}
   quizData: {fileID: 0}

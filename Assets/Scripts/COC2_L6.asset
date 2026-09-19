@@ -15,10 +15,39 @@ MonoBehaviour:
   lessonID: 10
   cocID: COC_02
   lessonTitle: Network Cables
-  description: 
+  description: Learn the rules, tools, and techniques for properly pulling, documenting,
+    terminating, and testing network cables, including the racks and raceways used
+    to organize them.
   lessonSceneName: LessonScene
   requiredGoldLessonID: 9
   learningObjectives: []
+  subtopics:
+  - subtopicID: 0601
+    subtopicName: Cabling Rules
+  - subtopicID: 0602
+    subtopicName: Installing Network Cables
+  - subtopicID: 0603
+    subtopicName: Network Cables
+  - subtopicID: 0604
+    subtopicName: Pulling Cable
+  - subtopicID: 0605
+    subtopicName: Tensile Strength
+  - subtopicID: 0606
+    subtopicName: Bend Radius
+  - subtopicID: 0607
+    subtopicName: Protection While Pulling
+  - subtopicID: 0608
+    subtopicName: Cabling System Documentation
+  - subtopicID: 0609
+    subtopicName: Terminate the Cable
+  - subtopicID: 0610
+    subtopicName: Wall-Mounted Brackets
+  - subtopicID: 0611
+    subtopicName: Skeletal Frames
   slides: []
+  hasARActivity: 0
+  hasQuiz: 0
+  requiresARActivity: 0
+  requiresQuiz: 0
   arActivity: {fileID: 0}
   quizData: {fileID: 0}

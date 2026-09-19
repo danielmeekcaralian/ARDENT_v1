@@ -13,4 +13,32 @@ MonoBehaviour:
   m_Name: COC2_L7_Quiz
   m_EditorClassIdentifier: Assembly-CSharp::QuizData
   passingPercentage: 100
-  questions: []
+  questions:
+  - question: ' 20 meters is the distance limited requirement for intermediate cross-connects.'
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 0
+  - question: ' 20 meters is the distance limited requirement for Telecommunications
+      room having 6 meters working area. '
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 0
+  - question: 'To avoid problems of faulty connections, it is highly recommended
+      to purchase high-quality components and installing them carefully. '
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 0
+  - question: ' One of the steps in troubleshooting is to split the network into
+      its illogical elements. '
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 1
+  - question: ' TDR means Trade Domain Reflectometers. '
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 1

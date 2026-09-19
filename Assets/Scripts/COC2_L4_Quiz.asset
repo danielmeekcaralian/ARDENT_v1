@@ -13,4 +13,33 @@ MonoBehaviour:
   m_Name: COC2_L4_Quiz
   m_EditorClassIdentifier: Assembly-CSharp::QuizData
   passingPercentage: 100
-  questions: []
+  questions:
+  - question: ' It is appropriate that even pins are not properly aligned when connecting
+      a cable connector '
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 1
+  - question: 'Apron is used to cover the face to prevent inhaling or absorbing dust
+      or chemicals. '
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 1
+  - question: ' It is not necessary to have contingency measures during workplace
+      accidents, fire and other emergencies are recognized. '
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 1
+  - question: "Use excessive force if things don\u2019t quite slip into place. "
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 1
+  - question: ' It is not necessary to ground or discharge yourself before touching
+      any part of the computer '
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 1

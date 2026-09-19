@@ -15,10 +15,55 @@ MonoBehaviour:
   lessonID: 11
   cocID: COC_02
   lessonTitle: Ensuring No Unnecessary Damage
-  description: 
+  description: Learn how to verify cabling performance and certification standards,
+    and how to check, test, and troubleshoot cable installations for defects or unnecessary
+    damage.
   lessonSceneName: LessonScene
   requiredGoldLessonID: 10
   learningObjectives: []
+  subtopics:
+  - subtopicID: 0701
+    subtopicName: Ensuring a Specific Level of Cabling Performance
+  - subtopicID: 0702
+    subtopicName: Connecting Hardware
+  - subtopicID: 0703
+    subtopicName: Patch Cables and Cross-Connect Jumpers
+  - subtopicID: 0704
+    subtopicName: Connections
+  - subtopicID: 0705
+    subtopicName: Cable Performance
+  - subtopicID: 0706
+    subtopicName: Environment
+  - subtopicID: 0707
+    subtopicName: Certification
+  - subtopicID: 0708
+    subtopicName: Creating a Testing Regimen
+  - subtopicID: 0709
+    subtopicName: Copper-Cable Certification
+  - subtopicID: 0710
+    subtopicName: Third-Party Certification
+  - subtopicID: 0711
+    subtopicName: Cable-Testing Tools
+  - subtopicID: 0712
+    subtopicName: Wire-Map Testers
+  - subtopicID: 0713
+    subtopicName: Wire-Map Testers
+  - subtopicID: 0714
+    subtopicName: Continuity Testers
+  - subtopicID: 0715
+    subtopicName: Tone Generators
+  - subtopicID: 0716
+    subtopicName: Time Domain Reflectometers
+  - subtopicID: 0717
+    subtopicName: Fault Detection
+  - subtopicID: 0718
+    subtopicName: Blind Spots
+  - subtopicID: 0719
+    subtopicName: Locating the Problem
   slides: []
+  hasARActivity: 0
+  hasQuiz: 0
+  requiresARActivity: 0
+  requiresQuiz: 0
   arActivity: {fileID: 0}
   quizData: {fileID: 0}

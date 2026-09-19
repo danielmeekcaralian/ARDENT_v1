@@ -15,10 +15,18 @@ MonoBehaviour:
   lessonID: 13
   cocID: COC_02
   lessonTitle: Disposing Excess Components
-  description: 
+  description: 'Description: Learn the proper procedure for disposing of excess or
+    leftover copper cable and networking materials.'
   lessonSceneName: LessonScene
   requiredGoldLessonID: 12
   learningObjectives: []
+  subtopics:
+  - subtopicID: 0901
+    subtopicName: Proper Ways of Copper Cable Disposal
   slides: []
+  hasARActivity: 0
+  hasQuiz: 0
+  requiresARActivity: 0
+  requiresQuiz: 0
   arActivity: {fileID: 0}
   quizData: {fileID: 0}

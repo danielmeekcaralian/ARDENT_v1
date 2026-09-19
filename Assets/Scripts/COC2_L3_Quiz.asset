@@ -13,4 +13,42 @@ MonoBehaviour:
   m_Name: COC2_L3_Quiz
   m_EditorClassIdentifier: Assembly-CSharp::QuizData
   passingPercentage: 100
-  questions: []
+  questions:
+  - question: 'It covers the fields of installation and network control. '
+    answers:
+    - " a. pliers\t"
+    - "b. screwdriver\t"
+    - "c. patch panel\t"
+    - "d. Lan Tester\t"
+    correctAnswerIndex: 3
+  - question: 'Tool intended for cutting of wire. '
+    answers:
+    - " a. pliers\t"
+    - "b. cutter\t"
+    - "c. wire stripper\t"
+    - "d. screwdriver\t"
+    correctAnswerIndex: 1
+  - question: 'A Small hand held device that is used to strip electrical insulation
+      is called. '
+    answers:
+    - " a. pliers\t"
+    - "b. cutter\t"
+    - "c. wire stripper\t"
+    - "d. screwdriver\t"
+    correctAnswerIndex: 2
+  - question: 'It is a tool that provides a way to tighten wires wrapped around an
+      object and then lock it in place. '
+    answers:
+    - " a. pliers\t"
+    - "b. cutter\t"
+    - "c. wire stripper\t"
+    - "d. clamp\t"
+    correctAnswerIndex: 3
+  - question: 'Also known as krone tool used to connect telecommunications and network
+      wires to a patch panel. '
+    answers:
+    - "a. punch down\t"
+    - "b. crimping tool\t"
+    - "c. wire stripper\t"
+    - d. Lan Tester
+    correctAnswerIndex: 0

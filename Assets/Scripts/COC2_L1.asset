@@ -15,10 +15,30 @@ MonoBehaviour:
   lessonID: 5
   cocID: COC_02
   lessonTitle: Network Design
-  description: 
+  description: Learn the basic concepts of networking, including network types and
+    topologies.
   lessonSceneName: LessonScene
   requiredGoldLessonID: 4
   learningObjectives: []
+  subtopics:
+  - subtopicID: 0101
+    subtopicName: What is a Network?
+  - subtopicID: 0102
+    subtopicName: Why Networking?
+  - subtopicID: 0103
+    subtopicName: Kinds of Networks (LAN and WAN)
+  - subtopicID: 0104
+    subtopicName: Transmission Media
+  - subtopicID: 0105
+    subtopicName: Peer-to-Peer Networks
+  - subtopicID: 0106
+    subtopicName: Clients and Servers
+  - subtopicID: 0107
+    subtopicName: Topology
   slides: []
+  hasARActivity: 1
+  hasQuiz: 0
+  requiresARActivity: 0
+  requiresQuiz: 0
   arActivity: {fileID: 0}
   quizData: {fileID: 0}

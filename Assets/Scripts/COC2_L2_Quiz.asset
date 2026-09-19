@@ -13,4 +13,34 @@ MonoBehaviour:
   m_Name: COC2_L2_Quiz
   m_EditorClassIdentifier: Assembly-CSharp::QuizData
   passingPercentage: 100
-  questions: []
+  questions:
+  - question: 'Patch panel is used for connecting and routing circuits for monitoring. '
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 0
+  - question: 'A networking device that forwards data packets between computer networks
+      is called Lan Card. '
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 1
+  - question: ' Ethernet Hub is a computer networking device that connects devices
+      together on a computer network by using packet switching to receive, process,
+      and forward data to the destination device '
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 1
+  - question: 'A Wifi is a device that adds wireless connectivity to a laptop or
+      desktop computer. '
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 1
+  - question: 'A UTP cable is standard for a physical interface between customer
+      wiring and telephone company wiring. '
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 1

@@ -15,10 +15,50 @@ MonoBehaviour:
   lessonID: 7
   cocID: COC_02
   lessonTitle: Tools, Equipment and Testing Devices
-  description: 
+  description: Learn the tools and equipment used in installing and testing network
+    cables.
   lessonSceneName: LessonScene
   requiredGoldLessonID: 6
   learningObjectives: []
+  subtopics:
+  - subtopicID: 0301
+    subtopicName: Lan Tester
+  - subtopicID: 0302
+    subtopicName: Punch-down Tool
+  - subtopicID: 0303
+    subtopicName: Cable Crimpers
+  - subtopicID: 0304
+    subtopicName: Twisted-Pair Crimpers
+  - subtopicID: 0305
+    subtopicName: Cable Ties
+  - subtopicID: 0306
+    subtopicName: Clamp Tool
+  - subtopicID: 0307
+    subtopicName: Protective Eyewear
+  - subtopicID: 0308
+    subtopicName: Digital Multi-meter
+  - subtopicID: 0307
+    subtopicName: Wire Stripper
+  - subtopicID: 0308
+    subtopicName: Coaxial Wire Strippers
+  - subtopicID: 0310
+    subtopicName: Fiber-Optic Cable Strippers
+  - subtopicID: 0311
+    subtopicName: Pliers
+  - subtopicID: 0312
+    subtopicName: Screwdrivers
+  - subtopicID: 0313
+    subtopicName: Punch-Down Tools
+  - subtopicID: 0314
+    subtopicName: The Palm Guard
+  - subtopicID: 0315
+    subtopicName: Fish Tapes
+  - subtopicID: 0316
+    subtopicName: Cable-Marking Supplies
   slides: []
+  hasARActivity: 0
+  hasQuiz: 0
+  requiresARActivity: 0
+  requiresQuiz: 0
   arActivity: {fileID: 0}
   quizData: {fileID: 0}
