@@ -21,5 +21,10 @@ public class AssemblyStepData
     public string targetID;
 
     [Header("Snap")]
+    [Min(0.001f)]
     public float snapDistance = 0.15f;
+
+    [Header("Rotation")]
+    [Range(0f, 180f)]
+    public float rotationTolerance = 15f;
 }

@@ -15,6 +15,12 @@ public class ARAssemblyManager : MonoBehaviour
             new Dictionary<string, AssemblyAnchor>();
 
     private int currentStepIndex = 0;
+    private float assemblyScaleFactor = 1f;
+
+    public void SetAssemblyScale(float factor)
+    {
+        assemblyScaleFactor = Mathf.Max(0.001f, factor);
+    }
 
     // =========================================================
     // SET ACTIVITY
@@ -287,8 +293,10 @@ public class ARAssemblyManager : MonoBehaviour
             );
 
         if (distance >
-            step.snapDistance)
+            step.snapDistance * assemblyScaleFactor)
         {
+            if (instructionsText != null)
+                instructionsText.text = step.instruction + "\nMove the component closer to the target.";
             Debug.Log(
                 "Component is not close enough " +
                 "to the target."
@@ -301,6 +309,21 @@ public class ARAssemblyManager : MonoBehaviour
         // SNAP COMPONENT
         // -----------------------------------------------------
 
+        float angleError = Quaternion.Angle(
+            placedObject.transform.rotation,
+            target.transform.rotation
+        );
+
+        if (angleError > step.rotationTolerance)
+        {
+            if (instructionsText != null)
+                instructionsText.text = step.instruction +
+                    "\nRotate the component to match the target.";
+
+            Debug.Log($"Incorrect rotation: {angleError:F1} degrees; " +
+                $"allowed: {step.rotationTolerance:F1} degrees.");
+            return false;
+        }
         placedObject.transform.position =
             target.transform.position;
 

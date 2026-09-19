@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ARActivityData
   activityID: 4
   activityTitle: 
-  activityType: 0
+  activityType: 2
+  assemblyActivity: {fileID: 0}
   instruction: 
   availableObjects: []
   requirePlanePlacement: 1

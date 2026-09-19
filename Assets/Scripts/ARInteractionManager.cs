@@ -98,6 +98,9 @@ public class ARInteractionManager : MonoBehaviour
         // RIGHT DRAG - ROTATE OBJECT
         // -----------------------------------------
 
+        if (Mouse.current.rightButton.wasPressedThisFrame)
+            previousMousePosition = Mouse.current.position.ReadValue();
+
         if (Mouse.current.rightButton.isPressed &&
             selectedObject != null)
         {
@@ -137,7 +140,7 @@ public class ARInteractionManager : MonoBehaviour
         {
             return;
         }
-        
+
         if (placementManager != null &&
             placementManager.WasObjectPlacedThisFrame())
         {
@@ -270,11 +273,7 @@ public class ARInteractionManager : MonoBehaviour
         float amount =
             scroll * scaleSpeed;
 
-        selectedObject.ChangeScale(
-            amount,
-            minimumScale,
-            maximumScale
-        );
+        ApplyScale(amount);
     }
 
 #endif
@@ -602,11 +601,7 @@ public class ARInteractionManager : MonoBehaviour
         float scaleAmount =
             distanceDelta * scaleSpeed;
 
-        selectedObject.ChangeScale(
-            scaleAmount,
-            minimumScale,
-            maximumScale
-        );
+        ApplyScale(scaleAmount);
 
         // -----------------------------------------
         // ROTATION
@@ -655,6 +650,16 @@ public class ARInteractionManager : MonoBehaviour
 
 #endif
 
+    private void ApplyScale(float amount)
+    {
+        if (placementManager != null && placementManager.IsAssemblyActivity)
+        {
+            placementManager.ScaleAssembly(amount);
+            return;
+        }
+
+        selectedObject.ChangeScale(amount, minimumScale, maximumScale);
+    }
     public void DeselectObject()
     {
         selectedObject = null;

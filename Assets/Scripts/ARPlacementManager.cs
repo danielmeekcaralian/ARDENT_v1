@@ -18,6 +18,53 @@ public class ARPlacementManager : MonoBehaviour
     [SerializeField]
     private GameObject placementIndicator;
 
+    [Header("Whole Assembly Scale")]
+    [SerializeField, Min(0.01f)] private float minimumAssemblyScale = 0.5f;
+    [SerializeField, Min(0.01f)] private float maximumAssemblyScale = 2f;
+
+    private Transform assemblyRoot;
+    private float assemblyScale = 1f;
+    public bool IsAssemblyActivity =>
+        currentActivity != null &&
+        currentActivity.activityType == ARActivityType.Assembly;
+
+    public void ScaleAssembly(float amount)
+    {
+        if (!IsAssemblyActivity || !currentActivity.allowScaling ||
+            assemblyRoot == null)
+            return;
+
+        float minimum = Mathf.Max(0.01f, minimumAssemblyScale);
+        float maximum = Mathf.Max(minimum, maximumAssemblyScale);
+        assemblyScale = Mathf.Clamp(
+            assemblyScale * Mathf.Exp(Mathf.Clamp(amount, -1f, 1f)),
+            minimum, maximum
+        );
+
+        assemblyRoot.localScale = Vector3.one * assemblyScale;
+        ARAssemblyManager manager = FindFirstObjectByType<ARAssemblyManager>();
+        if (manager != null)
+            manager.SetAssemblyScale(assemblyScale);
+    }
+
+    private Transform GetPlacementParent(Pose pose)
+    {
+        if (!IsAssemblyActivity)
+            return contentParent;
+
+        if (assemblyRoot == null)
+        {
+            assemblyRoot = new GameObject("AssemblyRoot").transform;
+            assemblyRoot.SetParent(contentParent, false);
+            // Resize around the first placement rather than the scene origin.
+            assemblyRoot.position = pose.position;
+            assemblyRoot.localRotation = Quaternion.identity;
+            assemblyRoot.localScale = Vector3.one * assemblyScale;
+        }
+
+        return assemblyRoot;
+    }
+
     private GameObject currentObject;
 
     private ARActivityData currentActivity;
@@ -352,9 +399,15 @@ public class ARPlacementManager : MonoBehaviour
                 selectedObjectData.prefab,
                 tapPose.position,
                 tapPose.rotation,
-                contentParent
+                GetPlacementParent(tapPose)
             );
 
+        if (IsAssemblyActivity)
+        {
+            // Keep the authored LOCAL size so new parts inherit the shared scale.
+            newObject.transform.localScale =
+                selectedObjectData.prefab.transform.localScale;
+        }
         // -----------------------------------------------------
         // REGISTER ASSEMBLY ANCHOR
         // -----------------------------------------------------
