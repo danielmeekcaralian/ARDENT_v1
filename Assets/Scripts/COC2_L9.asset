@@ -18,7 +18,32 @@ MonoBehaviour:
   description: 
   lessonSceneName: LessonScene
   requiredGoldLessonID: 12
-  learningObjectives: []
-  slides: []
+  learningObjectives:
+  - "\u2022 Identify ways of disposing excess components and materials used in networking "
+  - "\u2022 Follow proper ways of segregation of disposal  "
+  subtopics: []
+  slides:
+  - subtopicID: 1301
+    slideType: 0
+    content: "Proper Ways of Copper Cable Disposal \r\n\r\n1.) Keep/Store in box
+      or any storage and not in a garbage bin.  \r\n2.) Bundle your copper wire to
+      make it manageable to handle, and weigh it. It is useful to have an estimate
+      of how much copper you have so you can discuss price and transportation with
+      the recycling company. \r\n3.) Find a scrap metal company online or in your
+      local phone book. Copper recycling is a very common thing in the scrap metal
+      world, and recyclers make money by selling the scrap to smelting companies.
+      \r\n4.) Call a few local companies and ask about prices and transportation.
+      Some companies only deal in very large amounts of copper, such as leftovers
+      from a building site, but others will take any weight. \r\n5.) Tell the scrap
+      metal representative if you have insulated copper wire. Depending on the type
+      of insulation, the recycler must either burn off the insulation or use a mechanical
+      process and bury the waste if burning will produce pollutants. \r\n6.) Follow
+      the scrap metal company's instructions for transport of the wire, whether it
+      means dropping it off or placing it outside for collection. "
+    image: {fileID: 0}
+  hasARActivity: 0
+  hasQuiz: 0
+  requiresARActivity: 0
+  requiresQuiz: 0
   arActivity: {fileID: 0}
   quizData: {fileID: 0}

@@ -18,7 +18,144 @@ MonoBehaviour:
   description: 
   lessonSceneName: LessonScene
   requiredGoldLessonID: 10
-  learningObjectives: []
-  slides: []
+  learningObjectives:
+  - "\u2022 Identify how to ensure that no unnecessary damage occurred while performing
+    installation work and complies with requirements"
+  - "\u2022 Perform installation work and ensure no unnecessary damage occurred and
+    complies with requirements."
+  subtopics: []
+  slides:
+  - subtopicID: 1101
+    slideType: 0
+    content: "\tEnsuring a Specific Level of Cabling Performance UTP cabling systems
+      cannot be considered Category 3\u2013,5e\u2013, or 6-compliant (and consequently
+      certified) unless all components of the cabling system satisfy the specific
+      performance requirements of the particular category. The components include
+      the following:  \r\n\r\n\u25CF All backbone and horizontal cabling \r\n\u25CF
+      Telecommunications outlets  \r\n\u25CF Patch panels  \r\n\u25CF Cross-connect
+      wires and cross-connect blocks All patch panel terminations, wall-plate terminations,
+      crimping, and cross-connect punch-downs also must follow the specific recommendations
+      for the respective Category. In other words, a network link will perform only
+      as well as the lowest Category-compliant component in the link. "
+    image: {fileID: 0}
+  - subtopicID: 1101
+    slideType: 0
+    content: "Connecting Hardware:  \r\n\r\nPerformance Loss Part of the ANSI/TIA/EIA-568-B
+      Standard is intended to ensure that connecting hardware (cross-connects, patch
+      panels, patch cables, telecommunications outlets, and connectors) does not
+      have an adverse effect on attenuation and NEXT. To this end, the Standard specifies
+      requirements for connecting hardware to insure compatibility with cables.\n\nPatch
+      Cables and Cross-Connect Jumpers ANSI/TIA/EIA-568-B also specifies requirements
+      that apply to cables used for patch cables and cross-connect jumpers. The requirements
+      include recommendations for maximum distance limitations for patch cables and
+      cross-connects, as shown here: \r\n\r\nCable Type Maximum Distance Main cross-connect
+      \r\n* 20 meters (66 feet) Intermediate cross-connect \r\n* 20 meters (66 feet)
+      Telecommunications room 6 meters (20 feet) Work area 3 meters (10 feet) "
+    image: {fileID: 0}
+  - subtopicID: 1101
+    slideType: 0
+    content: "*Main and intermediate cross-connects will only be used with voice
+      and other low bandwidth applications. \r\n\r\nThe total maximum distance of
+      the channel should not exceed the maximum distance recommended for the application
+      being used. For example, the channel distance for 100Base-TX Ethernet should
+      not exceed 100 meters. \r\n\r\n \r\n\r\nTip: Patch cables should use stranded
+      conductors rather than solid conductors so that the cable is more flexible.
+      Solid-conductor cables are easily damaged if they are bent too tightly or too
+      often. "
+    image: {fileID: 0}
+  - subtopicID: 1101
+    slideType: 0
+    content: "Patch cables usually have a slightly higher attenuation than horizontal
+      cables because they are stranded rather than solid conductors. Though stranded
+      conductors increase patch-cable flexibility, they also increase attenuation.
+      \r\n\r\n \r\nPossible questions to ask to ensure that there are no unnecessary
+      damages occurred while work installations are: \r\n\r\n\tConnections - Have
+      the connectors been attached to the cable properly? Have the wires been connected
+      to the correct pins at both ends? \r\n\r\n\tCable Performance - Is the cable
+      free from defects that can affect performance? \r\n\r\n\tEnvironment - Has
+      the cable been properly routed around possible sources of interference, such
+      as light fixtures and electrical equipment? \r\n\r\n\tCertification - Does
+      the entire end-to-end cable run, including connectors, wall plates and other
+      hardware, conform to the desired standard? "
+    image: {fileID: 0}
+  - subtopicID: 1102
+    slideType: 0
+    content: "Creating a Testing Regimen \n\n The level of performance that you require
+      from a cable installation should specify which tests you have to perform during
+      the installation process and what test results are acceptable. \n\nCopper-Cable
+      Certification \r\n\r\n The ANSI/TIA/EIA-568-B Standard includes performance
+      requirements for horizontal and backbone cabling. The Standard defines two
+      types of horizontal links for the purposes of testing. The permanent link refers
+      to the permanently installed cable connection that typically runs from a wall
+      plate at the equipment site to a patch panel in a wiring closet or data center. "
+    image: {fileID: 0}
+  - subtopicID: 1102
+    slideType: 0
+    content: "Third-Party Certification  \r\n\r\nTesting your cable installation
+      for compliance to a specific performance level is a great way to ensure that
+      the cable plant will support the networking protocol you plan to run.  \r\n\r\nCable-Testing
+      Tools The best method for addressing a faulty cable installation is to avoid
+      the problems in the first place by purchasing high-quality components and installing
+      them carefully. But no matter how careful you are, problems are bound to arise. 
+      \r\n\r\n \r\nWire-Map Testers  \r\n\r\nA wire-map tester transmits signals
+      through each wire in a copper twisted-pair cable to determine if it is connected
+      to the correct pin at each end. Wire mapping is the most basic test for twisted-pair
+      cables because the eight separate wire connections involved in each cable run
+      are a common source of installation errors. "
+    image: {fileID: 0}
+  - subtopicID: 1102
+    slideType: 0
+    content: "Continuity Testers  \r\n\r\nA continuity tester is an even simpler
+      and less expensive device than a wire-map tester. It is designed to check a
+      copper-cable connection for basic installation problems, such as opens, shorts,
+      and crossed pairs. \r\n\r\n\r\nTone Generators  \r\n\r\nThe simplest type of
+      copper-cable tester is also a two-piece unit, a tone generator and probe, also
+      sometimes called a fox and hound wire tracer. With a standard jack, you connect
+      to the cable the unit that transmits a signal; or, with an alligator clip,
+      you connect the unit to an individual wire. \r\n\r\n \r\nTime Domain Reflectometers
+      (TDR) \r\n\r\n As described earlier in the section \u201CCable Length,\u201D
+      a time domain reflectometer (TDR) is the primary tool used to determine the
+      length of a copper cable and to locate the impedance variations that are caused
+      by opens, shorts, damaged cables, and interference with other systems. "
+    image: {fileID: 0}
+  - subtopicID: 1102
+    slideType: 0
+    content: "Fault Detection  \r\n\r\nWhen a TDR transmits its signal pulse onto
+      a cable, any extraordinary impedance that the signal encounters causes it to
+      reflect back to the unit, where it can be detected by a receiver. \r\n\r\n
+      \r\nBlind Spots  \r\n\r\nSome TDRs enable you to select from a range of pulse
+      widths. The pulse width specifies the amount of energy the unit transmits as
+      its test pulse. \r\n\r\nLocating the Problem  \n\r\n- Troubleshooting your
+      network\u2019s cable plant requires many of the same common-sense skills as
+      other troubleshooting. You try to isolate the cause of the problem by asking
+      questions like the following:  \r\n\r\n\t\u25CF Has the cable ever worked properly? 
+      \r\n\t\u25CF When did the malfunctions start?  \r\n\t\u25CF Do the malfunctions
+      occur at specific times?  \r\n\t\u25CF What has changed since the cable functioned
+      properly?  "
+    image: {fileID: 0}
+  - subtopicID: 1102
+    slideType: 0
+    content: "Once you\u2019ve gathered all the answers to such questions, the troubleshooting
+      consists of steps like the following:  \r\n\r\n1. Split the system into its
+      logical elements.\n  \r\n2. Locate the element that is most likely the cause
+      of the problem.  \n\r\n3. Test the element or install a substitute to verify
+      it as the cause of the problem.  \n\r\n4. If the suspected element is not the
+      cause, move on to the next likely element. \n \r\n5. After locating the cause
+      of the problem, repair or replace it.  \r\n "
+    image: {fileID: 0}
+  - subtopicID: 1102
+    slideType: 0
+    content: 'You might begin troubleshooting by determining for sure that the cable
+      run is the source of the problem. You can do this by connecting different devices
+      to both ends of the cable to see if the problem continues to occur. Once you
+      verify that the cable is at fault, you can logically break it down into its
+      component elements. For example, a typical cable run might consist of two patch
+      cables (one at each end), a wall plate, a punch-down block, and the permanently
+      installed cable. '
+    image: {fileID: 0}
+  hasARActivity: 0
+  hasQuiz: 0
+  requiresARActivity: 0
+  requiresQuiz: 0
   arActivity: {fileID: 0}
   quizData: {fileID: 0}

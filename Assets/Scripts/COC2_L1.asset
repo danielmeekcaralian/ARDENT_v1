@@ -18,7 +18,176 @@ MonoBehaviour:
   description: 
   lessonSceneName: LessonScene
   requiredGoldLessonID: 4
-  learningObjectives: []
-  slides: []
+  learningObjectives:
+  - "\u2022 What is network design "
+  - "\u2022 What is network "
+  - "\u2022 Plan cable route using designed network "
+  subtopics: []
+  slides:
+  - subtopicID: 0501
+    slideType: 0
+    content: "Network Design is a category of systems design that deals with data
+      transport mechanisms. As with other systems design disciplines, network design
+      follows an analysis stage, where requirements are generated, and precedes implementation.
+      Where the system (relevant system component) is constructed. \r\n\r\nNetwork
+      planning and design is an iterative process, encompassing topological design,
+      network-synthesis, and network-realization, and is aimed at ensuring that a
+      new telecommunications network or service meets the needs of the subscriber
+      and operator. "
+    image: {fileID: 0}
+  - subtopicID: 0502
+    slideType: 0
+    content: "What is a Network? \r\n\r\n\tA network consists of 2 or more computers
+      connected together, and they can communicate and share resources (e.g. information)\n\nWhy
+      Networking? \r\n\r\n\u2192Sharing information\n\t \u2022i.e. data communication
+      \r\n\u2192Sharing hardware or software \r\u2192Centralize administration and
+      support \r\n\t\u2022E.g. Internet-based, so everyone can access the same administrative
+      or support application from their PCs "
+    image: {fileID: 0}
+  - subtopicID: 0502
+    slideType: 0
+    content: "How many kinds of Networks? \n\r\n\tDepending on one\u2019s perspective,
+      we can classify networks in different ways\n\r\n\ta) Based on transmission
+      media: Wired (UTP, coaxial cables, fiber-optic cables) and Wireless  \r\n\tb)
+      Based on network size: LAN and WAN (and MAN) \r\n\tc) Based on management method:
+      Peer-to-peer and Client/Server \r\n\td) Based on topology (connectivity): Bus,
+      Star, Ring \u2026 "
+    image: {fileID: 0}
+  - subtopicID: 0502
+    slideType: 0
+    content: "LAN and WAN \r\n\r\n\tLocal Area Network (LAN) \r\n\t\t\u2022 Small
+      network, short distance \r\n\t\t\u2022 Within a room, a floor, a building \r\n\t\t\u2022
+      Limited by no. of computers and distance covered \r\n\t\t\u2022 Usually one
+      kind of technology throughout the LAN \r\n\t\t\u2022 Serve a department within
+      an organization \r\n\r\n\tExamples:  \r\n\t\t\u2022 Network inside the Student
+      Computer Room \r\n\t\t\u2022 Network inside CF502 \r\n\t\t \u2022Network inside
+      your home "
+    image: {fileID: 0}
+  - subtopicID: 0502
+    slideType: 0
+    content: "Wide Area Network (WAN) \r\n\t\u2022 A network that uses long-range
+      telecommunication links to connect 2 or more LANs/  computers housed in different
+      places far apart.\n\t\u2022  Towns, states, countries \r\n\r\n    Examples:
+      \r\n\t\u2022 Network of our Campus \r\n\t\u2022 Internet "
+    image: {fileID: 0}
+  - subtopicID: 0502
+    slideType: 0
+    content: "\tExample WAN technologies: \r\n\t\t\u2192 ISDN \u2013 Integrated Service
+      Digital Network \r\n\t\t\t\u2022 Basic rate: 192 Kbps   Primary rate: 1.544Mbps
+      \r\n\t\t\u2192 T-Carriers \u2015 basically digital phone lines \r\n\t\t\t\u2022
+      T1: 1.544Mbps     T3: 28\xD7T1 \r\n\t\t\u2192 Frame relay \r\n\t\t\t\u2022
+      Each link offers 1.544Mbps or even higher \r\n\t\t\u2192 ATM \u2013 Asynchronous
+      Transfer Mode \r\n\t\t\t\u2022 Support B-ISDN: 155Mbps or 622Mbps or higher
+      \r\n\t\t\u2192 SONET \u2013 Synchronous Optical Network \r\n\t\t\t\u2022 Basic
+      rate OC1: 51.84Mbps \r\t\t\t\u2022 Support OC12 and up to OC192 (9953.28Mbps)
+      or even higher in the future "
+    image: {fileID: 0}
+  - subtopicID: 0502
+    slideType: 0
+    content: "Example of WAN: Broadband Cable Network \n\r\n\u2022 Cable TV services
+      have been extensively developed in most modern cities.\n\n\u2022 Cable TV companies
+      try to make use of their coaxial cable  installed (that are supposed to carry
+      TV signals) to deliver broadband data services. \n\r\n\u2022 Many cable network
+      wiring has been replaced with hybrid fiber-coax (HFC) \u2015 i.e. use of fiber-optic
+      cable to connect to the subscribers\u2019 buildings, and then the original
+      coaxial cable to connect to each household. "
+    image: {fileID: 0}
+  - subtopicID: 0502
+    slideType: 0
+    content: "The connection is shared by a number of subscribers, hence may raise
+      performance and security problems.\n\n\t\u2192 Cable is an asymmetrical technology
+      \r\n\t\t\u2022 Downstream: max 36 Mbps \r\n\t\t\u2022 Upstream: max 10 Mbps
+      \n\r\n\t\u2192 May be reduced to 3 \u2013 10 Mbps downstream and 2 Mbps upstream,
+      depending on no. of subscribers \n\r\n\t\u2192 Need a special cable modem "
+    image: {fileID: 0}
+  - subtopicID: 0502
+    slideType: 0
+    content: "\u2022 xDSL (Digital Subscriber Line) \r\n- A technology that provides
+      digital data transmission over unused frequencies on traditional telephone
+      lines \r\n- For example, ADSL (Asymmetric DSL): DL > UL \r\n- Speed\n\r\n\u2022
+      Downlink \r\n- 128Kbps - 4Mbps \n\r\n\u2022 Uplink \r\n- 64Kbps - 800Kbps \r\n-
+      Need a DSL modem \r\n- Splitters are needed to separate the voice and data
+      signal "
+    image: {fileID: 0}
+  - subtopicID: 0502
+    slideType: 0
+    content: "Peer-to-Peer Networks \r\n\t\u2022 Peer-to-peer network is also called
+      workgroup \r\n\t\u2022 No hierarchy among computers \u21D2 all are equal \r\n\t\u2022
+      No administrator responsible for the network\n\nAdvantages of peer-to-peer
+      networks: \r\n\t\u2022 Low cost \r\n\t\u2022 Simple to configure \r\n\t\u2022
+      User has full accessibility of the computer "
+    image: {fileID: 0}
+  - subtopicID: 0502
+    slideType: 0
+    content: "Disadvantages of peer-to-peer networks: \r\n\t\u2022 May have duplication
+      in resources \r\n\t\u2022 Difficult to uphold security policy \r\n\t\u2022
+      Difficult to handle uneven loading \n\nWhere peer-to-peer network is appropriate:
+      \r\n\t\u2022 10 or less users \r\n\t\u2022 No specialized services required
+      \r\n\t\u2022 Security is not an issue \r\n\t\u2022 Only limited growth in the
+      foreseeable future  "
+    image: {fileID: 0}
+  - subtopicID: 0502
+    slideType: 0
+    content: "Clients and Servers \r\n\t\u2022 Network Clients (Workstation) \r\n\t\u2022
+      Computers that request network resources or services \r\n\t\u2022 Network Servers
+      \r\n\t\u2022 Computers that manage and provide network resources and services
+      to clients \r\n\t\u2022 Usually have more processing power, memory and hard
+      disk space than clients \r\n\t\u2022 Run Network Operating System that can
+      manage not only data, but also users, groups, security, and applications on
+      the network \r\n\t\u2022 Servers often have a more stringent requirement on
+      its performance and reliability "
+    image: {fileID: 0}
+  - subtopicID: 0502
+    slideType: 0
+    content: "Advantages of client/server networks\n\t\u2022 Facilitate resource
+      sharing \u2013 centrally administrate and control \r\n\t\u2022 Facilitate system
+      backup and improve fault tolerance \r\n\t\u2022 Enhance security \u2013 only
+      administrator can have access to Server \r\n\t\u2022 Support more users \u2013
+      difficult to achieve with peer-to-peer networks \n\nDisadvantages of client/server
+      networks \r\n\t\u2022 High cost for Servers \r\n\t\u2022 Need expert to configure
+      the network \r\n\t\u2022 Introduce a single point of failure to the system   "
+    image: {fileID: 0}
+  - subtopicID: 0502
+    slideType: 0
+    content: "Bus Topology \r\n\t\u2022 Simple and low-cost \r\n\t\u2022 A single
+      cable called a trunk (backbone, segment) \r\n\t\u2022 Only one computer can
+      send messages at a time \r\n\t\u2022 Passive topology - computer only listen
+      for, not regenerate data\n\nStar Topology \r\t\u2022 Each computer has a cable
+      connected to a single point \r\n\t\u2022 More cabling, hence higher cost \r\n\t\u2022
+      All signals transmission through the hub; if down, entire network down \r\n\t\u2022
+      Depending on the intelligence of hub, two or more  computers may send message
+      at the same time \n\t\u2022 How to construct a network with Bus / Star Topology?  "
+    image: {fileID: 0}
+  - subtopicID: 0502
+    slideType: 0
+    content: "Ring Topology \r\n\t\u2022 Every computer serves as a repeater to boost
+      signals \r\n\t\u2022 Typical way to send data:  \r\n\t\u2022 Token passing
+      \r\t\u2022 only the computer who gets the token can send data \n\r\nDisadvantages
+      \r\n\t\u2022 Difficult to add computers \r\t\u2022 More expensive \r\n\t\u2022
+      If one computer fails, whole network fails "
+    image: {fileID: 0}
+  - subtopicID: 0503
+    slideType: 0
+    content: 'Network Analysis may be conducted at an inter-organizational or departmental
+      level. The requirements generated during the analysis may therefore define
+      an inter-network connecting two or more organizations, an enterprise network
+      that connects the departments of a single organization or a departmental network
+      to be designed around specific divisional needs. Hundreds or thousands of mile
+      apart. The distance between physical connections often dictates the type of
+      technology that must be used to facilitate data transmission. '
+    image: {fileID: 0}
+  - subtopicID: 0503
+    slideType: 0
+    content: 'Components that exist within close physical proximity (usually within
+      the same building) and can be connected to each other directly or through hubs
+      or switches using owned equipments are considered part of a local area network
+      (LAN). It is generally impractical and often impossible to connect to form
+      a greater network, such as a metropolitan area network (MAN) or Wide area network
+      (WAN). '
+    image: {fileID: 0}
+  hasARActivity: 0
+  hasQuiz: 0
+  requiresARActivity: 0
+  requiresQuiz: 0
   arActivity: {fileID: 0}
   quizData: {fileID: 0}

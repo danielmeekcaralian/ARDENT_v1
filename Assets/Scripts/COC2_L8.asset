@@ -18,7 +18,46 @@ MonoBehaviour:
   description: 
   lessonSceneName: LessonScene
   requiredGoldLessonID: 11
-  learningObjectives: []
-  slides: []
+  learningObjectives:
+  - "\u2022 Identify the OHS standards to be followed while working"
+  - "\u2022 Follow the 5s Principles in working "
+  subtopics: []
+  slides:
+  - subtopicID: 1201
+    slideType: 0
+    content: " While doing the job in the workplace it is better to identify and
+      follow the following OHS Standards to avoid accidents. \r\n\r\n1.) Do not work
+      alone so that there\u2019s who can take care of you in case of emergency. \r\n2.)
+      Always power off the computer and unplug the computer before and after working
+      on it. \r\n3.) Take away any liquid near your working area to avoid getting
+      electrocuted or accidentally damaging computer parts.  \r\n4.) Be careful with
+      tools that may cause short circuit. \r\n5.) Always ground or discharge yourself
+      before touching any part of the computer. \r\n6.) Do not use excessive force
+      if things don\u2019t quite slip into place. \r\n7.) Clean the area before and
+      after using it to maintain sanitation and prevent accidents. \r\n9.) Hold on
+      the handle of the crimping tool and not the area were the blades are located.
+      \r\n10.) Always wear personal protective equipment (PPE) in accordance with
+      the organization\u2019s OHS procedures and practices. \r\n11.) Make sure that
+      the pins are properly aligned when connecting a cable connector \r\n12.) Contingency
+      measures during workplace accidents, and other emergencies are recognized. "
+    image: {fileID: 0}
+  - subtopicID: 1202
+    slideType: 0
+    content: "Don\u2019t forget to follow the 5s in working  \r\n\r\n1. Seiri  Sorting/Putting
+      things in order (Remove/discard what is not needed so that there are fewer
+      hazards and less clutter to interfere with work. Only keep what is needed.) 
+      \r\n2. Seiton  Orderliness/Proper Arrangement (Place things in such a way that
+      they can be easily reached whenever they are needed. \"There must be a place
+      for everything, and everything must be in its place.\")  \r\n3. Seiso  Clean/cleanliness.
+      (Keep workplace and things clean and polished; no trash or dirt in the workplace) 
+      \r\n4. Seiketsu  Standardize/Purity (Maintain cleanliness after cleaning, consistently-
+      perpetual cleaning. Such cleaning is part of every one's work.) \r\n5. Shitsuke 
+      Sustaining/discipline/commitment (Maintain standards and keep the facility
+      in safe and efficient order day after day, year after year.) "
+    image: {fileID: 0}
+  hasARActivity: 0
+  hasQuiz: 0
+  requiresARActivity: 0
+  requiresQuiz: 0
   arActivity: {fileID: 0}
   quizData: {fileID: 0}
