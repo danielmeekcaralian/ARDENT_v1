@@ -25,8 +25,290 @@ MonoBehaviour:
   - "\u2022 Discuss the computer system unit case and its form factor.\n"
   - "\u2022 Identify the major components of a computer system unit and its peripherals.\n"
   - "\u2022 Identify the computer hardware peripherals.\n"
-  subtopics: []
-  slides: []
+  subtopics:
+  - subtopicID: 0301
+    subtopicName: 
+  slides:
+  - subtopicID: 0301
+    slideType: 0
+    content: 'A computer is one of the most brilliant inventions of mankind. Thanks
+      to the computer technology, we were able to achieve storage and processing
+      of huge amounts of data; we could rest our brains by employing computer memory
+      capacities for storing information. Due to computers, we have been able to
+      speed up daily work, carry out critical transactions and achieve accuracy and
+      precision in work. And to be able to understand the system of computers, it
+      is important to know the components within, how each component functions as
+      well as the terms and concepts used for computers.  '
+    image: {fileID: 0}
+  - subtopicID: 0301
+    slideType: 0
+    content: "Basic PC Terms and Concepts. \r\n\r\nThese are the acronyms used in
+      computer hardware:\n\r\n\tACRONYM  \t\t\tMEANING \n\n1. AVR \t\t\t- \tAuotomatic
+      Voltage Regulator\n2. AGP \t\t\t- \tAccelerated Graphic Port\n3. ATX\t\t\t-\tAdvance
+      Technology Extended\n4. BIOS\t\t\t-\tBasic input Output System\n5. CD-RW\t\t-\tCompact
+      Disk Rewritable\n6. CMOS\t\t\t-\tComplementary Metal Oxide Semiconductor\n7.
+      CPU\t\t\t-\tCentral Processing Unit\n8. DDR\t\t\t- \tDual Data Rate\n9. HDD
+      \t\t\t-\tHard Disk Drive\n10. HDMI\t\t\t-\tHigh Definition Multimedia Interface "
+    image: {fileID: 0}
+  - subtopicID: 0301
+    slideType: 0
+    content: "11. I/O\t\t\t-\tInput Output\n12. IC\t\t\t-\tIntegrated Circuit\n13.
+      IDE\t\t\t-\tIntegrated Drive Electronics\n14. LAN\t\t\t-\tLocal Area Network
+      \n15. LED\t\t\t-\tLiquid Crystal Display \n16. LPT\t\t\t-\tLine Printer Terminal
+      \n17. PCI\t\t\t-\tPeripheral Component Interconnector \n18. POST\t\t\t-\tPower
+      On Self-Test \n19. PS2\t\t\t-\tPersonal System 2 \n20. RAM\t\t\t-\tRandom Access
+      Memory \t"
+    image: {fileID: 0}
+  - subtopicID: 0301
+    slideType: 0
+    content: "21. ROM\t\t\t-\tRead Only Memory \n22. SATA\t\t\t-\tSerial Advance
+      Technology Attachment\n23. SDD\t\t\t-\tSolid Disk Drive \n24. SDRAM\t\t-\tSynchronous
+      Data Random Access Memory\n25. USB\t\t\t-\tUniversal Serial Bus \n26. UPS\t\t\t-\tUninterrupted
+      Power Suppl\n27. VGA\t\t\t-\tVideo Graphics Array \n28. WAN\t\t\t-\tWide Access
+      Network\t"
+    image: {fileID: 0}
+  - subtopicID: 0301
+    slideType: 0
+    content: "Terms you\u2019ll need to understand: \r\n \r\n\u2192 System board
+      \r\n\u2192 Form Factor \r\n\u2192 System unit \r\n\u2192 Micro processor \r\n\u2192
+      RAM  \r\n\u2192 ROM BIOS \r\n\u2192 Adapter card \r\n\u2192 Disk drive  "
+    image: {fileID: 0}
+  - subtopicID: 0301
+    slideType: 0
+    content: "\u2192 TPower Supply \r\n\u2192 Video display \r\n\u2192 Expansion
+      slots \n\u2192 Keyboard \r\n\u2192 Mouse \r\n\u2192 Printer \r\n\u2192 Pointing
+      devices  \r\n\u2192 Signal cables  "
+    image: {fileID: 0}
+  - subtopicID: 0301
+    slideType: 0
+    content: "\u2192 TPower Supply \r\n\u2192 Video display \r\n\u2192 Expansion
+      slots \n\u2192 Keyboard \r\n\u2192 Mouse \r\n\u2192 Printer \r\n\u2192 Pointing
+      devices  \r\n\u2192 Signal cables "
+    image: {fileID: 0}
+  - subtopicID: 0302
+    slideType: 0
+    content: "The PC System \r\n\r\n\tAs a technician, you should know and be able
+      to identify the components found in a typical personal computer system.  The
+      PC is modular by design.  It is called a system because it includes all the
+      components required to make a functional computer. \r\n\r\n\r\nSystem unit
+      \u2013 The main computer cabinet, usually referred to as a case, housing the
+      primary components of the system.  This includes the main logic board (System
+      board or mother board), processor, memory, disk drives, switching power supply,
+      and the interconnecting wires and cables. The system unit also includes expansion
+      cards to provide audio, video, networking and other functionality.  Expansion
+      cards vary from system to system.\n\nKeyboard \u2013 The most familiar computer
+      input device, the keyboard is used to introduce characters and commands into
+      the system.  "
+    image: {fileID: 0}
+  - subtopicID: 0302
+    slideType: 0
+    content: "Mouse \u2013 An input device used with graphical user interfaces (GUI)
+      to point to, select, or activate images on the video monitor.  By moving the
+      mouse along a surface, the user can cause a cursor on the display to move in
+      a corresponding manner.  \r\n\r\nVideo display \u2013 A Visual output device
+      that displays characters and graphics on screen. \n\nPrinters \u2013 A hard
+      copy output device that applies data to paper.  Normally, methods of placing
+      information on a page include dot-matrix printer, inkjet printer and laser
+      printer. "
+    image: {fileID: 0}
+  - subtopicID: 0302
+    slideType: 0
+    content: "Types of printer\r\n\r\n\u2022 Ink-Jet or Bubble-Jet Printer - spays
+      ink at a sheet of paper. Ink-jet printers produce high-quality text and graphics.
+      \r\n\r\n\u2022 Laser Printer - Uses the same technology as copy machines. Laser
+      printers produce very high quality text and graphics. \n\n\u2022 LCD and LED
+      Printer- Similar to a laser printer, but uses liquid crystals or light-emitting
+      diodes rather than a laser to produce an image on the drum.  "
+    image: {fileID: 0}
+  - subtopicID: 0302
+    slideType: 0
+    content: "\u2022 Line Printer - Contains a chain of characters or pins that print
+      an entire line at one time. Line printers are very fast, but produce low-quality
+      print. \r\n\r\n\u2022 Thermal Printer- An inexpensive printer that works by
+      pushing heated pins against heat-sensitive paper. Thermal printers are widely
+      used in calculators and fax machines.\n\n\u2022 Speakers \u2013 Audio output
+      devices used to deliver voice, music and coded messages.  \n\n\u2022 Aside
+      from the devices attached on a PC, there are also the so called storage devices
+      that perform a special task in computing system. Storage device is any apparatus
+      for recording computer data in a permanent or semi-permanent form. "
+    image: {fileID: 0}
+  - subtopicID: 0302
+    slideType: 0
+    content: "Types of storage devices:  \r\n\r\nFloppy diskette- is a random access,
+      removable data storage medium that can be used with personal computers. Also
+      called a \"3.5-inch diskette,\" it can store up to 1.44 megabytes (MB) of data. 
+      \r\n\r\nCompact disc (CD) \u2013 also called optical disc is a nonmagnetic,
+      polished metal disk used to store digital information. The disc is read by
+      the CD- ROM.  \r\n\r\nDigital Versatile Disc (DVD)- an optical disc technology
+      with a 4.7 gigabyte storage capacity on a single-sided, one-layered disk, which
+      is enough for a 133-minute movie.   "
+    image: {fileID: 0}
+  - subtopicID: 0302
+    slideType: 0
+    content: "Jump drive and USB flash drive- is a plug-and-play portable storage
+      device that uses flash memory and is lightweight enough to attach to a key
+      chain. A USB drive can be used in place of a floppy disk, Zip drive disk, or
+      CD.\n\nHard drive- is the main, and usually largest, data storage device in
+      a computer. The operating system, software titles and most other files are
+      stored in the hard disk drive. \r\n\r\nLS-120- is a drive which supports a
+      special floppy diskette which can store up to 120MB of information as well
+      as being backwards compatible and still supporting the standard 1.44MB floppy
+      diskettes.  \r\n\r\nZip drive-is a small, portable disk drive used primarily
+      for backing up and archiving personal computer files.  "
+    image: {fileID: 0}
+  - subtopicID: 0303
+    slideType: 0
+    content: "The System Unit Case \r\n\t\n\tis typically a metal chassis and removable
+      cover that includes a plastic front panel for aesthetic purposes.  The box
+      typically contains the basic parts of the computer system.  PCs have been packaged
+      in various case designs.  Each design offers characteristics that adapt the
+      system for different environments.  Primary characteristics for case design
+      include the following: \r\n\r\n\u2192 Ventilation characteristics \r\n\u2192
+      Total  drive capacity \r\n\u2192 Portability \r\n\u2192 Mounting methods for
+      the printed Circuit boards \r\n\u2192 Footprint(the amount of desk space the
+      case takes up) \t"
+    image: {fileID: 0}
+  - subtopicID: 0303
+    slideType: 0
+    content: "Inside the system unit \r\n \r\n\tThe system unit is the main portion
+      of the microcomputer system and is the basis of any PC system arrangement.
+      The components inside the system unit can be divided into four distinct subunits:
+      a switching power supply, the disk drivers, the system board, and the option
+      adapter cards.\n\nForm factor - is a term used to describe specifications for
+      physical dimensions and electrical compatibility that enables components from
+      different manufactures to work together.  In a PC, from factor is used to describe
+      system board and adapter card sizes, mounting hole patterns for system boards
+      and power supplies, microprocessor placement, and airflow. These factors determine
+      whether component A(Such as a system board) will fit properly with component
+      B (Such as a system unit case) and connect to component C(Such as a power supply).  "
+    image: {fileID: 0}
+  - subtopicID: 0303
+    slideType: 0
+    content: "You should be aware of the three major active form factors: ATX, BTX,
+      and NLX. \r\n\r\n\tThe Advanced Technology Extended (ATX) form factor, was
+      introduced in the mid 1990s as an upgrade to the IBM PC-AT standard that had
+      become the pseudo standard form factor for PCs.  It continues to be most widely
+      used form factor currently in use with PC components.  \r\n\r\n\tThe Balanced
+      Technology Extended (BTX) form factor, is a newer scalable form factor specification
+      that provides for a wide range of system sizes and profiles. Its main goal
+      is to establish components positions that optimize cooling outside the case
+      to support higher component operating speeds.  The BTX form factor design is
+      incompatible with the ATX standard, except that you are able to use ATX power
+      supplies with BTX boards and systems. \r\n\r\n\tThe New Low-Profile Extended
+      (NLX) form factor, which is the replacement form factor specification form
+      Intel for the Older LPX low-profile specification.  The NLX specification is
+      designed to support newer PC technologies, such as larger memory modules, advanced
+      microprocessors, and their cooling systems.  The NLX system incorporates a
+      backplane that mounts in a slot on the main board and enables adapter cards
+      to be plugged in horizontally. This is one of the major keys to its low profile.  "
+    image: {fileID: 0}
+  - subtopicID: 0304
+    slideType: 0
+    content: "The Major Components of a System Unit \r\n\n\r\nCase/chassis- The case
+      is the frame or chassis that houses the motherboard, power supply, disk drives,
+      adapter cards, and any other physical components in the system. \n\nMotherboard-\tThe
+      motherboard is the core of the system. It really is the PC; everything else
+      is connected to it, and it controls everything in the system.\n\nCPU (Central
+      Processing Unit) - The processor is the main \u201Cbrain\u201D or \u201Cheart\u201D
+      of a computer system. It performs all of the instructions and calculations
+      that are needed and manages the flow of information through a computer. \n\nMemory
+      \u2013 (Random Access Memory) RAM is volatile, meaning it holds data only when
+      the power is on. When the power is off, RAM's contents are lost.  "
+    image: {fileID: 0}
+  - subtopicID: 0304
+    slideType: 0
+    content: "Power supply- The power supply feeds electrical power to every single
+      part in the PC. The Power Supply Unit (PSU) is installed in the back corner
+      of the PC case, next to the motherboard. It converts 120vac (standard house
+      power) into DC voltages that are used by other components in the PC.  \n\nHard
+      Disk Drive (HDD) - Also known as hard drive is a magnetic storage device that
+      is installed inside the computer. The hard drive is used as permanent storage
+      for data. In a Windows computer, the hard drive is usually configured as the
+      C: drive and contains the operating system and applications. \n\nOptical Drive-
+      An optical drive is a storage device that uses lasers to read data on the optical
+      media. There are three types of optical drives: Compact Disc (CD), Digital
+      Versatile Disc (DVD) and Blu-ray Disc (BD). "
+    image: {fileID: 0}
+  - subtopicID: 0305
+    slideType: 0
+    content: "Computer Hardware Peripherals \r\n\r\n\tA peripheral is a piece of
+      computer hardware that is added to a computer in order to expand its abilities.
+      The term peripheral is used to describe those devices that are optional in
+      nature, as opposed to hardware that is either demanded or always required in
+      principle. There are all different kinds of peripherals you can add your computer.
+      The main distinction among peripherals is the way they are connected to your
+      computer. They can be connected internally or externally. \r\n\r\n \r\n\r\nBuses
+      \r\n\t\n\tA bus is a subsystem that transfers data between computer components
+      inside a computer or between computers. Unlike a point-to-point connection,
+      a bus can logically connect several peripherals over the same set of wires.
+      Each bus defines its set of connectors to physically plug devices, cards or
+      cables together. There are two types of buses: internal and external. Internal
+      buses are connections to various internal components. External buses are connections
+      to various external components. There are different kinds of slots that internal
+      and external devices can connect to."
+    image: {fileID: 0}
+  - subtopicID: 0305
+    slideType: 0
+    content: "Internal \r\n\r\nTypes of Slots \r\n\r\n\tThere are many different
+      kinds of internal buses, but only a handful of popular ones. Different computers
+      come with different kinds and number of slots. It is important to know what
+      kind and number of slots you have on your computer before you go out and by
+      a card that matches up to a slot you don\u2019t have. \r\n\r\nPCI- PCI (Peripheral
+      Component Interconnect) is common in modern PCs. This kind of bus is being
+      succeeded by PCI Express. Typical PCI cards used in PCs include: network cards,
+      sound cards, modems, extra ports such as USB or serial, TV tuner cards and
+      disk controllers. Video cards have outgrown the capabilities of PCI because
+      of their higher bandwidth requirements. "
+    image: {fileID: 0}
+  - subtopicID: 0305
+    slideType: 0
+    content: "PCI Express- PCI Express was introduced by Intel in 2004. It was designed
+      to replace the general-purpose PCI expansion bus and the AGP graphics card
+      interface. PCI express is not a bus but instead a point-to-point connection
+      of serial links called lanes. PCI Express cards have faster bandwidth then
+      PCI cards which make them more ideal for high-end video cards. \r\n\r\nAGP-
+      AGP (Accelerated Graphics Port) is a high-speed point-to-point channel for
+      attaching a graphics card to a computer\u2019s motherboard, primarily to assist
+      in the acceleration of 3D computer graphics. AGP has been replaced over the
+      past couple years by PCI Express. AGP cards and motherboards are still available
+      to buy, but they are becoming less common. "
+    image: {fileID: 0}
+  - subtopicID: 0305
+    slideType: 0
+    content: "Types of Cards \n\nVideo card - The video card controls the information
+      you see on the monitor.\n\nSound Card - It enables the PC to generate complex
+      sounds.\n\nNetwork Card/Modem - A network card is an expansion card that allows
+      computers to communicate over a computer network. It allows users to connect
+      to each other either by using cables or wirelessly. Although other network
+      technologies exist, Ethernet has achieved near-ubiquity for a while now. Every
+      Ethernet network card has a unique 48-bit serial number called a MAC address,
+      which is stored in ROM carried on the card. You can learn more about networking
+      in the introduction to networking lesson. \n "
+    image: {fileID: 0}
+  - subtopicID: 0305
+    slideType: 0
+    content: "Types of Connection\n\nPS/2- The PS/2 connector is used for connecting
+      some keyboards and mice to a PC compatible computer system. The keyboard and
+      mouse interfaces are electrically similar with the main difference being that
+      open collector outputs are required on both ends of the keyboard interface
+      to allow bidirectional communication. If a PS/2 mouse is connected to a PS/2
+      keyboard port, the mouse may not be recognized by the computer depending on
+      configuration. \n\nUSB-USB (Universal Serial Bus) is a serial bus standard
+      to interface devices. USB was designed to allow many peripherals to be connected
+      using a single standardized interface socket and to improve the plug-and-play
+      capabilities by allowing devices to be connected and disconnected without rebooting
+      the computer. Other convenient features include providing power to low-consumption
+      devices without the need for an external power supply and allowing many devices
+      to be used without requiring manufacturer specific, individual device drivers
+      to be installed. USB is by far the dominating bus for connecting external devices
+      to your computer.\n\nFirewire- Firewire (technically known as IEEE 1394 and
+      also known as i.LINK for Sony) is a serial bus interface standard for high-speed
+      communications and isochronous real-time data transfer, frequently used in
+      a personal computer. Firewire has replaced Parallel ports in many applications.
+      It has been adopted as the High Definition Audio-Video Network Alliance (HANA)
+      standard connection interface for A/V (audio/visual) component communication
+      and control. Almost all modern digital camcorders have included this connection.   "
+    image: {fileID: 0}
   hasARActivity: 0
   hasQuiz: 0
   requiresARActivity: 0

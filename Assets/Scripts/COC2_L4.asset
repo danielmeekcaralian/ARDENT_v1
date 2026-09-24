@@ -18,7 +18,55 @@ MonoBehaviour:
   description: 
   lessonSceneName: LessonScene
   requiredGoldLessonID: 7
-  learningObjectives: []
-  slides: []
+  learningObjectives:
+  - "\u2022 Identify OHS policies and procedures "
+  - "\u2022 Use appropriate personal protective equipment  "
+  subtopics: []
+  slides:
+  - subtopicID: 0801
+    slideType: 0
+    content: "The following are the Occupational Safety and Health Procedures while
+      working that aim to protect the health, safety and welfare of all people in
+      the workplace. \r\n\r\n1.) Do not work alone so that there\u2019s who can take
+      care of you in case of emergency. \r\n\r\n2.) Always power off the computer
+      and unplug the computer before and after working on it. \r\n\r\n3.) Take away
+      any liquid near your working area to avoid getting electrocuted or accidentally
+      damaging computer parts.  \r\n\r\n4.) Be careful with tools that may cause
+      short circuit. \r\n\r\n5.) Always ground or discharge yourself before touching
+      any part of the computer. \r\n\r\n6.) Do not use excessive force if things
+      don\u2019t quite slip into place. \r\n "
+    image: {fileID: 0}
+  - subtopicID: 0801
+    slideType: 0
+    content: "\n7.) Clean the area before and after using it to maintain sanitation
+      and prevent accidents. \r\n\r\n8.) Hold the components on the edges and do
+      not touch the Integrated Circuits (IC) parts. \r\n\r\n9.) Always wear personal
+      protective equipment (PPE) in accordance with the organization\u2019s OHS procedures
+      and practices. \r\n\r\n10.) Make sure that the pins are properly aligned when
+      connecting a cable connector \r\n\r\n11.) Contingency measures during workplace
+      accidents, fire and other emergencies are recognized. \r\n\r\n12.) Use brush,
+      compressed air or blower in cleaning the computer system.  "
+    image: {fileID: 0}
+  - subtopicID: 0802
+    slideType: 0
+    content: "Personal Protective Equipment \r\n\r\n\tIt refers to protective clothing,
+      helmets, goggles, or other gear designed to protect the wearer\u2019s body
+      or clothing from injury by electrical hazard, heat, chemicals and infection,
+      for job-related occupational safety and health purposes. \r\n\r\nGoggles \u2013
+      a large spectacle, with shields around the rims, for protecting the eyes from
+      dust, excessive light, wind etc. \r\n\r\nRubber sole \u2013 a special type
+      of shoes used to prevent electrical shock and for waterproofing and insulating
+      purposes. \r\n\r\nApron \u2013 a garment worn over the front of the body as
+      a protection for one\u2019s cloth \r\n\r\nFace mask \u2013 a covering for the
+      face to prevent the inhaling or absorbing dust and other chemicals. \r\n\r\nGloves
+      \u2013 the covering material with a separate sheath for each finger used for
+      hand protection. \r\n\r\nAnti-static wrist strap \u2013 use to prevent body
+      from building up static-electricity that usually damage electronics or cause
+      safety issues. "
+    image: {fileID: 0}
+  hasARActivity: 0
+  hasQuiz: 0
+  requiresARActivity: 0
+  requiresQuiz: 0
   arActivity: {fileID: 0}
   quizData: {fileID: 0}

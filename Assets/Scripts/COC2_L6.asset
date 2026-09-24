@@ -18,7 +18,211 @@ MonoBehaviour:
   description: 
   lessonSceneName: LessonScene
   requiredGoldLessonID: 9
-  learningObjectives: []
-  slides: []
+  learningObjectives:
+  - "\u2022 Identify network cables and cable raceway"
+  - "\u2022 Install network cables and cable raceway"
+  subtopics: []
+  slides:
+  - subtopicID: 1001
+    slideType: 0
+    content: "Cabling Rules \r\n\r\n\u2022 Try to avoid running cables parallel to
+      power cables. \r\n\r\n\u2022 Do not bend cables to less than four times the
+      diameter of the cable. \r\n\r\n\u2022 If you bundle a group of cables together
+      with cable ties (zip ties), do not over-cinch them.\u202FYou should be able
+      to turn the tie with fingers. \r\n\r\n\u2022 Keep cables away from devices
+      which can introduce noise into them.\u202FHere's a short list: copy machines,
+      electric heaters, speakers, printers, TV sets, fluorescent lights, copiers,
+      welding machines, microwave ovens, telephones, fans, elevators, motors, electric
+      ovens, dryers, washing machines, and shop equipment. \r\n\r\n\u2022 Avoid stretching
+      UTP cables (tension when pulling cables should not exceed 25 LBS). \r\n\r\n\u2022
+      Do not run UTP cable outside of a building.\u202F It presents a very dangerous
+      lightning hazard! \r\n\r\n\u2022 Do not use a stapler to secure UTP cables.\u202F
+      Use telephone wire/RJ6 coaxial wire hangers which are available at most hardware
+      stores. \r "
+    image: {fileID: 0}
+  - subtopicID: 1002
+    slideType: 0
+    content: "\u2192 Installing Network Cables. \r\nA very short basic primer about
+      Network Cables. \r\n\r\n\u2192 Network cables comes in two Core flavors. \r\n1.
+      Solid Core - The copper conductor is one solid wire. \r\nSolid core is better
+      RF conductor but can break from twisting, thus it used for long in- wall installations.
+      \r\n\r\n2. Stranded Core- The copper conductor is made of few thin wires bunched
+      together. \r\nStranded core loses the RF faster than the solid core, but it
+      is technically flexible, thus it used for patch cables that are short but need
+      to be plugged and unplugged often. \r\nFor installation near very hot spaces
+      you need to use Plenum Coated CAT5.\u202F Plenum is the outer coating of the
+      Cable and it provides better security in case of a Fire. \r\nYou can find these
+      cables at your local Home Depot. "
+    image: {fileID: 0}
+  - subtopicID: 1002
+    slideType: 0
+    content: "3. Cabling Tools \r\n\r\nJust like any other industry, cable installation
+      has its own tools, some not so obvious, including the following: \r\n\r\n\u25CF
+      Pen and paper \r\n\u25CF Hand tools \r\n\u25CF Cable spool racks \r\n\u25CF
+      Fish tape \r\n\u25CF Pull string \r\n\u25CF Cable-pulling lubricant \r\n\u25CF
+      Two-way radio \r\n\u25CF Labeling materials \r\n\u25CF Tennis ball \r\n\r\nWe\u2019ll
+      briefly go over how each is used during installation. "
+    image: {fileID: 0}
+  - subtopicID: 1002
+    slideType: 0
+    content: "4. Pen and Paper \r\n\r\nNot every cabling installer may think of pen
+      and paper as tools, but they are. It is a good idea to have a pen and paper
+      handy when installing the individual cables so that you can make notes about
+      how particular cables are routed and installed. You should also note any problems
+      that occur during installation. "
+    image: {fileID: 0}
+  - subtopicID: 1002
+    slideType: 0
+    content: "5. Hand Tools \r\n\r\nIt\u2019s fairly obvious that a variety of hand
+      tools are needed during the course of a cabling installation. You will need
+      to remove and assemble screws, hit and cut things, and perform various types
+      of construction and destruction tasks. Some of the hand tools you should make
+      sure to include in your tool kit are (but are not limited to) the following: 
+      \r\n\r\n\u25CF Screwdrivers (Phillips, slotted, and Torx drivers) \r\n\u25CF
+      Cordless drill (with drill bits and screwdriver bits) \r\n\u25CF Hammer \r\n\u25CF
+      Cable cutters \r\n\u25CF Wire strippers \r\n\u25CF Punch-down tool \r\n\u25CF
+      Drywall saw (hand or power) "
+    image: {fileID: 0}
+  - subtopicID: 1002
+    slideType: 0
+    content: "6. Cable Spool Racks \r\n\r\nIt is usually inefficient to pull one
+      cable at a time during installation. Typically, more than one cable will be
+      going from the cabling closet (usually the source of a cable run) to a workstation
+      outlet. So a cable installer will tape several cables together and pull them
+      as one bundle.  \r\n\r\n7. Fish Tape \r\n\r\nMany times, you will have to run
+      cable into narrow conduits or narrow crawl spaces. Cables are flexible, much
+      like rope. Just like rope, when you try to stuff a cable into a narrow space,
+      it simply bunches up inside the conduit. You need a way of pulling the cable
+      through that narrow space or providing some rigid backbone.  "
+    image: {fileID: 0}
+  - subtopicID: 1002
+    slideType: 0
+    content: "8. Pull String \r\n\r\nAnother way to pull cables through small spaces
+      is with a nylon pull string (also called a fish cord), a heavy-duty cord strong
+      enough to pull several cables through a conduit or wall cavity. The pull string
+      is either put in place before all the cables are pulled, or it is run at the
+      same time as the cables. \r\n\r\n9. Cable-Pulling Lubricant \r\n\r\nIt is important
+      not to put too much stress (25 lbs of pull maximum) on network cables as they
+      are being pulled. To prevent stress on the cable during the pulling of a cable
+      through a conduit, a cable-pulling lubricant can be applied. "
+    image: {fileID: 0}
+  - subtopicID: 1002
+    slideType: 0
+    content: "10. Labeling Materials \r\n\r\nWith the hundreds of cables that need
+      to be pulled in large cabling installations, it makes a great deal of sense
+      to label both ends of each cable while it\u2019s being pulled. That way, when
+      it\u2019s time to terminate each individual cable, you will know which cable
+      goes where, and you can document that fact on your cabling map.The EIA/TIA
+      606-A Standard defines a labeling system to label each cable and workstation
+      port with its exact destination in a wiring closet using three sets of letters
+      and numbers separated by dashes. The label is in the following format: \r\n\r\nBBBB-RR-PORT
+      \r\n\r\nCabling Installation Procedures 403 \r\n\r\nWhere BBBB is a four-digit
+      building code (usually a number), RR is the telecommunications room number,
+      and PORT is the patch panel and port number that the cable connects to. For
+      example, 0001-01-W222 would mean building 1, closet 1, wall-mounted patch panel
+      2 (W2), and port 22. \r\n\r\nEIA/TIA 606-A Labeling Particulars "
+    image: {fileID: 0}
+  - subtopicID: 1002
+    slideType: 0
+    content: "11. Two-Way Radio \r\n\r\nTwo-way radios aren\u2019t used as often
+      as some of the other tools listed here, but they come in handy when two people
+      are pulling or testing cable as a team. \r\n\r\n12. Tennis Ball \r\n\r\nYou
+      may be saying, \u201COkay. I know why these other tools are listed here, but
+      a tennis ball?\u201D Think of this situation. You\u2019ve got to run several
+      cables through the airspace above a suspended ceiling. Let\u2019s say the cable
+      run is 75 meters (around 225 feet) long. The conventional way to run this cable
+      is to remove the ceiling tiles that run underneath the cable path, climb a
+      ladder, and run the cable as far as you can reach (or throw). Then you move
+      the ladder, pull the cable a few feet farther, and repeat until you reach the
+      end. An easier way is to tie a pull string to a tennis ball (using duct tape,
+      nails, screws, or whatever) and throw the tennis ball from source to destination.
+      The other end of the pull string can be tied to the bundle of cables so that
+      it can be pulled from source to destination without going up and down ladders
+      too many times. "
+    image: {fileID: 0}
+  - subtopicID: 1002
+    slideType: 0
+    content: "PULLING CABLE \r\n\r\nKeep in mind the following points when pulling
+      cable to ensure the proper operation of the network: \r\n\r\n\t\u25CF Tensile
+      strength \r\n\t\u25CF Bend radius \r\n\t\u25CF Protecting the cable while pulling\n\n\nTensile
+      Strength \r\n\r\nContrary to popular opinion, network cables are fragile. They
+      can be damaged in any number of ways, especially during the pulling process.
+      The most important consideration to remember when pulling cable is the cable\u2019s
+      tensile strength, a measure of how strong a cable is along its axis. "
+    image: {fileID: 0}
+  - subtopicID: 1002
+    slideType: 0
+    content: "Bend Radius \r\n\r\nMost cables are designed to flex, and that makes
+      them easy to use and install. Unfortunately, just because they can flex doesn\u2019t
+      mean that they should be bent as far as possible around corners and other obstacles.
+      \r\n\r\nProtection While Pulling \r\n\r\nIn addition to being careful not to
+      exceed either the tensile strength or bend radius of a particular cable when
+      pulling it, you should also be careful not to pull the cable over or near anything
+      that could damage it. \r\n\r\nCabling System Documentation \r\n\r\nThe most
+      often overlooked item during cable installation is the documentation of the
+      new cabling system. Cabling system documentation includes information about
+      what components make up a cabling system, how it is put together, and where
+      to find individual cables. "
+    image: {fileID: 0}
+  - subtopicID: 1002
+    slideType: 0
+    content: "Terminate the Cable \r\n\r\nNow that you\u2019ve learned about installing
+      the cable, you need to know what to do with both ends of the cable. Terminating
+      the cables involves installing some kind of connector on each end (either a
+      connector or a termination block) so that the cabling system can be accessed
+      by the devices that are going to use it. \r\n\r\nThere are many different types
+      of patch panels, some for copper, some for fiber. Copper cable patch panels
+      for UTP all have a few similar characteristics, for the most part. First off,
+      most UTP LAN patch panels (as shown in Figure 12.16) have UTP ports on the
+      front and punch-down blades in the back. "
+    image: {fileID: 0}
+  - subtopicID: 1002
+    slideType: 0
+    content: "Test the Installation \r\n\r\nOnce you have a cable or cables installed
+      and terminated, your last installation step is to test the connection. Each
+      connection must be tested for proper operation, category rating, and possible
+      connection problems. If the connection has problems, it must either be re-terminated
+      or, in the worst-case scenario, the entire cable must be re-pulled.  \r\n\r\nYou
+      should test the entire cabling installation before installing any other hardware
+      (hubs, PCs, etc.). That way, you avoid having to troubleshoot cabling-related
+      problems later (or at least you minimize possible later problems). \r\n"
+    image: {fileID: 0}
+  - subtopicID: 1002
+    slideType: 0
+    content: "Raceways \r\n\r\nRaceways are special types of conduits used for surface
+      mounting horizontal cables and are usually pieced together in a modular fashion
+      with vendors providing connectors that do not exceed the minimum bend radius.
+      Raceways are mounted on the outside of a wall in places where cable is not
+      easily installed inside the wall; they are commonly used on walls made of brick
+      or concrete where no telecommunications conduit has been installed.\n\n\tSurface
+      Mounted modular raceway system. \n\n\tSurface mount raceway with cables. "
+    image: {fileID: 0}
+  - subtopicID: 1002
+    slideType: 0
+    content: "Cabling Racks and Enclosures  \r\n\r\nRacks are the pieces of hardware
+      that help you organize cabling infrastructure. They range in height from 39
+      to 84 inches and come in two widths, 19 and 23 inches. Nineteen-inch widths
+      are much more commonplace and have been in use for nearly 60 years. \n\r\n\r\nWall-Mounted
+      Brackets  \r\n\r\nFor small installations and areas where economy of space
+      is a key consideration, wall-mounted brackets may provide the best solution.
+      \r\n\r\nThis type of racks is ideal for small organizations that may only have
+      few dozen workstations or phone outlets but are still concerned about building
+      an organized cabling infrastructure. \r\n\r\n  "
+    image: {fileID: 0}
+  - subtopicID: 1002
+    slideType: 0
+    content: "Skeletal Frames (19-Inch Racks)  \r\n\r\nSkeletal frames, often called
+      19-inch racks or EIA racks, are probably the most common type of rack. These
+      racks, like the one shown in Figure 5.10, are designed and built based on the
+      EIA-310C standards. These skeletal frames come in sizes ranging from 39 to
+      84 inches in height with a 22-inch base plate to provide stability. Their open
+      design makes it easy to work on both the front and back of the mounted equipment.\n\nRacks
+      are not limited to just patch panels and network-connectivity devices. Server
+      computers, for example, can be installed into a rack-mountable chassis.   "
+    image: {fileID: 0}
+  hasARActivity: 0
+  hasQuiz: 0
+  requiresARActivity: 0
+  requiresQuiz: 0
   arActivity: {fileID: 0}
   quizData: {fileID: 0}
