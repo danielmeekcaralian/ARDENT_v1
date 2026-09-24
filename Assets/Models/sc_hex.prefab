@@ -42,11 +42,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cf69bebbc2e1c9a4983729ca575a9296, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cf69bebbc2e1c9a4983729ca575a9296, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cf69bebbc2e1c9a4983729ca575a9296, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -107,8 +107,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da511c397e8802a449d906edaf97c398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARObjectInfo
-  objectName: Hex Screwdriver
-  information: Text
+  objectName: Hex Driver
+  information: Sometimes called a nut driver, is used to tighten nuts in the same
+    way that a screwdriver tightens screws.
 --- !u!136 &2604137490512492356
 CapsuleCollider:
   m_ObjectHideFlags: 0

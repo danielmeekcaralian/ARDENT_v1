@@ -211,11 +211,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 331706ad689427049b47920497d89be7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 331706ad689427049b47920497d89be7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 331706ad689427049b47920497d89be7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -283,7 +283,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARObjectInfo
   objectName: Motherboard
-  information: board ni mother
+  information: The motherboard is the core of the system. It really is the PC; everything
+    else is connected to it, and it controls everything in the system.
 --- !u!114 &-6470607492144179461
 MonoBehaviour:
   m_ObjectHideFlags: 0

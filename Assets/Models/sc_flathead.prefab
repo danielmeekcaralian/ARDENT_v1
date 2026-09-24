@@ -42,11 +42,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 098989fa3ee448e4d84d72bacca8ff6e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 098989fa3ee448e4d84d72bacca8ff6e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 098989fa3ee448e4d84d72bacca8ff6e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARObjectInfo
   objectName: Flathead Screwdriver
-  information: Text
+  information: Used to loosen or tighten slotted screws.
 --- !u!136 &1254537182444259124
 CapsuleCollider:
   m_ObjectHideFlags: 0

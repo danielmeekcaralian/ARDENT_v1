@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: b562a249887d95047a6fc537bf2b51a7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 508.20618
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b562a249887d95047a6fc537bf2b51a7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 247.64917
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b562a249887d95047a6fc537bf2b51a7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -30,11 +30,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b562a249887d95047a6fc537bf2b51a7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b562a249887d95047a6fc537bf2b51a7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b562a249887d95047a6fc537bf2b51a7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -55,5 +55,67 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b562a249887d95047a6fc537bf2b51a7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6864108196458083074}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b562a249887d95047a6fc537bf2b51a7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -4674530732444592682}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b562a249887d95047a6fc537bf2b51a7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6079184313204858657}
   m_SourcePrefab: {fileID: 100100000, guid: b562a249887d95047a6fc537bf2b51a7, type: 3}
+--- !u!1 &8956470047060538661 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b562a249887d95047a6fc537bf2b51a7, type: 3}
+  m_PrefabInstance: {fileID: 8109487438603552884}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6864108196458083074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8956470047060538661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92b55b4c4d5b1fd4da8775ccc06848d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ARObjectManipulator
+--- !u!114 &-4674530732444592682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8956470047060538661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da511c397e8802a449d906edaf97c398, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ARObjectInfo
+  objectName: Anti-static Mat
+  information: Used to stand on or place hardware on to prevent static electricity
+    from building up.
+--- !u!65 &6079184313204858657
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8956470047060538661}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.2533118, y: 0.011170701, z: 0.19443302}
+  m_Center: {x: -0.02726356, y: 0.0024545589, z: -0.029465295}

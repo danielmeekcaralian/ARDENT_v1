@@ -42,11 +42,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 12662ad0f7c16844b8d79bd760aebbc5, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 12662ad0f7c16844b8d79bd760aebbc5, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 12662ad0f7c16844b8d79bd760aebbc5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -107,8 +107,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da511c397e8802a449d906edaf97c398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARObjectInfo
-  objectName: PSU
-  information: Power Supply Unit
+  objectName: Power Supply
+  information: The power supply feeds electrical power to every single part in the
+    PC. The Power Supply Unit (PSU) is installed in the back corner of the PC case,
+    next to the motherboard. It converts 120vac (standard house power) into DC voltages
+    that are used by other components in the PC.
 --- !u!65 &-4928167137426159505
 BoxCollider:
   m_ObjectHideFlags: 0

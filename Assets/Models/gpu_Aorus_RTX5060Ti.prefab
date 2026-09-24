@@ -42,11 +42,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 538d0accc4993684f8ee43082d975e86, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 538d0accc4993684f8ee43082d975e86, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 538d0accc4993684f8ee43082d975e86, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -107,8 +107,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da511c397e8802a449d906edaf97c398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARObjectInfo
-  objectName: GPU
-  information: Graphics Processing Unit
+  objectName: Video Card
+  information: 'The video card controls the information you see on the
+
+    monitor.'
 --- !u!65 &-8446534441966481380
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -42,11 +42,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7060b7f54f7b49647af137e23e4e889e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7060b7f54f7b49647af137e23e4e889e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7060b7f54f7b49647af137e23e4e889e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -77,6 +77,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7060b7f54f7b49647af137e23e4e889e, type: 3}
       insertIndex: -1
       addedObject: {fileID: -4395013622937538267}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7060b7f54f7b49647af137e23e4e889e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3536905362524925124}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7060b7f54f7b49647af137e23e4e889e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 322083194453076798}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7060b7f54f7b49647af137e23e4e889e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8635915504045044172}
   m_SourcePrefab: {fileID: 100100000, guid: 7060b7f54f7b49647af137e23e4e889e, type: 3}
 --- !u!1 &3486367432643263235 stripped
 GameObject:
@@ -107,9 +116,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da511c397e8802a449d906edaf97c398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARObjectInfo
+  objectName: RAM (Random Access Memory)
+  information: RAM is volatile, meaning it holds data only when the power is on.
+    When the power is off, RAM's contents are lost.
+--- !u!65 &-4395013622937538267
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3486367432643263235}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0028131728, y: 0.026399463, z: 0.090668365}
+  m_Center: {x: 0, y: -4.656613e-10, z: 0.0000000037252903}
+--- !u!114 &-3536905362524925124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3486367432643263235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92b55b4c4d5b1fd4da8775ccc06848d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ARObjectManipulator
+--- !u!114 &322083194453076798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3486367432643263235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da511c397e8802a449d906edaf97c398, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ARObjectInfo
   objectName: 
   information: 
---- !u!65 &-4395013622937538267
+--- !u!65 &8635915504045044172
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

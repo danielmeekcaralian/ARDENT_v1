@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: cde9774c0df67004fab28257deacb1af, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 508.20618
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cde9774c0df67004fab28257deacb1af, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 247.64917
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cde9774c0df67004fab28257deacb1af, type: 3}
       propertyPath: m_LocalPosition.z
@@ -30,11 +30,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cde9774c0df67004fab28257deacb1af, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cde9774c0df67004fab28257deacb1af, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cde9774c0df67004fab28257deacb1af, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -55,5 +55,67 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cde9774c0df67004fab28257deacb1af, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1407047593705246242}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cde9774c0df67004fab28257deacb1af, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3091456205870129727}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cde9774c0df67004fab28257deacb1af, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -6063223881197278477}
   m_SourcePrefab: {fileID: 100100000, guid: cde9774c0df67004fab28257deacb1af, type: 3}
+--- !u!1 &5196921277188319879 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: cde9774c0df67004fab28257deacb1af, type: 3}
+  m_PrefabInstance: {fileID: 4962480307417094102}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-1407047593705246242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5196921277188319879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92b55b4c4d5b1fd4da8775ccc06848d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ARObjectManipulator
+--- !u!114 &3091456205870129727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5196921277188319879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da511c397e8802a449d906edaf97c398, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ARObjectInfo
+  objectName: Rubber Sole
+  information: A special type of shoes used to prevent electrical shock and for waterproofing
+    and insulating purposes.
+--- !u!65 &-6063223881197278477
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5196921277188319879}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.07027227, y: 0.034616005, z: 0.08524797}
+  m_Center: {x: -0.0000000037252903, y: 0.015177643, z: 0.000004146248}

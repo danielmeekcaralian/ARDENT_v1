@@ -119,11 +119,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5d7a5c7b4caa2864eb7ac4fd4381a4db, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5d7a5c7b4caa2864eb7ac4fd4381a4db, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5d7a5c7b4caa2864eb7ac4fd4381a4db, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -190,8 +190,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da511c397e8802a449d906edaf97c398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARObjectInfo
-  objectName: CPU
-  information: Central Processing Unit
+  objectName: CPU (Central Processing Unit)
+  information: "The processor is the main \u201Cbrain\u201D or \u201Cheart\u201D
+    of a computer system. It performs all of the instructions and calculations that
+    are needed and manages the flow of information through a computer."
 --- !u!114 &5863464494779114
 MonoBehaviour:
   m_ObjectHideFlags: 0

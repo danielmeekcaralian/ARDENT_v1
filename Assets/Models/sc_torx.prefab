@@ -42,11 +42,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d98046af0a599de408ce55b3cd287df3, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d98046af0a599de408ce55b3cd287df3, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d98046af0a599de408ce55b3cd287df3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -108,7 +108,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARObjectInfo
   objectName: Torx Screwdriver
-  information: Text
+  information: Used to loosen or tighten screws that have a star-like depression
+    on the top, a feature that is mainly found on laptop.
 --- !u!136 &-2003168958899186394
 CapsuleCollider:
   m_ObjectHideFlags: 0

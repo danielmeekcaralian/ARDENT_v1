@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 56884bb6d4973d2409b483a4f8a2e15a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 508.20618
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 56884bb6d4973d2409b483a4f8a2e15a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 247.64917
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 56884bb6d4973d2409b483a4f8a2e15a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -30,11 +30,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 56884bb6d4973d2409b483a4f8a2e15a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 56884bb6d4973d2409b483a4f8a2e15a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 56884bb6d4973d2409b483a4f8a2e15a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -55,5 +55,69 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 56884bb6d4973d2409b483a4f8a2e15a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -4506902261397562963}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 56884bb6d4973d2409b483a4f8a2e15a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1317654922862907382}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 56884bb6d4973d2409b483a4f8a2e15a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -8765639961828708040}
   m_SourcePrefab: {fileID: 100100000, guid: 56884bb6d4973d2409b483a4f8a2e15a, type: 3}
+--- !u!1 &3144798692940291227 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 56884bb6d4973d2409b483a4f8a2e15a, type: 3}
+  m_PrefabInstance: {fileID: 2838948292310376906}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-4506902261397562963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3144798692940291227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92b55b4c4d5b1fd4da8775ccc06848d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ARObjectManipulator
+--- !u!114 &-1317654922862907382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3144798692940291227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da511c397e8802a449d906edaf97c398, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ARObjectInfo
+  objectName: Part Retriever
+  information: Used to retrieve parts from location that are too small for your hand
+    to fit.
+--- !u!136 &-8765639961828708040
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3144798692940291227}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.054882508
+  m_Height: 0.01479247
+  m_Direction: 1
+  m_Center: {x: -2.3283064e-10, y: 0, z: 0}
