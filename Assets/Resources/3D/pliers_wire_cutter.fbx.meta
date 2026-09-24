@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: a3b8dd9d135223441b98cc607f949132
+guid: 8859850eb1425cd438e7d4813ec1be7a
 ModelImporter:
   serializedVersion: 24300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: blinn1
-    second: {fileID: 2100000, guid: c18440ab83c9eb04b92eccf9f78c96d2, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

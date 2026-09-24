@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a3b8dd9d135223441b98cc607f949132
+guid: 269af82f1c12f25428a5520f31f63e7b
 ModelImporter:
   serializedVersion: 24300
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: blinn1
-    second: {fileID: 2100000, guid: c18440ab83c9eb04b92eccf9f78c96d2, type: 2}
+      name: multimeter
+    second: {fileID: 2100000, guid: 0473f4354bcf1194ba626c694a57dd0e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
