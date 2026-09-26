@@ -15,13 +15,18 @@ MonoBehaviour:
   lessonID: 7
   cocID: COC_02
   lessonTitle: Tools, Equipment and Testing Devices
-  description: 
+  description: Learn the tools and equipment used in installing and testing network
+    cables.
   lessonSceneName: LessonScene
   requiredGoldLessonID: 6
   learningObjectives:
   - "\u2022 Identify different tools to be used for networking"
   - "\u2022 Use appropriate tools to be used in setting up computer networking "
-  subtopics: []
+  subtopics:
+  - subtopicID: 0701
+    subtopicName: 'Tools '
+  - subtopicID: 0702
+    subtopicName: 'Equipment and Testing devices '
   slides:
   - subtopicID: 0701
     slideType: 0
@@ -33,7 +38,11 @@ MonoBehaviour:
       tool used to connect telecommunications and network wires to a patch panel,
       punch down block, keystone module, or surface mount box. The \u201Cpunch down\u201D
       part of the name came from punching a wire into place using impact action\u201D.
-      \r\n\r\nCable Crimpers\u2013 a device used to conjoin two pieces of metal by
+      \r\n "
+    image: {fileID: 0}
+  - subtopicID: 0701
+    slideType: 0
+    content: "Cable Crimpers\u2013 a device used to conjoin two pieces of metal by
       deforming one or both of them in a way that causes them to hold each other.
       The result of the tool\u2019s work is called a crimp.  Modular plugs and coaxial
       connectors are attached to cable ends using crimpers, which are essentially
@@ -43,7 +52,7 @@ MonoBehaviour:
       called as \u201CPatch cables\u201D  Crimpers for twisted-pair cable must accommodate
       various-sized plugs. The process of crimping involves removing the cable jacket
       to expose the insulated conductors, inserting the conductors in the modular
-      plug "
+      plug"
     image: {fileID: 0}
   - subtopicID: 0702
     slideType: 0
@@ -66,12 +75,16 @@ MonoBehaviour:
       Wire strippers look more like a notched pincher, with a grab that is adjusted
       with a screw. Strippers for UTP, ScTP, and STP cables are used to remove the
       outer jacket and have to accommodate the wide variation in the geometry of
-      UTP cables.\n\nCoaxial Wire Strippers - Coaxial cable strippers are designed
-      with two or three depth settings. These settings correspond to the different
-      layers of material in the cable. \n\nHeavy-duty coxial wire stripper - are
-      specialized tools designed to precisely remove the insulation from coaxial
-      cables of various sizes, ranging from manual hand tools to advanced programmable
-      stripping machines for industrial use. "
+      UTP cables.\n "
+    image: {fileID: 0}
+  - subtopicID: 0702
+    slideType: 0
+    content: "Coaxial Wire Strippers - Coaxial cable strippers are designed with
+      two or three depth settings. These settings correspond to the different layers
+      of material in the cable. \n\nHeavy-duty coxial wire stripper - are specialized
+      tools designed to precisely remove the insulation from coaxial cables of various
+      sizes, ranging from manual hand tools to advanced programmable stripping machines
+      for industrial use."
     image: {fileID: 0}
   - subtopicID: 0702
     slideType: 0
@@ -80,26 +93,32 @@ MonoBehaviour:
       manufactured to precise tolerances \r\n\r\nWire Cutter \u2013 pliers intended
       for the cutting of wire (not intended for grabbing and turning).\n\nPliers
       (assorted) \u2013 hand tools used to hold objects firmly. Possibly developed
-      from tongs used to handle hot metal in Bronze Age Europe. \r\n\r\nScrew drivers
-      (assorted) \u2013 Used to tighten screws.\n\nPunch-Down Tools - Twisted-pair
-      cables are terminated in jacks, cross-connect blocks (66-blocks), or patch
-      panels (110-blocks) that use insulation displacement connectors (IDCs). Essentially,
-      IDCs are little knife blades with a V-shaped gap or slit between them. A punch-down
-      tool is really just a handle with a special \u201Cblade\u201D that fits a particular
-      IDC.  "
+      from tongs used to handle hot metal in Bronze Age Europe.  "
+    image: {fileID: 0}
+  - subtopicID: 0702
+    slideType: 0
+    content: "Screw drivers (assorted) \u2013 Used to tighten screws.\n\nPunch-Down
+      Tools - Twisted-pair cables are terminated in jacks, cross-connect blocks (66-blocks),
+      or patch panels (110-blocks) that use insulation displacement connectors (IDCs).
+      Essentially, IDCs are little knife blades with a V-shaped gap or slit between
+      them. A punch-down tool is really just a handle with a special \u201Cblade\u201D
+      that fits a particular IDC. "
     image: {fileID: 0}
   - subtopicID: 0702
     slideType: 0
     content: "A MilesTek F-type connector installation tool.\r\n\r\nIDEAL DataComm\u2019s
       nonimpact punch-down tool.\r\n\r\nBlades are designed with one end being simply
       for punch-down. When you turn the blade and apply the other end, it punches
-      down and cuts off excess conductor in one operation. \r\n\r\nIDEAL Data Comm\u2019s
-      impact tool with adjustable impact settings.\n\nThe Palm Guard - is a specialized
-      hand splint or protective device designed to prevent finger contractures, protect
-      the palm from skin damage, and support rehabilitation in individuals with hand
-      disorders or injuries.\n\nFish Tapes - A good fish tape is the best friend
-      of the installer who does MACs (moves, adds, changes) or retrofit installations
-      on existing buildings.  "
+      down and cuts off excess conductor in one operation. \r\n "
+    image: {fileID: 0}
+  - subtopicID: 0702
+    slideType: 0
+    content: "IDEAL Data Comm\u2019s impact tool with adjustable impact settings.\n\nThe
+      Palm Guard - is a specialized hand splint or protective device designed to
+      prevent finger contractures, protect the palm from skin damage, and support
+      rehabilitation in individuals with hand disorders or injuries.\n\nFish Tapes
+      - A good fish tape is the best friend of the installer who does MACs (moves,
+      adds, changes) or retrofit installations on existing buildings.  "
     image: {fileID: 0}
   - subtopicID: 0702
     slideType: 0

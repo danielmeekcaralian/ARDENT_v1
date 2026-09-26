@@ -15,37 +15,71 @@ MonoBehaviour:
   lessonID: 9
   cocID: COC_02
   lessonTitle: Splicing
-  description: 
+  description: 'Learn the standards and step-by-step procedures for structured cabling,
+    including wall-plate installation, T568-A/B wiring schemes, and how to terminate
+    RJ45, CAT5e, and keystone jack connections.
+
+'
   lessonSceneName: LessonScene
   requiredGoldLessonID: 8
   learningObjectives:
   - "\u2022 Identify standard splicing based on EIA/TIA"
   - "\u2022 Perform splicing based on EIA/TIA"
-  subtopics: []
+  subtopics:
+  - subtopicID: 0901
+    subtopicName: 'Structured Cabling and Standardization '
+  - subtopicID: 0902
+    subtopicName: American National Standards Institute (ANSI)
+  - subtopicID: 0903
+    subtopicName: Electronic Industries Alliance (EIA)
+  - subtopicID: 0904
+    subtopicName: 'Telecommunications Industry Association (TIA) '
+  - subtopicID: 0905
+    subtopicName: 110-Blocks
+  - subtopicID: 0906
+    subtopicName: Wall-Plate Location
+  - subtopicID: 0907
+    subtopicName: Vertical Position
+  - subtopicID: 0908
+    subtopicName: Horizontal Position
+  - subtopicID: 0909
+    subtopicName: Wall-Plate Mounting System
+  - subtopicID: 0910
+    subtopicName: Outlet Boxes
+  - subtopicID: 0911
+    subtopicName: Cut-In Mounting
+  - subtopicID: 0912
+    subtopicName: Remodel Boxes
+  - subtopicID: 0913
+    subtopicName: Surface-Mount Outlet Boxes
   slides:
   - subtopicID: 0901
     slideType: 0
     content: "Structured Cabling and Standardization \r\n\r\n\tTypical business environments
       and requirements change quickly. Companies restructure and reorganize at alarming
       rates. In some companies, the average employee changes work locations once
-      every two years. \r\n\r\n\tIn the early 1990s, cabling systems were proprietary,
-      vendor-specific, and lacked flexibility. Some of the downsides of pre-1990
-      cabling systems included the following: \r\n\r\n\t\u2022 Vendor-specific cabling
-      locked the customer into a proprietary system. \r\n\r\n\t\u2022 Upgrades or
-      new systems often required a completely new cabling infrastructure.  "
+      every two years. \r\n "
     image: {fileID: 0}
   - subtopicID: 0901
     slideType: 0
-    content: "\t\u2022 Moves and changes often necessitated major cabling plant reconfigurations.
-      Some coaxial and twinax cabling systems required that entire areas (or the
-      entire system) be brought down in order to make changes. \r\n\n\t\u2022 Companies
-      often had several cabling infrastructures that had to be maintained for their
-      various applications. \r\n\r\n \t\u2022 Troubleshooting proprietary systems
-      was time consuming and difficult unless you were intimately familiar with a
-      system. \r\n\r\n \r\n\r\nA properly designed structured cabling system is based
-      around components or wiring units. \r\n\rA number of documents are related
-      to data cabling. In the United States, the Standard is ANSI/TIA/EIA-568-B,
-      also known as the Commercial Building Telecommunications Cabling Standard. "
+    content: "In the early 1990s, cabling systems were proprietary, vendor-specific,
+      and lacked flexibility. Some of the downsides of pre-1990 cabling systems included
+      the following: \r\n\r\n\t\u2022 Vendor-specific cabling locked the customer
+      into a proprietary system. \r\n\r\n\t\u2022 Upgrades or new systems often required
+      a completely new cabling infrastructure. \n\n\t\u2022 Moves and changes often
+      necessitated major cabling plant reconfigurations. Some coaxial and twinax
+      cabling systems required that entire areas (or the entire system) be brought
+      down in order to make changes. \r\n\n\t\u2022 Companies often had several cabling
+      infrastructures that had to be maintained for their various applications. \r\n\r\n
+      \t\u2022 Troubleshooting proprietary systems was time consuming and difficult
+      unless you were intimately familiar with a system.  "
+    image: {fileID: 0}
+  - subtopicID: 0901
+    slideType: 0
+    content: "A properly designed structured cabling system is based around components
+      or wiring units. \r\n\rA number of documents are related to data cabling. In
+      the United States, the Standard is ANSI/TIA/EIA-568-B, also known as the Commercial
+      Building Telecommunications Cabling Standard.\n "
     image: {fileID: 0}
   - subtopicID: 0901
     slideType: 0
@@ -65,23 +99,26 @@ MonoBehaviour:
       Alliance (EIA) was established in 1924 and was originally known as the Radio
       Manufacturers Association. Since then, the EIA has evolved into an organization
       that represents a wide variety of electronics manufacturers in the United States
-      and abroad; these manufacturers make products for a wide range of markets.\n\nTelecommunications
-      Industry Association (TIA) \r\n\r\n\tThe Telecommunications Industry Association
-      (TIA) is a trade organization that consists of a membership of over 1,100 telecommunications
-      and electronics companies that provide services, materials, and products throughout
-      the world. The TIA membership manufactures and distributes virtually all the
-      telecommunication products used in the world today. TIA\u2019s mission is to
-      represent its membership on issues relating to Standards, public policy, and
-      market development. "
+      and abroad; these manufacturers make products for a wide range of markets. "
+    image: {fileID: 0}
+  - subtopicID: 0902
+    slideType: 0
+    content: "Telecommunications Industry Association (TIA) \r\n\r\n\tThe Telecommunications
+      Industry Association (TIA) is a trade organization that consists of a membership
+      of over 1,100 telecommunications and electronics companies that provide services,
+      materials, and products throughout the world. The TIA membership manufactures
+      and distributes virtually all the telecommunication products used in the world
+      today. TIA\u2019s mission is to represent its membership on issues relating
+      to Standards, public policy, and market development. "
     image: {fileID: 0}
   - subtopicID: 0902
     slideType: 0
     content: "The TIA (along with the EIA) was instrumental in the development of
       the ANSI/TIA/ EIA-568 Commercial Building Telecommunications Cabling Standard.
-      \n\n\n\nFigure 1.1 A telecommunications outlet with a UTP for voice and a UTP/
-      ScTP/fiber for data\n\n\t\U0001F60A Table 1.1 Wire Color Abbreviations \n\n\n\n\nFigure
+      \n\nFigure 1.1 A telecommunications outlet with a UTP for voice and a UTP/
+      ScTP/fiber for data\n\n\t\U0001F60A Table 1.1 Wire Color Abbreviations \n\nFigure
       1.2 RJ45 Modular Jack wire pattern assignments for T568A and T568B \n\n\t\U0001F60A
-      Table 1.2 Application-Specific Pair Assignments for UTP Cabling \n\n\n\n\n "
+      Table 1.2 Application-Specific Pair Assignments for UTP Cabling \n "
     image: {fileID: 0}
   - subtopicID: 0902
     slideType: 0
@@ -97,15 +134,15 @@ MonoBehaviour:
       blocks. The wires are inserted into the connecting block and terminated by
       a punch-down tool or vendor-specific tool. \n\n\t\t\u2192 110-block with RJ-45
       connectors on the front \n\n\t\t\u2192 110-block with 50-pin Telco Connectors
-      \n\n\t\t\u2192 110-block side of a patch panel \n\n\t\t\u2192 96-port patch
-      panel "
+      \n\n\t\t\u2192 110-block side of a patch panel \n "
     image: {fileID: 0}
   - subtopicID: 0902
     slideType: 0
-    content: "\t\t\u2192 Structured cabling system designed for use with data\n\n\t\t\u2192
-      Structured cabling system terminated into 110-connecting blocks with 50-pin
-      telco connectors \n\n\t\t\u2192 Structured cabling using 110-blocks and 110-block
-      patch cords\n\n\t\t\u2192 Structured cabling that includes data backbone cabling "
+    content: "\t\t\u2192 96-port patch panel\t\t\n\t\t\n\t\t\u2192 Structured cabling
+      system designed for use with data\n\n\t\t\u2192 Structured cabling system terminated
+      into 110-connecting blocks with 50-pin telco connectors \n\n\t\t\u2192 Structured
+      cabling using 110-blocks and 110-block patch cords\n\n\t\t\u2192 Structured
+      cabling that includes data backbone cabling"
     image: {fileID: 0}
   - subtopicID: 0902
     slideType: 0
@@ -116,36 +153,39 @@ MonoBehaviour:
       no longer than 5 meters (16 feet). This short distance will affect exactly
       where you place your wall plate in your design. If you already have your office
       laid out, you will have to locate the wall plates as close as possible to the
-      workstations so that your wiring system will conform to the Standard. \r\n\r\nVertical
-      Position \r\n\r\n\tWhen deciding the vertical position of your wall plates,
-      you must take into account either the residential or commercial National Electrical
-      Code (NEC) sections. "
+      workstations so that your wiring system will conform to the Standard. \r "
     image: {fileID: 0}
   - subtopicID: 0902
     slideType: 0
-    content: "Horizontal Position \r\n\r\n\tWall plates should be placed horizontally
-      so that they are as close as possible to work-area equipment (computers, phones,
-      etc.). In fact, the ANSI/TIA/EIA-568-B Standard requires that work-area cables
-      should not exceed 5 meters (16 feet). Wall plates should be spaced so that
-      they are within 5 meters of any possible workstation location. \r\n\r\n Wall-Plate
-      Mounting System \r\n\r\n\tAnother decision you must make regarding your wall
-      plates is how you will mount them to the wall. Three main systems, each with
-      their own unique applications, are used to attach wall plates to a wall: \r\n\r\n\t\t\u25CFOutlet
-      boxes \r\n\r\n\t\t\u25CFCut-in plates \r\n\r\n\t\t\u25CFSurface-mount outlet
-      boxes "
+    content: "Vertical Position \r\n\r\n\tWhen deciding the vertical position of
+      your wall plates, you must take into account either the residential or commercial
+      National Electrical Code (NEC) sections.Horizontal Position \r\n\r\n\tWall
+      plates should be placed horizontally so that they are as close as possible
+      to work-area equipment (computers, phones, etc.). In fact, the ANSI/TIA/EIA-568-B
+      Standard requires that work-area cables should not exceed 5 meters (16 feet).
+      Wall plates should be spaced so that they are within 5 meters of any possible
+      workstation location.  "
+    image: {fileID: 0}
+  - subtopicID: 0902
+    slideType: 0
+    content: "Wall-Plate Mounting System \r\n\r\n\tAnother decision you must make
+      regarding your wall plates is how you will mount them to the wall. Three main
+      systems, each with their own unique applications, are used to attach wall plates
+      to a wall: \r\n\r\n\t\t\u25CFOutlet boxes \r\n\r\n\t\t\u25CFCut-in plates \r\n\r\n\t\t\u25CFSurface-mount
+      outlet boxes\n "
     image: {fileID: 0}
   - subtopicID: 0902
     slideType: 0
     content: "Outlet Boxes \r\n\r\n\tThe most common wall-plate mounting in commercial
       applications is the outlet box, which is simply a plastic or metal box attached
       to a stud in a wall cavity. Outlet boxes have screw holes in them that allow
-      a wall plate to be attached. \n\r\n\r\nCut-In Mounting \r\n\r\n\tOutlet boxes
-      work well as wall-plate supports when you are able to access the studs during
-      the construction of a building.  \r "
+      a wall plate to be attached. \n\r\nCut-In Mounting \r\n\r\n\tOutlet boxes work
+      well as wall-plate supports when you are able to access the studs during the
+      construction of a building.   "
     image: {fileID: 0}
   - subtopicID: 0902
     slideType: 0
-    content: "Remodel Boxes \r\n\r\n\tRemodel boxes are simply plastic or metal boxes
+    content: "Remodel Boxes \r\n\n\tRemodel boxes are simply plastic or metal boxes
       that mount to the hole in the drywall using screws or special friction fasteners.
       The main difference between remodel boxes and regularoutlet boxes is that remodel
       boxes are slightly smaller and can only be mounted in existing walls.\n\nCommon
@@ -159,9 +199,9 @@ MonoBehaviour:
       or possible to run the cable inside the wall (in concrete, mortar, or brick
       walls, for example). Cable is run in a surface-mount raceway (a round or flat
       conduit) to an outlet box mounted (either by adhesive or screws) on the surface
-      of the wall. \r\n\r\n\tInstalled cover-plate mounting bracket \n\n\tSurface-mount
-      outlet box and conduit \r\n\r\n\tFixed-design wall plate \r\n\r\n\tModular
-      wall plates with multiple jack locations  "
+      of the wall. \r\n\r\n\tInstalled cover-plate mounting bracket\n\tSurface-mount
+      outlet box and conduit \r\n\tFixed-design wall plate \r\n\tModular wall plates
+      with multiple jack locations  "
     image: {fileID: 0}
   - subtopicID: 0902
     slideType: 0
@@ -170,8 +210,8 @@ MonoBehaviour:
       is determined at the factory, and the jacks are molded as part of the plate
       assembly. \r\n\tYou must understand a few issues before choosing a particular
       fixed-design wall plate for your cabling installation, including the following:
-      \r\n\r\n\t\t\u25CFNumber of jacks\n\t\t\u25CFTypes of jacks \r\n\t\t\u25CFLabeling
-      \n "
+      \n\r\n\t\t\u25CFNumber of jacks\n\t\t\u25CFTypes of jacks \r\n\t\t\u25CFLabeling
+      \n"
     image: {fileID: 0}
   - subtopicID: 0902
     slideType: 0
@@ -182,21 +222,29 @@ MonoBehaviour:
     image: {fileID: 0}
   - subtopicID: 0902
     slideType: 0
-    content: "Steps in making RJ45 and CAT5E Network Cable \r\n\r\n\r\nStep 1 Strip
-      Cable Ends \r\n\r\n\t-Strip 1 to 1 \xBD of insulating sheath \r\n\t-Avoid cutting
-      into conductor insulation\n\n\nStep 2 \u2013 Untwist wire ends \n\r\n\t-Sort
-      Wires by insulation colors\n\n\nStep 3 \u2013 Arrange wires \n\n\t- TIA/EIA
-      568A: GW-G OW-Bl BlW-O BrW-Br \r\n\t- TIA/EIA 568B: OW-O GW-Bl BlW-G BrW-Br  "
+    content: "Steps in making RJ45 and CAT5E Network Cable \r\n\r\nStep 1 Strip Cable
+      Ends \r\n\r\n\t-Strip 1 to 1 \xBD of insulating sheath \r\n\t-Avoid cutting
+      into conductor insulation\n\nStep 2 \u2013 Untwist wire ends \n\r\n\t-Sort
+      Wires by insulation colors\n "
     image: {fileID: 0}
   - subtopicID: 0902
     slideType: 0
-    content: "Step 4 \u2013 Trim wires to size \r\n\r\n\t-Trim all wires evenly \r\n\t-Leave
-      about \xBD\u201D of wires exposed \r\n\r\n\r\nStep 5 \u2013 Attach RJ45 Connector
-      \r\n\r\n\t-Maintain wire order left-to-right, with RJ45 tab facing downward
-      \n\r\r\nStep 6 \u2013 Check \r\n\r\n\t-Do all wires extend to end? \r\n\t-Is
-      sheath well inside connector?\n\n\r\nStep 7 \u2013 Crimp \r\n\r\n\t-Squeeze
-      firmly to crimp connector onto cable end \r\n\n\r\nStep 8 - Test \r\n\r\n\t-Test
-      cable using LAN Cable Tester \r\n\t- Does the cable work? "
+    content: "Step 3 \u2013 Arrange wires \n\n\t- TIA/EIA 568A: GW-G OW-Bl BlW-O
+      BrW-Br \n\r\n\t- TIA/EIA 568B: OW-O GW-Bl BlW-G BrW-Br \n\nStep 4 \u2013 Trim
+      wires to size \r\n\r\n\t-Trim all wires evenly \n\r\n\t-Leave about \xBD\u201D
+      of wires exposed \r\n "
+    image: {fileID: 0}
+  - subtopicID: 0902
+    slideType: 0
+    content: "Step 5 \u2013 Attach RJ45 Connector \n\r\n\t-Maintain wire order left-to-right,
+      with RJ45 tab facing downward \n\nStep 6 \u2013 Check \r\n\r\n\t-Do all wires
+      extend to end? \n\r\n\t-Is sheath well inside connector?\r\n "
+    image: {fileID: 0}
+  - subtopicID: 0902
+    slideType: 0
+    content: "Step 7 \u2013 Crimp \r\n\r\n\t-Squeeze firmly to crimp connector onto
+      cable end \r\n\r\nStep 8 - Test \r\n\r\n\t-Test cable using LAN Cable Tester
+      \n\r\n\t- Does the cable work?\n"
     image: {fileID: 0}
   - subtopicID: 0902
     slideType: 0
@@ -206,22 +254,25 @@ MonoBehaviour:
       and not nick the twisted pairs. Using a Coaxial Stripper strip around 1 inch
       of the jacket off.\u202F Be careful not to nick the conductors as this will
       cause the wire to break or short out the connection causing problems down the
-      road. Inspect all wires for damage before proceeding to step 2. "
+      road. Inspect all wires for damage before proceeding to step 2."
     image: {fileID: 0}
   - subtopicID: 0902
     slideType: 0
     content: "Step 2:\u202FStraighten the pairs out completely and lay them over
       the top of the keystone jack noting the color pattern for the 568b wiring.
-      Note: Each keystone jack is slightly different in how they are labeled and
+      \nNote: Each keystone jack is slightly different in how they are labeled and
       how the colors are arranged. The 568B standard is most commonly used and ends
-      of the cable must have the same standards to communicate. We have the 3 most
-      common\u202Fkeystone jack\u202Fstyles pictured here. The first jack pictured
-      has the 2 standard pairs on the right, and the 2 variable pairs on the left.
-      The A standard is the center column and the B standard is on the left. Both
-      A and B standard applies to the right side of the jack.\u202F The solid color
-      box with the lower right corner missing represents the solid color wire with
-      the white stripe. The white box with the colored tip represents the white wire
-      with the colored stripe.\u202F \r\n\r\n "
+      of the cable must have the same standards to communicate. \r\n "
+    image: {fileID: 0}
+  - subtopicID: 0902
+    slideType: 0
+    content: "We have the 3 most common\u202Fkeystone jack\u202Fstyles pictured here.
+      The first jack pictured has the 2 standard pairs on the right, and the 2 variable
+      pairs on the left. The A standard is the center column and the B standard is
+      on the left. Both A and B standard applies to the right side of the jack.\u202F
+      The solid color box with the lower right corner missing represents the solid
+      color wire with the white stripe. The white box with the colored tip represents
+      the white wire with the colored stripe.\u202F \r\n "
     image: {fileID: 0}
   - subtopicID: 0902
     slideType: 0
@@ -233,24 +284,18 @@ MonoBehaviour:
       outside of the jack. With the A standard on top and the B standard on the bottom.
       The solid box represents the solid wire with the white stripe Wile the box
       with the white diagonal stripe going through the middle, represents the white
-      wire with the colored stripe. \r\n\r\n "
+      wire with the colored stripe. \r\n"
     image: {fileID: 0}
   - subtopicID: 0902
     slideType: 0
     content: "Step 3:\u202FKeeping the pairs as twisted as possible press the wire
       into the correct groove with your thumbs. If you completely straighten the
       wires to run them through the jack you will risk cross talk between the pairs.\r\n
-      \r\n\r\nStep 4:\u202FUsing a punch down tool\u202Fpunch the wires down into
-      the blades built into the keystone jack. The blades in the jack are designed
-      to work with solid cable, and may not work with stranded cable. Make sure the
-      blade (as noted in the picture) is facing the outside of the keystone jack.
-      If you reverse it you will cut the wires inside the keystone jack rendering
-      them useless. The punch down tool should cut off the remaining pieces of the
-      wire on the outside, but sometimes you may need to punch them down a 2nd\u202Ftime
-      and wiggle the wire to it breaks clean off. Once this is done you can install
-      the dust covers if your keystone jack comes with them. This keystone jack did
-      not have the covers.\u202FThe covers should never be used to do the job of
-      the punch down tool."
+      \rStep 4:\u202FUsing a punch down tool\u202Fpunch the wires down into the blades
+      built into the keystone jack. The blades in the jack are designed to work with
+      solid cable, and may not work with stranded cable. Make sure the blade (as
+      noted in the picture) is facing the outside of the keystone jack. If you reverse
+      it you will cut the wires inside the keystone jack rendering them useless. "
     image: {fileID: 0}
   - subtopicID: 0902
     slideType: 0
@@ -261,10 +306,6 @@ MonoBehaviour:
       Push down the 110 punch-down tool all of the way to the edge of the 110 connector
       to install twisted pairs and trim excess, as shown in the following illustration.
       (Use the following table to match up conductor colors with connectors. "
-    image: {fileID: 0}
-  - subtopicID: 0902
-    slideType: 0
-    content: 'Modular Wiring Configuration '
     image: {fileID: 0}
   hasARActivity: 0
   hasQuiz: 0
