@@ -18,11 +18,32 @@ public class ARPlacementManager : MonoBehaviour
     [SerializeField]
     private GameObject placementIndicator;
 
-    [Header("Whole Assembly Scale")]
-    [SerializeField, Min(0.01f)] private float minimumAssemblyScale = 0.5f;
-    [SerializeField, Min(0.01f)] private float maximumAssemblyScale = 2f;
+    [Header("Assembly Zoom (1x = calibrated size)")]
+    [SerializeField, Min(1f)] private float maximumAssemblyMultiplier = 4f;
 
     private Transform assemblyRoot;
+    public Transform AssemblyRoot => assemblyRoot;
+    public bool AllowMovement => currentActivity == null || currentActivity.allowMovement;
+    public bool AllowRotation => currentActivity == null || currentActivity.allowRotation;
+    public bool AllowScaling => currentActivity == null || currentActivity.allowScaling;
+
+    public bool CanPlaceObjects
+    {
+        get
+        {
+            if (!IsAssemblyActivity) return true;
+            var manager = FindFirstObjectByType<ARAssemblyManager>();
+            return manager == null || manager.CanPlaceObjects;
+        }
+    }
+
+    public void CancelPlacement()
+    {
+        isPlacing = false;
+        selectedObjectData = null;
+        if (placementIndicator != null) placementIndicator.SetActive(false);
+    }
+
     private float assemblyScale = 1f;
     public bool IsAssemblyActivity =>
         currentActivity != null &&
@@ -34,12 +55,7 @@ public class ARPlacementManager : MonoBehaviour
             assemblyRoot == null)
             return;
 
-        float minimum = Mathf.Max(0.01f, minimumAssemblyScale);
-        float maximum = Mathf.Max(minimum, maximumAssemblyScale);
-        assemblyScale = Mathf.Clamp(
-            assemblyScale * Mathf.Exp(Mathf.Clamp(amount, -1f, 1f)),
-            minimum, maximum
-        );
+        assemblyScale = ARScaleMath.NextMultiplier(assemblyScale, amount, maximumAssemblyMultiplier);
 
         assemblyRoot.localScale = Vector3.one * assemblyScale;
         ARAssemblyManager manager = FindFirstObjectByType<ARAssemblyManager>();
@@ -113,7 +129,7 @@ public class ARPlacementManager : MonoBehaviour
     public void SelectObject(
         ARObjectData objectData)
     {
-        if (objectData == null)
+        if (!CanPlaceObjects || objectData == null)
             return;
 
         if (objectData.prefab == null)
@@ -177,7 +193,7 @@ public class ARPlacementManager : MonoBehaviour
         if (Mouse.current == null)
             return;
 
-        if (!isPlacing)
+        if (!isPlacing || !CanPlaceObjects)
             return;
 
         Vector2 mousePosition =
@@ -349,7 +365,7 @@ public class ARPlacementManager : MonoBehaviour
     private void PlaceObjectAtPosition(
         Vector2 screenPosition)
     {
-        if (!isPlacing)
+        if (!isPlacing || !CanPlaceObjects)
             return;
 
         if (raycastManager == null)
@@ -408,6 +424,11 @@ public class ARPlacementManager : MonoBehaviour
             newObject.transform.localScale =
                 selectedObjectData.prefab.transform.localScale;
         }
+        // Capture the final baseline after placement parenting/scale setup, never
+        // infer it from a global raw-scale limit on the first resize gesture.
+        var scaleController = newObject.GetComponent<ARObjectManipulator>();
+        if (scaleController != null) scaleController.InitializeScaleBaseline();
+
         // -----------------------------------------------------
         // REGISTER ASSEMBLY ANCHOR
         // -----------------------------------------------------
@@ -475,6 +496,10 @@ public class ARPlacementManager : MonoBehaviour
 
     public void ResetObject()
     {
+        var manager = FindFirstObjectByType<ARAssemblyManager>();
+        if (IsAssemblyActivity && manager != null && !manager.CanDeleteObject(currentObject))
+            return;
+
         if (currentObject != null)
         {
             Destroy(

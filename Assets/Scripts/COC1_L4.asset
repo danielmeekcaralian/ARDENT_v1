@@ -271,9 +271,9 @@ MonoBehaviour:
       indicated by large white circles around them. Remove them and then lift the
       motherboard out of the frame. '
     image: {fileID: 0}
-  hasARActivity: 0
-  hasQuiz: 0
-  requiresARActivity: 0
-  requiresQuiz: 0
+  hasARActivity: 1
+  hasQuiz: 1
+  requiresARActivity: 1
+  requiresQuiz: 1
   arActivity: {fileID: 11400000, guid: 5840727571e90784ab43f520b3b7d378, type: 2}
   quizData: {fileID: 11400000, guid: a0358e317d186764bbca88c94ef4ed68, type: 2}

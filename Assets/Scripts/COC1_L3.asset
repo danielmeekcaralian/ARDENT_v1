@@ -27,7 +27,15 @@ MonoBehaviour:
   - "\u2022 Identify the computer hardware peripherals.\n"
   subtopics:
   - subtopicID: 0301
-    subtopicName: 
+    subtopicName: Basic PC Terms and Concepts
+  - subtopicID: 0302
+    subtopicName: The PC System
+  - subtopicID: 0303
+    subtopicName: The System Unit Case
+  - subtopicID: 0304
+    subtopicName: The Major Components of a System Unit
+  - subtopicID: 0305
+    subtopicName: Computer Hardware Peripherals
   slides:
   - subtopicID: 0301
     slideType: 0
@@ -309,9 +317,9 @@ MonoBehaviour:
       standard connection interface for A/V (audio/visual) component communication
       and control. Almost all modern digital camcorders have included this connection.   "
     image: {fileID: 0}
-  hasARActivity: 0
-  hasQuiz: 0
-  requiresARActivity: 0
-  requiresQuiz: 0
+  hasARActivity: 1
+  hasQuiz: 1
+  requiresARActivity: 1
+  requiresQuiz: 1
   arActivity: {fileID: 11400000, guid: 1184b5a670009564d8da7de247472175, type: 2}
   quizData: {fileID: 11400000, guid: a3c67d2e103adbe4abd4e97cba874d11, type: 2}

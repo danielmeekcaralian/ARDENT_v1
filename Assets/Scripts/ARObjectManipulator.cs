@@ -6,12 +6,17 @@ public class ARObjectManipulator : MonoBehaviour
     private Quaternion originalRotation;
     private Vector3 originalScale;
     private bool isLocked;
+    private bool scaleInitialized;
+    private Vector3 baselineScale;
+    private float scaleMultiplier = 1f;
+    public bool IsLocked => isLocked;
 
     private void Start()
     {
         originalPosition = transform.position;
         originalRotation = transform.rotation;
-        originalScale = transform.localScale;
+        if (!scaleInitialized) InitializeScaleBaseline();
+        originalScale = baselineScale;
     }
 
     public void SetLocked(bool locked)
@@ -39,26 +44,35 @@ public class ARObjectManipulator : MonoBehaviour
         );
     }
 
-    public void ChangeScale(
-        float amount,
-        float minimumScale,
-        float maximumScale)
+    public void MoveVertical(float worldDistance)
     {
-        if (isLocked)
-            return;
+        if (isLocked) return;
+        transform.position += Vector3.up * worldDistance;
+    }
 
-        float currentScale =
-            transform.localScale.x;
+    public void TiltLocal(Vector3 axis, float degrees)
+    {
+        if (isLocked) return;
+        transform.Rotate(axis, degrees, Space.Self);
+    }
 
-        float newScale =
-            Mathf.Clamp(
-                currentScale + amount,
-                minimumScale,
-                maximumScale
-            );
+    // Placement calls this after setting the prefab's authored baseline size.
+    // The fallback in Start supports models placed directly in a scene.
+    public void InitializeScaleBaseline()
+    {
+        baselineScale = transform.localScale;
+        originalScale = baselineScale;
+        scaleMultiplier = 1f;
+        scaleInitialized = true;
+    }
 
-        transform.localScale =
-            Vector3.one * newScale;
+    public void ChangeScale(float amount, float maximumMultiplier)
+    {
+        if (isLocked) return;
+        if (!scaleInitialized) InitializeScaleBaseline();
+        scaleMultiplier = ARScaleMath.NextMultiplier(scaleMultiplier, amount, maximumMultiplier);
+        // Keep each model's dimensions and any deliberately nonuniform proportions.
+        transform.localScale = baselineScale * scaleMultiplier;
     }
 
     public void ResetTransform()
@@ -69,5 +83,6 @@ public class ARObjectManipulator : MonoBehaviour
         transform.position = originalPosition;
         transform.rotation = originalRotation;
         transform.localScale = originalScale;
+        scaleMultiplier = 1f;
     }
 }

@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2222f1e725ea2b241a299cbd76f1c78b, type: 3}
+  m_Name: COC1_L4_AssemblyActivityData
+  m_EditorClassIdentifier: Assembly-CSharp::ARAssemblyActivityData
+  activityTitle: 'Assembly/Disassembly of Computer Hardware '
+  description: 
+  includeDisassembly: 1
+  steps:
+  - stepNumber: 1
+    stepTitle: Motherboard and CPU
+    instruction: Prepare the motherboard then install the CPU on it
+    component:
+      inventoryImage: {fileID: 4098080669088856599, guid: 2d800549f60a4bb449b2dc487b871e2f, type: 3}
+      prefab: {fileID: 2522518802934533004, guid: 29d8e33ca01b43748ac63e7c1a6774dd, type: 3}
+    anchorID: motherboard
+    targetID: cpu_target
+    snapDistance: 0.15
+    rotationTolerance: 15
+  - stepNumber: 2
+    stepTitle: CPU Cooler/Heatsink
+    instruction: Install the CPU heatsink over the CPU
+    component:
+      inventoryImage: {fileID: 4381673459438500443, guid: 5d68e4ab15ad6ae44bfe3057e01c4e9e, type: 3}
+      prefab: {fileID: 7046555640435806867, guid: 4eeac699a69be284ea64620174056997, type: 3}
+    anchorID: cpu
+    targetID: cpuCooler_target
+    snapDistance: 0.15
+    rotationTolerance: 15
+  - stepNumber: 3
+    stepTitle: RAM Modules
+    instruction: 'Install a RAM module on the motherboard '
+    component:
+      inventoryImage: {fileID: 7039161646375074621, guid: 9e3cfb2b45433374d8a5f7f06fd0a441, type: 3}
+      prefab: {fileID: 3486367432643263235, guid: 6b6f59319186a8440a8926d4ec1a7cbe, type: 3}
+    anchorID: motherboard
+    targetID: ram_target
+    snapDistance: 0.15
+    rotationTolerance: 15
+  - stepNumber: 4
+    stepTitle: PC Case
+    instruction: Place the motherboard in the cpu case
+    component:
+      inventoryImage: {fileID: 7072178864025126732, guid: fe669ee07f07fcb448929191cdc9e5c9, type: 3}
+      prefab: {fileID: 2382739474533623764, guid: 44c0ae71b1545a1488851a087317fd2a, type: 3}
+    anchorID: case
+    targetID: mb_target
+    snapDistance: 0.15
+    rotationTolerance: 15
+  - stepNumber: 4
+    stepTitle: Power Supply
+    instruction: Connect the power supply
+    component:
+      inventoryImage: {fileID: -3503591794850540154, guid: 7cc8ce848430c3d4a904915fa8f36159, type: 3}
+      prefab: {fileID: 2545629181937371313, guid: e4be85666dc52fe48b6782c7b2f9277e, type: 3}
+    anchorID: case
+    targetID: psu_target
+    snapDistance: 0.15
+    rotationTolerance: 15
+  - stepNumber: 4
+    stepTitle: Video Card
+    instruction: Install the video card on the motherboard
+    component:
+      inventoryImage: {fileID: 7343216870570349648, guid: 0c070651eb6dac747908f97a400cd4b1, type: 3}
+      prefab: {fileID: 4825862472657794192, guid: 26c2d7c80e921e44e8b6bd005748a22c, type: 3}
+    anchorID: motherboard
+    targetID: gpu_target
+    snapDistance: 0.15
+    rotationTolerance: 15

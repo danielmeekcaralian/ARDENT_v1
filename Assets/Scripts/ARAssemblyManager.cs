@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ARAssemblyManager : MonoBehaviour
+public partial class ARAssemblyManager : MonoBehaviour
 {
     private ARAssemblyActivityData assemblyActivity;
 
@@ -29,6 +29,7 @@ public class ARAssemblyManager : MonoBehaviour
     public void SetActivity(
         ARAssemblyActivityData activity)
     {
+        ResetCombinedActivity();
         assemblyActivity = activity;
 
         currentStepIndex = 0;
@@ -61,6 +62,7 @@ public class ARAssemblyManager : MonoBehaviour
             assemblyActivity.activityTitle
         );
 
+        Phase = ActivityPhase.Assembly;
         ShowCurrentStep();
     }
 
@@ -110,6 +112,7 @@ public class ARAssemblyManager : MonoBehaviour
 
     private void ShowCurrentStep()
     {
+        RefreshProgress();
         if (assemblyActivity == null)
             return;
 
@@ -154,13 +157,53 @@ public class ARAssemblyManager : MonoBehaviour
     // COMPLETE CURRENT STEP
     // =========================================================
 
+    public bool TryAlignCurrentComponentRotation(GameObject candidate)
+    {
+        // Optional placement aid: keep position and size under the user's control.
+        if (Phase != ActivityPhase.Assembly || !IsCurrentStepComponent(candidate)) return false;
+        var manipulator = candidate.GetComponent<ARObjectManipulator>();
+        if (manipulator == null || manipulator.IsLocked) return false;
+        var step = assemblyActivity.steps[currentStepIndex];
+        var anchor = FindAnchor(step.anchorID);
+        var target = anchor != null ? anchor.FindTarget(step.targetID) : null;
+        if (target == null)
+        {
+            if (instructionsText != null)
+                instructionsText.text = step.instruction + "\nPlace the required base before aligning.";
+            return false;
+        }
+        candidate.transform.rotation = target.transform.rotation;
+        if (instructionsText != null)
+            instructionsText.text = step.instruction + "\nRotation aligned. Move the component to its target.";
+        return true;
+    }
+
+    public bool IsCurrentStepComponent(GameObject candidate)
+    {
+        if (candidate == null) return false;
+        if (Phase == ActivityPhase.Disassembly)
+            return removalIndex >= 0 && removalIndex < installedParts.Count &&
+                candidate == installedParts[removalIndex];
+        if (Phase != ActivityPhase.Assembly || assemblyActivity == null ||
+            assemblyActivity.steps == null || currentStepIndex < 0 ||
+            currentStepIndex >= assemblyActivity.steps.Length || installedParts.Contains(candidate))
+            return false;
+        var step = assemblyActivity.steps[currentStepIndex];
+        var required = step.component?.prefab != null
+            ? step.component.prefab.GetComponent<ARObjectInfo>() : null;
+        var actual = candidate.GetComponent<ARObjectInfo>();
+        return required != null && actual != null && required.objectName == actual.objectName;
+    }
+
     public bool TryCompleteCurrentStep(
         GameObject placedObject)
     {
-        if (assemblyActivity == null)
-        {
+        if (Phase == ActivityPhase.Disassembly)
+            return TryRemoveCurrentPart(placedObject);
+        if (Phase != ActivityPhase.Assembly || assemblyActivity == null)
             return false;
-        }
+        if (installedParts.Contains(placedObject))
+            return false;
 
         if (assemblyActivity.steps == null ||
             assemblyActivity.steps.Length == 0)
@@ -234,6 +277,8 @@ public class ARAssemblyManager : MonoBehaviour
         if (objectInfo.objectName !=
             requiredName)
         {
+            if (instructionsText != null)
+                instructionsText.text = step.instruction + "\nSelect " + requiredName + " to continue.";
             Debug.Log(
                 "Wrong component. Required: " +
                 requiredName
@@ -251,6 +296,8 @@ public class ARAssemblyManager : MonoBehaviour
 
         if (anchor == null)
         {
+            if (instructionsText != null)
+                instructionsText.text = step.instruction + "\nPlace the required base first: " + step.anchorID;
             Debug.Log(
                 "Required assembly anchor " +
                 "has not been placed: " +
@@ -292,36 +339,20 @@ public class ARAssemblyManager : MonoBehaviour
                 target.transform.position
             );
 
-        if (distance >
-            step.snapDistance * assemblyScaleFactor)
-        {
-            if (instructionsText != null)
-                instructionsText.text = step.instruction + "\nMove the component closer to the target.";
-            Debug.Log(
-                "Component is not close enough " +
-                "to the target."
-            );
-
-            return false;
-        }
-
-        // -----------------------------------------------------
-        // SNAP COMPONENT
-        // -----------------------------------------------------
-
+        float allowedDistance = step.snapDistance * assemblyScaleFactor;
         float angleError = Quaternion.Angle(
-            placedObject.transform.rotation,
-            target.transform.rotation
-        );
-
-        if (angleError > step.rotationTolerance)
+            placedObject.transform.rotation, target.transform.rotation);
+        bool closeEnough = distance <= allowedDistance;
+        bool aligned = angleError <= step.rotationTolerance;
+        if (!closeEnough || !aligned)
         {
+            string guidance = !closeEnough && !aligned ? "Move closer and rotate to match the target."
+                : !closeEnough ? "Move closer to the target." : "Rotate to match the target.";
+            string measurements = $"Distance: {distance:F3} (max {allowedDistance:F3}) | " +
+                $"Angle: {angleError:F1} deg (max {step.rotationTolerance:F1})";
             if (instructionsText != null)
-                instructionsText.text = step.instruction +
-                    "\nRotate the component to match the target.";
-
-            Debug.Log($"Incorrect rotation: {angleError:F1} degrees; " +
-                $"allowed: {step.rotationTolerance:F1} degrees.");
+                instructionsText.text = step.instruction + "\n" + guidance + "\n" + measurements;
+            Debug.Log($"Snap pending for {requiredName}: {measurements}");
             return false;
         }
         placedObject.transform.position =
@@ -354,6 +385,7 @@ public class ARAssemblyManager : MonoBehaviour
             step.stepTitle
         );
 
+        installedParts.Add(placedObject);
         AdvanceStep();
 
         return true;
@@ -396,23 +428,7 @@ public class ARAssemblyManager : MonoBehaviour
 
         if (currentStepIndex >= assemblyActivity.steps.Length)
         {
-            Debug.Log("Assembly completed!");
-
-            ARActivityProgress activityProgress =
-                FindFirstObjectByType<ARActivityProgress>();
-
-            if (activityProgress == null)
-            {
-                Debug.LogError(
-                    "ARAssemblyManager: ARActivityProgress not found."
-                );
-
-                return;
-            }
-
-            // Save completion and show ViewCompletionButton.
-            activityProgress.CompleteActivity();
-
+            FinishAssemblyPhase();
             return;
         }
 

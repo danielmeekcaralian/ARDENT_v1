@@ -14,40 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ARAssemblyActivityData
   activityTitle: Test PC Assembly
   description: Test Assembly
-  steps:
-  - stepNumber: 1
-    stepTitle: Install CPU
-    instruction: Install the CPU on the motherboard
-    component:
-      inventoryImage: {fileID: 4098080669088856599, guid: 2d800549f60a4bb449b2dc487b871e2f, type: 3}
-      prefab: {fileID: 2522518802934533004, guid: 29d8e33ca01b43748ac63e7c1a6774dd, type: 3}
-    anchorID: motherboard
-    targetID: cpu_target
-    snapDistance: 0.3
-  - stepNumber: 2
-    stepTitle: Install CPU cooler
-    instruction: Install the CPU cooler over the CPU
-    component:
-      inventoryImage: {fileID: 4381673459438500443, guid: 5d68e4ab15ad6ae44bfe3057e01c4e9e, type: 3}
-      prefab: {fileID: 7046555640435806867, guid: 4eeac699a69be284ea64620174056997, type: 3}
-    anchorID: cpu
-    targetID: cpuCooler_target
-    snapDistance: 0.3
-  - stepNumber: 3
-    stepTitle: Install RAM
-    instruction: Install one piece of RAM on the motherboard
-    component:
-      inventoryImage: {fileID: 7039161646375074621, guid: 9e3cfb2b45433374d8a5f7f06fd0a441, type: 3}
-      prefab: {fileID: 3486367432643263235, guid: 6b6f59319186a8440a8926d4ec1a7cbe, type: 3}
-    anchorID: motherboard
-    targetID: ram_target
-    snapDistance: 0.3
-  - stepNumber: 4
-    stepTitle: Install GPU
-    instruction: Install the GPU on the motherboard
-    component:
-      inventoryImage: {fileID: 7343216870570349648, guid: 0c070651eb6dac747908f97a400cd4b1, type: 3}
-      prefab: {fileID: 4825862472657794192, guid: 26c2d7c80e921e44e8b6bd005748a22c, type: 3}
-    anchorID: motherboard
-    targetID: gpu_target
-    snapDistance: 0.3
+  includeDisassembly: 1
+  steps: []

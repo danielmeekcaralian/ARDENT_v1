@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ARActivityData
   activityID: 1
   activityTitle: Occupational Health & Safety
-  activityType: 2
-  assemblyActivity: {fileID: 11400000, guid: 79193c3d995147e4b894f336c3cb1a5b, type: 2}
+  activityType: 0
+  assemblyActivity: {fileID: 0}
   instruction: 
   availableObjects: []
   requirePlanePlacement: 1
-  allowRotation: 0
+  allowRotation: 1
   allowScaling: 1
   allowMovement: 1

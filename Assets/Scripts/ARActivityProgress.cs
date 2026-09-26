@@ -43,7 +43,9 @@ public class ARActivityProgress : MonoBehaviour
 
     public void MarkObjectInspected(ARObjectInfo objectInfo)
     {
-        if (objectInfo == null)
+        if (objectInfo == null || currentActivity == null ||
+            (currentActivity.activityType != ARActivityType.ToolIdentification &&
+             currentActivity.activityType != ARActivityType.HardwareIdentification))
             return;
 
         if (inspectedObjects.Contains(objectInfo.objectName))
@@ -75,6 +77,13 @@ public class ARActivityProgress : MonoBehaviour
     {
         if (progressText == null)
             return;
+
+        if (currentActivity != null && currentActivity.activityType == ARActivityType.Assembly)
+        {
+            var manager = FindFirstObjectByType<ARAssemblyManager>();
+            if (manager != null) manager.RefreshProgress();
+            return;
+        }
 
         string label = "Objects Inspected";
 
@@ -125,6 +134,12 @@ public class ARActivityProgress : MonoBehaviour
 
             CompleteActivity();
         }
+    }
+
+    public void SetAssemblyProgress(string phase, int done, int total)
+    {
+        if (progressText != null)
+            progressText.text = $"{phase}: {done} / {total}";
     }
 
     public void CompleteActivity()

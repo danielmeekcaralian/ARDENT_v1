@@ -101,6 +101,11 @@ public class ARInventoryUI : MonoBehaviour
     {
         if (inventoryPanel == null)
             return;
+        if (placementManager != null && !placementManager.CanPlaceObjects)
+        {
+            inventoryPanel.SetActive(false);
+            return;
+        }
 
         inventoryPanel.SetActive(
             !inventoryPanel.activeSelf

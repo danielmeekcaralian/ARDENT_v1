@@ -87,15 +87,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 5d7a5c7b4caa2864eb7ac4fd4381a4db, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.2
+      value: 0.66
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5d7a5c7b4caa2864eb7ac4fd4381a4db, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.2
+      value: 0.66
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5d7a5c7b4caa2864eb7ac4fd4381a4db, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.2
+      value: 0.66
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5d7a5c7b4caa2864eb7ac4fd4381a4db, type: 3}
       propertyPath: m_LocalPosition.x
@@ -227,8 +227,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.062927246, y: 0.0055482006, z: 0.076505885}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.062927246, y: 0.07430593, z: 0.076505885}
+  m_Center: {x: 0, y: 0.03437887, z: 0}
 --- !u!4 &2903161291450896694 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5d7a5c7b4caa2864eb7ac4fd4381a4db, type: 3}

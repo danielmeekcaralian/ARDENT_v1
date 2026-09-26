@@ -3,689 +3,314 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.EventSystems;
 
-public class ARInteractionManager : MonoBehaviour
+public partial class ARInteractionManager : MonoBehaviour
 {
     [Header("Interaction Settings")]
     [SerializeField] private float rotationSpeed = 0.6f;
-    [SerializeField] private float scaleSpeed = 0.007f;
+    [SerializeField, Min(0.00001f)] private float mouseZoomSensitivity = 0.001f;
+    [SerializeField, Min(0.1f)] private float pinchZoomSensitivity = 1f;
+    [SerializeField, Min(1f)] private float dragThresholdPixels = 10f;
 
-    [Header("Scale Limits")]
-    [SerializeField] private float minimumScale = 3.0f;
-    [SerializeField] private float maximumScale = 6.0f;
-
+    [Header("Object Zoom (1x = calibrated size)")]
+    [SerializeField, Min(1f)] private float maximumObjectMultiplier = 4f;
     [Header("Info Card")]
     [SerializeField] private ARInfoCardManager infoCardManager;
     [SerializeField] private ARActivityProgress activityProgress;
-
     [SerializeField] private ARModeManager modeManager;
-
     [Header("Placement")]
     [SerializeField] private ARPlacementManager placementManager;
-
     [Header("Assembly")]
     [SerializeField] private ARAssemblyManager assemblyManager;
 
     private Camera mainCamera;
     private ARObjectManipulator selectedObject;
-
+    private ARObjectManipulator dragObject;
+    private Plane dragPlane;
+    private Vector2 dragStartScreen;
+    private Vector3 dragOffset;
+    private bool dragging;
+#if UNITY_EDITOR
     private Vector2 previousMousePosition;
-
+    private ARObjectManipulator rotationObject;
+    private bool rotated;
+#else
     private Vector2 previousFirstTouchPosition;
     private Vector2 previousSecondTouchPosition;
     private bool twoFingerGestureActive;
+    private bool touchGestureChanged;
+#endif
 
-    private void Awake()
+    private void Awake() { mainCamera = Camera.main; }
+
+    private void OnValidate()
     {
-        mainCamera = Camera.main;
+        mouseZoomSensitivity = Mathf.Max(0.00001f, mouseZoomSensitivity);
+        pinchZoomSensitivity = Mathf.Max(0.1f, pinchZoomSensitivity);
+        maximumObjectMultiplier = Mathf.Max(1f, maximumObjectMultiplier);
     }
 
     private void Update()
     {
-        if (mainCamera == null)
-            mainCamera = Camera.main;
-
+        if (mainCamera == null) mainCamera = Camera.main;
+        if (UpdatePrecisionControls())
+        {
+            CancelWorldDrag();
+            return;
+        }
+        if (mainCamera == null) return;
 #if UNITY_EDITOR
-
         HandleEditorInput();
-
 #else
-
         HandleMobileInput();
-
 #endif
     }
 
 #if UNITY_EDITOR
-
     private void HandleEditorInput()
     {
-        if (Mouse.current == null)
-            return;
+        if (Mouse.current == null) return;
+        var mouse = Mouse.current;
+        Vector2 position = mouse.position.ReadValue();
+        if (mouse.leftButton.wasPressedThisFrame) SelectAt(position);
+        if (mouse.leftButton.isPressed) DragTo(position);
+        if (mouse.leftButton.wasReleasedThisFrame) EndWorldDrag();
 
-        // -----------------------------------------
-        // LEFT CLICK - SELECT OBJECT
-        // -----------------------------------------
-
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if (mouse.rightButton.wasPressedThisFrame)
         {
-            if (EventSystem.current != null &&
-                EventSystem.current.IsPointerOverGameObject())
-            {
-                return;
-            }
-
-            SelectObject();
+            previousMousePosition = position;
+            rotationObject = !IsScreenPositionOverUI(position) && CanManipulateSelection()
+                ? selectedObject : null;
+            rotated = false;
         }
-
-        // -----------------------------------------
-        // LEFT DRAG - MOVE OBJECT
-        // -----------------------------------------
-
-        if (Mouse.current.leftButton.isPressed &&
-            selectedObject != null &&
-            !IsPointerOverUI())
+        if (mouse.rightButton.isPressed && rotationObject != null &&
+            rotationObject == selectedObject && CanManipulateSelection() &&
+            !IsScreenPositionOverUI(position) && (placementManager == null || placementManager.AllowRotation))
         {
-            MoveObject();
+            float amount = -(position.x - previousMousePosition.x) * rotationSpeed;
+            rotationObject.Rotate(amount);
+            rotated |= Mathf.Abs(amount) > 0.001f;
         }
-
-        if (Mouse.current.leftButton.wasReleasedThisFrame &&
-            selectedObject != null)
+        previousMousePosition = position;
+        if (mouse.rightButton.wasReleasedThisFrame)
         {
-            CheckAssemblyStep(selectedObject.gameObject);
+            var target = rotationObject;
+            rotationObject = null;
+            if (rotated && target != null && target == selectedObject)
+                CheckAssemblyStep(target.gameObject);
+            rotated = false;
         }
-
-        // -----------------------------------------
-        // RIGHT DRAG - ROTATE OBJECT
-        // -----------------------------------------
-
-        if (Mouse.current.rightButton.wasPressedThisFrame)
-            previousMousePosition = Mouse.current.position.ReadValue();
-
-        if (Mouse.current.rightButton.isPressed &&
-            selectedObject != null)
+        if (selectedObject != null && GetCurrentMode() == ARInteractionMode.Edit &&
+            !IsScreenPositionOverUI(position))
         {
-            RotateObject();
-        }
-
-        // -----------------------------------------
-        // MOUSE WHEEL - SCALE OBJECT
-        // -----------------------------------------
-
-        if (selectedObject != null)
-        {
-            float scroll =
-                Mouse.current.scroll.ReadValue().y;
-
-            if (Mathf.Abs(scroll) > 0.01f)
-            {
-                ScaleObject(scroll);
-            }
+            float scroll = mouse.scroll.ReadValue().y;
+            if (Mathf.Abs(scroll) > 0.01f) ApplyScale(scroll * mouseZoomSensitivity);
         }
     }
-
-    private bool IsPointerOverUI()
-    {
-        if (EventSystem.current == null)
-            return false;
-
-        return EventSystem.current.IsPointerOverGameObject();
-    }
-
-    private void SelectObject()
-    {
-        Debug.Log("ARInteractionManager: SelectObject called");
-
-        if (EventSystem.current != null &&
-            EventSystem.current.IsPointerOverGameObject())
-        {
-            return;
-        }
-
-        if (placementManager != null &&
-            placementManager.WasObjectPlacedThisFrame())
-        {
-            return;
-        }
-
-        ARInteractionMode mode = GetCurrentMode();
-        Debug.Log("Current AR Mode: " + mode);
-
-        // Do not select objects while placing
-        if (mode == ARInteractionMode.Place)
-            return;
-
-        Vector2 mousePosition =
-            Mouse.current.position.ReadValue();
-
-        Ray ray =
-            mainCamera.ScreenPointToRay(mousePosition);
-
-        if (Physics.Raycast(
-                ray,
-                out RaycastHit hit))
-        {
-            ARObjectManipulator manipulator =
-                hit.collider.GetComponentInParent<ARObjectManipulator>();
-
-            if (manipulator != null)
-            {
-                // =========================
-                // DELETE MODE
-                // =========================
-
-                if (mode == ARInteractionMode.Delete)
-                {
-                    string objectName =
-                        manipulator.gameObject.name;
-
-                    Destroy(manipulator.gameObject);
-
-                    if (selectedObject == manipulator)
-                    {
-                        selectedObject = null;
-                    }
-
-                    if (infoCardManager != null)
-                    {
-                        infoCardManager.HideInfo();
-                    }
-
-                    Debug.Log(
-                        "Deleted object: " +
-                        objectName
-                    );
-
-                    return;
-                }
-
-                // =========================
-                // EDIT MODE
-                // =========================
-
-                if (mode == ARInteractionMode.Edit)
-                {
-                    selectedObject = manipulator;
-
-                    ARObjectInfo objectInfo =
-                    selectedObject.GetComponent<ARObjectInfo>();
-
-                    if (objectInfo != null)
-                    {
-                        if (infoCardManager != null)
-                        {
-                            infoCardManager.ShowInfo(objectInfo);
-                        }
-
-                        if (activityProgress != null)
-                        {
-                            activityProgress.MarkObjectInspected(objectInfo);
-                        }
-                    }
-
-                    return;
-                }
-            }
-        }
-
-        // Nothing was selected
-        DeselectObject();
-    }
-
-    private void MoveObject()
-    {
-        Vector2 mousePosition =
-            Mouse.current.position.ReadValue();
-
-        Ray ray =
-            mainCamera.ScreenPointToRay(mousePosition);
-
-        Plane horizontalPlane =
-            new Plane(Vector3.up, selectedObject.transform.position);
-
-        if (horizontalPlane.Raycast(
-                ray,
-                out float distance))
-        {
-            Vector3 worldPosition =
-                ray.GetPoint(distance);
-
-            selectedObject.MoveTo(worldPosition);
-        }
-    }
-
-    private void RotateObject()
-    {
-        Vector2 currentPosition =
-            Mouse.current.position.ReadValue();
-
-        Vector2 delta =
-            currentPosition - previousMousePosition;
-
-        selectedObject.Rotate(
-            -delta.x * rotationSpeed
-        );
-
-        previousMousePosition = currentPosition;
-    }
-
-    private void ScaleObject(float scroll)
-    {
-        float amount =
-            scroll * scaleSpeed;
-
-        ApplyScale(amount);
-    }
-
-#endif
-
-#if !UNITY_EDITOR
-
+#else
     private void HandleMobileInput()
     {
-        if (Touchscreen.current == null)
-            return;
-
-        var touches = Touchscreen.current.touches;
-
-        // -----------------------------------------
-        // TOUCH RELEASE
-        // -----------------------------------------
-
-        var primaryTouch =
-            Touchscreen.current.primaryTouch;
-
-        if (primaryTouch.press.wasReleasedThisFrame &&
-            selectedObject != null)
+        if (Touchscreen.current == null) return;
+        var primary = Touchscreen.current.primaryTouch;
+        if (primary.press.wasReleasedThisFrame)
         {
-            Debug.Log(
-                "Mobile: Released object - checking assembly"
-            );
-
-            CheckAssemblyStep(
-                selectedObject.gameObject
-            );
-
-            twoFingerGestureActive = false;
-
-            return;
-        }
-
-        int activeTouches = 0;
-
-        foreach (var touch in touches)
-        {
-            if (touch.press.isPressed)
-                activeTouches++;
-        }
-
-        // -----------------------------------------
-        // NO TOUCHES
-        // -----------------------------------------
-
-        if (activeTouches == 0)
-        {
+            bool checkGesture = touchGestureChanged;
+            touchGestureChanged = false;
+            var target = selectedObject;
+            bool checkedDrag = EndWorldDrag();
+            if (!checkedDrag && checkGesture && target != null && target == selectedObject)
+                CheckAssemblyStep(target.gameObject);
             twoFingerGestureActive = false;
             return;
         }
-
-        // -----------------------------------------
-        // TWO FINGERS
-        // -----------------------------------------
-
-        if (activeTouches >= 2)
+        TouchControl first = null, second = null;
+        foreach (var touch in Touchscreen.current.touches)
         {
-            HandleTwoFingerGesture();
+            if (!touch.press.isPressed) continue;
+            if (first == null) first = touch;
+            else { second = touch; break; }
+        }
+        if (first == null)
+        {
+            CancelWorldDrag();
+            twoFingerGestureActive = false;
+            touchGestureChanged = false;
             return;
         }
-
-        // -----------------------------------------
-        // ONE FINGER
-        // -----------------------------------------
-
-        if (activeTouches == 1)
+        if (second != null)
         {
-            HandleSingleTouch();
+            touchGestureChanged |= dragging;
+            CancelWorldDrag();
+            HandleTwoFingerGesture(first.position.ReadValue(), second.position.ReadValue());
+            return;
         }
+        // A pinch ending must not turn into a fresh one-finger drag.
+        twoFingerGestureActive = false;
+        Vector2 position = primary.position.ReadValue();
+        if (primary.press.wasPressedThisFrame)
+        {
+            touchGestureChanged = false;
+            SelectAt(position);
+        }
+        if (primary.press.isPressed) DragTo(position);
     }
 
-    private void HandleSingleTouch()
+    private void HandleTwoFingerGesture(Vector2 first, Vector2 second)
     {
-        var touch =
-            Touchscreen.current.primaryTouch;
-
-        Vector2 position =
-            touch.position.ReadValue();
-
-        // -----------------------------------------
-        // TOUCH START
-        // -----------------------------------------
-
-        if (touch.press.wasPressedThisFrame)
+        if (selectedObject == null || GetCurrentMode() != ARInteractionMode.Edit ||
+            IsScreenPositionOverUI(first) || IsScreenPositionOverUI(second))
         {
-            // Ignore touches on UI
-            if (EventSystem.current != null &&
-                EventSystem.current.IsPointerOverGameObject())
-            {
-                return;
-            }
-
-            // Ignore the frame where an object was placed
-            if (placementManager != null &&
-                placementManager.WasObjectPlacedThisFrame())
-            {
-                return;
-            }
-
-            ARInteractionMode mode =
-                GetCurrentMode();
-
-            Debug.Log(
-                "Mobile AR Mode: " + mode
-            );
-
-            // Placement mode handles its own tap
-            if (mode == ARInteractionMode.Place)
-            {
-                return;
-            }
-
-            Ray ray =
-                mainCamera.ScreenPointToRay(position);
-
-            if (Physics.Raycast(
-                    ray,
-                    out RaycastHit hit))
-            {
-                ARObjectManipulator manipulator =
-                    hit.collider.GetComponentInParent<ARObjectManipulator>();
-
-                if (manipulator != null)
-                {
-                    // =====================================
-                    // DELETE MODE
-                    // =====================================
-
-                    if (mode == ARInteractionMode.Delete)
-                    {
-                        string objectName =
-                            manipulator.gameObject.name;
-
-                        Destroy(manipulator.gameObject);
-
-                        if (selectedObject == manipulator)
-                        {
-                            selectedObject = null;
-                        }
-
-                        if (infoCardManager != null)
-                        {
-                            infoCardManager.HideInfo();
-                        }
-
-                        Debug.Log(
-                            "Deleted object: " +
-                            objectName
-                        );
-
-                        return;
-                    }
-
-                    // =====================================
-                    // EDIT MODE
-                    // =====================================
-
-                    if (mode == ARInteractionMode.Edit)
-                    {
-                        selectedObject = manipulator;
-
-                        ARObjectInfo objectInfo =
-                            selectedObject.GetComponent<ARObjectInfo>();
-
-                        if (objectInfo != null)
-                        {
-                            if (infoCardManager != null)
-                            {
-                                infoCardManager.ShowInfo(
-                                    objectInfo
-                                );
-                            }
-
-                            if (activityProgress != null)
-                            {
-                                activityProgress.MarkObjectInspected(
-                                    objectInfo
-                                );
-                            }
-                        }
-
-                        Debug.Log(
-                            "Selected AR object: " +
-                            manipulator.gameObject.name
-                        );
-
-                        return;
-                    }
-                }
-            }
-
-            // Nothing was hit
-            DeselectObject();
-
+            twoFingerGestureActive = false;
             return;
         }
-
-        // -----------------------------------------
-        // ONE-FINGER DRAG
-        // -----------------------------------------
-
-        if (touch.press.isPressed &&
-            selectedObject != null)
-        {
-            if (EventSystem.current != null &&
-                EventSystem.current.IsPointerOverGameObject())
-            {
-                return;
-            }
-
-            if (GetCurrentMode() != ARInteractionMode.Edit)
-            {
-                return;
-            }
-
-            MoveObjectMobile(position);
-        }
-
-        if (touch.press.wasReleasedThisFrame &&
-            selectedObject != null)
-        {
-            CheckAssemblyStep(selectedObject.gameObject);
-        }
-    }
-
-    private void MoveObjectMobile(Vector2 screenPosition)
-    {
-        Ray ray =
-            mainCamera.ScreenPointToRay(screenPosition);
-
-        Plane horizontalPlane =
-            new Plane(Vector3.up, selectedObject.transform.position);
-
-        if (horizontalPlane.Raycast(
-                ray,
-                out float distance))
-        {
-            Vector3 worldPosition =
-                ray.GetPoint(distance);
-
-            selectedObject.MoveTo(worldPosition);
-        }
-    }
-
-    private void HandleTwoFingerGesture()
-    {
-        var touches =
-            Touchscreen.current.touches;
-
-        TouchControl first = null;
-        TouchControl second = null;
-
-        foreach (var touch in touches)
-        {
-            if (!touch.press.isPressed)
-                continue;
-
-            if (first == null)
-            {
-                first = touch;
-            }
-            else if (second == null)
-            {
-                second = touch;
-                break;
-            }
-        }
-
-        if (first == null || second == null)
-            return;
-
-        // No object selected
-        if (selectedObject == null)
-            return;
-
-        // Don't manipulate objects outside Edit mode
-        if (GetCurrentMode() != ARInteractionMode.Edit)
-            return;
-
-        Vector2 firstPosition =
-            first.position.ReadValue();
-
-        Vector2 secondPosition =
-            second.position.ReadValue();
-
-        // -----------------------------------------
-        // START TWO-FINGER GESTURE
-        // -----------------------------------------
-
         if (!twoFingerGestureActive)
         {
-            previousFirstTouchPosition =
-                firstPosition;
-
-            previousSecondTouchPosition =
-                secondPosition;
-
+            previousFirstTouchPosition = first;
+            previousSecondTouchPosition = second;
             twoFingerGestureActive = true;
-
             return;
         }
+        float distanceDelta = Vector2.Distance(first, second) -
+            Vector2.Distance(previousFirstTouchPosition, previousSecondTouchPosition);
+        float previousDistance = Vector2.Distance(previousFirstTouchPosition, previousSecondTouchPosition);
+        float currentDistance = Vector2.Distance(first, second);
+        if (previousDistance > 1f && currentDistance > 1f)
+            ApplyScale(Mathf.Log(currentDistance / previousDistance) * pinchZoomSensitivity);
+        Vector2 previous = previousSecondTouchPosition - previousFirstTouchPosition;
+        Vector2 current = second - first;
+        float angleDelta = Mathf.DeltaAngle(Mathf.Atan2(previous.y, previous.x) * Mathf.Rad2Deg,
+            Mathf.Atan2(current.y, current.x) * Mathf.Rad2Deg);
+        if (placementManager == null || placementManager.AllowRotation)
+            selectedObject.Rotate(-angleDelta * rotationSpeed);
+        touchGestureChanged |= Mathf.Abs(distanceDelta) > 0.01f || Mathf.Abs(angleDelta) > 0.01f;
+        previousFirstTouchPosition = first;
+        previousSecondTouchPosition = second;
+    }
+#endif
 
-        // -----------------------------------------
-        // SCALE
-        // -----------------------------------------
-
-        float previousDistance =
-            Vector2.Distance(
-                previousFirstTouchPosition,
-                previousSecondTouchPosition
-            );
-
-        float currentDistance =
-            Vector2.Distance(
-                firstPosition,
-                secondPosition
-            );
-
-        float distanceDelta =
-            currentDistance - previousDistance;
-
-        float scaleAmount =
-            distanceDelta * scaleSpeed;
-
-        ApplyScale(scaleAmount);
-
-        // -----------------------------------------
-        // ROTATION
-        // -----------------------------------------
-
-        Vector2 previousDirection =
-            previousSecondTouchPosition -
-            previousFirstTouchPosition;
-
-        Vector2 currentDirection =
-            secondPosition -
-            firstPosition;
-
-        float previousAngle =
-            Mathf.Atan2(
-                previousDirection.y,
-                previousDirection.x
-            ) * Mathf.Rad2Deg;
-
-        float currentAngle =
-            Mathf.Atan2(
-                currentDirection.y,
-                currentDirection.x
-            ) * Mathf.Rad2Deg;
-
-        float angleDelta =
-            Mathf.DeltaAngle(
-                previousAngle,
-                currentAngle
-            );
-
-        selectedObject.Rotate(
-            -angleDelta * rotationSpeed
-        );
-
-        // -----------------------------------------
-        // SAVE TOUCH POSITIONS
-        // -----------------------------------------
-
-        previousFirstTouchPosition =
-            firstPosition;
-
-        previousSecondTouchPosition =
-            secondPosition;
+    private bool CanManipulateSelection()
+    {
+        return selectedObject != null && !selectedObject.IsLocked && GetCurrentMode() == ARInteractionMode.Edit;
     }
 
-#endif
+    private void SelectAt(Vector2 screenPosition)
+    {
+        CancelWorldDrag();
+        if (IsScreenPositionOverUI(screenPosition) ||
+            (placementManager != null && placementManager.WasObjectPlacedThisFrame())) return;
+        var mode = GetCurrentMode();
+        if (mode == ARInteractionMode.Place) return;
+        var candidate = PickObject(mainCamera.ScreenPointToRay(screenPosition), mode);
+        if (candidate == null) { DeselectObject(); return; }
+        if (mode == ARInteractionMode.Delete)
+        {
+            if (assemblyManager != null && !assemblyManager.CanDeleteObject(candidate.gameObject)) return;
+            if (selectedObject == candidate) DeselectObject();
+            Destroy(candidate.gameObject);
+            if (infoCardManager != null) infoCardManager.HideInfo();
+            return;
+        }
+        if (mode != ARInteractionMode.Edit) return;
+        CancelPrecisionAdjustment();
+        selectedObject = candidate;
+        var info = candidate.GetComponent<ARObjectInfo>();
+        if (info != null)
+        {
+            if (infoCardManager != null) infoCardManager.ShowInfo(info);
+            if (activityProgress != null) activityProgress.MarkObjectInspected(info);
+        }
+        if (!CanManipulateSelection() || (placementManager != null && !placementManager.AllowMovement)) return;
+        dragPlane = new Plane(Vector3.up, candidate.transform.position);
+        Ray ray = mainCamera.ScreenPointToRay(screenPosition);
+        if (!dragPlane.Raycast(ray, out float distance)) return;
+        // Keep the grabbed location under the pointer instead of teleporting the pivot.
+        dragOffset = candidate.transform.position - ray.GetPoint(distance);
+        dragStartScreen = screenPosition;
+        dragObject = candidate;
+    }
+
+    private ARObjectManipulator PickObject(Ray ray, ARInteractionMode mode)
+    {
+        ARObjectManipulator closest = null, required = null;
+        float closestDistance = float.PositiveInfinity, requiredDistance = float.PositiveInfinity;
+        foreach (RaycastHit hit in Physics.RaycastAll(ray))
+        {
+            var candidate = hit.collider.GetComponentInParent<ARObjectManipulator>();
+            if (candidate == null) continue;
+            if (hit.distance < closestDistance) { closest = candidate; closestDistance = hit.distance; }
+            // The current step's component remains selectable through a surrounding case collider.
+            if (mode == ARInteractionMode.Edit && assemblyManager != null && !candidate.IsLocked &&
+                assemblyManager.IsCurrentStepComponent(candidate.gameObject) && hit.distance < requiredDistance)
+            {
+                required = candidate;
+                requiredDistance = hit.distance;
+            }
+        }
+        return required != null ? required : closest;
+    }
+
+    private void DragTo(Vector2 position)
+    {
+        if (dragObject == null || dragObject != selectedObject || !CanManipulateSelection() ||
+            (placementManager != null && !placementManager.AllowMovement))
+        { CancelWorldDrag(); return; }
+        if (IsScreenPositionOverUI(position)) { CancelWorldDrag(); return; }
+        if (!dragging && (position - dragStartScreen).sqrMagnitude <
+            dragThresholdPixels * dragThresholdPixels) return;
+        Ray ray = mainCamera.ScreenPointToRay(position);
+        if (!dragPlane.Raycast(ray, out float distance)) return;
+        dragging = true;
+        dragObject.MoveTo(ray.GetPoint(distance) + dragOffset);
+    }
+
+    private bool EndWorldDrag()
+    {
+        var target = dragObject;
+        bool moved = dragging;
+        CancelWorldDrag();
+        if (!moved || target == null || target != selectedObject) return false;
+        CheckAssemblyStep(target.gameObject);
+        return true;
+    }
+
+    private void CancelWorldDrag() { dragObject = null; dragging = false; }
+
+    private readonly System.Collections.Generic.List<RaycastResult> uiHits =
+        new System.Collections.Generic.List<RaycastResult>();
+    private bool IsScreenPositionOverUI(Vector2 position)
+    {
+        if (EventSystem.current == null) return false;
+        var pointer = new PointerEventData(EventSystem.current) { position = position };
+        uiHits.Clear();
+        EventSystem.current.RaycastAll(pointer, uiHits);
+        foreach (var hit in uiHits)
+            if (hit.module is UnityEngine.UI.GraphicRaycaster) return true;
+        return false;
+    }
 
     private void ApplyScale(float amount)
     {
+        if (placementManager != null && !placementManager.AllowScaling) return;
         if (placementManager != null && placementManager.IsAssemblyActivity)
         {
             placementManager.ScaleAssembly(amount);
             return;
         }
-
-        selectedObject.ChangeScale(amount, minimumScale, maximumScale);
+        if (selectedObject != null) selectedObject.ChangeScale(amount, maximumObjectMultiplier);
     }
     public void DeselectObject()
     {
+        CancelWorldDrag();
+        CancelPrecisionAdjustment();
         selectedObject = null;
-
-        if (infoCardManager != null)
-        {
-            infoCardManager.HideInfo();
-        }
+        if (infoCardManager != null) infoCardManager.HideInfo();
     }
-
     private ARInteractionMode GetCurrentMode()
     {
-        if (modeManager == null)
-            return ARInteractionMode.Edit;
-
-        return modeManager.CurrentMode;
+        if (assemblyManager != null && assemblyManager.RequiresEditMode) return ARInteractionMode.Edit;
+        return modeManager != null ? modeManager.CurrentMode : ARInteractionMode.Edit;
     }
-
-    private void CheckAssemblyStep(GameObject selectedObject)
+    private void CheckAssemblyStep(GameObject candidate)
     {
-        if (assemblyManager == null)
-            return;
-
-        if (selectedObject == null)
-            return;
-
-        assemblyManager.TryCompleteCurrentStep(selectedObject);
+        if (assemblyManager != null && candidate != null) assemblyManager.TryCompleteCurrentStep(candidate);
     }
 }
