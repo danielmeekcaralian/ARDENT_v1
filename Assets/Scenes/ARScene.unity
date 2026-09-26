@@ -168,6 +168,8 @@ MonoBehaviour:
   raycastManager: {fileID: 747576121}
   contentParent: {fileID: 1472036442}
   placementIndicator: {fileID: 685734415}
+  minimumAssemblyScale: 0.5
+  maximumAssemblyScale: 2
 --- !u!114 &62413083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3933,7 +3935,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1692192866
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3971,7 +3973,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.20804836, g: 0.10693307, b: 0.254717, a: 0.54509807}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.9843137}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
