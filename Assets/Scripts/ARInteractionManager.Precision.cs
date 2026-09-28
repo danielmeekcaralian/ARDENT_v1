@@ -12,14 +12,24 @@ public partial class ARInteractionManager
     [Tooltip("World units per second at the original assembly size.")]
     [SerializeField, Min(0.001f)] private float heightSpeed = 0.15f;
     [SerializeField, Min(1f)] private float tiltSpeed = 35f;
-    [Tooltip("Optional parent for the generated controls. Defaults to the AR Canvas.")]
-    [SerializeField] private RectTransform precisionControlsParent;
-    [SerializeField] private Vector2 precisionControlsPosition = new Vector2(-24f, 0f);
+    [Header("Scene Adjustment UI")]
+    [SerializeField] private Button adjustButton;
+    [SerializeField] private GameObject precisionPanel;
+    [SerializeField] private TMP_Text precisionTitle;
+    [SerializeField] private Button lowerButton;
+    [SerializeField] private Button raiseButton;
+    [SerializeField] private Button tiltXMinusButton;
+    [SerializeField] private Button tiltXPlusButton;
+    [SerializeField] private Button tiltZMinusButton;
+    [SerializeField] private Button tiltZPlusButton;
+    [SerializeField] private Button alignRotationButton;
+    [SerializeField] private Button closeAdjustmentButton;
 
-    private GameObject precisionPanel;
-    private TMP_Text precisionTitle;
     private Button[] precisionButtons;
-    private Button alignRotationButton;
+    private bool precisionUIReady;
+    private bool precisionUIAttempted;
+    private bool precisionPanelOpen;
+    private ARObjectManipulator precisionSelection;
     private ARObjectManipulator precisionTarget;
     private PrecisionAction precisionAction;
     private float precisionDirection;
@@ -38,11 +48,16 @@ public partial class ARInteractionManager
     // Returns true when the button gesture owns input, including its release frame.
     private bool UpdatePrecisionControls()
     {
-        bool visible = CanAdjustSelection;
-        if (visible && precisionPanel == null) CreatePrecisionPanel();
-        if (precisionPanel != null)
+        InitializePrecisionUI();
+        bool visible = precisionUIReady && CanAdjustSelection;
+        if (!visible || precisionSelection != selectedObject) ClosePrecisionPanel();
+        precisionSelection = selectedObject;
+        if (adjustButton != null && adjustButton.gameObject.activeSelf != visible)
+            adjustButton.gameObject.SetActive(visible);
+        if (precisionUIReady)
         {
-            if (precisionPanel.activeSelf != visible) precisionPanel.SetActive(visible);
+            bool showPanel = visible && precisionPanelOpen;
+            if (precisionPanel.activeSelf != showPanel) precisionPanel.SetActive(showPanel);
             if (visible)
             {
                 var info = selectedObject.GetComponent<ARObjectInfo>();
@@ -90,7 +105,8 @@ public partial class ARInteractionManager
 
     public bool BeginPrecisionAdjustment(PrecisionAction action, float direction)
     {
-        if (!CanAdjustSelection || !ActionAllowed(action) || precisionTarget != null)
+        if (!precisionUIReady || !precisionPanelOpen || !precisionPanel.activeInHierarchy ||
+            !CanAdjustSelection || !ActionAllowed(action) || precisionTarget != null)
             return false;
         precisionTarget = selectedObject;
         precisionAction = action;
@@ -134,79 +150,67 @@ public partial class ARInteractionManager
         precisionTarget = null;
     }
 
-    private void OnDisable() { CancelPrecisionAdjustment(); if (precisionPanel != null) precisionPanel.SetActive(false); }
+    private void OnEnable() { InitializePrecisionUI(); }
+    private void OnDisable()
+    {
+        ClosePrecisionPanel();
+        if (adjustButton != null) adjustButton.gameObject.SetActive(false);
+    }
     private void OnApplicationFocus(bool focused) { if (!focused) CancelPrecisionAdjustment(); }
     private void OnApplicationPause(bool paused) { if (paused) CancelPrecisionAdjustment(); }
-    private void OnDestroy() { if (precisionPanel != null) Destroy(precisionPanel); }
-
-    private void CreatePrecisionPanel()
+    private void OnDestroy()
     {
-        Transform parent = precisionControlsParent;
-        if (parent == null)
-        {
-            Canvas fallback = null;
-            foreach (Canvas canvas in FindObjectsByType<Canvas>(FindObjectsSortMode.None))
-            {
-                if (!canvas.isRootCanvas || canvas.renderMode == RenderMode.WorldSpace) continue;
-                fallback = canvas;
-                if (canvas.name == "AR Canvas") break;
-            }
-            if (fallback == null) return;
-            parent = fallback.transform;
-        }
-        precisionPanel = new GameObject("HeightAndTiltControls", typeof(RectTransform), typeof(Image));
-        var panelRect = precisionPanel.GetComponent<RectTransform>();
-        panelRect.SetParent(parent, false);
-        panelRect.anchorMin = panelRect.anchorMax = panelRect.pivot = new Vector2(1f, 0.5f);
-        panelRect.anchoredPosition = precisionControlsPosition;
-        panelRect.sizeDelta = new Vector2(360f, 318f);
-        precisionPanel.GetComponent<Image>().color = new Color(0.04f, 0.09f, 0.12f, 0.94f);
-        TMP_FontAsset font = null;
-        var existingText = parent.GetComponentInChildren<TMP_Text>();
-        if (existingText != null) font = existingText.font;
-        precisionTitle = MakePrecisionLabel(panelRect, "", font, 23f);
-        var titleRect = precisionTitle.rectTransform;
-        titleRect.anchorMin = new Vector2(0f, 1f);
-        titleRect.anchorMax = Vector2.one;
-        titleRect.pivot = new Vector2(0.5f, 1f);
-        titleRect.offsetMin = new Vector2(12f, -48f);
-        titleRect.offsetMax = new Vector2(-12f, -6f);
-        precisionTitle.overflowMode = TextOverflowModes.Ellipsis;
+        // These objects belong to the scene, not to this component.
+        if (adjustButton != null) adjustButton.onClick.RemoveListener(TogglePrecisionPanel);
+        if (closeAdjustmentButton != null) closeAdjustmentButton.onClick.RemoveListener(ClosePrecisionPanel);
+        if (alignRotationButton != null) alignRotationButton.onClick.RemoveListener(AlignSelectedRotation);
+    }
 
-        precisionButtons = new Button[6];
-        string[] labels = { "Lower", "Raise", "Tilt X -", "Tilt X +", "Tilt Z -", "Tilt Z +" };
-        for (int i = 0; i < labels.Length; i++)
+    private void InitializePrecisionUI()
+    {
+        if (precisionUIAttempted) return;
+        precisionUIAttempted = true;
+        precisionButtons = new[] { lowerButton, raiseButton, tiltXMinusButton,
+            tiltXPlusButton, tiltZMinusButton, tiltZPlusButton };
+        bool complete = adjustButton != null && precisionPanel != null && precisionTitle != null &&
+            closeAdjustmentButton != null && alignRotationButton != null;
+        foreach (var button in precisionButtons) complete &= button != null;
+        if (precisionPanel != null) precisionPanel.SetActive(false);
+        if (adjustButton != null) adjustButton.gameObject.SetActive(false);
+        if (!complete)
         {
-            var buttonObject = new GameObject(labels[i], typeof(RectTransform), typeof(Image), typeof(Button), typeof(ARPrecisionHoldButton));
-            var rect = buttonObject.GetComponent<RectTransform>();
-            rect.SetParent(panelRect, false);
-            rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(0f, 1f);
-            rect.anchoredPosition = new Vector2(12f + (i % 2) * 172f, -54f - (i / 2) * 64f);
-            rect.sizeDelta = new Vector2(164f, 56f);
-            buttonObject.GetComponent<Image>().color = new Color(0.06f, 0.40f, 0.48f, 1f);
-            var button = buttonObject.GetComponent<Button>();
-            button.navigation = new Navigation { mode = Navigation.Mode.None };
-            precisionButtons[i] = button;
-            var label = MakePrecisionLabel(rect, labels[i], font, 24f);
-            label.rectTransform.anchorMin = Vector2.zero;
-            label.rectTransform.anchorMax = Vector2.one;
-            label.rectTransform.offsetMin = label.rectTransform.offsetMax = Vector2.zero;
-            buttonObject.GetComponent<ARPrecisionHoldButton>().Configure(this, (PrecisionAction)(i / 2), i % 2 == 0 ? -1f : 1f);
+            Debug.LogWarning("Assign all Scene Adjustment UI fields on ARInteractionManager. No panel will be generated.", this);
+            return;
         }
-        var alignObject = new GameObject("AlignRotationButton", typeof(RectTransform), typeof(Image), typeof(Button));
-        var alignRect = alignObject.GetComponent<RectTransform>();
-        alignRect.SetParent(panelRect, false);
-        alignRect.anchorMin = alignRect.anchorMax = alignRect.pivot = new Vector2(0f, 1f);
-        alignRect.anchoredPosition = new Vector2(12f, -246f);
-        alignRect.sizeDelta = new Vector2(336f, 56f);
-        alignObject.GetComponent<Image>().color = new Color(0.10f, 0.30f, 0.44f, 1f);
-        alignRotationButton = alignObject.GetComponent<Button>();
-        alignRotationButton.navigation = new Navigation { mode = Navigation.Mode.None };
+        for (int i = 0; i < precisionButtons.Length; i++)
+        {
+            var button = precisionButtons[i];
+            var hold = button.GetComponent<ARPrecisionHoldButton>();
+            if (hold == null) hold = button.gameObject.AddComponent<ARPrecisionHoldButton>();
+            hold.Configure(this, (PrecisionAction)(i / 2), i % 2 == 0 ? -1f : 1f);
+        }
+        adjustButton.onClick.AddListener(TogglePrecisionPanel);
+        closeAdjustmentButton.onClick.AddListener(ClosePrecisionPanel);
         alignRotationButton.onClick.AddListener(AlignSelectedRotation);
-        var alignLabel = MakePrecisionLabel(alignRect, "Align Rotation", font, 24f);
-        alignLabel.rectTransform.anchorMin = Vector2.zero;
-        alignLabel.rectTransform.anchorMax = Vector2.one;
-        alignLabel.rectTransform.offsetMin = alignLabel.rectTransform.offsetMax = Vector2.zero;
+        precisionUIReady = true;
+    }
+
+    public void TogglePrecisionPanel()
+    {
+        if (!precisionUIReady || !CanAdjustSelection) return;
+        if (precisionPanelOpen) { ClosePrecisionPanel(); return; }
+        CancelWorldDrag();
+        CancelPrecisionAdjustment();
+        precisionSelection = selectedObject;
+        precisionPanelOpen = true;
+        precisionPanel.SetActive(true);
+    }
+
+    public void ClosePrecisionPanel()
+    {
+        CancelPrecisionAdjustment();
+        precisionPanelOpen = false;
+        if (precisionPanel != null && precisionPanel.activeSelf) precisionPanel.SetActive(false);
     }
 
     public void AlignSelectedRotation()
@@ -219,17 +223,4 @@ public partial class ARInteractionManager
         // release still runs the normal distance and angle checks.
     }
 
-    private TMP_Text MakePrecisionLabel(Transform parent, string text, TMP_FontAsset font, float fontSize)
-    {
-        var labelObject = new GameObject("Label", typeof(RectTransform), typeof(TextMeshProUGUI));
-        labelObject.transform.SetParent(parent, false);
-        var label = labelObject.GetComponent<TextMeshProUGUI>();
-        if (font != null) label.font = font;
-        label.text = text;
-        label.fontSize = fontSize;
-        label.alignment = TextAlignmentOptions.Center;
-        label.color = Color.white;
-        label.raycastTarget = false;
-        return label;
-    }
 }

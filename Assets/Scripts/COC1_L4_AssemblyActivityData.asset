@@ -76,3 +76,33 @@ MonoBehaviour:
     targetID: gpu_target
     snapDistance: 0.15
     rotationTolerance: 15
+  - stepNumber: 5
+    stepTitle: Hard Drive
+    instruction: Install the hard drive near the power supply
+    component:
+      inventoryImage: {fileID: 3864428466072297617, guid: 03636024bb394e708ec00c06aac479cc, type: 3}
+      prefab: {fileID: 6745715773498611912, guid: 2ab68aa35f0895143872c65c86469453, type: 3}
+    anchorID: case
+    targetID: hdd_target
+    snapDistance: 0.15
+    rotationTolerance: 15
+  - stepNumber: 5
+    stepTitle: Right Case Panel
+    instruction: Attach the metal panel on the right side of the case
+    component:
+      inventoryImage: {fileID: 890406873013115529, guid: d8b1463e4d3d4c69aace95e5f567f35b, type: 3}
+      prefab: {fileID: 3179287049947295760, guid: 3c3f0406c3ca06942bd21cddb8a94bc1, type: 3}
+    anchorID: case
+    targetID: rightPanel_target
+    snapDistance: 0.15
+    rotationTolerance: 15
+  - stepNumber: 6
+    stepTitle: Left Case Panel
+    instruction: Attach the glass panel on the left side of the case
+    component:
+      inventoryImage: {fileID: 2041530902126082127, guid: f26958cc677c4c7fb08d6c810a3dfdba, type: 3}
+      prefab: {fileID: 5672305007152682722, guid: 5a700a9a1661ee14ea23a2bd8378047c, type: 3}
+    anchorID: case
+    targetID: glassPanel_target
+    snapDistance: 0.15
+    rotationTolerance: 15

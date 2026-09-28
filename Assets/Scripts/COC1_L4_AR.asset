@@ -32,6 +32,12 @@ MonoBehaviour:
     prefab: {fileID: 2545629181937371313, guid: e4be85666dc52fe48b6782c7b2f9277e, type: 3}
   - inventoryImage: {fileID: 7343216870570349648, guid: 0c070651eb6dac747908f97a400cd4b1, type: 3}
     prefab: {fileID: 4825862472657794192, guid: 26c2d7c80e921e44e8b6bd005748a22c, type: 3}
+  - inventoryImage: {fileID: 3864428466072297617, guid: 03636024bb394e708ec00c06aac479cc, type: 3}
+    prefab: {fileID: 6745715773498611912, guid: 2ab68aa35f0895143872c65c86469453, type: 3}
+  - inventoryImage: {fileID: 890406873013115529, guid: d8b1463e4d3d4c69aace95e5f567f35b, type: 3}
+    prefab: {fileID: 3179287049947295760, guid: 3c3f0406c3ca06942bd21cddb8a94bc1, type: 3}
+  - inventoryImage: {fileID: 2041530902126082127, guid: f26958cc677c4c7fb08d6c810a3dfdba, type: 3}
+    prefab: {fileID: 5672305007152682722, guid: 5a700a9a1661ee14ea23a2bd8378047c, type: 3}
   requirePlanePlacement: 1
   allowRotation: 1
   allowScaling: 1
