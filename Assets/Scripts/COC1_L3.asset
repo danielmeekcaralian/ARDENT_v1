@@ -194,13 +194,17 @@ MonoBehaviour:
       is to establish components positions that optimize cooling outside the case
       to support higher component operating speeds.  The BTX form factor design is
       incompatible with the ATX standard, except that you are able to use ATX power
-      supplies with BTX boards and systems. \r\n\r\n\tThe New Low-Profile Extended
-      (NLX) form factor, which is the replacement form factor specification form
-      Intel for the Older LPX low-profile specification.  The NLX specification is
-      designed to support newer PC technologies, such as larger memory modules, advanced
-      microprocessors, and their cooling systems.  The NLX system incorporates a
-      backplane that mounts in a slot on the main board and enables adapter cards
-      to be plugged in horizontally. This is one of the major keys to its low profile.  "
+      supplies with BTX boards and systems. \r\n "
+    image: {fileID: 0}
+  - subtopicID: 0303
+    slideType: 0
+    content: "\r\nThe New Low-Profile Extended (NLX) form factor, which is the replacement
+      form factor specification form Intel for the Older LPX low-profile specification. 
+      The NLX specification is designed to support newer PC technologies, such as
+      larger memory modules, advanced microprocessors, and their cooling systems. 
+      The NLX system incorporates a backplane that mounts in a slot on the main board
+      and enables adapter cards to be plugged in horizontally. This is one of the
+      major keys to its low profile.\n "
     image: {fileID: 0}
   - subtopicID: 0304
     slideType: 0
@@ -237,15 +241,18 @@ MonoBehaviour:
       nature, as opposed to hardware that is either demanded or always required in
       principle. There are all different kinds of peripherals you can add your computer.
       The main distinction among peripherals is the way they are connected to your
-      computer. They can be connected internally or externally. \r\n\r\n \r\n\r\nBuses
-      \r\n\t\n\tA bus is a subsystem that transfers data between computer components
-      inside a computer or between computers. Unlike a point-to-point connection,
-      a bus can logically connect several peripherals over the same set of wires.
-      Each bus defines its set of connectors to physically plug devices, cards or
-      cables together. There are two types of buses: internal and external. Internal
-      buses are connections to various internal components. External buses are connections
-      to various external components. There are different kinds of slots that internal
-      and external devices can connect to."
+      computer. They can be connected internally or externally. \r\n"
+    image: {fileID: 0}
+  - subtopicID: 0305
+    slideType: 0
+    content: "Buses \r\n\t\n\tA bus is a subsystem that transfers data between computer
+      components inside a computer or between computers. Unlike a point-to-point
+      connection, a bus can logically connect several peripherals over the same set
+      of wires. Each bus defines its set of connectors to physically plug devices,
+      cards or cables together. There are two types of buses: internal and external.
+      Internal buses are connections to various internal components. External buses
+      are connections to various external components. There are different kinds of
+      slots that internal and external devices can connect to.\n"
     image: {fileID: 0}
   - subtopicID: 0305
     slideType: 0
@@ -293,24 +300,34 @@ MonoBehaviour:
       open collector outputs are required on both ends of the keyboard interface
       to allow bidirectional communication. If a PS/2 mouse is connected to a PS/2
       keyboard port, the mouse may not be recognized by the computer depending on
-      configuration. \n\nUSB-USB (Universal Serial Bus) is a serial bus standard
-      to interface devices. USB was designed to allow many peripherals to be connected
-      using a single standardized interface socket and to improve the plug-and-play
-      capabilities by allowing devices to be connected and disconnected without rebooting
-      the computer. Other convenient features include providing power to low-consumption
+      configuration. \n "
+    image: {fileID: 0}
+  - subtopicID: 0305
+    slideType: 0
+    content: 'USB-USB (Universal Serial Bus) is a serial bus standard to interface
+      devices. USB was designed to allow many peripherals to be connected using a
+      single standardized interface socket and to improve the plug-and-play capabilities
+      by allowing devices to be connected and disconnected without rebooting the
+      computer. Other convenient features include providing power to low-consumption
       devices without the need for an external power supply and allowing many devices
       to be used without requiring manufacturer specific, individual device drivers
       to be installed. USB is by far the dominating bus for connecting external devices
-      to your computer.\n\nFirewire- Firewire (technically known as IEEE 1394 and
-      also known as i.LINK for Sony) is a serial bus interface standard for high-speed
-      communications and isochronous real-time data transfer, frequently used in
-      a personal computer. Firewire has replaced Parallel ports in many applications.
-      It has been adopted as the High Definition Audio-Video Network Alliance (HANA)
-      standard connection interface for A/V (audio/visual) component communication
-      and control. Almost all modern digital camcorders have included this connection.   "
+      to your computer.
+
+'
+    image: {fileID: 0}
+  - subtopicID: 0305
+    slideType: 0
+    content: "Firewire- Firewire (technically known as IEEE 1394 and also known as
+      i.LINK for Sony) is a serial bus interface standard for high-speed communications
+      and isochronous real-time data transfer, frequently used in a personal computer.
+      Firewire has replaced Parallel ports in many applications. It has been adopted
+      as the High Definition Audio-Video Network Alliance (HANA) standard connection
+      interface for A/V (audio/visual) component communication and control. Almost
+      all modern digital camcorders have included this connection.  \n "
     image: {fileID: 0}
   hasARActivity: 0
-  hasQuiz: 0
+  hasQuiz: 1
   requiresARActivity: 0
   requiresQuiz: 0
   arActivity: {fileID: 11400000, guid: 1184b5a670009564d8da7de247472175, type: 2}
