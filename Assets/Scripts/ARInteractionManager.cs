@@ -51,7 +51,7 @@ public partial class ARInteractionManager : MonoBehaviour
 
     private void Update()
     {
-        if (ARCheckpointSession.BlocksInput) { CancelWorldDrag(); CancelPrecisionAdjustment(); return; }
+        if (ARCheckpointSession.BlocksInput || UIManager.HasOpenPanel) { CancelWorldDrag(); CancelPrecisionAdjustment(); return; }
         if (mainCamera == null) mainCamera = Camera.main;
         if (UpdatePrecisionControls())
         {
@@ -87,7 +87,7 @@ public partial class ARInteractionManager : MonoBehaviour
             rotationObject == selectedObject && CanManipulateSelection() &&
             !IsScreenPositionOverUI(position) && (placementManager == null || placementManager.AllowRotation))
         {
-            float amount = -(position.x - previousMousePosition.x) * rotationSpeed;
+            float amount = -(position.x - previousMousePosition.x) * rotationSpeed * ArdentSettings.Rotation;
             rotationObject.Rotate(amount);
             rotated |= Mathf.Abs(amount) > 0.001f;
         }
@@ -104,7 +104,7 @@ public partial class ARInteractionManager : MonoBehaviour
             !IsScreenPositionOverUI(position))
         {
             float scroll = mouse.scroll.ReadValue().y;
-            if (Mathf.Abs(scroll) > 0.01f) ApplyScale(scroll * mouseZoomSensitivity);
+            if (Mathf.Abs(scroll) > 0.01f) ApplyScale(scroll * mouseZoomSensitivity * ArdentSettings.Zoom);
         }
     }
 #else
@@ -175,13 +175,13 @@ public partial class ARInteractionManager : MonoBehaviour
         float previousDistance = Vector2.Distance(previousFirstTouchPosition, previousSecondTouchPosition);
         float currentDistance = Vector2.Distance(first, second);
         if (previousDistance > 1f && currentDistance > 1f)
-            ApplyScale(Mathf.Log(currentDistance / previousDistance) * pinchZoomSensitivity);
+            ApplyScale(Mathf.Log(currentDistance / previousDistance) * pinchZoomSensitivity * ArdentSettings.Zoom);
         Vector2 previous = previousSecondTouchPosition - previousFirstTouchPosition;
         Vector2 current = second - first;
         float angleDelta = Mathf.DeltaAngle(Mathf.Atan2(previous.y, previous.x) * Mathf.Rad2Deg,
             Mathf.Atan2(current.y, current.x) * Mathf.Rad2Deg);
         if (placementManager == null || placementManager.AllowRotation)
-            selectedObject.Rotate(-angleDelta * rotationSpeed);
+            selectedObject.Rotate(-angleDelta * rotationSpeed * ArdentSettings.Rotation);
         touchGestureChanged |= Mathf.Abs(distanceDelta) > 0.01f || Mathf.Abs(angleDelta) > 0.01f;
         previousFirstTouchPosition = first;
         previousSecondTouchPosition = second;
