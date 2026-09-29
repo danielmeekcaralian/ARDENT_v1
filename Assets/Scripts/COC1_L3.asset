@@ -334,16 +334,9 @@ MonoBehaviour:
       interface for A/V (audio/visual) component communication and control. Almost
       all modern digital camcorders have included this connection.  \n "
     image: {fileID: 0}
-<<<<<<< HEAD
   hasARActivity: 1
   hasQuiz: 1
   requiresARActivity: 1
   requiresQuiz: 1
-=======
-  hasARActivity: 0
-  hasQuiz: 1
-  requiresARActivity: 0
-  requiresQuiz: 0
->>>>>>> Mecca_Branch
   arActivity: {fileID: 11400000, guid: 1184b5a670009564d8da7de247472175, type: 2}
   quizData: {fileID: 11400000, guid: a3c67d2e103adbe4abd4e97cba874d11, type: 2}
