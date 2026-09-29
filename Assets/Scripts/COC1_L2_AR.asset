@@ -20,36 +20,52 @@ MonoBehaviour:
   availableObjects:
   - inventoryImage: {fileID: -4798058203211780829, guid: 57d87b914567d02449aa5cbfe3cc9458, type: 3}
     prefab: {fileID: 3393799316356417490, guid: 389ea28ba9f6fdf409cbda16bfc54406, type: 3}
+    libraryItemId: 389ea28ba9f6fdf409cbda16bfc54406
   - inventoryImage: {fileID: 3445864970403278699, guid: 5253a8feae13ea0429f351999172004e, type: 3}
     prefab: {fileID: 3568125277534975250, guid: 71390690d0680b046a57c5387a869444, type: 3}
+    libraryItemId: 71390690d0680b046a57c5387a869444
   - inventoryImage: {fileID: -6121837017320742519, guid: bba1d47961ddae840b3030fe6350e6b8, type: 3}
     prefab: {fileID: 8329960315331879968, guid: 3441cce63dfa67340b7fa42e9162c9f3, type: 3}
+    libraryItemId: 3441cce63dfa67340b7fa42e9162c9f3
   - inventoryImage: {fileID: -2638180442140508291, guid: d0148dec502dde5448e0f1af1296e790, type: 3}
     prefab: {fileID: 5842027661914488765, guid: bc1b9cc36c91ea0408b3bbf855a3fcc0, type: 3}
+    libraryItemId: bc1b9cc36c91ea0408b3bbf855a3fcc0
   - inventoryImage: {fileID: 1674890055328481940, guid: dff2a9f950dc2bd4096cd785ee58e373, type: 3}
     prefab: {fileID: 5117734773016457161, guid: 81deb523464920d4ead22cc11491c8ec, type: 3}
+    libraryItemId: 81deb523464920d4ead22cc11491c8ec
   - inventoryImage: {fileID: 4987624683313590878, guid: d88b426eca7291040afd81602db43367, type: 3}
     prefab: {fileID: 3307934884330067695, guid: 1b231a1939362de4fac7fe96fd872ee1, type: 3}
+    libraryItemId: 1b231a1939362de4fac7fe96fd872ee1
   - inventoryImage: {fileID: -7843563544498243031, guid: b116ae49523252f4d92ceab0d388049d, type: 3}
     prefab: {fileID: 3144798692940291227, guid: 2cc73c920c2cb2b4c967279ad715abf0, type: 3}
+    libraryItemId: 2cc73c920c2cb2b4c967279ad715abf0
   - inventoryImage: {fileID: -5913738696227704600, guid: d47d7677136c30a42b1558d2af53483d, type: 3}
     prefab: {fileID: 8615509775367878266, guid: 17941011aa71ead45afd696e8f896857, type: 3}
+    libraryItemId: 17941011aa71ead45afd696e8f896857
   - inventoryImage: {fileID: 5596877097421742593, guid: 4fe145f5a8348354e9dd1b88f202c954, type: 3}
     prefab: {fileID: 576607443845056154, guid: aa1fd1fa061b2f34eada00940456a9b6, type: 3}
+    libraryItemId: aa1fd1fa061b2f34eada00940456a9b6
   - inventoryImage: {fileID: -8093268245298757882, guid: 2359dc4bb84305c4d825838c6b1b22e0, type: 3}
     prefab: {fileID: 6129895088781255883, guid: ba9051f63aca3da46aef64b6f0b31c90, type: 3}
+    libraryItemId: ba9051f63aca3da46aef64b6f0b31c90
   - inventoryImage: {fileID: -6905653086546877105, guid: ee4a1936e6c873541a1e2d2fbc2c9ee2, type: 3}
     prefab: {fileID: 1869613396810114494, guid: 80893bfa94bbc584594c117f1e2e467f, type: 3}
+    libraryItemId: 80893bfa94bbc584594c117f1e2e467f
   - inventoryImage: {fileID: -5883172773260258095, guid: e10d28ba1a35d6e45be412e70c52824a, type: 3}
     prefab: {fileID: 7975935542742267552, guid: bacecb26911c13f4c81c2c1fac3f6f2b, type: 3}
+    libraryItemId: bacecb26911c13f4c81c2c1fac3f6f2b
   - inventoryImage: {fileID: 7516631808793192733, guid: 9bea862f9e75bc24890081cc289a55b9, type: 3}
     prefab: {fileID: 609248417403529603, guid: 63e247917ab33994d95e78b2f35169d2, type: 3}
+    libraryItemId: 63e247917ab33994d95e78b2f35169d2
   - inventoryImage: {fileID: 1011511256227955051, guid: 61f516dca2b7cc94aa08b0dd4ca47a74, type: 3}
     prefab: {fileID: 3067715218035889991, guid: 1d89469f970179c4b941765e04f07d66, type: 3}
+    libraryItemId: 1d89469f970179c4b941765e04f07d66
   - inventoryImage: {fileID: 971962220100965918, guid: f2936538b65f0424f9e8a9d48cbf052b, type: 3}
     prefab: {fileID: 1205511035959794806, guid: b39ba38b654262b4498a768de8873ba3, type: 3}
+    libraryItemId: b39ba38b654262b4498a768de8873ba3
   - inventoryImage: {fileID: 3421832919273565011, guid: a9582eabb66a85e46972a99ea10c2e0c, type: 3}
     prefab: {fileID: 2884211219390707581, guid: c2b57e4754f37fa4baeabd0092ce392d, type: 3}
+    libraryItemId: c2b57e4754f37fa4baeabd0092ce392d
   requirePlanePlacement: 1
   allowRotation: 1
   allowScaling: 1

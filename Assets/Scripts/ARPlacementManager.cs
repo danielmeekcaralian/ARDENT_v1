@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
-public class ARPlacementManager : MonoBehaviour
+public partial class ARPlacementManager : MonoBehaviour
 {
     [Header("AR References")]
     [SerializeField]
@@ -31,6 +31,7 @@ public class ARPlacementManager : MonoBehaviour
     {
         get
         {
+            if (ARCheckpointSession.BlocksInput) return false;
             if (!IsAssemblyActivity) return true;
             var manager = FindFirstObjectByType<ARAssemblyManager>();
             return manager == null || manager.CanPlaceObjects;

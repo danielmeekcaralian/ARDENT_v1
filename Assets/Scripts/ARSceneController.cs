@@ -97,6 +97,10 @@ public class ARSceneController : MonoBehaviour
                 activityData.activityTitle;
         }
 
+        var checkpoints = GetComponent<ARCheckpointSession>();
+        if (checkpoints == null) checkpoints = gameObject.AddComponent<ARCheckpointSession>();
+        checkpoints.Initialize(currentLesson, activityProgress, placementManager);
+
         Debug.Log(
             "AR Activity: " +
             activityData.activityTitle

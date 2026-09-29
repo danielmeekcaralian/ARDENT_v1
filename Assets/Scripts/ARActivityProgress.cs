@@ -60,6 +60,31 @@ public class ARActivityProgress : MonoBehaviour
         );
 
         CheckCompletion();
+        ARCheckpointSession.SaveCurrent();
+    }
+
+    public string[] CaptureInspectedObjects()
+    {
+        var names = new string[inspectedObjects.Count];
+        inspectedObjects.CopyTo(names);
+        return names;
+    }
+
+    public void RestoreInspectedObjects(string[] names)
+    {
+        inspectedObjects.Clear();
+        if (names != null && currentActivity != null && currentActivity.availableObjects != null)
+        {
+            var valid = new HashSet<string>();
+            foreach (var item in currentActivity.availableObjects)
+            {
+                var info = item?.prefab != null ? item.prefab.GetComponent<ARObjectInfo>() : null;
+                if (info != null) valid.Add(info.objectName);
+            }
+            foreach (var name in names) if (name != null && valid.Contains(name)) inspectedObjects.Add(name);
+        }
+        UpdateProgressUI();
+        CheckCompletion();
     }
 
     private int GetRequiredObjectCount()
@@ -169,6 +194,8 @@ public class ARActivityProgress : MonoBehaviour
         ProgressManager.Instance.CompleteARActivity(
             currentLesson
         );
+
+        ARCheckpointSession.CompleteCurrent();
 
         // Show the button that allows the user
         // to open the completion popup.

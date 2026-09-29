@@ -168,6 +168,7 @@ public partial class ARAssemblyManager
         removalIndex = installedParts.Count - 1;
         if (startDisassemblyButton != null) startDisassemblyButton.gameObject.SetActive(false);
         PrepareRemovalStep();
+        ARCheckpointSession.SaveCurrent();
     }
 
     private void PrepareRemovalStep()
@@ -214,6 +215,7 @@ public partial class ARAssemblyManager
         removalIndex--;
         if (removalIndex < 0) FinishCombinedActivity();
         else PrepareRemovalStep();
+        ARCheckpointSession.SaveCurrent();
         return true;
     }
 

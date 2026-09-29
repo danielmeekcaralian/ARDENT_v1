@@ -20,26 +20,37 @@ MonoBehaviour:
   availableObjects:
   - inventoryImage: {fileID: 3157739483931916561, guid: 53f58c7c531046b094d1a54a3a12967a, type: 3}
     prefab: {fileID: 9019250581043997963, guid: 04c873d12492aa74f9d7829ba8e99fee, type: 3}
+    libraryItemId: 04c873d12492aa74f9d7829ba8e99fee
   - inventoryImage: {fileID: 2139668373945282543, guid: 30b1b59f97f9487f924229966371afb0, type: 3}
     prefab: {fileID: 445635645256208912, guid: 411b95eb955bd6148a475b9ff3edb538, type: 3}
+    libraryItemId: 411b95eb955bd6148a475b9ff3edb538
   - inventoryImage: {fileID: 4137186131300754987, guid: dcc1374d441d4f5db52adc70bd075fa6, type: 3}
     prefab: {fileID: 491626629357631578, guid: 84578cca13e5ad446bea82cffed2a055, type: 3}
+    libraryItemId: 84578cca13e5ad446bea82cffed2a055
   - inventoryImage: {fileID: 3864428466072297617, guid: 03636024bb394e708ec00c06aac479cc, type: 3}
     prefab: {fileID: 6745715773498611912, guid: 2ab68aa35f0895143872c65c86469453, type: 3}
+    libraryItemId: 2ab68aa35f0895143872c65c86469453
   - inventoryImage: {fileID: 3012302650323487669, guid: ead4ed0d00054d6abeacd451e873ed1e, type: 3}
     prefab: {fileID: 8903498484575581090, guid: 2a24c11b5bd842943a3d5056ba6ed656, type: 3}
+    libraryItemId: 2a24c11b5bd842943a3d5056ba6ed656
   - inventoryImage: {fileID: -7283866715083166777, guid: fea8ac326de7ee6449f840e593decf32, type: 3}
     prefab: {fileID: 7874301754838353422, guid: 493aec01444a5eb4ea897903dbe8487a, type: 3}
+    libraryItemId: 493aec01444a5eb4ea897903dbe8487a
   - inventoryImage: {fileID: 1271039856538007597, guid: a7077626e0864b139d623f55bab63b91, type: 3}
     prefab: {fileID: 5606981642641523537, guid: d51ce2cd7d1a01f47836a648fb094bfe, type: 3}
+    libraryItemId: d51ce2cd7d1a01f47836a648fb094bfe
   - inventoryImage: {fileID: 1668417628870205170, guid: 4a310d2b83a66d64fa1a7aae62f35a25, type: 3}
     prefab: {fileID: 9185824627214929071, guid: b96a2b250292de746ac54ae150409701, type: 3}
+    libraryItemId: b96a2b250292de746ac54ae150409701
   - inventoryImage: {fileID: 1816673945901008235, guid: 26c629d688374222a0dc40e315adc56d, type: 3}
     prefab: {fileID: 3723750849249402546, guid: 6db573b516379644eab87476c60bbf75, type: 3}
+    libraryItemId: 6db573b516379644eab87476c60bbf75
   - inventoryImage: {fileID: 1492173254578913246, guid: 2b0fc2a411e642129f0dadab0b5c33dd, type: 3}
     prefab: {fileID: 764495864301445452, guid: 29cd082a323eb8a47888950c97722a86, type: 3}
+    libraryItemId: 29cd082a323eb8a47888950c97722a86
   - inventoryImage: {fileID: 2413300854800664814, guid: 5edb7e4f7cd84d8caadecb4883ee6304, type: 3}
     prefab: {fileID: 7059395314832790760, guid: 1c85af9ebd37a8241872ca139d4a4cfa, type: 3}
+    libraryItemId: 1c85af9ebd37a8241872ca139d4a4cfa
   requirePlanePlacement: 1
   allowRotation: 1
   allowScaling: 1

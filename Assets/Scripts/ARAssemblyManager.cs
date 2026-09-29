@@ -387,6 +387,7 @@ public partial class ARAssemblyManager : MonoBehaviour
 
         installedParts.Add(placedObject);
         AdvanceStep();
+        ARCheckpointSession.SaveCurrent();
 
         return true;
     }

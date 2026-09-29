@@ -51,6 +51,7 @@ public partial class ARInteractionManager : MonoBehaviour
 
     private void Update()
     {
+        if (ARCheckpointSession.BlocksInput) { CancelWorldDrag(); CancelPrecisionAdjustment(); return; }
         if (mainCamera == null) mainCamera = Camera.main;
         if (UpdatePrecisionControls())
         {

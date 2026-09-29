@@ -36,4 +36,12 @@ public class ARActivityData : ScriptableObject
     public bool allowRotation = true;
     public bool allowScaling = true;
     public bool allowMovement = true;
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        if (availableObjects == null) return;
+        foreach (var item in availableObjects)
+            if (item != null) item.RefreshLibraryIdentity();
+    }
+#endif
 }
