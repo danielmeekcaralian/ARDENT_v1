@@ -149,25 +149,13 @@ MonoBehaviour:
     image: {fileID: 0}
   - subtopicID: 0402
     slideType: 0
-    content: "Step 9. Install Internal Drives \r\n\r\n\tNow it is time to install
-      your drives. This is an easy process, but it requires attention to detail.
-      \r\n\r\n1. Make any necessary changes to jumpers on the drives before mounting
-      them in the case. A two-drive system (one or two SATA (Serial ATA- is a standard
-      hardware interface for connecting hard drives and CD/DVD drives to a computer)
-      hard drives, plus one parallel ATA (Advanced Technology Attachment) optical
-      drive, for example) is easy to set up; the SATA drives are jumper less, and
-      the optical drive can be set as master on its own parallel ATA channel. Many
-      cases have removable drive rails or cages to house drives. \r\n\r\n2. Use the
-      included screws to attach your drives to the rails or cage, and slide them
-      into the case. For externally accessible drives such as a DVD recorder, you
-      can save time by installing one drive rail and sliding the drive in for a test
-      fitting to make sure that its front is flush with the case  \r\n\r\n3.When
-      the drives are installed, connect power and data cables to each one. Parallel
-      ATA drives use wide, flat data cables that can be installed only in the correct
-      way. Floppy drives use a similar but smaller cable; SATA drives use a thin,
-      1cm-wide data cable. SATA drives use a new type of power connector that many
-      power supplies don't come with. Fortunately, many motherboards ship with adapters
-      for converting a standard four-pin power connector to a SATA power connector "
+    content: 3.When the drives are installed, connect power and data cables to each
+      one. Parallel ATA drives use wide, flat data cables that can be installed only
+      in the correct way. Floppy drives use a similar but smaller cable; SATA drives
+      use a thin, 1cm-wide data cable. SATA drives use a new type of power connector
+      that many power supplies don't come with. Fortunately, many motherboards ship
+      with adapters for converting a standard four-pin power connector to a SATA
+      power connector
     image: {fileID: 0}
   - subtopicID: 0402
     slideType: 0
