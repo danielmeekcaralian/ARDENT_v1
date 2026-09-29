@@ -31,7 +31,7 @@ public partial class ARPlacementManager : MonoBehaviour
     {
         get
         {
-            if (ARCheckpointSession.BlocksInput) return false;
+            if (ARCheckpointSession.BlocksInput || UIManager.HasOpenPanel) return false;
             if (!IsAssemblyActivity) return true;
             var manager = FindFirstObjectByType<ARAssemblyManager>();
             return manager == null || manager.CanPlaceObjects;

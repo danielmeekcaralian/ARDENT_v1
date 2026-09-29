@@ -11,9 +11,7 @@ public class ARInfoCardManager : MonoBehaviour
     [SerializeField] private TMP_Text objectNameText;
     [SerializeField] private TMP_Text informationText;
 
-    [Header("Position Above Model")]
-    [Tooltip("World-space gap between the top of the mesh and the bottom of the card, in meters.")]
-    [SerializeField, Min(0f)] private float gapAboveMesh = 0.03f;
+    // Card visibility and spacing are shared preferences in Settings.
 
     private ARObjectInfo currentObject;
     private readonly List<Renderer> modelRenderers = new List<Renderer>();
@@ -34,7 +32,8 @@ public class ARInfoCardManager : MonoBehaviour
             return;
         }
 
-        PositionAboveModel();
+        infoCard.SetActive(ArdentSettings.ShowCards);
+        if (ArdentSettings.ShowCards) PositionAboveModel();
     }
 
     private void PositionAboveModel()
@@ -56,7 +55,7 @@ public class ARInfoCardManager : MonoBehaviour
         }
 
         Vector3 anchor = new Vector3(bounds.center.x,
-            bounds.max.y + Mathf.Max(0f, gapAboveMesh), bounds.center.z);
+            bounds.max.y + ArdentSettings.CardGap, bounds.center.z);
         infoCard.transform.position = anchor;
 
         // A centered pivot would put half the card into the model. Account for
@@ -78,7 +77,7 @@ public class ARInfoCardManager : MonoBehaviour
         currentObject = objectInfo;
         if (objectNameText != null) objectNameText.text = objectInfo.objectName;
         if (informationText != null) informationText.text = objectInfo.information;
-        infoCard.SetActive(true);
+        infoCard.SetActive(ArdentSettings.ShowCards);
         Canvas.ForceUpdateCanvases();
         PositionAboveModel();
     }

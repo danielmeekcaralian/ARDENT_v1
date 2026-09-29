@@ -12,6 +12,8 @@ public class HardwareLibraryUI : MonoBehaviour
     public GameObject itemTilePrefab;
     public TMP_Text collectionCountText;
     public Image itemIcon;
+    public RawImage modelPreview;
+    private HardwareModelPreview preview;
     public TMP_Text itemNameText, itemDescriptionText, unlockRequirementText;
 
     [System.Serializable]
@@ -30,13 +32,25 @@ public class HardwareLibraryUI : MonoBehaviour
     private static readonly string[] Titles = { "PC Components", "Peripherals", "Tools", "Safety Equipment" };
 
     private void Awake() { Screen.orientation = ScreenOrientation.Portrait; }
-    private void Start() { Refresh(); }
+    private void Start()
+    {
+        if (modelPreview == null) modelPreview = FindNamed<RawImage>(transform, "ModelPreview");
+        if (modelPreview != null)
+        {
+            preview = modelPreview.GetComponent<HardwareModelPreview>();
+            if (preview == null) preview = modelPreview.gameObject.AddComponent<HardwareModelPreview>();
+            preview.Hide();
+        }
+        else Debug.LogWarning("Add a Raw Image named ModelPreview beneath LibraryPanel to show 3D models.", this);
+        Refresh();
+    }
 
     public void Refresh()
     {
         if (lessonDatabase == null || lessonDatabase.lessons == null || categoryScrollView == null ||
             categoryScrollView.content == null || categoryRowPrefab == null || itemTilePrefab == null)
         { Debug.LogError("Hardware Library: run ARDENT > Hardware Library > Connect Current Scene.", this); return; }
+        if (preview != null) preview.Hide();
         HardwareLibraryProgress.SynchronizeGoldLessons(lessonDatabase);
         foreach (var row in generatedRows) if (row != null) { row.SetActive(false); Destroy(row); }
         generatedRows.Clear();
@@ -105,9 +119,15 @@ public class HardwareLibraryUI : MonoBehaviour
     private void Select(Entry entry)
     {
         bool owned = HardwareLibraryProgress.IsUnlocked(entry.item);
+        bool showingModel = false;
+        if (preview != null)
+        {
+            if (owned) showingModel = preview.Show(entry.item.prefab);
+            else preview.Hide();
+        }
         if (itemIcon != null)
         {
-            itemIcon.gameObject.SetActive(true); itemIcon.sprite = entry.item.inventoryImage;
+            itemIcon.gameObject.SetActive(!showingModel); itemIcon.sprite = entry.item.inventoryImage;
             itemIcon.preserveAspect = true; itemIcon.color = owned ? Color.white : Color.black;
         }
         if (itemNameText != null) itemNameText.text = DisplayName(entry.item);
