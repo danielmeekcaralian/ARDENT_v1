@@ -17,6 +17,15 @@ public partial class ARAssemblyManager : MonoBehaviour
     private int currentStepIndex = 0;
     private float assemblyScaleFactor = 1f;
 
+    public void EnterSandbox()
+    {
+        ResetCombinedActivity();
+        assemblyActivity = null;
+        assemblyAnchors.Clear();
+        if (stepTitleText != null) stepTitleText.gameObject.SetActive(false);
+        if (instructionsText != null) instructionsText.gameObject.SetActive(false);
+    }
+
     public void SetAssemblyScale(float factor)
     {
         assemblyScaleFactor = Mathf.Max(0.001f, factor);
@@ -159,6 +168,7 @@ public partial class ARAssemblyManager : MonoBehaviour
 
     public bool TryAlignCurrentComponentRotation(GameObject candidate)
     {
+        if (ARSandboxSession.IsActive) return TryAlignSandboxComponent(candidate);
         // Optional placement aid: keep position and size under the user's control.
         if (Phase != ActivityPhase.Assembly || !IsCurrentStepComponent(candidate)) return false;
         var manipulator = candidate.GetComponent<ARObjectManipulator>();
@@ -198,6 +208,7 @@ public partial class ARAssemblyManager : MonoBehaviour
     public bool TryCompleteCurrentStep(
         GameObject placedObject)
     {
+        if (ARSandboxSession.IsActive) return TrySnapSandboxComponent(placedObject);
         if (Phase == ActivityPhase.Disassembly)
             return TryRemoveCurrentPart(placedObject);
         if (Phase != ActivityPhase.Assembly || assemblyActivity == null)

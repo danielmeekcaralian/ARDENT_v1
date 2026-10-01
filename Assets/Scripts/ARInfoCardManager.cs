@@ -75,7 +75,7 @@ public class ARInfoCardManager : MonoBehaviour
     {
         if (objectInfo == null || infoCard == null) return;
         currentObject = objectInfo;
-        if (objectNameText != null) objectNameText.text = objectInfo.objectName;
+        if (objectNameText != null) objectNameText.text = HardwareProfileCatalog.InstanceDisplayName(objectInfo.gameObject);
         if (informationText != null) informationText.text = objectInfo.information;
         infoCard.SetActive(ArdentSettings.ShowCards);
         Canvas.ForceUpdateCanvases();

@@ -46,6 +46,13 @@ public class UIManager : MonoBehaviour
 
     public void ShowMenu()
     {
+        if (menuPanel != null)
+            foreach (var button in menuPanel.GetComponentsInChildren<UnityEngine.UI.Button>(true))
+                if (button.name == "mainMenuButton")
+                {
+                    var label = button.GetComponentInChildren<TMPro.TMP_Text>(true);
+                    if (label != null) label.text = ARSandboxSession.IsActive ? "Return to Library" : "Main Menu";
+                }
         if (menuPanel != null) menuPanel.SetActive(true);
         if (settingsPanel != null) settingsPanel.SetActive(false);
         if (infoPanel != null) infoPanel.SetActive(false);
@@ -91,7 +98,7 @@ public class UIManager : MonoBehaviour
 
     public void GoToMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene(ARSandboxSession.IsActive ? "Hardware_Library" : "MainMenu");
     }
 
     public void QuitGame()

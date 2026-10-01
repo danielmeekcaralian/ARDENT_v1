@@ -15,11 +15,10 @@ public static class HardwareLibraryProgress
     {
         var unlocked = new List<ARObjectData>();
         if (lesson == null || !lesson.hasARActivity || lesson.arActivity == null ||
-            lesson.arActivity.availableObjects == null ||
             PlayerPrefs.GetInt($"Lesson{lesson.lessonID}Medal", 0) < (int)Medal.Gold)
             return unlocked;
 
-        foreach (var item in lesson.arActivity.availableObjects)
+        foreach (var item in lesson.arActivity.LibraryObjects())
         {
             if (!HasIdentity(item) || IsUnlocked(item)) continue;
             PlayerPrefs.SetInt(Prefix + item.LibraryItemId, 1);

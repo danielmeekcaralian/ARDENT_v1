@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8405dbc1825a6a4491a2deeeaf6d30d, type: 3}
+  m_Name: CPU_CoreUltra7_265
+  m_EditorClassIdentifier: Assembly-CSharp::HardwareComponentProfile
+  profileID: intel-core-ultra-7-265
+  productName: Intel Core Ultra 7 265
+  prefab: {fileID: 2522518802934533004, guid: 29d8e33ca01b43748ac63e7c1a6774dd, type: 3}
+  kind: 1
+  cpuSocket: 1
+  cpuFamily: Intel Core Ultra Series 2 (desktop)
+  cpuModelNumber: 265
+  memoryGeneration: 3
+  moduleFormat: 0
+  moduleCapacityGB: 0
+  ratedSpeedMTs: 0
+  spdSpeedMTs: 0
+  memoryPerformanceProfile: 
+  boardFormFactor: 0
+  physicalMemorySlots: 0
+  maximumMemoryGB: 0
+  boardSizeMM: {x: 0, y: 0}
+  verifiedSupportedCPUs: []
+  cpuSupportListURL: 
+  memorySupportListURL: 
+  supportedBoardFormFactors: 
+  specificationURLs:
+  - https://www.intel.com/content/www/us/en/products/sku/241068/intel-core-ultra-7-processor-265-30m-cache-up-to-5-30-ghz/specifications.html
+  verificationNotes: 'Using the user''s model identification: desktop 265 without
+    a suffix. Intel lists FCLGA1851; socket stored as LGA1851. Exact motherboard
+    CPU support and required BIOS have not been verified.'
+  displayNote: 

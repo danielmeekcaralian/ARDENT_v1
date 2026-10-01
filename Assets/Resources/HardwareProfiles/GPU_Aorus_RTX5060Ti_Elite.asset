@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8405dbc1825a6a4491a2deeeaf6d30d, type: 3}
+  m_Name: GPU_Aorus_RTX5060Ti_Elite
+  m_EditorClassIdentifier: Assembly-CSharp::HardwareComponentProfile
+  profileID: gigabyte-aorus-rtx-5060-ti-elite
+  productName: GIGABYTE AORUS GeForce RTX 5060 Ti ELITE
+  prefab: {fileID: 4825862472657794192, guid: 26c2d7c80e921e44e8b6bd005748a22c, type: 3}
+  kind: 6
+  graphicsInterface: 1
+  graphicsPCIeGeneration: 5
+  specificationURLs:
+  - https://www.gigabyte.com/la/Graphics-Card/GV-N506TAORUS-E-16GD/sp
+  - https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/rtx-5060-family/
+  - https://pcisig.com/faq?field_category_value%5B%5D=pci_express_5.0
+  verificationNotes: User tentatively identified ELITE. PCIe 5.0 confirmed from GIGABYTE ELITE specifications and NVIDIA RTX 5060 family specifications on 2026-10-01. The linked ELITE reference is 16G, but the modeled VRAM capacity and exact SKU remain unspecified. No electrical lane count is inferred from the motherboard x16 slot size.
+  displayNote: ELITE identification is provisional; VRAM capacity is unspecified. Compatibility checks the motherboard expansion slot only.

@@ -39,7 +39,7 @@ public class SceneLoader : MonoBehaviour
                 break;
 
             case "ARScene":
-                SceneManager.LoadScene("ActivitySelectionScene");
+                SceneManager.LoadScene(ARSandboxSession.IsActive ? "Hardware_Library" : "ActivitySelectionScene");
                 break;
 
             case "QuizScene":

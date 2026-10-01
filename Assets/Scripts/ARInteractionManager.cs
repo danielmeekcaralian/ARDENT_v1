@@ -51,7 +51,7 @@ public partial class ARInteractionManager : MonoBehaviour
 
     private void Update()
     {
-        if (ARCheckpointSession.BlocksInput || UIManager.HasOpenPanel) { CancelWorldDrag(); CancelPrecisionAdjustment(); return; }
+        if (ARCheckpointSession.BlocksInput || UIManager.HasOpenPanel || SandboxInventoryPanel.IsOpen) { CancelWorldDrag(); CancelPrecisionAdjustment(); return; }
         if (mainCamera == null) mainCamera = Camera.main;
         if (UpdatePrecisionControls())
         {
@@ -213,13 +213,15 @@ public partial class ARInteractionManager : MonoBehaviour
         if (mode != ARInteractionMode.Edit) return;
         CancelPrecisionAdjustment();
         selectedObject = candidate;
+        if (assemblyManager != null && ARSandboxSession.IsActive)
+            assemblyManager.ShowSandboxSelection(candidate.gameObject);
         var info = candidate.GetComponent<ARObjectInfo>();
         if (info != null)
         {
             if (infoCardManager != null) infoCardManager.ShowInfo(info);
             if (activityProgress != null) activityProgress.MarkObjectInspected(info);
         }
-        if (!CanManipulateSelection() || (placementManager != null && !placementManager.AllowMovement)) return;
+        if ((!CanManipulateSelection() && !IsAttachedSandboxSelection()) || (placementManager != null && !placementManager.AllowMovement)) return;
         dragPlane = new Plane(Vector3.up, candidate.transform.position);
         Ray ray = mainCamera.ScreenPointToRay(screenPosition);
         if (!dragPlane.Raycast(ray, out float distance)) return;
@@ -239,8 +241,9 @@ public partial class ARInteractionManager : MonoBehaviour
             if (candidate == null) continue;
             if (hit.distance < closestDistance) { closest = candidate; closestDistance = hit.distance; }
             // The current step's component remains selectable through a surrounding case collider.
-            if (mode == ARInteractionMode.Edit && assemblyManager != null && !candidate.IsLocked &&
-                assemblyManager.IsCurrentStepComponent(candidate.gameObject) && hit.distance < requiredDistance)
+            if (mode == ARInteractionMode.Edit && assemblyManager != null &&
+                ((!candidate.IsLocked && assemblyManager.IsCurrentStepComponent(candidate.gameObject)) ||
+                 assemblyManager.IsSandboxComponent(candidate.gameObject)) && hit.distance < requiredDistance)
             {
                 required = candidate;
                 requiredDistance = hit.distance;
@@ -249,9 +252,16 @@ public partial class ARInteractionManager : MonoBehaviour
         return required != null ? required : closest;
     }
 
+    private bool IsAttachedSandboxSelection()
+    {
+        if (!ARSandboxSession.IsActive || selectedObject == null || GetCurrentMode() != ARInteractionMode.Edit) return false;
+        var part = selectedObject.GetComponent<SandboxAssemblyPart>();
+        return part != null && part.IsAttached;
+    }
+
     private void DragTo(Vector2 position)
     {
-        if (dragObject == null || dragObject != selectedObject || !CanManipulateSelection() ||
+        if (dragObject == null || dragObject != selectedObject || (!CanManipulateSelection() && !IsAttachedSandboxSelection()) ||
             (placementManager != null && !placementManager.AllowMovement))
         { CancelWorldDrag(); return; }
         if (IsScreenPositionOverUI(position)) { CancelWorldDrag(); return; }
@@ -259,6 +269,10 @@ public partial class ARInteractionManager : MonoBehaviour
             dragThresholdPixels * dragThresholdPixels) return;
         Ray ray = mainCamera.ScreenPointToRay(position);
         if (!dragPlane.Raycast(ray, out float distance)) return;
+        if (IsAttachedSandboxSelection())
+        {
+            if (assemblyManager == null || !assemblyManager.DetachSandboxComponent(dragObject.gameObject)) return;
+        }
         dragging = true;
         dragObject.MoveTo(ray.GetPoint(distance) + dragOffset);
     }
