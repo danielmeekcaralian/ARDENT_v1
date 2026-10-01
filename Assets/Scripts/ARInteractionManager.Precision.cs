@@ -36,7 +36,7 @@ public partial class ARInteractionManager
     private bool suppressWorldInputUntilRelease;
 
     private bool CanAdjustSelection => enablePrecisionControls && selectedObject != null &&
-        !selectedObject.IsLocked && placementManager != null && placementManager.IsAssemblyActivity &&
+        !selectedObject.IsLocked && placementManager != null && (placementManager.IsAssemblyActivity || placementManager.IsSandboxActivity) &&
         GetCurrentMode() == ARInteractionMode.Edit;
 
     private bool ActionAllowed(PrecisionAction action)
@@ -60,13 +60,13 @@ public partial class ARInteractionManager
             if (precisionPanel.activeSelf != showPanel) precisionPanel.SetActive(showPanel);
             if (visible)
             {
-                var info = selectedObject.GetComponent<ARObjectInfo>();
-                precisionTitle.text = "Adjust " + (info != null ? info.objectName : selectedObject.name);
+                precisionTitle.text = "Adjust " + HardwareProfileCatalog.InstanceDisplayName(selectedObject.gameObject);
                 for (int i = 0; i < precisionButtons.Length; i++)
                     precisionButtons[i].interactable = ActionAllowed((PrecisionAction)(i / 2));
                 alignRotationButton.interactable = placementManager.AllowRotation && assemblyManager != null &&
-                    assemblyManager.Phase == ARAssemblyManager.ActivityPhase.Assembly &&
-                    assemblyManager.IsCurrentStepComponent(selectedObject.gameObject);
+                    ((placementManager.IsSandboxActivity && assemblyManager.CanAlignSandboxComponent(selectedObject.gameObject)) ||
+                     (assemblyManager.Phase == ARAssemblyManager.ActivityPhase.Assembly &&
+                      assemblyManager.IsCurrentStepComponent(selectedObject.gameObject)));
             }
         }
 

@@ -12,6 +12,8 @@ public class HardwareLibraryUI : MonoBehaviour
     public GameObject itemTilePrefab;
     public TMP_Text collectionCountText;
     public Image itemIcon;
+    public Button viewInARButton;
+    private ARObjectData selectedSandboxItem;
     public RawImage modelPreview;
     private HardwareModelPreview preview;
     public TMP_Text itemNameText, itemDescriptionText, unlockRequirementText;
@@ -34,6 +36,8 @@ public class HardwareLibraryUI : MonoBehaviour
     private void Awake() { Screen.orientation = ScreenOrientation.Portrait; }
     private void Start()
     {
+        if (viewInARButton == null) viewInARButton = FindNamed<Button>(transform, "ViewInARButton");
+        if (viewInARButton != null) viewInARButton.onClick.AddListener(OpenSandbox);
         if (modelPreview == null) modelPreview = FindNamed<RawImage>(transform, "ModelPreview");
         if (modelPreview != null)
         {
@@ -43,6 +47,9 @@ public class HardwareLibraryUI : MonoBehaviour
         }
         else Debug.LogWarning("Add a Raw Image named ModelPreview beneath LibraryPanel to show 3D models.", this);
         Refresh();
+        var compatibility = GetComponent<HardwareCompatibilityPanel>();
+        if (compatibility == null) compatibility = gameObject.AddComponent<HardwareCompatibilityPanel>();
+        compatibility.Initialize(this);
     }
 
     public void Refresh()
@@ -58,8 +65,8 @@ public class HardwareLibraryUI : MonoBehaviour
         var lookup = new Dictionary<string, Entry>();
         foreach (var lesson in lessonDatabase.lessons)
         {
-            if (lesson == null || !lesson.hasARActivity || lesson.arActivity?.availableObjects == null) continue;
-            foreach (var item in lesson.arActivity.availableObjects)
+            if (lesson == null || !lesson.hasARActivity || lesson.arActivity == null) continue;
+            foreach (var item in lesson.arActivity.LibraryObjects())
             {
                 if (item?.prefab == null) continue;
                 if (string.IsNullOrEmpty(item.LibraryItemId))
@@ -75,6 +82,8 @@ public class HardwareLibraryUI : MonoBehaviour
         entries.Sort((a,b) => string.Compare(DisplayName(a.item), DisplayName(b.item), System.StringComparison.OrdinalIgnoreCase));
         int unlocked = 0;
         foreach (var entry in entries) if (HardwareLibraryProgress.IsUnlocked(entry.item)) unlocked++;
+        selectedSandboxItem = null;
+        if (viewInARButton != null) viewInARButton.interactable = unlocked > 0;
         if (collectionCountText != null) collectionCountText.text = $"{unlocked} / {entries.Count} unlocked";
         for (int category = 0; category < Titles.Length; category++)
         {
@@ -118,6 +127,7 @@ public class HardwareLibraryUI : MonoBehaviour
 
     private void Select(Entry entry)
     {
+        selectedSandboxItem = entry.item;
         bool owned = HardwareLibraryProgress.IsUnlocked(entry.item);
         bool showingModel = false;
         if (preview != null)
@@ -135,6 +145,12 @@ public class HardwareLibraryUI : MonoBehaviour
         if (itemDescriptionText != null) itemDescriptionText.text = owned
             ? (info != null && !string.IsNullOrWhiteSpace(info.information) ? info.information : "No description available yet.")
             : "Complete a lesson below with a Gold medal to unlock this item.";
+        if (owned && itemDescriptionText != null)
+        {
+            var profile = HardwareProfileCatalog.ForPrefab(entry.item.prefab);
+            if (profile != null)
+                itemDescriptionText.text = profile.SpecificationSummary() + "\n\n" + itemDescriptionText.text;
+        }
         var lessons = new List<string>();
         foreach (var lesson in entry.lessons) lessons.Add(lesson.lessonTitle);
         if (unlockRequirementText != null) unlockRequirementText.text = owned ? "Unlocked" : "Earn Gold in any of these lessons:\n" + string.Join("\n", lessons);
@@ -142,7 +158,9 @@ public class HardwareLibraryUI : MonoBehaviour
         if (descriptionScroll != null) { Canvas.ForceUpdateCanvases(); descriptionScroll.verticalNormalizedPosition = 1; }
     }
 
-    private Category GetCategory(GameObject prefab)
+    private Category GetCategory(GameObject prefab) => ResolveCategory(prefab, categoryOverrides);
+
+    public static Category ResolveCategory(GameObject prefab, CategoryOverride[] categoryOverrides)
     {
         if (categoryOverrides != null) foreach (var entry in categoryOverrides)
             if (entry != null && entry.prefab == prefab) return entry.category;
@@ -155,14 +173,26 @@ public class HardwareLibraryUI : MonoBehaviour
 
     private static string DisplayName(ARObjectData item)
     {
-        var info = item.prefab.GetComponent<ARObjectInfo>();
-        return info != null && !string.IsNullOrWhiteSpace(info.objectName) ? info.objectName : item.prefab.name.Replace('_', ' ');
+        return HardwareProfileCatalog.DisplayName(item?.prefab);
     }
     public static T FindNamed<T>(Transform root, string name) where T : Component
     {
         foreach (var child in root.GetComponentsInChildren<Transform>(true))
             if (child.name == name) return child.GetComponent<T>();
         return null;
+    }
+    public void OpenSandbox()
+    {
+        if (!ARSandboxSession.Begin(lessonDatabase, selectedSandboxItem, categoryOverrides))
+        {
+            if (unlockRequirementText != null) unlockRequirementText.text = "Earn Gold in a lesson to unlock items for the AR Sandbox.";
+            return;
+        }
+        SceneManager.LoadScene("ARScene");
+    }
+    private void OnDestroy()
+    {
+        if (viewInARButton != null) viewInARButton.onClick.RemoveListener(OpenSandbox);
     }
     public void BackToMenu() { SceneManager.LoadScene("MainMenu"); }
 }

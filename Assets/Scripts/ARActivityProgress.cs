@@ -22,6 +22,7 @@ public class ARActivityProgress : MonoBehaviour
         currentActivity = activity;
 
         inspectedObjects.Clear();
+        if (progressText != null) progressText.gameObject.SetActive(activity == null || activity.activityType != ARActivityType.Sandbox);
 
         if (completionButton != null)
         {
@@ -169,6 +170,7 @@ public class ARActivityProgress : MonoBehaviour
 
     public void CompleteActivity()
     {
+        if (ARSandboxSession.IsActive || (currentActivity != null && currentActivity.activityType == ARActivityType.Sandbox)) return;
         LessonData currentLesson =
             LessonSession.CurrentLesson;
 
@@ -226,6 +228,7 @@ public class ARActivityProgress : MonoBehaviour
 
     public void ContinueFromCompletion()
     {
+        if (ARSandboxSession.IsActive) { SceneManager.LoadScene("Hardware_Library"); return; }
         SceneManager.LoadScene("ActivitySelectionScene");
     }
 }

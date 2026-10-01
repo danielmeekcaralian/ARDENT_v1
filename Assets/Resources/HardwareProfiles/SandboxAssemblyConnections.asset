@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed1744ae7f4c464b8c48db3d3c7c32ee, type: 3}
+  m_Name: SandboxAssemblyConnections
+  m_EditorClassIdentifier: Assembly-CSharp::SandboxAssemblyConnections
+  connections:
+  - ComponentPrefab: {fileID: 5082182000415545506, guid: 1a799274bf5db464d8fad0d9772b5a10, type: 3}
+    HostPrefab: {fileID: 5084616641095058306, guid: b9ec6d9bd1cb7914caf43e2b0f7cff24, type: 3}
+    TargetID: cpu_target
+    SnapDistance: 0.15
+    RotationTolerance: 15
+  - ComponentPrefab: {fileID: 4884973226695075113, guid: 0a96d2d0425505547923e5ebc2c484f0, type: 3}
+    HostPrefab: {fileID: 5084616641095058306, guid: b9ec6d9bd1cb7914caf43e2b0f7cff24, type: 3}
+    TargetID: ram_target
+    SnapDistance: 0.15
+    RotationTolerance: 15
+  - ComponentPrefab: {fileID: 4825862472657794192, guid: 26c2d7c80e921e44e8b6bd005748a22c, type: 3}
+    HostPrefab: {fileID: 5084616641095058306, guid: b9ec6d9bd1cb7914caf43e2b0f7cff24, type: 3}
+    TargetID: gpu_target
+    SnapDistance: 0.15
+    RotationTolerance: 15
+  - ComponentPrefab: {fileID: 7046555640435806867, guid: 4eeac699a69be284ea64620174056997, type: 3}
+    HostPrefab: {fileID: 5082182000415545506, guid: 1a799274bf5db464d8fad0d9772b5a10, type: 3}
+    TargetID: cpuCooler_target
+    SnapDistance: 0.15
+    RotationTolerance: 15
+  - ComponentPrefab: {fileID: 5084616641095058306, guid: b9ec6d9bd1cb7914caf43e2b0f7cff24, type: 3}
+    HostPrefab: {fileID: 8491735597142451735, guid: 442dd7fcb56eb514cbaac697e726777d, type: 3}
+    TargetID: mb_target
+    SnapDistance: 0.15
+    RotationTolerance: 15
+  - ComponentPrefab: {fileID: 3179287049947295760, guid: 3c3f0406c3ca06942bd21cddb8a94bc1, type: 3}
+    HostPrefab: {fileID: 8491735597142451735, guid: 442dd7fcb56eb514cbaac697e726777d, type: 3}
+    TargetID: rightPanel_target
+    SnapDistance: 0.15
+    RotationTolerance: 15
+  - ComponentPrefab: {fileID: 5672305007152682722, guid: 5a700a9a1661ee14ea23a2bd8378047c, type: 3}
+    HostPrefab: {fileID: 8491735597142451735, guid: 442dd7fcb56eb514cbaac697e726777d, type: 3}
+    TargetID: glassPanel_target
+    SnapDistance: 0.15
+    RotationTolerance: 15

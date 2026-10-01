@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8405dbc1825a6a4491a2deeeaf6d30d, type: 3}
+  m_Name: Case_generic_MidTower
+  m_EditorClassIdentifier: Assembly-CSharp::HardwareComponentProfile
+  profileID: case-generic-midtower
+  productName: Generic Mid-Tower Case
+  prefab: {fileID: 8491735597142451735, guid: 442dd7fcb56eb514cbaac697e726777d, type: 3}
+  kind: 4
+  cpuSocket: 0
+  cpuFamily: 
+  cpuModelNumber: 
+  memoryGeneration: 0
+  moduleFormat: 0
+  moduleCapacityGB: 0
+  ratedSpeedMTs: 0
+  spdSpeedMTs: 0
+  memoryPerformanceProfile: 
+  boardFormFactor: 0
+  physicalMemorySlots: 0
+  maximumMemoryGB: 0
+  boardSizeMM: {x: 0, y: 0}
+  verifiedSupportedCPUs: []
+  verifiedSupportedRAM: []
+  cpuSupportListURL: 
+  memorySupportListURL: 
+  supportedBoardFormFactors: 02000000
+  specificationURLs: []
+  verificationNotes: 
+  displayNote: Virtual case configured for microATX assembly. Other motherboard sizes
+    remain unverified.

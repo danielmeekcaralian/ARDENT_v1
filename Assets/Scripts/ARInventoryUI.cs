@@ -11,10 +11,21 @@ public class ARInventoryUI : MonoBehaviour
     [Header("Placement")]
     [SerializeField] private ARPlacementManager placementManager;
 
+    [Header("Sandbox Inventory (optional scene panel)")]
+    [SerializeField] private SandboxInventoryPanel sandboxInventory;
+    private bool useSandboxPanel;
+    private GameObject VisibleInventory => useSandboxPanel && sandboxInventory != null ? sandboxInventory.gameObject : inventoryPanel;
     private ARActivityData currentActivity;
 
     public void PopulateInventory()
     {
+        useSandboxPanel = false;
+        if (currentActivity != null && currentActivity.activityType == ARActivityType.Sandbox && sandboxInventory != null)
+        {
+            useSandboxPanel = sandboxInventory.Populate(currentActivity.availableObjects, SelectObject);
+            if (useSandboxPanel) return;
+            Debug.LogWarning("Sandbox inventory is incomplete; using the existing inventory.", this);
+        }
         if (currentActivity == null)
         {
             Debug.LogWarning("No AR Activity assigned.");
@@ -93,29 +104,41 @@ public class ARInventoryUI : MonoBehaviour
 
         placementManager.SelectObject(objectData);
 
-        if (inventoryPanel != null)
-            inventoryPanel.SetActive(false);
+        if (VisibleInventory != null)
+            VisibleInventory.SetActive(false);
+    }
+
+    public void OpenInventory()
+    {
+        if (VisibleInventory != null) VisibleInventory.SetActive(true);
     }
 
     public void ToggleInventory()
     {
-        if (inventoryPanel == null)
+        if (VisibleInventory == null)
             return;
         if (placementManager != null && !placementManager.CanPlaceObjects)
         {
-            inventoryPanel.SetActive(false);
+            VisibleInventory.SetActive(false);
             return;
         }
 
-        inventoryPanel.SetActive(
-            !inventoryPanel.activeSelf
+        VisibleInventory.SetActive(
+            !VisibleInventory.activeSelf
         );
     }
 
     public void SetActivity(ARActivityData activity)
     {
         currentActivity = activity;
-
+        if (sandboxInventory == null)
+            foreach (var root in gameObject.scene.GetRootGameObjects())
+            {
+                sandboxInventory = HardwareLibraryUI.FindNamed<SandboxInventoryPanel>(root.transform, "SandboxInventoryPanel");
+                if (sandboxInventory != null) break;
+            }
+        if (inventoryPanel != null) inventoryPanel.SetActive(false);
+        if (sandboxInventory != null) sandboxInventory.Close();
         PopulateInventory();
     }
 }

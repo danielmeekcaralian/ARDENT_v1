@@ -5,7 +5,8 @@ public enum ARActivityType
     ToolIdentification,
     HardwareIdentification,
     Assembly,
-    Disassembly
+    Disassembly,
+    Sandbox
 }
 
 [CreateAssetMenu(
@@ -29,6 +30,18 @@ public class ARActivityData : ScriptableObject
     [Header("Available AR Objects")]
     public ARObjectData[] availableObjects;
 
+    [Header("Bonus Hardware Library Unlocks")]
+    [Tooltip("Unlocked by this lesson's Gold medal, without adding required lesson activity objects.")]
+    public ARObjectData[] libraryBonusObjects;
+
+    public System.Collections.Generic.IEnumerable<ARObjectData> LibraryObjects()
+    {
+        if (availableObjects != null)
+            foreach (var item in availableObjects) yield return item;
+        if (libraryBonusObjects != null)
+            foreach (var item in libraryBonusObjects) yield return item;
+    }
+
     [Header("Placement")]
     public bool requirePlanePlacement = true;
 
@@ -39,8 +52,7 @@ public class ARActivityData : ScriptableObject
 #if UNITY_EDITOR
     private void OnValidate()
     {
-        if (availableObjects == null) return;
-        foreach (var item in availableObjects)
+        foreach (var item in LibraryObjects())
             if (item != null) item.RefreshLibraryIdentity();
     }
 #endif

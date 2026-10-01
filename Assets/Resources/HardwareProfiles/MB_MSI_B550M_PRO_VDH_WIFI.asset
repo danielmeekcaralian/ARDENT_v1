@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8405dbc1825a6a4491a2deeeaf6d30d, type: 3}
+  m_Name: MB_MSI_B550M_PRO_VDH_WIFI
+  m_EditorClassIdentifier: Assembly-CSharp::HardwareComponentProfile
+  graphicsInterface: 0
+  graphicsSlotSupport: 1
+  graphicsPCIeGeneration: 0
+  profileID: msi-b550m-pro-vdh-wifi
+  productName: MSI B550M PRO-VDH WIFI
+  prefab: {fileID: 5084616641095058306, guid: b9ec6d9bd1cb7914caf43e2b0f7cff24, type: 3}
+  kind: 2
+  cpuSocket: 3
+  cpuFamily: AMD Ryzen (check exact CPU support list)
+  cpuModelNumber: 
+  memoryGeneration: 2
+  moduleFormat: 1
+  moduleCapacityGB: 0
+  ratedSpeedMTs: 0
+  spdSpeedMTs: 0
+  memoryPerformanceProfile: 
+  boardFormFactor: 2
+  physicalMemorySlots: 4
+  maximumMemoryGB: 128
+  boardSizeMM: {x: 244, y: 244}
+  verifiedSupportedCPUs: []
+  verifiedSupportedRAM: []
+  cpuSupportListURL: https://www.msi.com/Motherboard/B550M-PRO-VDH-WIFI/support#cpu
+  memorySupportListURL: https://www.msi.com/Motherboard/B550M-PRO-VDH-WIFI/support#mem
+  supportedCoolerSockets: 
+  coolerSocketListComplete: 0
+  coolerHeightMM: 0
+  supportedBoardFormFactors: 
+  specificationURLs:
+  - https://www.msi.com/Motherboard/B550M-PRO-VDH-WIFI/Specification
+  verificationNotes: Specifications checked 2026-10-01. Socket and DDR mismatches
+    can be checked; no exact support-list entries are inferred from family support.
+  displayNote: Graphics slot supports PCIe 4.0/3.0 depending on CPU. Exact CPU/BIOS
+    and RAM support remain unverified.

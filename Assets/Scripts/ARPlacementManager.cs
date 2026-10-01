@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
@@ -46,6 +48,7 @@ public partial class ARPlacementManager : MonoBehaviour
     }
 
     private float assemblyScale = 1f;
+    public bool IsSandboxActivity => currentActivity != null && currentActivity.activityType == ARActivityType.Sandbox;
     public bool IsAssemblyActivity =>
         currentActivity != null &&
         currentActivity.activityType == ARActivityType.Assembly;
@@ -89,6 +92,7 @@ public partial class ARPlacementManager : MonoBehaviour
     private ARObjectData selectedObjectData;
 
     private bool isPlacing;
+    private readonly List<RaycastResult> placementUIHits = new List<RaycastResult>();
 
     private static readonly List<ARRaycastHit>
         hits =
@@ -167,6 +171,7 @@ public partial class ARPlacementManager : MonoBehaviour
 
     private void Update()
     {
+        if (SandboxInventoryPanel.IsOpen) return;
         if (currentActivity == null)
             return;
 
@@ -366,6 +371,12 @@ public partial class ARPlacementManager : MonoBehaviour
     private void PlaceObjectAtPosition(
         Vector2 screenPosition)
     {
+        if (EventSystem.current != null)
+        {
+            placementUIHits.Clear();
+            EventSystem.current.RaycastAll(new PointerEventData(EventSystem.current) { position = screenPosition }, placementUIHits);
+            foreach (var hit in placementUIHits) if (hit.module is GraphicRaycaster) return;
+        }
         if (!isPlacing || !CanPlaceObjects)
             return;
 
@@ -429,6 +440,12 @@ public partial class ARPlacementManager : MonoBehaviour
         // infer it from a global raw-scale limit on the first resize gesture.
         var scaleController = newObject.GetComponent<ARObjectManipulator>();
         if (scaleController != null) scaleController.InitializeScaleBaseline();
+        if (IsSandboxActivity)
+        {
+            var part = newObject.GetComponent<SandboxAssemblyPart>();
+            if (part == null) part = newObject.AddComponent<SandboxAssemblyPart>();
+            part.Initialize(selectedObjectData.prefab);
+        }
 
         // -----------------------------------------------------
         // REGISTER ASSEMBLY ANCHOR
@@ -498,7 +515,7 @@ public partial class ARPlacementManager : MonoBehaviour
     public void ResetObject()
     {
         var manager = FindFirstObjectByType<ARAssemblyManager>();
-        if (IsAssemblyActivity && manager != null && !manager.CanDeleteObject(currentObject))
+        if ((IsAssemblyActivity || IsSandboxActivity) && manager != null && !manager.CanDeleteObject(currentObject))
             return;
 
         if (currentObject != null)

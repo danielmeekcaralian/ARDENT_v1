@@ -10,6 +10,15 @@ public class ARObjectManipulator : MonoBehaviour
     private Vector3 baselineScale;
     private float scaleMultiplier = 1f;
     public bool IsLocked => isLocked;
+    public float ScaleMultiplier => scaleMultiplier;
+
+    public void SetScaleMultiplier(float multiplier)
+    {
+        if (isLocked || float.IsNaN(multiplier) || float.IsInfinity(multiplier)) return;
+        if (!scaleInitialized) InitializeScaleBaseline();
+        scaleMultiplier = Mathf.Max(1f, multiplier);
+        transform.localScale = baselineScale * scaleMultiplier;
+    }
 
     private void Start()
     {

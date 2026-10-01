@@ -46,6 +46,7 @@ public partial class ARAssemblyManager
 
     public bool CanDeleteObject(GameObject candidate)
     {
+        if (ARSandboxSession.IsActive) return CanDeleteSandboxObject(candidate);
         if (Phase == ActivityPhase.Idle) return true;
         if (Phase != ActivityPhase.Assembly) return false;
         if (candidate == null) return true;
