@@ -192,14 +192,14 @@ MonoBehaviour:
       pulled from source to destination without going up and down ladders too many
       times.
     image: {fileID: 0}
-  - subtopicID: 1002
+  - subtopicID: 1003
     slideType: 0
     content: "PULLING CABLE \r\n\r\nKeep in mind the following points when pulling
       cable to ensure the proper operation of the network: \r\n\r\n\t\u25CF Tensile
       strength \n\r\n\t\u25CF Bend radius \n\r\n\t\u25CF Protecting the cable while
       pulling"
     image: {fileID: 0}
-  - subtopicID: 1002
+  - subtopicID: 1003
     slideType: 0
     content: "Tensile Strength \n\r\nContrary to popular opinion, network cables
       are fragile. They can be damaged in any number of ways, especially during the
@@ -207,7 +207,7 @@ MonoBehaviour:
       cable is the cable\u2019s tensile strength, a measure of how strong a cable
       is along its axis. \n"
     image: {fileID: 0}
-  - subtopicID: 1002
+  - subtopicID: 1003
     slideType: 0
     content: "Bend Radius \n\r\nMost cables are designed to flex, and that makes
       them easy to use and install. Unfortunately, just because they can flex doesn\u2019t
@@ -217,14 +217,14 @@ MonoBehaviour:
       it, you should also be careful not to pull the cable over or near anything
       that could damage it. \r\n"
     image: {fileID: 0}
-  - subtopicID: 1002
+  - subtopicID: 1004
     slideType: 0
     content: "Cabling System Documentation \n\r\nThe most often overlooked item during
       cable installation is the documentation of the new cabling system. Cabling
       system documentation includes information about what components make up a cabling
       system, how it is put together, and where to find individual cables."
     image: {fileID: 0}
-  - subtopicID: 1002
+  - subtopicID: 1005
     slideType: 0
     content: "Terminate the Cable \r\n\r\nNow that you\u2019ve learned about installing
       the cable, you need to know what to do with both ends of the cable. Terminating
@@ -232,18 +232,16 @@ MonoBehaviour:
       connector or a termination block) so that the cabling system can be accessed
       by the devices that are going to use it. \r\n "
     image: {fileID: 0}
-  - subtopicID: 1002
+  - subtopicID: 1005
     slideType: 0
-    content: '
-
-      There are many different types of patch panels, some for copper,
-      some for fiber. Copper cable patch panels for UTP all have a few similar characteristics,
+    content: 'There are many different types of patch panels, some for copper, some
+      for fiber. Copper cable patch panels for UTP all have a few similar characteristics,
       for the most part. First off, most UTP LAN patch panels (as shown in Figure
       12.16) have UTP ports on the front and punch-down blades in the back.
 
 '
     image: {fileID: 0}
-  - subtopicID: 1002
+  - subtopicID: 1006
     slideType: 0
     content: "Test the Installation \r\n\r\nOnce you have a cable or cables installed
       and terminated, your last installation step is to test the connection. Each
@@ -254,24 +252,24 @@ MonoBehaviour:
       PCs, etc.). That way, you avoid having to troubleshoot cabling-related problems
       later (or at least you minimize possible later problems). \r\n"
     image: {fileID: 0}
-  - subtopicID: 1002
+  - subtopicID: 1007
     slideType: 0
-    content: "Raceways \r\n\r\nRaceways are special types of conduits used for surface
-      mounting horizontal cables and are usually pieced together in a modular fashion
-      with vendors providing connectors that do not exceed the minimum bend radius.
-      Raceways are mounted on the outside of a wall in places where cable is not
-      easily installed inside the wall; they are commonly used on walls made of brick
-      or concrete where no telecommunications conduit has been installed.\n\n\tSurface
-      Mounted modular raceway system. \n\n\tSurface mount raceway with cables. "
+    content: "Raceways are special types of conduits used for surface mounting horizontal
+      cables and are usually pieced together in a modular fashion with vendors providing
+      connectors that do not exceed the minimum bend radius. Raceways are mounted
+      on the outside of a wall in places where cable is not easily installed inside
+      the wall; they are commonly used on walls made of brick or concrete where no
+      telecommunications conduit has been installed.\n\n\tSurface Mounted modular
+      raceway system. \n\n\tSurface mount raceway with cables. "
     image: {fileID: 0}
-  - subtopicID: 1002
+  - subtopicID: 1008
     slideType: 0
     content: "Cabling Racks and Enclosures  \r\n\r\nRacks are the pieces of hardware
       that help you organize cabling infrastructure. They range in height from 39
       to 84 inches and come in two widths, 19 and 23 inches. Nineteen-inch widths
       are much more commonplace and have been in use for nearly 60 years. \r\n  "
     image: {fileID: 0}
-  - subtopicID: 1002
+  - subtopicID: 1009
     slideType: 0
     content: "Wall-Mounted Brackets  \r\n\r\nFor small installations and areas where
       economy of space is a key consideration, wall-mounted brackets may provide
@@ -279,7 +277,7 @@ MonoBehaviour:
       that may only have few dozen workstations or phone outlets but are still concerned
       about building an organized cabling infrastructure. \r\n"
     image: {fileID: 0}
-  - subtopicID: 1002
+  - subtopicID: 1010
     slideType: 0
     content: "Skeletal Frames (19-Inch Racks)  \r\n\r\nSkeletal frames, often called
       19-inch racks or EIA racks, are probably the most common type of rack. These
@@ -288,7 +286,7 @@ MonoBehaviour:
       84 inches in height with a 22-inch base plate to provide stability. Their open
       design makes it easy to work on both the front and back of the mounted equipment. "
     image: {fileID: 0}
-  - subtopicID: 1002
+  - subtopicID: 1010
     slideType: 0
     content: 'Racks are not limited to just patch panels and network-connectivity
       devices. Server computers, for example, can be installed into a rack-mountable

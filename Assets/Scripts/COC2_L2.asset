@@ -93,7 +93,7 @@ MonoBehaviour:
       Light bounces back and forth along the core \n\r\n\t\u2022 Common light sources:
       LEDs and lasers"
     image: {fileID: 0}
-  - subtopicID: 0601
+  - subtopicID: 0602
     slideType: 0
     content: "Advantages and Disadvantages \n\U0001F60A Noise resistance \u2015 external
       light is blocked by outer jacket .\r\n\U0001F60A Less signal attenuation \u2015
@@ -104,7 +104,7 @@ MonoBehaviour:
       .\r\n\U0001F60AInstallation/maintenance \u2015 any crack in the core will degrade
       the signal, and all connections must be perfectly aligned. "
     image: {fileID: 0}
-  - subtopicID: 0601
+  - subtopicID: 0602
     slideType: 0
     content: "Other than network cables. The other materials needed to be used for
       network are: \r\n\r\n1.) RJ45 (Registered Jack) -  standard for a physical
@@ -118,7 +118,7 @@ MonoBehaviour:
       device that connects devices together on a computer network by using packet
       switching to receive, process, and forward data to the destination device.\n "
     image: {fileID: 0}
-  - subtopicID: 0601
+  - subtopicID: 0602
     slideType: 0
     content: "4.) Ethernet Hub/active hub/ network hub/ repeater hub/ multiport repeater
       \u2013 also known simply as hub is a network hardware device for connecting
@@ -132,7 +132,7 @@ MonoBehaviour:
       a networking device that forwards data packets between computer networks. Router
       perform the traffic directing functions on the internet. \r\n "
     image: {fileID: 0}
-  - subtopicID: 0601
+  - subtopicID: 0602
     slideType: 0
     content: "7.) Cabinets and Raceway Rack \u2013 support materials store and protect
       your switches, routers, server, and other vital components of your network.

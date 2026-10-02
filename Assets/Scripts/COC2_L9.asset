@@ -41,7 +41,7 @@ MonoBehaviour:
       make money by selling the scrap to smelting companies. \n\r\n4.) Call a few
       local companies and ask about prices and transportation. Some companies only
       deal in very large amounts of copper, such as leftovers from a building site,
-      but others will take any weight.\n "
+      but others will take any weight. "
     image: {fileID: 0}
   - subtopicID: 1301
     slideType: 0
@@ -50,7 +50,7 @@ MonoBehaviour:
       the insulation or use a mechanical process and bury the waste if burning will
       produce pollutants. \n\r\n6.) Follow the scrap metal company's instructions
       for transport of the wire, whether it means dropping it off or placing it outside
-      for collection.\n"
+      for collection."
     image: {fileID: 0}
   hasARActivity: 0
   hasQuiz: 0

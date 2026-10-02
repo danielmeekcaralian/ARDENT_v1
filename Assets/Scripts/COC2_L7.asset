@@ -118,6 +118,12 @@ MonoBehaviour:
     image: {fileID: 0}
   - subtopicID: 1102
     slideType: 0
+    content: "Creating a Testing Regimen \n\n The level of performance that you require
+      from a cable installation should specify which tests you have to perform during
+      the installation process and what test results are acceptable. \n"
+    image: {fileID: 0}
+  - subtopicID: 1103
+    slideType: 0
     content: "Copper-Cable Certification \r\n\r\n The ANSI/TIA/EIA-568-B Standard
       includes performance requirements for horizontal and backbone cabling. The
       Standard defines two types of horizontal links for the purposes of testing.
@@ -125,7 +131,7 @@ MonoBehaviour:
       typically runs from a wall plate at the equipment site to a patch panel in
       a wiring closet or data center. "
     image: {fileID: 0}
-  - subtopicID: 1102
+  - subtopicID: 1104
     slideType: 0
     content: "Third-Party Certification  \r\n\r\nTesting your cable installation
       for compliance to a specific performance level is a great way to ensure that
@@ -135,7 +141,7 @@ MonoBehaviour:
       them carefully. But no matter how careful you are, problems are bound to arise. 
       \r\n"
     image: {fileID: 0}
-  - subtopicID: 1102
+  - subtopicID: 1105
     slideType: 0
     content: "Wire-Map Testers  \r\n\r\nA wire-map tester transmits signals through
       each wire in a copper twisted-pair cable to determine if it is connected to
@@ -143,20 +149,14 @@ MonoBehaviour:
       cables because the eight separate wire connections involved in each cable run
       are a common source of installation errors.\n"
     image: {fileID: 0}
-  - subtopicID: 1102
-    slideType: 0
-    content: "Creating a Testing Regimen \n\n The level of performance that you require
-      from a cable installation should specify which tests you have to perform during
-      the installation process and what test results are acceptable. \n"
-    image: {fileID: 0}
-  - subtopicID: 1102
+  - subtopicID: 1106
     slideType: 0
     content: "Continuity Testers  \r\n\r\nA continuity tester is an even simpler
       and less expensive device than a wire-map tester. It is designed to check a
       copper-cable connection for basic installation problems, such as opens, shorts,
       and crossed pairs. \r"
     image: {fileID: 0}
-  - subtopicID: 1102
+  - subtopicID: 1107
     slideType: 0
     content: "Tone Generators  \r\n\r\nThe simplest type of copper-cable tester is
       also a two-piece unit, a tone generator and probe, also sometimes called a
@@ -164,7 +164,7 @@ MonoBehaviour:
       unit that transmits a signal; or, with an alligator clip, you connect the unit
       to an individual wire. \r\n "
     image: {fileID: 0}
-  - subtopicID: 1102
+  - subtopicID: 1108
     slideType: 0
     content: "Time Domain Reflectometers (TDR) \r\n\r\n As described earlier in the
       section \u201CCable Length,\u201D a time domain reflectometer (TDR) is the
@@ -172,26 +172,29 @@ MonoBehaviour:
       impedance variations that are caused by opens, shorts, damaged cables, and
       interference with other systems.\n"
     image: {fileID: 0}
-  - subtopicID: 1102
+  - subtopicID: 1109
     slideType: 0
     content: "Fault Detection  \r\n\r\nWhen a TDR transmits its signal pulse onto
       a cable, any extraordinary impedance that the signal encounters causes it to
-      reflect back to the unit, where it can be detected by a receiver. \r\n \r\nBlind
-      Spots  \r\n\r\nSome TDRs enable you to select from a range of pulse widths.
-      The pulse width specifies the amount of energy the unit transmits as its test
-      pulse. \r\n "
+      reflect back to the unit, where it can be detected by a receiver. \r\n  "
     image: {fileID: 0}
-  - subtopicID: 1102
+  - subtopicID: 1110
+    slideType: 0
+    content: "Blind Spots  \r\n\r\nSome TDRs enable you to select from a range of
+      pulse widths. The pulse width specifies the amount of energy the unit transmits
+      as its test pulse. \r\n"
+    image: {fileID: 0}
+  - subtopicID: 1110
     slideType: 0
     content: "Once you\u2019ve gathered all the answers to such questions, the troubleshooting
       consists of steps like the following:  \r\n\r\n1. Split the system into its
-      logical elements.\n  \r\n2. Locate the element that is most likely the cause
-      of the problem.  \n\r\n3. Test the element or install a substitute to verify
-      it as the cause of the problem.  \n\r\n4. If the suspected element is not the
-      cause, move on to the next likely element. \n \r\n5. After locating the cause
-      of the problem, repair or replace it.  \r\n "
+      logical elements.\r\n2. Locate the element that is most likely the cause of
+      the problem.  \r\n3. Test the element or install a substitute to verify it
+      as the cause of the problem.  \r\n4. If the suspected element is not the cause,
+      move on to the next likely element. \r\n5. After locating the cause of the
+      problem, repair or replace it.  \r\n "
     image: {fileID: 0}
-  - subtopicID: 1102
+  - subtopicID: 1110
     slideType: 0
     content: 'You might begin troubleshooting by determining for sure that the cable
       run is the source of the problem. You can do this by connecting different devices

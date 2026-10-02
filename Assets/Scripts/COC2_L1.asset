@@ -25,7 +25,7 @@ MonoBehaviour:
   - "\u2022 Plan cable route using designed network "
   subtopics:
   - subtopicID: 0501
-    subtopicName: What is a Network?
+    subtopicName: What is Network Design
   - subtopicID: 0502
     subtopicName: Why Networking?
   - subtopicID: 0503

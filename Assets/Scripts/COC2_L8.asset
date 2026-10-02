@@ -26,7 +26,7 @@ MonoBehaviour:
   - subtopicID: 1201
     subtopicName: OHS standard
   - subtopicID: 1202
-    subtopicName: Don't forget to follow the 5s in working.
+    subtopicName: Don't forget to follow the 5s in working
   slides:
   - subtopicID: 1201
     slideType: 0
@@ -34,17 +34,21 @@ MonoBehaviour:
       follow the following OHS Standards to avoid accidents. \r\n\r\n1.) Do not work
       alone so that there\u2019s who can take care of you in case of emergency. \n\r\n2.)
       Always power off the computer and unplug the computer before and after working
-      on it. \n\r\n3.) Take away any liquid near your working area to avoid getting
-      electrocuted or accidentally damaging computer parts.  \n\r\n4.) Be careful
-      with tools that may cause short circuit.  "
+      on it.  "
     image: {fileID: 0}
   - subtopicID: 1201
     slideType: 0
-    content: "5.) Always ground or discharge yourself before touching any part of
-      the computer. \n\r\n6.) Do not use excessive force if things don\u2019t quite
-      slip into place. \n\r\n7.) Clean the area before and after using it to maintain
-      sanitation and prevent accidents. \n\r\n8.) Hold on the handle of the crimping
-      tool and not the area were the blades are located. "
+    content: "3.) Take away any liquid near your working area to avoid getting electrocuted
+      or accidentally damaging computer parts.  \n\r\n4.) Be careful with tools that
+      may cause short circuit. \n\n5.) Always ground or discharge yourself before
+      touching any part of the computer.  "
+    image: {fileID: 0}
+  - subtopicID: 1201
+    slideType: 0
+    content: "6.) Do not use excessive force if things don\u2019t quite slip into
+      place. \n\r\n7.) Clean the area before and after using it to maintain sanitation
+      and prevent accidents. \n\r\n8.) Hold on the handle of the crimping tool and
+      not the area were the blades are located."
     image: {fileID: 0}
   - subtopicID: 1201
     slideType: 0

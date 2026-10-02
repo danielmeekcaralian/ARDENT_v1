@@ -56,14 +56,24 @@ MonoBehaviour:
     image: {fileID: 0}
   - subtopicID: 0702
     slideType: 0
-    content: "A crimper with multiple dies for RJ-11, RJ-45, and MMJ modular connectors.\n\nAn
+    content: 'A crimper with multiple dies for RJ-11, RJ-45, and MMJ modular connectors.
+
+
+      An
       Ideal Ratchet Telemaster crimper with crimp cavities for eight- and four-position
-      modular plugs.\n\nAn Ideal Crimpmaster Crimp Tool.\n\nCable Ties \u2013 a type
-      of fastener, for holding items together, primarily electrical cables or wires.
-      \n\nClamp tool \u2013 provides a way to tighten wires wrapped around an object
-      and then lock it in place.  \r\n\r\nProtective eyewear \u2013 eyewear that
-      usually enclose or protect the eye area in order to prevent particulates, infectious
-      fluids, or chemicals from striking the eyes.  "
+      modular plugs.
+
+
+      An Ideal Crimpmaster Crimp Tool. '
+    image: {fileID: 0}
+  - subtopicID: 0702
+    slideType: 0
+    content: "Cable Ties \u2013 a type of fastener, for holding items together, primarily
+      electrical cables or wires. \n\nClamp tool \u2013 provides a way to tighten
+      wires wrapped around an object and then lock it in place.  \r\n\r\nProtective
+      eyewear \u2013 eyewear that usually enclose or protect the eye area in order
+      to prevent particulates, infectious fluids, or chemicals from striking the
+      eyes. "
     image: {fileID: 0}
   - subtopicID: 0702
     slideType: 0
