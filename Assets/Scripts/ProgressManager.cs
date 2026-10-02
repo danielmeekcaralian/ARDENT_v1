@@ -13,6 +13,7 @@ public class ProgressManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            HardwareLibraryProgress.SynchronizeGoldLessons(lessonDatabase);
         }
         else
         {
@@ -282,6 +283,8 @@ public class ProgressManager : MonoBehaviour
                 $"Lesson {lessonID}: Medal upgraded to {medal}."
             );
         }
+        // Also handles a repeated Gold result and items added to an existing lesson.
+        HardwareLibraryProgress.UnlockGoldLesson(lesson);
     }
 
     public void ResetProgress()

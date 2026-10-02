@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a04c719109ce6384c9cc79f646513864, type: 3}
+  m_Name: COC2_L3_Quiz
+  m_EditorClassIdentifier: Assembly-CSharp::QuizData
+  passingPercentage: 100
+  questions:
+  - question: 'It covers the fields of installation and network control. '
+    answers:
+    - " a. pliers\t"
+    - "b. screwdriver\t"
+    - "c. patch panel\t"
+    - "d. Lan Tester\t"
+    correctAnswerIndex: 3
+  - question: 'Tool intended for cutting of wire. '
+    answers:
+    - " a. pliers\t"
+    - "b. cutter\t"
+    - "c. wire stripper\t"
+    - "d. screwdriver\t"
+    correctAnswerIndex: 1
+  - question: 'A Small hand held device that is used to strip electrical insulation
+      is called. '
+    answers:
+    - " a. pliers\t"
+    - "b. cutter\t"
+    - "c. wire stripper\t"
+    - "d. screwdriver\t"
+    correctAnswerIndex: 2
+  - question: 'It is a tool that provides a way to tighten wires wrapped around an
+      object and then lock it in place. '
+    answers:
+    - " a. pliers\t"
+    - "b. cutter\t"
+    - "c. wire stripper\t"
+    - "d. clamp\t"
+    correctAnswerIndex: 3
+  - question: 'Also known as krone tool used to connect telecommunications and network
+      wires to a patch panel. '
+    answers:
+    - "a. punch down\t"
+    - "b. crimping tool\t"
+    - "c. wire stripper\t"
+    - d. Lan Tester
+    correctAnswerIndex: 0

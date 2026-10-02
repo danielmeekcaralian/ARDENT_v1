@@ -16,8 +16,26 @@ MonoBehaviour:
   activityTitle: Occupational Health & Safety
   activityType: 0
   assemblyActivity: {fileID: 0}
-  instruction: 
-  availableObjects: []
+  instruction: Check each equipment in the inventory
+  availableObjects:
+  - inventoryImage: {fileID: 1667706320255874866, guid: 48f0ad54135f4614b11ae07fe9f6a903, type: 3}
+    prefab: {fileID: 5901053270879711906, guid: b483df9d82202964896122ceef1792dd, type: 3}
+    libraryItemId: b483df9d82202964896122ceef1792dd
+  - inventoryImage: {fileID: -4345417879226350223, guid: b93f0a9fa6131024c823580f02cdfe87, type: 3}
+    prefab: {fileID: 1692133348365447860, guid: ef9e90d362c28714f97023bd5a7db101, type: 3}
+    libraryItemId: ef9e90d362c28714f97023bd5a7db101
+  - inventoryImage: {fileID: -4082251011290496927, guid: 5d7cb2cb5b329c64ba76f10747160b21, type: 3}
+    prefab: {fileID: 1084008623287050331, guid: fc1587a1a09979f4a8e460b3a70c5d3b, type: 3}
+    libraryItemId: fc1587a1a09979f4a8e460b3a70c5d3b
+  - inventoryImage: {fileID: -8658039418090121734, guid: 9dfeb0cb40d1a4c45a80b4052c7a2b1e, type: 3}
+    prefab: {fileID: 5196921277188319879, guid: f2a37e238bb1c4a41a01768f4413b329, type: 3}
+    libraryItemId: f2a37e238bb1c4a41a01768f4413b329
+  - inventoryImage: {fileID: -2173012155782595778, guid: 24946f1ad3fe1134b8ed095cb4a1581e, type: 3}
+    prefab: {fileID: 8193270652829740937, guid: 278d69aa71184b64b887f1f58a3807ff, type: 3}
+    libraryItemId: 278d69aa71184b64b887f1f58a3807ff
+  - inventoryImage: {fileID: 7402596307444913230, guid: 628c111ad42735e44bfa88fd27066043, type: 3}
+    prefab: {fileID: 8956470047060538661, guid: ca237d7e2c68aa94eac6e1dd14361840, type: 3}
+    libraryItemId: ca237d7e2c68aa94eac6e1dd14361840
   requirePlanePlacement: 1
   allowRotation: 1
   allowScaling: 1

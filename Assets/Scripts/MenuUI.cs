@@ -7,7 +7,7 @@ public class MenuUI : MonoBehaviour
 
     void Start()
     {
-        if (UIManager.Instance == null)
+        if (UIManager.Instance == null && !SceneManager.GetSceneByName("UI_Scene").isLoaded)
         {
             SceneManager.LoadScene(
                 "UI_Scene",

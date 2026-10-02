@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8405dbc1825a6a4491a2deeeaf6d30d, type: 3}
+  m_Name: RAM_Aorus_DDR5_16GB_5200
+  m_EditorClassIdentifier: Assembly-CSharp::HardwareComponentProfile
+  profileID: aorus-ddr5-16gb-5200-module
+  productName: AORUS DDR5 16 GB module (5200 MT/s)
+  prefab: {fileID: 3486367432643263235, guid: 6b6f59319186a8440a8926d4ec1a7cbe, type: 3}
+  kind: 3
+  cpuSocket: 0
+  cpuFamily: 
+  cpuModelNumber: 
+  memoryGeneration: 3
+  moduleFormat: 1
+  moduleCapacityGB: 16
+  ratedSpeedMTs: 5200
+  spdSpeedMTs: 4800
+  memoryPerformanceProfile: XMP 3.0
+  boardFormFactor: 0
+  physicalMemorySlots: 0
+  maximumMemoryGB: 0
+  boardSizeMM: {x: 0, y: 0}
+  verifiedSupportedCPUs: []
+  cpuSupportListURL: 
+  memorySupportListURL: 
+  supportedBoardFormFactors: 
+  specificationURLs:
+  - https://www.gigabyte.com/de/Memory/AORUS-Memory-DDR5-32GB--2x16GB-5200MT-s/sp
+  verificationNotes: 'Reference: GP-ARS32G52D5, sold as a 2 x 16 GB kit. This profile
+    represents the user''s single stick, not a separate verified 1 x 16 GB retail
+    SKU. UDIMM, 5200 MT/s tested with XMP, 4800 MT/s SPD. Exact motherboard memory
+    support has not been verified.'
+  displayNote: One 16 GB module. Actual memory speed depends on the system configuration.

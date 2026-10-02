@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a04c719109ce6384c9cc79f646513864, type: 3}
+  m_Name: COC2_L2_Quiz
+  m_EditorClassIdentifier: Assembly-CSharp::QuizData
+  passingPercentage: 100
+  questions:
+  - question: 'Patch panel is used for connecting and routing circuits for monitoring. '
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 0
+  - question: 'A networking device that forwards data packets between computer networks
+      is called Lan Card. '
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 1
+  - question: ' Ethernet Hub is a computer networking device that connects devices
+      together on a computer network by using packet switching to receive, process,
+      and forward data to the destination device '
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 1
+  - question: 'A Wifi is a device that adds wireless connectivity to a laptop or
+      desktop computer. '
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 1
+  - question: 'A UTP cable is standard for a physical interface between customer
+      wiring and telephone company wiring. '
+    answers:
+    - True
+    - False
+    correctAnswerIndex: 1

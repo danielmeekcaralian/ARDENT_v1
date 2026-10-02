@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class UIManager : MonoBehaviour
 {
@@ -11,13 +12,32 @@ public class UIManager : MonoBehaviour
     public GameObject infoPanel;
     public GameObject helpPanel;
 
+    public static bool HasOpenPanel => Instance != null &&
+        (IsOpen(Instance.menuPanel) || IsOpen(Instance.settingsPanel) || IsOpen(Instance.infoPanel) || IsOpen(Instance.helpPanel));
+    private static bool IsOpen(GameObject panel) => panel != null && panel.activeInHierarchy;
+
     void Awake()
     {
         Instance = this;
+        UseExistingEventSystem();
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    void Start()
+    void Start() { CloseButton(); }
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode) { UseExistingEventSystem(); }
+    private void UseExistingEventSystem()
     {
+        var systems = FindObjectsByType<EventSystem>(FindObjectsSortMode.None);
+        bool another = false;
+        foreach (var system in systems)
+            if (system.gameObject.scene != gameObject.scene && system.isActiveAndEnabled) another = true;
+        foreach (var system in systems)
+            if (another && system.gameObject.scene == gameObject.scene) system.gameObject.SetActive(false);
+    }
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        if (Instance == this) Instance = null;
     }
 
     // -------------------
@@ -26,43 +46,50 @@ public class UIManager : MonoBehaviour
 
     public void ShowMenu()
     {
-        menuPanel.SetActive(true);
-        settingsPanel.SetActive(false);
-        infoPanel.SetActive(false);
-        helpPanel.SetActive(false);
+        if (menuPanel != null)
+            foreach (var button in menuPanel.GetComponentsInChildren<UnityEngine.UI.Button>(true))
+                if (button.name == "mainMenuButton")
+                {
+                    var label = button.GetComponentInChildren<TMPro.TMP_Text>(true);
+                    if (label != null) label.text = ARSandboxSession.IsActive ? "Return to Library" : "Main Menu";
+                }
+        if (menuPanel != null) menuPanel.SetActive(true);
+        if (settingsPanel != null) settingsPanel.SetActive(false);
+        if (infoPanel != null) infoPanel.SetActive(false);
+        if (helpPanel != null) helpPanel.SetActive(false);
     }
 
     public void OpenSettings()
     {
-        menuPanel.SetActive(false);
-        settingsPanel.SetActive(true);
-        infoPanel.SetActive(false);
-        helpPanel.SetActive(false);
+        if (menuPanel != null) menuPanel.SetActive(false);
+        if (settingsPanel != null) settingsPanel.SetActive(true);
+        if (infoPanel != null) infoPanel.SetActive(false);
+        if (helpPanel != null) helpPanel.SetActive(false);
     }
 
     public void OpenInfo()
     {
-        menuPanel.SetActive(false);
-        settingsPanel.SetActive(false);
-        infoPanel.SetActive(true);
-        helpPanel.SetActive(false);
+        if (menuPanel != null) menuPanel.SetActive(false);
+        if (settingsPanel != null) settingsPanel.SetActive(false);
+        if (infoPanel != null) infoPanel.SetActive(true);
+        if (helpPanel != null) helpPanel.SetActive(false);
     }
 
     public void OpenHelp()
     {
-        menuPanel.SetActive(false);
-        settingsPanel.SetActive(false);
-        infoPanel.SetActive(false);
-        helpPanel.SetActive(true);
+        if (menuPanel != null) menuPanel.SetActive(false);
+        if (settingsPanel != null) settingsPanel.SetActive(false);
+        if (infoPanel != null) infoPanel.SetActive(false);
+        if (helpPanel != null) helpPanel.SetActive(true);
     }
 
     public void CloseButton()
     {
-        settingsPanel.SetActive(false);
-        infoPanel.SetActive(false);
-        helpPanel.SetActive(false);
+        if (settingsPanel != null) settingsPanel.SetActive(false);
+        if (infoPanel != null) infoPanel.SetActive(false);
+        if (helpPanel != null) helpPanel.SetActive(false);
 
-        menuPanel.SetActive(false);
+        if (menuPanel != null) menuPanel.SetActive(false);
     }
 
     // -------------------
@@ -71,7 +98,7 @@ public class UIManager : MonoBehaviour
 
     public void GoToMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene(ARSandboxSession.IsActive ? "Hardware_Library" : "MainMenu");
     }
 
     public void QuitGame()

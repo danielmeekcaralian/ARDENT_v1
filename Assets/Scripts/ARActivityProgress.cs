@@ -22,6 +22,7 @@ public class ARActivityProgress : MonoBehaviour
         currentActivity = activity;
 
         inspectedObjects.Clear();
+        if (progressText != null) progressText.gameObject.SetActive(activity == null || activity.activityType != ARActivityType.Sandbox);
 
         if (completionButton != null)
         {
@@ -43,7 +44,9 @@ public class ARActivityProgress : MonoBehaviour
 
     public void MarkObjectInspected(ARObjectInfo objectInfo)
     {
-        if (objectInfo == null)
+        if (objectInfo == null || currentActivity == null ||
+            (currentActivity.activityType != ARActivityType.ToolIdentification &&
+             currentActivity.activityType != ARActivityType.HardwareIdentification))
             return;
 
         if (inspectedObjects.Contains(objectInfo.objectName))
@@ -57,6 +60,31 @@ public class ARActivityProgress : MonoBehaviour
             $"Inspected: {objectInfo.objectName}"
         );
 
+        CheckCompletion();
+        ARCheckpointSession.SaveCurrent();
+    }
+
+    public string[] CaptureInspectedObjects()
+    {
+        var names = new string[inspectedObjects.Count];
+        inspectedObjects.CopyTo(names);
+        return names;
+    }
+
+    public void RestoreInspectedObjects(string[] names)
+    {
+        inspectedObjects.Clear();
+        if (names != null && currentActivity != null && currentActivity.availableObjects != null)
+        {
+            var valid = new HashSet<string>();
+            foreach (var item in currentActivity.availableObjects)
+            {
+                var info = item?.prefab != null ? item.prefab.GetComponent<ARObjectInfo>() : null;
+                if (info != null) valid.Add(info.objectName);
+            }
+            foreach (var name in names) if (name != null && valid.Contains(name)) inspectedObjects.Add(name);
+        }
+        UpdateProgressUI();
         CheckCompletion();
     }
 
@@ -76,14 +104,48 @@ public class ARActivityProgress : MonoBehaviour
         if (progressText == null)
             return;
 
+        if (currentActivity != null && currentActivity.activityType == ARActivityType.Assembly)
+        {
+            var manager = FindFirstObjectByType<ARAssemblyManager>();
+            if (manager != null) manager.RefreshProgress();
+            return;
+        }
+
+        string label = "Objects Inspected";
+
+        if (currentActivity != null)
+        {
+            switch (currentActivity.activityType)
+            {
+                case ARActivityType.ToolIdentification:
+                    label = "Tools Inspected";
+                    break;
+
+                case ARActivityType.HardwareIdentification:
+                    label = "Hardware Inspected";
+                    break;
+            }
+        }
+
         progressText.text =
-            $"Tools Inspected: " +
+            $"{label}: " +
             $"{inspectedObjects.Count} / " +
             $"{GetRequiredObjectCount()}";
     }
 
     private void CheckCompletion()
     {
+        if (currentActivity == null)
+            return;
+
+        // Inspection-based completion only applies to
+        // Tool Identification and Hardware Identification.
+        if (currentActivity.activityType != ARActivityType.ToolIdentification &&
+            currentActivity.activityType != ARActivityType.HardwareIdentification)
+        {
+            return;
+        }
+
         int requiredCount =
             GetRequiredObjectCount();
 
@@ -93,15 +155,22 @@ public class ARActivityProgress : MonoBehaviour
         if (inspectedObjects.Count >= requiredCount)
         {
             Debug.Log(
-                "AR ACTIVITY COMPLETE!"
+                "AR Identification Activity COMPLETE!"
             );
 
             CompleteActivity();
         }
     }
 
-    private void CompleteActivity()
+    public void SetAssemblyProgress(string phase, int done, int total)
     {
+        if (progressText != null)
+            progressText.text = $"{phase}: {done} / {total}";
+    }
+
+    public void CompleteActivity()
+    {
+        if (ARSandboxSession.IsActive || (currentActivity != null && currentActivity.activityType == ARActivityType.Sandbox)) return;
         LessonData currentLesson =
             LessonSession.CurrentLesson;
 
@@ -128,6 +197,8 @@ public class ARActivityProgress : MonoBehaviour
             currentLesson
         );
 
+        ARCheckpointSession.CompleteCurrent();
+
         // Show the button that allows the user
         // to open the completion popup.
         if (completionButton != null)
@@ -136,7 +207,8 @@ public class ARActivityProgress : MonoBehaviour
         }
 
         Debug.Log(
-            "AR Activity completed. Completion button shown."
+            "AR Identification Activity completed. " +
+            "Completion button shown."
         );
     }
 
@@ -156,6 +228,7 @@ public class ARActivityProgress : MonoBehaviour
 
     public void ContinueFromCompletion()
     {
+        if (ARSandboxSession.IsActive) { SceneManager.LoadScene("Hardware_Library"); return; }
         SceneManager.LoadScene("ActivitySelectionScene");
     }
 }

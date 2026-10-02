@@ -1,26 +1,57 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ARAssemblyManager : MonoBehaviour
+public partial class ARAssemblyManager : MonoBehaviour
 {
-    [Header("Assembly Activity")]
-    [SerializeField] private ARAssemblyActivityData assemblyActivity;
+    private ARAssemblyActivityData assemblyActivity;
 
     [Header("Assembly UI")]
     [SerializeField] private TMP_Text stepTitleText;
     [SerializeField] private TMP_Text instructionsText;
 
-    private Transform assemblyTargets;
+    private readonly Dictionary<string, AssemblyAnchor>
+        assemblyAnchors =
+            new Dictionary<string, AssemblyAnchor>();
 
     private int currentStepIndex = 0;
+    private float assemblyScaleFactor = 1f;
 
-    private void Start()
+    public void EnterSandbox()
     {
+        ResetCombinedActivity();
+        assemblyActivity = null;
+        assemblyAnchors.Clear();
+        if (stepTitleText != null) stepTitleText.gameObject.SetActive(false);
+        if (instructionsText != null) instructionsText.gameObject.SetActive(false);
+    }
+
+    public void SetAssemblyScale(float factor)
+    {
+        assemblyScaleFactor = Mathf.Max(0.001f, factor);
+    }
+
+    // =========================================================
+    // SET ACTIVITY
+    // =========================================================
+
+    public void SetActivity(
+        ARAssemblyActivityData activity)
+    {
+        ResetCombinedActivity();
+        assemblyActivity = activity;
+
+        currentStepIndex = 0;
+
+        assemblyAnchors.Clear();
+
         if (assemblyActivity == null)
         {
             Debug.LogError(
-                "ARAssemblyManager: No Assembly Activity assigned."
+                "ARAssemblyManager: " +
+                "No Assembly Activity provided."
             );
+
             return;
         }
 
@@ -28,8 +59,10 @@ public class ARAssemblyManager : MonoBehaviour
             assemblyActivity.steps.Length == 0)
         {
             Debug.LogError(
-                "ARAssemblyManager: No assembly steps found."
+                "ARAssemblyManager: " +
+                "No assembly steps found."
             );
+
             return;
         }
 
@@ -38,38 +71,71 @@ public class ARAssemblyManager : MonoBehaviour
             assemblyActivity.activityTitle
         );
 
+        Phase = ActivityPhase.Assembly;
         ShowCurrentStep();
     }
 
-    public void SetAssemblyAnchor(GameObject motherboard)
+    // =========================================================
+    // REGISTER ANCHOR
+    // =========================================================
+
+    public void RegisterAssemblyAnchor(
+        AssemblyAnchor anchor)
     {
-        if (motherboard == null)
+        if (anchor == null)
             return;
 
-        Transform targets =
-            motherboard.transform.Find("AssemblyTargets");
-
-        if (targets == null)
+        if (string.IsNullOrWhiteSpace(
+                anchor.anchorID))
         {
             Debug.LogError(
-                "ARAssemblyManager: AssemblyTargets not found on motherboard."
+                "ARAssemblyManager: " +
+                "AssemblyAnchor has no Anchor ID."
             );
 
             return;
         }
 
-        assemblyTargets = targets;
+        if (assemblyAnchors.ContainsKey(
+                anchor.anchorID))
+        {
+            Debug.LogWarning(
+                "ARAssemblyManager: Replacing existing " +
+                "assembly anchor: " +
+                anchor.anchorID
+            );
+        }
+
+        assemblyAnchors[anchor.anchorID] =
+            anchor;
 
         Debug.Log(
-            "Assembly anchor set to motherboard: " +
-            motherboard.name
+            "Assembly anchor registered: " +
+            anchor.anchorID
         );
     }
 
+    // =========================================================
+    // SHOW CURRENT STEP
+    // =========================================================
+
     private void ShowCurrentStep()
     {
+        RefreshProgress();
+        if (assemblyActivity == null)
+            return;
+
+        if (currentStepIndex < 0 ||
+            currentStepIndex >=
+            assemblyActivity.steps.Length)
+        {
+            return;
+        }
+
         AssemblyStepData step =
-            assemblyActivity.steps[currentStepIndex];
+            assemblyActivity.steps[
+                currentStepIndex
+            ];
 
         if (stepTitleText != null)
         {
@@ -96,29 +162,69 @@ public class ARAssemblyManager : MonoBehaviour
         );
     }
 
-    public bool TryCompleteCurrentStep(
-    GameObject placedObject)
-    {
-        if (assemblyActivity == null)
-        {
-            Debug.LogError(
-                "ARAssemblyManager: No assembly activity assigned."
-            );
+    // =========================================================
+    // COMPLETE CURRENT STEP
+    // =========================================================
 
+    public bool TryAlignCurrentComponentRotation(GameObject candidate)
+    {
+        if (ARSandboxSession.IsActive) return TryAlignSandboxComponent(candidate);
+        // Optional placement aid: keep position and size under the user's control.
+        if (Phase != ActivityPhase.Assembly || !IsCurrentStepComponent(candidate)) return false;
+        var manipulator = candidate.GetComponent<ARObjectManipulator>();
+        if (manipulator == null || manipulator.IsLocked) return false;
+        var step = assemblyActivity.steps[currentStepIndex];
+        var anchor = FindAnchor(step.anchorID);
+        var target = anchor != null ? anchor.FindTarget(step.targetID) : null;
+        if (target == null)
+        {
+            if (instructionsText != null)
+                instructionsText.text = step.instruction + "\nPlace the required base before aligning.";
             return false;
         }
+        candidate.transform.rotation = target.transform.rotation;
+        if (instructionsText != null)
+            instructionsText.text = step.instruction + "\nRotation aligned. Move the component to its target.";
+        return true;
+    }
 
-        if (assemblyActivity.steps.Length == 0)
+    public bool IsCurrentStepComponent(GameObject candidate)
+    {
+        if (candidate == null) return false;
+        if (Phase == ActivityPhase.Disassembly)
+            return removalIndex >= 0 && removalIndex < installedParts.Count &&
+                candidate == installedParts[removalIndex];
+        if (Phase != ActivityPhase.Assembly || assemblyActivity == null ||
+            assemblyActivity.steps == null || currentStepIndex < 0 ||
+            currentStepIndex >= assemblyActivity.steps.Length || installedParts.Contains(candidate))
+            return false;
+        var step = assemblyActivity.steps[currentStepIndex];
+        var required = step.component?.prefab != null
+            ? step.component.prefab.GetComponent<ARObjectInfo>() : null;
+        var actual = candidate.GetComponent<ARObjectInfo>();
+        return required != null && actual != null && required.objectName == actual.objectName;
+    }
+
+    public bool TryCompleteCurrentStep(
+        GameObject placedObject)
+    {
+        if (ARSandboxSession.IsActive) return TrySnapSandboxComponent(placedObject);
+        if (Phase == ActivityPhase.Disassembly)
+            return TryRemoveCurrentPart(placedObject);
+        if (Phase != ActivityPhase.Assembly || assemblyActivity == null)
+            return false;
+        if (installedParts.Contains(placedObject))
+            return false;
+
+        if (assemblyActivity.steps == null ||
+            assemblyActivity.steps.Length == 0)
         {
-            Debug.LogError(
-                "ARAssemblyManager: No assembly steps available."
-            );
-
             return false;
         }
 
         if (currentStepIndex < 0 ||
-            currentStepIndex >= assemblyActivity.steps.Length)
+            currentStepIndex >=
+            assemblyActivity.steps.Length)
         {
             Debug.Log(
                 "Assembly activity is already completed."
@@ -131,7 +237,13 @@ public class ARAssemblyManager : MonoBehaviour
             return false;
 
         AssemblyStepData step =
-            assemblyActivity.steps[currentStepIndex];
+            assemblyActivity.steps[
+                currentStepIndex
+            ];
+
+        // -----------------------------------------------------
+        // CHECK COMPONENT
+        // -----------------------------------------------------
 
         ARObjectInfo objectInfo =
             placedObject.GetComponent<ARObjectInfo>();
@@ -149,19 +261,22 @@ public class ARAssemblyManager : MonoBehaviour
             step.component.prefab == null)
         {
             Debug.LogError(
-                "Assembly step has no component assigned."
+                "Assembly step has no " +
+                "component assigned."
             );
 
             return false;
         }
 
         ARObjectInfo requiredObjectInfo =
-            step.component.prefab.GetComponent<ARObjectInfo>();
+            step.component.prefab
+                .GetComponent<ARObjectInfo>();
 
         if (requiredObjectInfo == null)
         {
             Debug.LogError(
-                "Required component prefab has no ARObjectInfo."
+                "Required component prefab " +
+                "has no ARObjectInfo."
             );
 
             return false;
@@ -170,8 +285,11 @@ public class ARAssemblyManager : MonoBehaviour
         string requiredName =
             requiredObjectInfo.objectName;
 
-        if (objectInfo.objectName != requiredName)
+        if (objectInfo.objectName !=
+            requiredName)
         {
+            if (instructionsText != null)
+                instructionsText.text = step.instruction + "\nSelect " + requiredName + " to continue.";
             Debug.Log(
                 "Wrong component. Required: " +
                 requiredName
@@ -180,18 +298,51 @@ public class ARAssemblyManager : MonoBehaviour
             return false;
         }
 
+        // -----------------------------------------------------
+        // FIND ANCHOR
+        // -----------------------------------------------------
+
+        AssemblyAnchor anchor =
+            FindAnchor(step.anchorID);
+
+        if (anchor == null)
+        {
+            if (instructionsText != null)
+                instructionsText.text = step.instruction + "\nPlace the required base first: " + step.anchorID;
+            Debug.Log(
+                "Required assembly anchor " +
+                "has not been placed: " +
+                step.anchorID
+            );
+
+            return false;
+        }
+
+        // -----------------------------------------------------
+        // FIND TARGET
+        // -----------------------------------------------------
+
         AssemblyTarget target =
-            FindTarget(step.targetID);
+            anchor.FindTarget(
+                step.targetID
+            );
 
         if (target == null)
         {
             Debug.LogError(
-                "Assembly target not found: " +
+                "Assembly target not found. " +
+                "Anchor: " +
+                step.anchorID +
+                ", Target: " +
                 step.targetID
             );
 
             return false;
         }
+
+        // -----------------------------------------------------
+        // CHECK DISTANCE
+        // -----------------------------------------------------
 
         float distance =
             Vector3.Distance(
@@ -199,59 +350,100 @@ public class ARAssemblyManager : MonoBehaviour
                 target.transform.position
             );
 
-        if (distance > step.snapDistance)
+        float allowedDistance = step.snapDistance * assemblyScaleFactor;
+        float angleError = Quaternion.Angle(
+            placedObject.transform.rotation, target.transform.rotation);
+        bool closeEnough = distance <= allowedDistance;
+        bool aligned = angleError <= step.rotationTolerance;
+        if (!closeEnough || !aligned)
         {
-            Debug.Log(
-                "Component is not close enough to the target."
-            );
-
+            string guidance = !closeEnough && !aligned ? "Move closer and rotate to match the target."
+                : !closeEnough ? "Move closer to the target." : "Rotate to match the target.";
+            string measurements = $"Distance: {distance:F3} (max {allowedDistance:F3}) | " +
+                $"Angle: {angleError:F1} deg (max {step.rotationTolerance:F1})";
+            if (instructionsText != null)
+                instructionsText.text = step.instruction + "\n" + guidance + "\n" + measurements;
+            Debug.Log($"Snap pending for {requiredName}: {measurements}");
             return false;
         }
-
         placedObject.transform.position =
             target.transform.position;
 
         placedObject.transform.rotation =
             target.transform.rotation;
 
+        // Parent component to the anchor.
+        placedObject.transform.SetParent(
+            anchor.transform,
+            true
+        );
+
+        // -----------------------------------------------------
+        // LOCK COMPONENT
+        // -----------------------------------------------------
+
+        ARObjectManipulator manipulator =
+            placedObject
+                .GetComponent<ARObjectManipulator>();
+
+        if (manipulator != null)
+        {
+            manipulator.SetLocked(true);
+        }
+
         Debug.Log(
             "Assembly step completed: " +
             step.stepTitle
         );
 
+        installedParts.Add(placedObject);
         AdvanceStep();
+        ARCheckpointSession.SaveCurrent();
 
         return true;
     }
+
+    // =========================================================
+    // FIND ANCHOR
+    // =========================================================
+
+    private AssemblyAnchor FindAnchor(
+        string anchorID)
+    {
+        if (string.IsNullOrWhiteSpace(
+                anchorID))
+        {
+            Debug.LogError(
+                "Assembly step has no Anchor ID."
+            );
+
+            return null;
+        }
+
+        if (assemblyAnchors.TryGetValue(
+                anchorID,
+                out AssemblyAnchor anchor))
+        {
+            return anchor;
+        }
+
+        return null;
+    }
+
+    // =========================================================
+    // ADVANCE STEP
+    // =========================================================
 
     private void AdvanceStep()
     {
         currentStepIndex++;
 
-        if (currentStepIndex >=
-            assemblyActivity.steps.Length)
+        if (currentStepIndex >= assemblyActivity.steps.Length)
         {
-            Debug.Log("Assembly completed!");
+            FinishAssemblyPhase();
             return;
         }
 
         ShowCurrentStep();
-    }
-
-    private AssemblyTarget FindTarget(string targetID)
-    {
-        if (assemblyTargets == null)
-            return null;
-
-        AssemblyTarget[] targets =
-            assemblyTargets.GetComponentsInChildren<AssemblyTarget>();
-
-        foreach (AssemblyTarget target in targets)
-        {
-            if (target.targetID == targetID)
-                return target;
-        }
-
-        return null;
     }
 }

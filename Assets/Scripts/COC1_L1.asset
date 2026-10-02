@@ -293,5 +293,5 @@ MonoBehaviour:
   hasQuiz: 1
   requiresARActivity: 1
   requiresQuiz: 1
-  arActivity: {fileID: 11400000, guid: 14db1ecf50090334b9bacd11ed688c06, type: 2}
+  arActivity: {fileID: 11400000, guid: 2424b83f512745e449f6ec42c3e4a19e, type: 2}
   quizData: {fileID: 11400000, guid: 60a7df15bc161704e98efbe014e68758, type: 2}

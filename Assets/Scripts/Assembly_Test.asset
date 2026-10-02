@@ -13,13 +13,6 @@ MonoBehaviour:
   m_Name: Assembly_Test
   m_EditorClassIdentifier: Assembly-CSharp::ARAssemblyActivityData
   activityTitle: Test PC Assembly
-  description: Place the motherboard in the correct position.
-  steps:
-  - stepNumber: 1
-    stepTitle: Install CPU
-    instruction: Install the CPU on the motherboard
-    component:
-      inventoryImage: {fileID: 21300000, guid: 072874f7b0a111241aed244a928fb121, type: 3}
-      prefab: {fileID: 4520426654957767696, guid: 38b67b69c43a9cc48aa7c0f294851a5c, type: 3}
-    targetID: CPU_Target
-    snapDistance: 0.5
+  description: Test Assembly
+  includeDisassembly: 1
+  steps: []

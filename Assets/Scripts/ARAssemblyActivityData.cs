@@ -12,6 +12,10 @@ public class ARAssemblyActivityData : ScriptableObject
     [TextArea(2, 5)]
     public string description;
 
+    [Header("Combined Activity")]
+    [Tooltip("After assembly, remove the installed parts in reverse order.")]
+    public bool includeDisassembly;
+
     [Header("Assembly Steps")]
     public AssemblyStepData[] steps;
 }

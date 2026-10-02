@@ -1,58 +1,162 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
-public class ARPlacementManager : MonoBehaviour
+public partial class ARPlacementManager : MonoBehaviour
 {
     [Header("AR References")]
-    [SerializeField] private ARRaycastManager raycastManager;
+    [SerializeField]
+    private ARRaycastManager raycastManager;
 
     [Header("Content")]
-    [SerializeField] private Transform contentParent;
+    [SerializeField]
+    private Transform contentParent;
 
     [Header("Placement Indicator")]
-    [SerializeField] private GameObject placementIndicator;
+    [SerializeField]
+    private GameObject placementIndicator;
+
+    [Header("Assembly Zoom (1x = calibrated size)")]
+    [SerializeField, Min(1f)] private float maximumAssemblyMultiplier = 4f;
+
+    private Transform assemblyRoot;
+    public Transform AssemblyRoot => assemblyRoot;
+    public bool AllowMovement => currentActivity == null || currentActivity.allowMovement;
+    public bool AllowRotation => currentActivity == null || currentActivity.allowRotation;
+    public bool AllowScaling => currentActivity == null || currentActivity.allowScaling;
+
+    public bool CanPlaceObjects
+    {
+        get
+        {
+            if (ARCheckpointSession.BlocksInput || UIManager.HasOpenPanel) return false;
+            if (!IsAssemblyActivity) return true;
+            var manager = FindFirstObjectByType<ARAssemblyManager>();
+            return manager == null || manager.CanPlaceObjects;
+        }
+    }
+
+    public void CancelPlacement()
+    {
+        isPlacing = false;
+        selectedObjectData = null;
+        if (placementIndicator != null) placementIndicator.SetActive(false);
+    }
+
+    private float assemblyScale = 1f;
+    public bool IsSandboxActivity => currentActivity != null && currentActivity.activityType == ARActivityType.Sandbox;
+    public bool IsAssemblyActivity =>
+        currentActivity != null &&
+        currentActivity.activityType == ARActivityType.Assembly;
+
+    public void ScaleAssembly(float amount)
+    {
+        if (!IsAssemblyActivity || !currentActivity.allowScaling ||
+            assemblyRoot == null)
+            return;
+
+        assemblyScale = ARScaleMath.NextMultiplier(assemblyScale, amount, maximumAssemblyMultiplier);
+
+        assemblyRoot.localScale = Vector3.one * assemblyScale;
+        ARAssemblyManager manager = FindFirstObjectByType<ARAssemblyManager>();
+        if (manager != null)
+            manager.SetAssemblyScale(assemblyScale);
+    }
+
+    private Transform GetPlacementParent(Pose pose)
+    {
+        if (!IsAssemblyActivity)
+            return contentParent;
+
+        if (assemblyRoot == null)
+        {
+            assemblyRoot = new GameObject("AssemblyRoot").transform;
+            assemblyRoot.SetParent(contentParent, false);
+            // Resize around the first placement rather than the scene origin.
+            assemblyRoot.position = pose.position;
+            assemblyRoot.localRotation = Quaternion.identity;
+            assemblyRoot.localScale = Vector3.one * assemblyScale;
+        }
+
+        return assemblyRoot;
+    }
 
     private GameObject currentObject;
-    private ARActivityData currentActivity;
-    private ARObjectData selectedObjectData;
-    private bool isPlacing;
 
-    private static readonly List<ARRaycastHit> hits =
-        new List<ARRaycastHit>();
+    private ARActivityData currentActivity;
+
+    private ARObjectData selectedObjectData;
+
+    private bool isPlacing;
+    private readonly List<RaycastResult> placementUIHits = new List<RaycastResult>();
+
+    private static readonly List<ARRaycastHit>
+        hits =
+            new List<ARRaycastHit>();
 
     private int lastPlacedFrame = -1;
+
     private Pose placementPose;
 
-    public void SetActivity(ARActivityData activity)
+    // =========================================================
+    // SET ACTIVITY
+    // =========================================================
+
+    public void SetActivity(
+        ARActivityData activity)
     {
         currentActivity = activity;
 
+        if (currentActivity == null)
+        {
+            Debug.LogError(
+                "ARPlacementManager: " +
+                "No AR Activity provided."
+            );
+
+            return;
+        }
+
         Debug.Log(
             "AR Activity loaded: " +
-            activity.activityTitle
+            currentActivity.activityTitle
         );
     }
 
-    public void SelectObject(ARObjectData objectData)
+    // =========================================================
+    // SELECT OBJECT
+    // =========================================================
+
+    public void SelectObject(
+        ARObjectData objectData)
     {
-        if (objectData == null)
+        if (!CanPlaceObjects || objectData == null)
             return;
 
         if (objectData.prefab == null)
         {
-            Debug.LogError("Selected AR object has no prefab assigned.");
+            Debug.LogError(
+                "Selected AR object has " +
+                "no prefab assigned."
+            );
+
             return;
         }
 
-        selectedObjectData = objectData;
+        selectedObjectData =
+            objectData;
+
         isPlacing = true;
 
         if (placementIndicator != null)
         {
-            placementIndicator.SetActive(true);
+            placementIndicator.SetActive(
+                true
+            );
         }
 
         Debug.Log(
@@ -61,17 +165,26 @@ public class ARPlacementManager : MonoBehaviour
         );
     }
 
+    // =========================================================
+    // UPDATE
+    // =========================================================
+
     private void Update()
     {
+        if (SandboxInventoryPanel.IsOpen) return;
         if (currentActivity == null)
             return;
 
         UpdatePlacementIndicator();
 
 #if UNITY_EDITOR
+
         HandleEditorInput();
+
 #else
-    HandleTouchInput();
+
+        HandleTouchInput();
+
 #endif
     }
 
@@ -86,7 +199,7 @@ public class ARPlacementManager : MonoBehaviour
         if (Mouse.current == null)
             return;
 
-        if (!isPlacing)
+        if (!isPlacing || !CanPlaceObjects)
             return;
 
         Vector2 mousePosition =
@@ -100,9 +213,12 @@ public class ARPlacementManager : MonoBehaviour
             return;
         }
 
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if (Mouse.current.leftButton
+            .wasPressedThisFrame)
         {
-            PlaceObjectAtPosition(mousePosition);
+            PlaceObjectAtPosition(
+                mousePosition
+            );
         }
     }
 
@@ -115,47 +231,58 @@ public class ARPlacementManager : MonoBehaviour
 #if !UNITY_EDITOR
 
     private void HandleTouchInput()
-{
-    if (Touchscreen.current == null)
-        return;
-
-    var touch =
-        Touchscreen.current.primaryTouch;
-
-    Vector2 touchPosition =
-        touch.position.ReadValue();
-
-    if (touch.press.wasPressedThisFrame)
     {
-        if (IsExistingObject(touchPosition))
+        if (Touchscreen.current == null)
             return;
 
-        PlaceObjectAtPosition(touchPosition);
+        var touch =
+            Touchscreen.current.primaryTouch;
+
+        Vector2 touchPosition =
+            touch.position.ReadValue();
+
+        if (touch.press.wasPressedThisFrame)
+        {
+            if (IsExistingObject(
+                    touchPosition))
+            {
+                return;
+            }
+
+            PlaceObjectAtPosition(
+                touchPosition
+            );
+        }
     }
-}
 
 #endif
 
     // =========================================================
-    // CHECK EXISTING AR OBJECT
+    // CHECK EXISTING OBJECT
     // =========================================================
 
-    private bool IsExistingObject(Vector2 screenPosition)
+    private bool IsExistingObject(
+        Vector2 screenPosition)
     {
-        Camera cam = Camera.main;
+        Camera cam =
+            Camera.main;
 
         if (cam == null)
             return false;
 
         Ray ray =
-            cam.ScreenPointToRay(screenPosition);
+            cam.ScreenPointToRay(
+                screenPosition
+            );
 
         if (Physics.Raycast(
                 ray,
                 out RaycastHit hit))
         {
             ARObjectManipulator manipulator =
-                hit.collider.GetComponentInParent<ARObjectManipulator>();
+                hit.collider
+                    .GetComponentInParent<
+                        ARObjectManipulator>();
 
             if (manipulator != null)
             {
@@ -172,39 +299,8 @@ public class ARPlacementManager : MonoBehaviour
     }
 
     // =========================================================
-    // UPDATE PLACEMENT POSITION
+    // UPDATE PLACEMENT INDICATOR
     // =========================================================
-
-    private void UpdatePlacementPose(Vector2 screenPosition)
-    {
-        if (raycastManager == null)
-            return;
-
-        if (raycastManager.Raycast(
-                screenPosition,
-                hits,
-                TrackableType.PlaneWithinPolygon))
-        {
-            placementPose = hits[0].pose;
-
-            if (placementIndicator != null)
-            {
-                placementIndicator.SetActive(true);
-
-                placementIndicator.transform.SetPositionAndRotation(
-                    placementPose.position,
-                    placementPose.rotation
-                );
-            }
-        }
-        else
-        {
-            if (placementIndicator != null)
-            {
-                placementIndicator.SetActive(false);
-            }
-        }
-    }
 
     private void UpdatePlacementIndicator()
     {
@@ -212,7 +308,9 @@ public class ARPlacementManager : MonoBehaviour
         {
             if (placementIndicator != null)
             {
-                placementIndicator.SetActive(false);
+                placementIndicator.SetActive(
+                    false
+                );
             }
 
             return;
@@ -221,7 +319,8 @@ public class ARPlacementManager : MonoBehaviour
         if (raycastManager == null)
             return;
 
-        Camera cam = Camera.main;
+        Camera cam =
+            Camera.main;
 
         if (cam == null)
             return;
@@ -235,25 +334,32 @@ public class ARPlacementManager : MonoBehaviour
         if (raycastManager.Raycast(
                 screenCenter,
                 hits,
-                TrackableType.PlaneWithinPolygon))
+                TrackableType
+                    .PlaneWithinPolygon))
         {
-            placementPose = hits[0].pose;
+            placementPose =
+                hits[0].pose;
 
             if (placementIndicator != null)
             {
-                placementIndicator.SetActive(true);
-
-                placementIndicator.transform.SetPositionAndRotation(
-                    placementPose.position,
-                    placementPose.rotation
+                placementIndicator.SetActive(
+                    true
                 );
+
+                placementIndicator.transform
+                    .SetPositionAndRotation(
+                        placementPose.position,
+                        placementPose.rotation
+                    );
             }
         }
         else
         {
             if (placementIndicator != null)
             {
-                placementIndicator.SetActive(false);
+                placementIndicator.SetActive(
+                    false
+                );
             }
         }
     }
@@ -262,12 +368,18 @@ public class ARPlacementManager : MonoBehaviour
     // PLACE OBJECT
     // =========================================================
 
-    private void PlaceObjectAtPosition(Vector2 screenPosition)
+    private void PlaceObjectAtPosition(
+        Vector2 screenPosition)
     {
-        if (!isPlacing)
+        if (EventSystem.current != null)
         {
-            return;
+            placementUIHits.Clear();
+            EventSystem.current.RaycastAll(new PointerEventData(EventSystem.current) { position = screenPosition }, placementUIHits);
+            foreach (var hit in placementUIHits) if (hit.module is GraphicRaycaster) return;
         }
+        if (!isPlacing || !CanPlaceObjects)
+            return;
+
         if (raycastManager == null)
             return;
 
@@ -276,7 +388,9 @@ public class ARPlacementManager : MonoBehaviour
 
         if (selectedObjectData == null)
         {
-            Debug.Log("No AR object selected.");
+            Debug.Log(
+                "No AR object selected."
+            );
 
             return;
         }
@@ -284,7 +398,8 @@ public class ARPlacementManager : MonoBehaviour
         if (selectedObjectData.prefab == null)
         {
             Debug.LogError(
-                "Selected AR object has no prefab assigned."
+                "Selected AR object has " +
+                "no prefab assigned."
             );
 
             return;
@@ -293,47 +408,98 @@ public class ARPlacementManager : MonoBehaviour
         if (!raycastManager.Raycast(
                 screenPosition,
                 hits,
-                TrackableType.PlaneWithinPolygon))
+                TrackableType
+                    .PlaneWithinPolygon))
         {
             Debug.Log(
-                "Cannot place object: no AR plane detected at tap position."
+                "Cannot place object: " +
+                "no AR plane detected."
             );
 
             return;
         }
 
-        Pose tapPose = hits[0].pose;
+        Pose tapPose =
+            hits[0].pose;
 
-        GameObject newObject = Instantiate(
-            selectedObjectData.prefab,
-            tapPose.position,
-            tapPose.rotation,
-            contentParent
-        );
+        GameObject newObject =
+            Instantiate(
+                selectedObjectData.prefab,
+                tapPose.position,
+                tapPose.rotation,
+                GetPlacementParent(tapPose)
+            );
 
-        ARAssemblyManager assemblyManager = FindFirstObjectByType<ARAssemblyManager>();
-
-        if (assemblyManager != null)
+        if (IsAssemblyActivity)
         {
-            ARObjectInfo objectInfo =
-                newObject.GetComponent<ARObjectInfo>();
+            // Keep the authored LOCAL size so new parts inherit the shared scale.
+            newObject.transform.localScale =
+                selectedObjectData.prefab.transform.localScale;
+        }
+        // Capture the final baseline after placement parenting/scale setup, never
+        // infer it from a global raw-scale limit on the first resize gesture.
+        var scaleController = newObject.GetComponent<ARObjectManipulator>();
+        if (scaleController != null) scaleController.InitializeScaleBaseline();
+        if (IsSandboxActivity)
+        {
+            var part = newObject.GetComponent<SandboxAssemblyPart>();
+            if (part == null) part = newObject.AddComponent<SandboxAssemblyPart>();
+            part.Initialize(selectedObjectData.prefab);
+        }
 
-            if (objectInfo != null &&
-                objectInfo.objectName == "Motherboard")
+        // -----------------------------------------------------
+        // REGISTER ASSEMBLY ANCHOR
+        // -----------------------------------------------------
+
+        if (currentActivity.activityType ==
+            ARActivityType.Assembly)
+        {
+            AssemblyAnchor anchor =
+                newObject
+                    .GetComponent<AssemblyAnchor>();
+
+            if (anchor != null)
             {
-                assemblyManager.SetAssemblyAnchor(newObject);
+                ARAssemblyManager
+                    assemblyManager =
+                        FindFirstObjectByType<
+                            ARAssemblyManager>();
+
+                if (assemblyManager != null)
+                {
+                    assemblyManager
+                        .RegisterAssemblyAnchor(
+                            anchor
+                        );
+                }
             }
         }
 
-        currentObject = newObject;
-        lastPlacedFrame = Time.frameCount;
+        currentObject =
+            newObject;
+
+        lastPlacedFrame =
+            Time.frameCount;
 
         isPlacing = false;
+
         selectedObjectData = null;
+
+        // Return to Edit mode
+        ARModeManager modeManager =
+            FindFirstObjectByType<
+                ARModeManager>();
+
+        if (modeManager != null)
+        {
+            modeManager.SetEditMode();
+        }
 
         if (placementIndicator != null)
         {
-            placementIndicator.SetActive(false);
+            placementIndicator.SetActive(
+                false
+            );
         }
 
         Debug.Log(
@@ -343,26 +509,43 @@ public class ARPlacementManager : MonoBehaviour
     }
 
     // =========================================================
-    // RESET
+    // RESET LAST OBJECT
     // =========================================================
 
     public void ResetObject()
     {
+        var manager = FindFirstObjectByType<ARAssemblyManager>();
+        if ((IsAssemblyActivity || IsSandboxActivity) && manager != null && !manager.CanDeleteObject(currentObject))
+            return;
+
         if (currentObject != null)
         {
-            Destroy(currentObject);
+            Destroy(
+                currentObject
+            );
+
             currentObject = null;
         }
 
         if (placementIndicator != null)
         {
-            placementIndicator.SetActive(true);
+            placementIndicator.SetActive(
+                true
+            );
         }
 
-        Debug.Log("Last placed AR object reset.");
+        Debug.Log(
+            "Last placed AR object reset."
+        );
     }
+
+    // =========================================================
+    // PLACEMENT FRAME CHECK
+    // =========================================================
+
     public bool WasObjectPlacedThisFrame()
     {
-        return lastPlacedFrame == Time.frameCount;
+        return lastPlacedFrame ==
+               Time.frameCount;
     }
 }
