@@ -22,7 +22,7 @@ public class ARActivityProgress : MonoBehaviour
         currentActivity = activity;
 
         inspectedObjects.Clear();
-        if (progressText != null) progressText.gameObject.SetActive(activity == null || activity.activityType != ARActivityType.Sandbox);
+        if (progressText != null) progressText.gameObject.SetActive(activity == null || (activity.activityType != ARActivityType.Sandbox && activity.activityType != ARActivityType.NetworkDesign));
 
         if (completionButton != null)
         {

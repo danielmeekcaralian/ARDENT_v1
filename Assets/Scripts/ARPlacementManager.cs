@@ -48,6 +48,7 @@ public partial class ARPlacementManager : MonoBehaviour
     }
 
     private float assemblyScale = 1f;
+    public bool IsNetworkActivity => currentActivity != null && currentActivity.activityType == ARActivityType.NetworkDesign;
     public bool IsSandboxActivity => currentActivity != null && currentActivity.activityType == ARActivityType.Sandbox;
     public bool IsAssemblyActivity =>
         currentActivity != null &&
@@ -151,6 +152,7 @@ public partial class ARPlacementManager : MonoBehaviour
             objectData;
 
         isPlacing = true;
+        if (IsNetworkActivity) FindFirstObjectByType<ARModeManager>()?.SetPlaceMode();
 
         if (placementIndicator != null)
         {

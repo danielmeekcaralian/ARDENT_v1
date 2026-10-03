@@ -89,6 +89,7 @@ public class ARActivityRouter : MonoBehaviour
 
                 break;
 
+            case ARActivityType.NetworkDesign:
             case ARActivityType.Sandbox:
                 // Shared inventory and interaction systems are configured by ARSceneController.
                 break;

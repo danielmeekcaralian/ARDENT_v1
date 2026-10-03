@@ -48,3 +48,13 @@ MonoBehaviour:
     TargetID: glassPanel_target
     SnapDistance: 0.15
     RotationTolerance: 15
+  - ComponentPrefab: {fileID: 2545629181937371313, guid: e4be85666dc52fe48b6782c7b2f9277e, type: 3}
+    HostPrefab: {fileID: 8491735597142451735, guid: 442dd7fcb56eb514cbaac697e726777d, type: 3}
+    TargetID: psu_target
+    SnapDistance: 0.15
+    RotationTolerance: 15
+  - ComponentPrefab: {fileID: 6745715773498611912, guid: 2ab68aa35f0895143872c65c86469453, type: 3}
+    HostPrefab: {fileID: 8491735597142451735, guid: 442dd7fcb56eb514cbaac697e726777d, type: 3}
+    TargetID: hdd_target
+    SnapDistance: 0.15
+    RotationTolerance: 15
