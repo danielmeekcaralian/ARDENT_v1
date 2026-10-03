@@ -200,6 +200,14 @@ public partial class ARInteractionManager : MonoBehaviour
             (placementManager != null && placementManager.WasObjectPlacedThisFrame())) return;
         var mode = GetCurrentMode();
         if (mode == ARInteractionMode.Place) return;
+        if (mode == ARInteractionMode.Connect)
+        {
+            DeselectObject();
+            var network = FindFirstObjectByType<NetworkConnectionManager>();
+            var picked = PickObject(mainCamera.ScreenPointToRay(screenPosition), mode);
+            if (network != null) network.SelectNode(picked != null ? picked.GetComponent<NetworkNode>() : null);
+            return;
+        }
         var candidate = PickObject(mainCamera.ScreenPointToRay(screenPosition), mode);
         if (candidate == null) { DeselectObject(); return; }
         if (mode == ARInteractionMode.Delete)

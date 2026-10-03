@@ -36,7 +36,7 @@ public partial class ARInteractionManager
     private bool suppressWorldInputUntilRelease;
 
     private bool CanAdjustSelection => enablePrecisionControls && selectedObject != null &&
-        !selectedObject.IsLocked && placementManager != null && (placementManager.IsAssemblyActivity || placementManager.IsSandboxActivity) &&
+        !selectedObject.IsLocked && placementManager != null && (placementManager.IsAssemblyActivity || placementManager.IsSandboxActivity || placementManager.IsNetworkActivity) &&
         GetCurrentMode() == ARInteractionMode.Edit;
 
     private bool ActionAllowed(PrecisionAction action)
@@ -52,8 +52,7 @@ public partial class ARInteractionManager
         bool visible = precisionUIReady && CanAdjustSelection;
         if (!visible || precisionSelection != selectedObject) ClosePrecisionPanel();
         precisionSelection = selectedObject;
-        if (adjustButton != null && adjustButton.gameObject.activeSelf != visible)
-            adjustButton.gameObject.SetActive(visible);
+        ARButtonAvailability.Set(adjustButton, visible);
         if (precisionUIReady)
         {
             bool showPanel = visible && precisionPanelOpen;

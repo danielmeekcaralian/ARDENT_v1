@@ -23,6 +23,11 @@ public class ARModeManager : MonoBehaviour
         Debug.Log("AR Mode: EDIT");
     }
 
+    public void SetConnectMode()
+    {
+        currentMode = ARInteractionMode.Connect;
+    }
+
     public void SetDeleteMode()
     {
         currentMode = ARInteractionMode.Delete;

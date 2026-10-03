@@ -2,5 +2,6 @@ public enum ARInteractionMode
 {
     Edit,
     Delete,
-    Place
+    Place,
+    Connect
 }

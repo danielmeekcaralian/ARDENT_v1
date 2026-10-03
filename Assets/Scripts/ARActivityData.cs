@@ -6,7 +6,8 @@ public enum ARActivityType
     HardwareIdentification,
     Assembly,
     Disassembly,
-    Sandbox
+    Sandbox,
+    NetworkDesign
 }
 
 [CreateAssetMenu(

@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 755c25e4a01f9304d8fccac6c6c06506, type: 3}
+  m_Name: COC2_L1_AR
+  m_EditorClassIdentifier: Assembly-CSharp::ARActivityData
+  activityID: 5
+  activityTitle: Network Design
+  activityType: 5
+  assemblyActivity: {fileID: 0}
+  instruction: Place computers and a switch. Use Connect to link devices.
+  availableObjects:
+  - libraryItemId: 96b1c23832c1b1c4e98e022140b04ac2
+    inventoryImage: {fileID: 3823317029391508665, guid: b6d5cd98201543a586061637d125567c, type: 3}
+    prefab: {fileID: 8231593475363509362, guid: 96b1c23832c1b1c4e98e022140b04ac2, type: 3}
+  - libraryItemId: 9bfad44125050c3409a48d679a70acab
+    inventoryImage: {fileID: 2232042069215040586, guid: 1ae61c7ca705412cafc34e0f642b12db, type: 3}
+    prefab: {fileID: 286010296017176607, guid: 9bfad44125050c3409a48d679a70acab, type: 3}
+  - libraryItemId: d0cc6a7d56bd8524fa8d9ac57351ecd3
+    inventoryImage: {fileID: 5339671962595236031, guid: 465a4cfc6545ea749a26cee2dca668f6, type: 3}
+    prefab: {fileID: 644711738034140841, guid: d0cc6a7d56bd8524fa8d9ac57351ecd3, type: 3}
+  libraryBonusObjects: []
+  requirePlanePlacement: 1
+  allowRotation: 1
+  allowScaling: 1
+  allowMovement: 1

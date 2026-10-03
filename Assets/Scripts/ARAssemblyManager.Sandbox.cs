@@ -22,7 +22,7 @@ public partial class ARAssemblyManager
         if (!IsSandboxComponent(candidate)) return;
         var part = candidate.GetComponent<SandboxAssemblyPart>();
         string name = SandboxPartName(candidate);
-        string notice = part.IsAttached ? SandboxCompatibilityNotice(SandboxCompatibility(part, part.Host, part.Target.targetID)) : "";
+        string notice = part.IsAttached ? SandboxCompatibilityNotice(SandboxCompatibility(part, part.Host, part.Target.targetID), part.Target.targetID) : "";
         SandboxMessage((part.IsAttached ? $"{name} installed. Drag it away to detach it."
             : $"Move {name} near its matching mounting target and release. Use Adjust > Align Rotation if needed.") + notice);
     }
@@ -48,6 +48,10 @@ public partial class ARAssemblyManager
             case "cpu_target": return "CPU socket";
             case "ram_target": return "RAM slot";
             case "gpu_target": return "graphics card slot";
+            case "rightPanel_target": return "right panel mount";
+            case "glassPanel_target": return "glass panel mount";
+            case "hdd_target": return "HDD mount";
+            case "psu_target": return "PSU mount";
             case "mb_target": return "motherboard mount";
             case "cpuCooler_target": return "CPU cooler mount";
             default: return "mounting target";
@@ -95,8 +99,22 @@ public partial class ARAssemblyManager
         return null;
     }
 
-    private static string SandboxCompatibilityNotice(HardwareCompatibility.Result result)
+    private static string SandboxCompatibilityNotice(HardwareCompatibility.Result result, string targetID)
     {
+        // These targets confirm physical mounting only, not electrical compatibility.
+        // Preserve any explicit rejection if checks are added for these parts later.
+        if (result.status != HardwareCompatibility.Status.Incompatible)
+        {
+            switch (targetID)
+            {
+                case "rightPanel_target":
+                case "glassPanel_target":
+                case "hdd_target":
+                    return "";
+                case "psu_target":
+                    return "\nPSU mounting only; wattage and connector compatibility are not checked.";
+            }
+        }
         string title = result.status == HardwareCompatibility.Status.NeedsVerification ? "Needs verification" : result.status.ToString();
         return "\n" + title + ": " + result.explanation;
     }
@@ -154,7 +172,7 @@ public partial class ARAssemblyManager
         if (compatibility.status == HardwareCompatibility.Status.Incompatible)
         { SandboxMessage("Cannot install: " + compatibility.explanation); return false; }
         candidate.transform.rotation = target.transform.rotation;
-        SandboxMessage($"Rotation aligned. Move {SandboxPartName(candidate)} to the {SandboxTargetName(rule.TargetID)} and release." + SandboxCompatibilityNotice(compatibility));
+        SandboxMessage($"Rotation aligned. Move {SandboxPartName(candidate)} to the {SandboxTargetName(rule.TargetID)} and release." + SandboxCompatibilityNotice(compatibility, rule.TargetID));
         return true;
     }
 
@@ -177,7 +195,7 @@ public partial class ARAssemblyManager
         if (Quaternion.Angle(candidate.transform.rotation, target.transform.rotation) > rule.RotationTolerance)
         { SandboxMessage($"Rotate {SandboxPartName(candidate)} to match the {SandboxTargetName(rule.TargetID)}, or use Adjust > Align Rotation."); return false; }
         part.Attach(host, target);
-        SandboxMessage($"{SandboxPartName(candidate)} installed. Move or resize the host object to move its installed components together. Drag this component away to detach." + SandboxCompatibilityNotice(compatibility));
+        SandboxMessage($"{SandboxPartName(candidate)} installed. Move or resize the host object to move its installed components together. Drag this component away to detach." + SandboxCompatibilityNotice(compatibility, rule.TargetID));
         return true;
     }
 
