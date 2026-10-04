@@ -7,7 +7,8 @@ public enum ARActivityType
     Assembly,
     Disassembly,
     Sandbox,
-    NetworkDesign
+    NetworkDesign,
+    RJ45Termination
 }
 
 [CreateAssetMenu(

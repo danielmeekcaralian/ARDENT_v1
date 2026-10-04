@@ -146,8 +146,8 @@ MonoBehaviour:
       used to accomplish computer networking.  manner. \r\n "
     image: {fileID: 0}
   hasARActivity: 0
-  hasQuiz: 0
+  hasQuiz: 1
   requiresARActivity: 0
-  requiresQuiz: 0
+  requiresQuiz: 1
   arActivity: {fileID: 0}
-  quizData: {fileID: 0}
+  quizData: {fileID: 11400000, guid: f006f7a29e102314886916c0133a8690, type: 2}

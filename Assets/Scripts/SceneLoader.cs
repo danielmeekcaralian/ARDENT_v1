@@ -18,6 +18,7 @@ public class SceneLoader : MonoBehaviour
     // Back button
     public void GoBack()
     {
+        ARCheckpointSession.SaveCurrent();
         string currentScene = SceneManager.GetActiveScene().name;
 
         switch (currentScene)

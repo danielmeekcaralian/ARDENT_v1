@@ -9,12 +9,18 @@ using UnityEngine.UI;
 public class ARCheckpointSession : MonoBehaviour
 {
     public static ARCheckpointSession Instance { get; private set; }
-    public static bool BlocksInput => Instance != null && Instance.pending != null;
+    public static bool BlocksInput => Instance != null &&
+        (Instance.pending != null || Instance.networkResumeFrame == Time.frameCount);
+    private int networkResumeFrame = -1;
     private LessonData lesson;
     private ARActivityData activity;
     private ARActivityProgress progress;
     private ARPlacementManager placement;
     private ARAssemblyManager assembly;
+    private NetworkConnectionManager network;
+    private bool IsNetwork => activity != null && activity.activityType == ARActivityType.NetworkDesign;
+    private float nextNetworkSave;
+    private string lastNetworkJson;
     private ARCheckpointData pending;
     private string signature;
     private bool waitingForSurface, restoring, finished;
@@ -38,13 +44,15 @@ public class ARCheckpointSession : MonoBehaviour
         progress = currentProgress;
         placement = currentPlacement;
         assembly = FindFirstObjectByType<ARAssemblyManager>();
+        network = FindFirstObjectByType<NetworkConnectionManager>();
         signature = ARCheckpointStore.Signature(activity);
         bool isAssembly = activity.activityType == ARActivityType.Assembly;
         if (!isAssembly && activity.activityType != ARActivityType.ToolIdentification &&
-            activity.activityType != ARActivityType.HardwareIdentification) return;
+            activity.activityType != ARActivityType.HardwareIdentification && !IsNetwork) return;
         if (!sceneUIReady) return;
         pending = ARCheckpointStore.Load(lesson.lessonID, signature, isAssembly,
-            activity.assemblyActivity?.steps?.Length ?? 0, activity.assemblyActivity != null && activity.assemblyActivity.includeDisassembly);
+            activity.assemblyActivity?.steps?.Length ?? 0, activity.assemblyActivity != null && activity.assemblyActivity.includeDisassembly,
+            IsNetwork ? activity.availableObjects?.Length ?? 0 : -1);
         if (pending != null) ShowPrompt("Continue your saved activity?", false);
     }
 
@@ -57,6 +65,26 @@ public class ARCheckpointSession : MonoBehaviour
     {
         if (!sceneUIReady || lesson == null || pending != null || restoring || finished) return;
         var data = new ARCheckpointData { lessonId = lesson.lessonID, signature = signature };
+        if (IsNetwork)
+        {
+            if (network == null || !network.Available) return;
+            try
+            {
+                data.network = network.CaptureNetworkCheckpoint();
+                if (!ARCheckpointStore.IsValid(data, lesson.lessonID, signature, false, 0, false, activity.availableObjects?.Length ?? 0))
+                    throw new InvalidOperationException("Network snapshot failed validation; previous save preserved.");
+                string json = JsonUtility.ToJson(data.network);
+                if (json == lastNetworkJson) return;
+                if (data.network.nodes.Length == 0 && data.network.passedMask == 0 && data.network.topology == 0)
+                {
+                    ARCheckpointStore.Clear(lesson.lessonID);
+                    lastNetworkJson = json;
+                }
+                else if (ARCheckpointStore.Save(data)) lastNetworkJson = json;
+            }
+            catch (Exception ex) { Debug.LogWarning("Network checkpoint could not be saved: " + ex.Message); }
+            return;
+        }
         if (activity.activityType == ARActivityType.Assembly)
         {
             if (assembly == null) return;
@@ -78,7 +106,7 @@ public class ARCheckpointSession : MonoBehaviour
     public void Resume()
     {
         if (pending == null) return;
-        if (activity.activityType != ARActivityType.Assembly)
+        if (activity.activityType != ARActivityType.Assembly && !IsNetwork)
         {
             var saved = pending;
             pending = null;
@@ -94,6 +122,13 @@ public class ARCheckpointSession : MonoBehaviour
     {
         if (lesson == null) return;
         ARCheckpointStore.Clear(lesson.lessonID);
+        if (IsNetwork && network != null)
+        {
+            restoring = true;
+            try { network.StartNetworkOver(); }
+            finally { restoring = false; }
+            lastNetworkJson = null;
+        }
         pending = null;
         waitingForSurface = false;
         ClosePrompt();
@@ -101,6 +136,11 @@ public class ARCheckpointSession : MonoBehaviour
 
     private void Update()
     {
+        if (IsNetwork && Time.unscaledTime >= nextNetworkSave)
+        {
+            nextNetworkSave = Time.unscaledTime + 1f;
+            SaveCheckpoint();
+        }
         if (!waitingForSurface || pending == null || placement == null) return;
         Vector2 point;
 #if UNITY_EDITOR
@@ -120,10 +160,20 @@ public class ARCheckpointSession : MonoBehaviour
         restoring = true;
         try
         {
-            if (assembly == null) throw new InvalidOperationException("Assembly manager is missing.");
-            assembly.RestoreCheckpoint(pending, activity, placement, pose);
+            if (IsNetwork)
+            {
+                if (network == null) throw new InvalidOperationException("Network manager is missing.");
+                network.RestoreNetworkCheckpoint(pending.network, pose);
+                lastNetworkJson = null;
+            }
+            else
+            {
+                if (assembly == null) throw new InvalidOperationException("Assembly manager is missing.");
+                assembly.RestoreCheckpoint(pending, activity, placement, pose);
+            }
             waitingForSurface = false;
             pending = null;
+            if (IsNetwork) networkResumeFrame = Time.frameCount;
             ClosePrompt();
             var mode = FindFirstObjectByType<ARModeManager>();
             if (mode != null) mode.SetEditMode();
@@ -131,8 +181,12 @@ public class ARCheckpointSession : MonoBehaviour
         catch (Exception ex)
         {
             Debug.LogWarning("Could not restore AR checkpoint: " + ex.Message);
-            placement.ClearCheckpointWorkspace();
-            if (assembly != null) assembly.SetActivity(activity.assemblyActivity);
+            if (IsNetwork) { if (network != null) network.StartNetworkOver(); }
+            else
+            {
+                placement.ClearCheckpointWorkspace();
+                if (assembly != null) assembly.SetActivity(activity.assemblyActivity);
+            }
             waitingForSurface = false;
             ShowPrompt("Couldn't restore this workspace. Retry Resume or choose Start Over.", false);
         }

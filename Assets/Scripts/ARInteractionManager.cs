@@ -51,6 +51,7 @@ public partial class ARInteractionManager : MonoBehaviour
 
     private void Update()
     {
+        if (placementManager != null && placementManager.IsRJ45Activity) { CancelWorldDrag(); CancelPrecisionAdjustment(); return; }
         if (ARCheckpointSession.BlocksInput || UIManager.HasOpenPanel || SandboxInventoryPanel.IsOpen) { CancelWorldDrag(); CancelPrecisionAdjustment(); return; }
         if (mainCamera == null) mainCamera = Camera.main;
         if (UpdatePrecisionControls())
@@ -214,7 +215,9 @@ public partial class ARInteractionManager : MonoBehaviour
         {
             if (assemblyManager != null && !assemblyManager.CanDeleteObject(candidate.gameObject)) return;
             if (selectedObject == candidate) DeselectObject();
+            if (placementManager != null && placementManager.IsNetworkActivity) candidate.gameObject.SetActive(false);
             Destroy(candidate.gameObject);
+            if (placementManager != null && placementManager.IsNetworkActivity) ARCheckpointSession.SaveCurrent();
             if (infoCardManager != null) infoCardManager.HideInfo();
             return;
         }
@@ -337,3 +340,4 @@ public partial class ARInteractionManager : MonoBehaviour
         if (assemblyManager != null && candidate != null) assemblyManager.TryCompleteCurrentStep(candidate);
     }
 }
+

@@ -98,11 +98,13 @@ public class UIManager : MonoBehaviour
 
     public void GoToMainMenu()
     {
+        ARCheckpointSession.SaveCurrent();
         SceneManager.LoadScene(ARSandboxSession.IsActive ? "Hardware_Library" : "MainMenu");
     }
 
     public void QuitGame()
     {
+        ARCheckpointSession.SaveCurrent();
         Application.Quit();
         Debug.Log("Game Quit");
     }

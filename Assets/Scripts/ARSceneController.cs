@@ -123,6 +123,14 @@ public class ARSceneController : MonoBehaviour
                 activityData.activityTitle;
         }
 
+        if (activityData.activityType == ARActivityType.RJ45Termination)
+        {
+            var rj45 = GetComponent<RJ45ARSession>();
+            if (rj45 == null) rj45 = gameObject.AddComponent<RJ45ARSession>();
+            rj45.Initialize(placementManager);
+            return;
+        }
+
         var checkpoints = GetComponent<ARCheckpointSession>();
         if (checkpoints == null) checkpoints = gameObject.AddComponent<ARCheckpointSession>();
         checkpoints.Initialize(currentLesson, activityProgress, placementManager);
