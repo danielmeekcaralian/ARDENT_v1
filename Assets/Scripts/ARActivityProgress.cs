@@ -22,7 +22,7 @@ public class ARActivityProgress : MonoBehaviour
         currentActivity = activity;
 
         inspectedObjects.Clear();
-        if (progressText != null) progressText.gameObject.SetActive(activity == null || (activity.activityType != ARActivityType.Sandbox && activity.activityType != ARActivityType.NetworkDesign));
+        if (progressText != null) progressText.gameObject.SetActive(activity == null || (activity.activityType != ARActivityType.Sandbox && activity.activityType != ARActivityType.NetworkDesign && activity.activityType != ARActivityType.RJ45Termination));
 
         if (completionButton != null)
         {
@@ -168,6 +168,16 @@ public class ARActivityProgress : MonoBehaviour
             progressText.text = $"{phase}: {done} / {total}";
     }
 
+    public bool TryCompleteNetworkActivity(ARActivityData expectedActivity)
+    {
+        var lesson = LessonSession.CurrentLesson;
+        if (ARSandboxSession.IsActive || expectedActivity == null || currentActivity != expectedActivity ||
+            expectedActivity.activityType != ARActivityType.NetworkDesign || lesson == null ||
+            lesson.arActivity != expectedActivity || ProgressManager.Instance == null) return false;
+        CompleteActivity();
+        return true;
+    }
+
     public void CompleteActivity()
     {
         if (ARSandboxSession.IsActive || (currentActivity != null && currentActivity.activityType == ARActivityType.Sandbox)) return;
@@ -232,3 +242,4 @@ public class ARActivityProgress : MonoBehaviour
         SceneManager.LoadScene("ActivitySelectionScene");
     }
 }
+

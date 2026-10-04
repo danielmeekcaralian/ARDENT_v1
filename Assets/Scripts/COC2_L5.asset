@@ -323,9 +323,9 @@ MonoBehaviour:
       to install twisted pairs and trim excess, as shown in the following illustration.
       (Use the following table to match up conductor colors with connectors. "
     image: {fileID: 0}
-  hasARActivity: 0
-  hasQuiz: 0
-  requiresARActivity: 0
-  requiresQuiz: 0
-  arActivity: {fileID: 0}
-  quizData: {fileID: 0}
+  hasARActivity: 1
+  hasQuiz: 1
+  requiresARActivity: 1
+  requiresQuiz: 1
+  arActivity: {fileID: 11400000, guid: fb041c216bde91d4891c095f723d5e6d, type: 2}
+  quizData: {fileID: 11400000, guid: 59758daa74d9c274d87a424f2e26dd9e, type: 2}

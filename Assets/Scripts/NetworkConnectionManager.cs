@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // Owns connections for one AR activity. No topology or completion rules here.
-public sealed class NetworkConnectionManager : MonoBehaviour
+public sealed partial class NetworkConnectionManager : MonoBehaviour
 {
     [SerializeField] private ARPlacementManager placementManager;
     [SerializeField] private ARModeManager modeManager;
@@ -21,6 +21,9 @@ public sealed class NetworkConnectionManager : MonoBehaviour
     private int nextLabel = 1;
     private bool wasAvailable;
     private bool showingTopologySuccess;
+    private readonly NetworkTopologyProgress topologyProgress = new NetworkTopologyProgress();
+    private ARActivityData progressActivity;
+    private bool completionRecorded;
 
     public bool Available => isActiveAndEnabled && placementManager != null &&
         placementManager.IsNetworkActivity && modeManager != null &&
@@ -48,15 +51,20 @@ public sealed class NetworkConnectionManager : MonoBehaviour
             topologyDropdown.SetValueWithoutNotify(topologyIndex);
             topologyDropdown.onValueChanged.AddListener(ChangeTopology);
         }
+        UpdateTopologyControls(placementManager != null && placementManager.IsNetworkActivity, false);
     }
 
     private void Update()
     {
         bool available = Available;
-        ARButtonAvailability.Set(connectButton, available);
-        ARButtonAvailability.Set(checkTopologyButton, available);
-        if (topologyDropdown != null) topologyDropdown.interactable = available;
+        EnsureProgressActivity();
+        bool canInteract = available && !ARCheckpointSession.BlocksInput && !UIManager.HasOpenPanel && !SandboxInventoryPanel.IsOpen;
+        ARButtonAvailability.Set(connectButton, canInteract);
+        UpdateTopologyControls(placementManager != null && placementManager.IsNetworkActivity, canInteract);
+
         if (!wasAvailable && available) Message(Objective());
+        if (available && !ARCheckpointSession.BlocksInput && topologyProgress.IsComplete && !completionRecorded)
+            TryRecordRestoredCompletion();
         connections.RemoveAll(c => c == null);
         RefreshBackboneAttachments();
         // Moving devices never changes the result; graph edits invalidate old success.
@@ -74,6 +82,20 @@ public sealed class NetworkConnectionManager : MonoBehaviour
         wasAvailable = available;
     }
 
+    private void UpdateTopologyControls(bool visible, bool canInteract)
+    {
+        if (checkTopologyButton != null)
+        {
+            if (visible) ARButtonAvailability.Set(checkTopologyButton, canInteract);
+            else checkTopologyButton.gameObject.SetActive(false);
+        }
+        if (topologyDropdown != null)
+        {
+            if ((!visible || !canInteract) && topologyDropdown.IsExpanded) topologyDropdown.Hide();
+            topologyDropdown.interactable = visible && canInteract;
+            if (topologyDropdown.gameObject.activeSelf != visible) topologyDropdown.gameObject.SetActive(visible);
+        }
+    }
     private string Objective() => topologyIndex == 2
         ? "BUS: Use 4 PCs and 1 backbone, with no switch. Connect each PC to the shared backbone."
         : topologyIndex == 1
@@ -104,10 +126,31 @@ public sealed class NetworkConnectionManager : MonoBehaviour
         interactionManager.DeselectObject();
         firstNode = null;
         modeManager.SetEditMode();
+        EnsureProgressActivity();
         var result = EvaluateTopology();
-        Message(result.message);
+        topologyProgress.Record(topologyIndex, result.passed);
+        string completionNotice = "";
+        if (topologyProgress.IsComplete && !completionRecorded)
+        {
+            var progress = FindFirstObjectByType<ARActivityProgress>();
+            completionRecorded = progress != null && progress.TryCompleteNetworkActivity(progressActivity);
+            completionNotice = completionRecorded
+                ? "\nAll three topologies passed. Network Design AR completed! Use the completion button to continue."
+                : "\nAll three passed, but lesson completion could not be saved. Open this activity through its lesson and check the progress manager setup.";
+        }
+        Message(result.message + completionNotice);
         showingTopologySuccess = result.passed;
-        // Lesson completion is added only after all required topology exercises exist.
+        ARCheckpointSession.SaveCurrent();
+    }
+
+    private void EnsureProgressActivity()
+    {
+        var activity = placementManager != null ? placementManager.CurrentActivity : null;
+        if (progressActivity == activity) return;
+        progressActivity = activity;
+        topologyProgress.Reset();
+        completionRecorded = false;
+        hasWorkspaceOrigin = false;
     }
 
     private NetworkValidator.Result EvaluateTopology()
@@ -129,7 +172,7 @@ public sealed class NetworkConnectionManager : MonoBehaviour
 
     public void BeginConnect()
     {
-        if (!Available) return;
+        if (!Available || ARCheckpointSession.BlocksInput || UIManager.HasOpenPanel || SandboxInventoryPanel.IsOpen) return;
         placementManager.CancelPlacement();
         interactionManager.DeselectObject();
         firstNode = null;
@@ -207,7 +250,8 @@ public sealed class NetworkConnectionManager : MonoBehaviour
     private void Message(string text)
     {
         showingTopologySuccess = false;
-        if (feedbackText != null) feedbackText.text = text;
+        if (feedbackText != null) feedbackText.text = text + "\n" + topologyProgress.Summary;
+        if (Available) ARCheckpointSession.SaveCurrent();
     }
 
     private void ClearConnections(bool resetLabels = true)
@@ -230,9 +274,10 @@ public sealed class NetworkConnectionManager : MonoBehaviour
             topologyDropdown.interactable = false;
         }
         ARButtonAvailability.Set(connectButton, false);
-        ARButtonAvailability.Set(checkTopologyButton, false);
+        UpdateTopologyControls(false, false);
         if (modeManager != null && modeManager.CurrentMode == ARInteractionMode.Connect)
             modeManager.SetEditMode();
         ClearConnections();
     }
 }
+

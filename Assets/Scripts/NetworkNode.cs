@@ -12,6 +12,13 @@ public enum NetworkNodeType
 [DisallowMultipleComponent]
 public sealed class NetworkNode : MonoBehaviour
 {
+    public string RuntimeID { get; private set; }
+    public GameObject SourcePrefab { get; private set; }
+    public void InitializeRuntime(GameObject prefab, string restoredID = null)
+    {
+        SourcePrefab = prefab;
+        RuntimeID = restoredID ?? System.Guid.NewGuid().ToString("N");
+    }
     [Header("Network Device")]
     [SerializeField] private string deviceName;
     [SerializeField] private NetworkNodeType nodeType;

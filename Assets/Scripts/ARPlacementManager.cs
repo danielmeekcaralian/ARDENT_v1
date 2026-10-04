@@ -34,6 +34,7 @@ public partial class ARPlacementManager : MonoBehaviour
         get
         {
             if (ARCheckpointSession.BlocksInput || UIManager.HasOpenPanel) return false;
+            if (IsRJ45Activity) { var session = FindFirstObjectByType<RJ45ARSession>(); return session != null && session.CanPlace; }
             if (!IsAssemblyActivity) return true;
             var manager = FindFirstObjectByType<ARAssemblyManager>();
             return manager == null || manager.CanPlaceObjects;
@@ -48,6 +49,7 @@ public partial class ARPlacementManager : MonoBehaviour
     }
 
     private float assemblyScale = 1f;
+    public bool IsRJ45Activity => currentActivity != null && currentActivity.activityType == ARActivityType.RJ45Termination;
     public bool IsNetworkActivity => currentActivity != null && currentActivity.activityType == ARActivityType.NetworkDesign;
     public bool IsSandboxActivity => currentActivity != null && currentActivity.activityType == ARActivityType.Sandbox;
     public bool IsAssemblyActivity =>
@@ -89,6 +91,7 @@ public partial class ARPlacementManager : MonoBehaviour
     private GameObject currentObject;
 
     private ARActivityData currentActivity;
+    public ARActivityData CurrentActivity => currentActivity;
 
     private ARObjectData selectedObjectData;
 
@@ -152,7 +155,7 @@ public partial class ARPlacementManager : MonoBehaviour
             objectData;
 
         isPlacing = true;
-        if (IsNetworkActivity) FindFirstObjectByType<ARModeManager>()?.SetPlaceMode();
+        if (IsNetworkActivity || IsRJ45Activity) FindFirstObjectByType<ARModeManager>()?.SetPlaceMode();
 
         if (placementIndicator != null)
         {
@@ -424,14 +427,15 @@ public partial class ARPlacementManager : MonoBehaviour
         Pose tapPose =
             hits[0].pose;
 
-        GameObject newObject =
-            Instantiate(
-                selectedObjectData.prefab,
-                tapPose.position,
-                tapPose.rotation,
-                GetPlacementParent(tapPose)
-            );
-
+        GameObject newObject;
+        if (IsRJ45Activity)
+        {
+            var session = FindFirstObjectByType<RJ45ARSession>();
+            if (session == null) return;
+            newObject = session.PlaceWorkstation(selectedObjectData.prefab, tapPose, GetPlacementParent(tapPose));
+            if (newObject == null) return;
+        }
+        else newObject = Instantiate(selectedObjectData.prefab, tapPose.position, tapPose.rotation, GetPlacementParent(tapPose));
         if (IsAssemblyActivity)
         {
             // Keep the authored LOCAL size so new parts inherit the shared scale.
@@ -442,6 +446,11 @@ public partial class ARPlacementManager : MonoBehaviour
         // infer it from a global raw-scale limit on the first resize gesture.
         var scaleController = newObject.GetComponent<ARObjectManipulator>();
         if (scaleController != null) scaleController.InitializeScaleBaseline();
+        if (IsNetworkActivity)
+        {
+            var network = FindFirstObjectByType<NetworkConnectionManager>();
+            if (network != null) network.RegisterPlacedNode(newObject, selectedObjectData.prefab, tapPose);
+        }
         if (IsSandboxActivity)
         {
             var part = newObject.GetComponent<SandboxAssemblyPart>();
@@ -516,17 +525,20 @@ public partial class ARPlacementManager : MonoBehaviour
 
     public void ResetObject()
     {
+        if (IsRJ45Activity) { FindFirstObjectByType<RJ45ARSession>()?.Reposition(); return; }
         var manager = FindFirstObjectByType<ARAssemblyManager>();
         if ((IsAssemblyActivity || IsSandboxActivity) && manager != null && !manager.CanDeleteObject(currentObject))
             return;
 
         if (currentObject != null)
         {
+            if (IsNetworkActivity) currentObject.SetActive(false);
             Destroy(
                 currentObject
             );
 
             currentObject = null;
+            if (IsNetworkActivity) ARCheckpointSession.SaveCurrent();
         }
 
         if (placementIndicator != null)
@@ -541,6 +553,14 @@ public partial class ARPlacementManager : MonoBehaviour
         );
     }
 
+    public GameObject SpawnNetworkCheckpointObject(GameObject prefab, Pose pose)
+    {
+        var instance = Instantiate(prefab, pose.position, pose.rotation, contentParent);
+        instance.GetComponent<ARObjectManipulator>()?.InitializeScaleBaseline();
+        currentObject = instance;
+        return instance;
+    }
+
     // =========================================================
     // PLACEMENT FRAME CHECK
     // =========================================================
@@ -551,3 +571,4 @@ public partial class ARPlacementManager : MonoBehaviour
                Time.frameCount;
     }
 }
+
