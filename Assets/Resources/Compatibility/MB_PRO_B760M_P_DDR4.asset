@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8405dbc1825a6a4491a2deeeaf6d30d, type: 3}
+  m_Name: MB_PRO_B760M_P_DDR4
+  m_EditorClassIdentifier: Assembly-CSharp::HardwareComponentProfile
+  graphicsInterface: 0
+  graphicsSlotSupport: 1
+  graphicsPCIeGeneration: 4
+  profileID: msi-pro-b760m-p-ddr4
+  productName: MSI PRO B760M-P DDR4
+  prefab: {fileID: 0}
+  kind: 2
+  cpuSocket: 2
+  cpuFamily: Intel Core 14th / 13th / 12th generation
+  cpuModelNumber: 
+  memoryGeneration: 2
+  moduleFormat: 1
+  moduleCapacityGB: 0
+  ratedSpeedMTs: 0
+  spdSpeedMTs: 0
+  memoryPerformanceProfile: 
+  boardFormFactor: 2
+  physicalMemorySlots: 4
+  maximumMemoryGB: 128
+  boardSizeMM: {x: 0, y: 0}
+  verifiedSupportedCPUs: []
+  verifiedSupportedRAM: []
+  cpuSupportListURL: https://www.msi.com/Motherboard/PRO-B760M-P-DDR4/support#cpu
+  memorySupportListURL: https://www.msi.com/Motherboard/PRO-B760M-P-DDR4/support#mem
+  supportedCoolerSockets: 
+  coolerSocketListComplete: 0
+  coolerHeightMM: 0
+  supportedBoardFormFactors: 
+  specificationURLs:
+  - https://www.msi.com/Motherboard/PRO-B760M-P-DDR4/Specification
+  verificationNotes: Specifications checked 2026-10-05. Exact CPU support/BIOS and
+    RAM QVL not yet recorded. Keep verified lists empty until checked.
+  displayNote: 

@@ -41,6 +41,13 @@ public sealed class RJ45Crimping : MonoBehaviour
         tool.localPosition=home;tool.gameObject.SetActive(false);targetGuide.SetActive(false);
         for(int i=0;i<originalPositions.Length;i++)contactsAndClamps[i].localPosition=originalPositions[i];
     }
+    public void RestoreCrimpedCheckpoint()
+    {
+        if(!valid)throw new System.InvalidOperationException("Crimping is not configured.");
+        ResetCrimping();
+        for(int i=0;i<originalPositions.Length;i++) contactsAndClamps[i].localPosition=originalPositions[i]+Vector3.forward*.025f;
+        stage=Stage.Done;RefreshInstructions();
+    }
     public void RefreshInstructions()
     {
         if(stage==Stage.Dormant||board.instructionsText==null)return;
@@ -49,6 +56,7 @@ public sealed class RJ45Crimping : MonoBehaviour
             :stage==Stage.Seating ? "Positioning the crimper..."
             :stage==Stage.Pressing ? "Crimping: pressing the contacts and securing the jacket..."
             :"Connector crimped. The cable is ready for testing.\nCable testing is the next step to be added.";
+        ARCheckpointSession.SaveCurrent();
     }
     private void Update()
     {

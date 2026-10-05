@@ -108,9 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARObjectInfo
   objectName: Video Card
-  information: 'The video card controls the information you see on the
-
-    monitor.'
+  information: The video card controls the information you see on the monitor.
 --- !u!65 &-8446534441966481380
 BoxCollider:
   m_ObjectHideFlags: 0

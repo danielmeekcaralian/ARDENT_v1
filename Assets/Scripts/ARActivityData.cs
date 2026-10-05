@@ -38,10 +38,20 @@ public class ARActivityData : ScriptableObject
 
     public System.Collections.Generic.IEnumerable<ARObjectData> LibraryObjects()
     {
-        if (availableObjects != null)
-            foreach (var item in availableObjects) yield return item;
+        // Keep the RJ45 workstation out of the library and Sandbox inventory.
+        if (activityType != ARActivityType.RJ45Termination &&
+            availableObjects != null)
+        {
+            foreach (var item in availableObjects)
+                yield return item;
+        }
+
+        // Allow individual tools to be included as lesson rewards.
         if (libraryBonusObjects != null)
-            foreach (var item in libraryBonusObjects) yield return item;
+        {
+            foreach (var item in libraryBonusObjects)
+                yield return item;
+        }
     }
 
     [Header("Placement")]

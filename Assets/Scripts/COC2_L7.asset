@@ -205,8 +205,8 @@ MonoBehaviour:
       installed cable. '
     image: {fileID: 0}
   hasARActivity: 0
-  hasQuiz: 0
+  hasQuiz: 1
   requiresARActivity: 0
-  requiresQuiz: 0
+  requiresQuiz: 1
   arActivity: {fileID: 0}
-  quizData: {fileID: 0}
+  quizData: {fileID: 11400000, guid: 57d23188ec29e8547938a65f4c88e684, type: 2}

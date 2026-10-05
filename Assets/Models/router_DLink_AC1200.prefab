@@ -107,8 +107,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da511c397e8802a449d906edaf97c398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARObjectInfo
-  objectName: 
-  information: 
+  objectName: Router
+  information: A networking device that connects two or more networks and forwards
+    data to the correct destination.
 --- !u!65 &7586041100582337486
 BoxCollider:
   m_ObjectHideFlags: 0

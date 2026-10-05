@@ -43,6 +43,22 @@ public sealed class RJ45WireArrangement : MonoBehaviour
         foreach (var wire in wires) if ((int)wire.identity == identity) return wire;
         return null;
     }
+    public int[] CaptureWireSlots()
+    {
+        if (order == null) return null;
+        var result = new int[8];
+        for (int i=0;i<8;i++) result[i]=order.WireAt(i);
+        return result;
+    }
+    public void RestoreWireSlots(RJ45WiringStandard standard, int[] slots)
+    {
+        order = new RJ45WireOrder(standard);
+        for (int i=0;i<8;i++) if(slots[i]>=0) order.Place((RJ45WireColor)slots[i],i);
+        dragged = null;
+        // The session explicitly restores the next stage; don't fire completion during reconstruction.
+        lastCorrect = order.IsCorrect;
+        Refresh();
+    }
     private void Awake()
     {
         if (interactionCamera == null) interactionCamera = Camera.main;
@@ -207,6 +223,7 @@ public sealed class RJ45WireArrangement : MonoBehaviour
         bool notify = nowCorrect && !lastCorrect;
         lastCorrect = nowCorrect;
         if (notify) onOrderCorrect.Invoke();
+        ARCheckpointSession.SaveCurrent();
     }
 }
 

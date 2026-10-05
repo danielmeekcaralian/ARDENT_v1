@@ -40,6 +40,13 @@ public sealed class RJ45ConnectorInsertion : MonoBehaviour
         Cancel();stage=Stage.Dormant;elapsed=0;finger=-1;waitForRelease=true;
         connector.localPosition=home;connector.gameObject.SetActive(false);targetGuide.SetActive(false);inspectionView.SetActive(false);
     }
+    public void RestoreInsertedCheckpoint()
+    {
+        if(!valid)throw new System.InvalidOperationException("Connector insertion is not configured.");
+        ResetInsertion();
+        connector.localPosition=board.transform.InverseTransformPoint(target.position);
+        connector.gameObject.SetActive(true);stage=Stage.Inspect;ShowInspection();RefreshInstructions();
+    }
     public void RefreshInstructions()
     {
         if(stage==Stage.Dormant||board.instructionsText==null)return;
@@ -47,6 +54,7 @@ public sealed class RJ45ConnectorInsertion : MonoBehaviour
             ? "Drag the RJ45 connector onto the outlined target at the trimmed wire ends, then release.\nThe clip stays underneath; wire order is preserved."
             :stage==Stage.Seating ? "Seating the conductors inside the connector..."
             :"Connector inserted. Inspect the enlarged view: pin order, wire tips at the front, and jacket inside the rear.\nThis is an uncrimped placeholder. Crimping comes next.";
+        ARCheckpointSession.SaveCurrent();
     }
     private void Update()
     {

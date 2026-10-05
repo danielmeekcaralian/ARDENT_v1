@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8405dbc1825a6a4491a2deeeaf6d30d, type: 3}
+  m_Name: CPU_i5_12400F
+  m_EditorClassIdentifier: Assembly-CSharp::HardwareComponentProfile
+  graphicsInterface: 0
+  graphicsSlotSupport: 0
+  graphicsPCIeGeneration: 0
+  profileID: intel-core-i5-12400f
+  productName: Intel Core i5-12400F
+  prefab: {fileID: 0}
+  kind: 1
+  cpuSocket: 2
+  cpuFamily: Intel Core 12th generation
+  cpuModelNumber: 12400F
+  memoryGeneration: 0
+  moduleFormat: 0
+  moduleCapacityGB: 0
+  ratedSpeedMTs: 0
+  spdSpeedMTs: 0
+  memoryPerformanceProfile: 
+  boardFormFactor: 0
+  physicalMemorySlots: 0
+  maximumMemoryGB: 0
+  boardSizeMM: {x: 0, y: 0}
+  verifiedSupportedCPUs: []
+  verifiedSupportedRAM: []
+  cpuSupportListURL: 
+  memorySupportListURL: 
+  supportedCoolerSockets: 
+  coolerSocketListComplete: 0
+  coolerHeightMM: 0
+  supportedBoardFormFactors: 
+  specificationURLs:
+  - https://www.intel.com/content/www/us/en/products/sku/134587/intel-core-i512400f-processor-18m-cache-up-to-4-40-ghz/specifications.html
+  verificationNotes: 
+  displayNote: Supports DDR4 or DDR5 depending on motherboard; requires a discrete
+    graphics card.

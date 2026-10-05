@@ -55,6 +55,12 @@ public sealed class RJ45CablePreparation : MonoBehaviour
         toolVisual.transform.localPosition=toolHome;jacketCover.localPosition=coverPosition;
         board.Restart();SetVisible(false);RefreshInstructions();
     }
+    public void RestoreCheckpoint(bool prepared)
+    {
+        if(!initialized)throw new System.InvalidOperationException("Cable preparation is not initialized.");
+        ResetPreparation();
+        if(prepared){phase=Phase.Arrange;SetVisible(true);board.Restart();}
+    }
     public void RefreshInstructions()
     {
         if(!initialized||Ready||feedback==null)return;

@@ -33,7 +33,7 @@ public partial class ARPlacementManager : MonoBehaviour
     {
         get
         {
-            if (ARCheckpointSession.BlocksInput || UIManager.HasOpenPanel) return false;
+            if (ChirbitTutorial.BlocksARInput || ARCheckpointSession.BlocksInput || UIManager.HasOpenPanel) return false;
             if (IsRJ45Activity) { var session = FindFirstObjectByType<RJ45ARSession>(); return session != null && session.CanPlace; }
             if (!IsAssemblyActivity) return true;
             var manager = FindFirstObjectByType<ARAssemblyManager>();
@@ -176,7 +176,7 @@ public partial class ARPlacementManager : MonoBehaviour
 
     private void Update()
     {
-        if (SandboxInventoryPanel.IsOpen) return;
+        if (ChirbitTutorial.BlocksARInput || SandboxInventoryPanel.IsOpen) return;
         if (currentActivity == null)
             return;
 

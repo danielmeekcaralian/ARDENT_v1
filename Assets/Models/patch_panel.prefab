@@ -107,8 +107,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da511c397e8802a449d906edaf97c398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARObjectInfo
-  objectName: 
-  information: 
+  objectName: Patch Panel
+  information: A device that organizes and terminates network cables in one central
+    location, making network connections easier to manage, identify, and maintain.
 --- !u!65 &3575744012794180718
 BoxCollider:
   m_ObjectHideFlags: 0

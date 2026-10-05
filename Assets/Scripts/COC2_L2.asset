@@ -145,9 +145,9 @@ MonoBehaviour:
       order to set up the networking materials, there are also several tools to be
       used to accomplish computer networking.  manner. \r\n "
     image: {fileID: 0}
-  hasARActivity: 0
+  hasARActivity: 1
   hasQuiz: 1
-  requiresARActivity: 0
+  requiresARActivity: 1
   requiresQuiz: 1
-  arActivity: {fileID: 0}
+  arActivity: {fileID: 11400000, guid: e61ad7eb1d4591b49ab1fdf68d3d1bd8, type: 2}
   quizData: {fileID: 11400000, guid: f006f7a29e102314886916c0133a8690, type: 2}

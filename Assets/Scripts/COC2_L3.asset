@@ -137,9 +137,9 @@ MonoBehaviour:
       of documentation.\n\n\u2022 A 3M dispenser for rolls of wire-marking strips.\n\n\u2022
       Letters, numbers, and icons on self-adhesive strips "
     image: {fileID: 0}
-  hasARActivity: 0
+  hasARActivity: 1
   hasQuiz: 1
-  requiresARActivity: 0
+  requiresARActivity: 1
   requiresQuiz: 1
-  arActivity: {fileID: 0}
+  arActivity: {fileID: 11400000, guid: 7387bb860257c524d9f516201c0ed8e5, type: 2}
   quizData: {fileID: 11400000, guid: 350b115ba04f84846bf81369ac133765, type: 2}

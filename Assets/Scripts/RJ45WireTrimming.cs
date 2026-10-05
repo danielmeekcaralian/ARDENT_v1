@@ -18,6 +18,25 @@ public sealed class RJ45WireTrimming : MonoBehaviour
     [HideInInspector] public bool inputEnabled;
     public bool HasStarted => stage!=Stage.Idle;
     public bool IsTrimmed => stage==Stage.Done;
+    public RJ45SavedStage CheckpointStage => stage==Stage.Done ? RJ45SavedStage.Trimmed :
+        stage==Stage.AwaitCut || stage==Stage.Cutting ? RJ45SavedStage.ReadyToTrim : RJ45SavedStage.Arrange;
+    public void RestoreCheckpoint(RJ45SavedStage savedStage)
+    {
+        if(!valid)throw new System.InvalidOperationException("Trimming is not configured.");
+        if(!board.IsOrderCorrect)return;
+        BeginAlignment();
+        if(savedStage<RJ45SavedStage.ReadyToTrim)return;
+        bool trimmed=savedStage>=RJ45SavedStage.Trimmed;
+        for(int i=0;i<8;i++)
+        {
+            var end=AlignedTip(i);
+            ordered[i].transform.localPosition=trimmed ? new Vector3(end.x,cutY,end.z) : end;
+            ordered[i].bendingTube.fixedBase=new Vector3(end.x,-.29f,-.12f);
+        }
+        stage=trimmed?Stage.Done:Stage.AwaitCut;elapsed=0;
+        cutterVisual.SetActive(!trimmed);cuttingGuide.SetActive(!trimmed);
+        RefreshInstructions();
+    }
     private enum Stage { Idle, Aligning, AwaitCut, Cutting, Done }
     private Stage stage;
     private Vector3[] originalBases,fromTips,fromBases;
@@ -85,6 +104,7 @@ public sealed class RJ45WireTrimming : MonoBehaviour
             :stage==Stage.AwaitCut ? "Drag the WIRE CUTTER across the marked line, then release on the opposite side.\nEither sideways direction works."
             :stage==Stage.Cutting ? "Trimming the conductor ends evenly..."
             :"Conductors trimmed evenly. Ready for the RJ45 connector.";
+        ARCheckpointSession.SaveCurrent();
     }
     private Vector3 AlignedTip(int pin) => new Vector3((pin-3.5f)*.034f,cutY+.08f+(pin%3)*.035f,-.12f);
     private void Update()

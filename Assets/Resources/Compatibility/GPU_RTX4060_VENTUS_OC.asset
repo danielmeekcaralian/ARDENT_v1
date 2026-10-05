@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8405dbc1825a6a4491a2deeeaf6d30d, type: 3}
+  m_Name: GPU_RTX4060_VENTUS_OC
+  m_EditorClassIdentifier: Assembly-CSharp::HardwareComponentProfile
+  graphicsInterface: 1
+  graphicsSlotSupport: 0
+  graphicsPCIeGeneration: 4
+  profileID: msi-rtx4060-ventus-2x-black-8g-oc
+  productName: MSI GeForce RTX 4060 VENTUS 2X BLACK 8G OC
+  prefab: {fileID: 0}
+  kind: 6
+  cpuSocket: 0
+  cpuFamily: 
+  cpuModelNumber: 
+  memoryGeneration: 0
+  moduleFormat: 0
+  moduleCapacityGB: 0
+  ratedSpeedMTs: 0
+  spdSpeedMTs: 0
+  memoryPerformanceProfile: 
+  boardFormFactor: 0
+  physicalMemorySlots: 0
+  maximumMemoryGB: 0
+  boardSizeMM: {x: 0, y: 0}
+  verifiedSupportedCPUs: []
+  verifiedSupportedRAM: []
+  cpuSupportListURL: 
+  memorySupportListURL: 
+  supportedCoolerSockets: 
+  coolerSocketListComplete: 0
+  coolerHeightMM: 0
+  supportedBoardFormFactors: 
+  specificationURLs:
+  - https://storage-asset.msi.com/datasheet/vga/in/GeForce-RTX-4060-VENTUS-2X-BLACK-8G-OC.pdf
+  verificationNotes: 
+  displayNote: PCIe 4.0 x8 electrical interface. Power, case fit, and performance
+    are outside this check.

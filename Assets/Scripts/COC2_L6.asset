@@ -293,8 +293,8 @@ MonoBehaviour:
       chassis.  '
     image: {fileID: 0}
   hasARActivity: 0
-  hasQuiz: 0
+  hasQuiz: 1
   requiresARActivity: 0
-  requiresQuiz: 0
-  arActivity: {fileID: 0}
-  quizData: {fileID: 0}
+  requiresQuiz: 1
+  arActivity: {fileID: 11400000, guid: 8c276e6258168154f8ffa3fe2e3430ae, type: 2}
+  quizData: {fileID: 11400000, guid: b1d19589010a47546b0d82c486710b6e, type: 2}

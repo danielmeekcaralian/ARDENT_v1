@@ -52,7 +52,7 @@ public partial class ARInteractionManager : MonoBehaviour
     private void Update()
     {
         if (placementManager != null && placementManager.IsRJ45Activity) { CancelWorldDrag(); CancelPrecisionAdjustment(); return; }
-        if (ARCheckpointSession.BlocksInput || UIManager.HasOpenPanel || SandboxInventoryPanel.IsOpen) { CancelWorldDrag(); CancelPrecisionAdjustment(); return; }
+        if (ChirbitTutorial.BlocksARInput || ARCheckpointSession.BlocksInput || UIManager.HasOpenPanel || SandboxInventoryPanel.IsOpen) { CancelWorldDrag(); CancelPrecisionAdjustment(); return; }
         if (mainCamera == null) mainCamera = Camera.main;
         if (UpdatePrecisionControls())
         {

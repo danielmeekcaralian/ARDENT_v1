@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8405dbc1825a6a4491a2deeeaf6d30d, type: 3}
+  m_Name: RAM_KF432C16BB_8
+  m_EditorClassIdentifier: Assembly-CSharp::HardwareComponentProfile
+  graphicsInterface: 0
+  graphicsSlotSupport: 0
+  graphicsPCIeGeneration: 0
+  profileID: kingston-kf432c16bb-8
+  productName: Kingston FURY Beast DDR4-3200 8 GB (KF432C16BB/8)
+  prefab: {fileID: 0}
+  kind: 3
+  cpuSocket: 0
+  cpuFamily: 
+  cpuModelNumber: 
+  memoryGeneration: 2
+  moduleFormat: 1
+  moduleCapacityGB: 8
+  ratedSpeedMTs: 3200
+  spdSpeedMTs: 2400
+  memoryPerformanceProfile: Intel XMP 2.0
+  boardFormFactor: 0
+  physicalMemorySlots: 0
+  maximumMemoryGB: 0
+  boardSizeMM: {x: 0, y: 0}
+  verifiedSupportedCPUs: []
+  verifiedSupportedRAM: []
+  cpuSupportListURL: 
+  memorySupportListURL: 
+  supportedCoolerSockets: 
+  coolerSocketListComplete: 0
+  coolerHeightMM: 0
+  supportedBoardFormFactors: 
+  specificationURLs:
+  - https://www.kingston.com/dataSheets/KF432C16BB_8.pdf
+  verificationNotes: 
+  displayNote: 

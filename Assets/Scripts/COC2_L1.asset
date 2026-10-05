@@ -224,7 +224,7 @@ MonoBehaviour:
     image: {fileID: 0}
   hasARActivity: 1
   hasQuiz: 1
-  requiresARActivity: 0
-  requiresQuiz: 0
+  requiresARActivity: 1
+  requiresQuiz: 1
   arActivity: {fileID: 11400000, guid: 4cd62eb543ffd1b4db708a192da1d1be, type: 2}
   quizData: {fileID: 11400000, guid: 342cc4e3f450a484d8ce43150d55b181, type: 2}

@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARObjectInfo
   objectName: Video Display
-  information: A Visual output device that displays characters and graphics on screen.
+  information: A visual output device that displays characters and graphics on screen.
 --- !u!65 &6822749138134988831
 BoxCollider:
   m_ObjectHideFlags: 0

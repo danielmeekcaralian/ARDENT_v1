@@ -107,8 +107,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da511c397e8802a449d906edaf97c398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARObjectInfo
-  objectName: 
-  information: 
+  objectName: Twisted-Pair Crimpers
+  information: The process of crimping involves removing the cable jacket to expose
+    the insulated conductors, inserting the conductors in the modular plug
 --- !u!65 &-9139049169521285796
 BoxCollider:
   m_ObjectHideFlags: 0

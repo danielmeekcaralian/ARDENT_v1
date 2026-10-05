@@ -178,6 +178,18 @@ public class ARActivityProgress : MonoBehaviour
         return true;
     }
 
+    public bool TryCompleteRJ45Activity(RJ45CableTester tester)
+    {
+        var lesson = LessonSession.CurrentLesson;
+        if (ARSandboxSession.IsActive || tester == null || !tester.isActiveAndEnabled ||
+            tester.gameObject.scene != gameObject.scene || !tester.IsPassed ||
+            currentActivity == null || currentActivity.activityType != ARActivityType.RJ45Termination ||
+            tester.Activity != currentActivity || lesson == null || lesson.arActivity != currentActivity ||
+            ProgressManager.Instance == null) return false;
+        CompleteActivity();
+        return true;
+    }
+
     public void CompleteActivity()
     {
         if (ARSandboxSession.IsActive || (currentActivity != null && currentActivity.activityType == ARActivityType.Sandbox)) return;
@@ -242,4 +254,5 @@ public class ARActivityProgress : MonoBehaviour
         SceneManager.LoadScene("ActivitySelectionScene");
     }
 }
+
 

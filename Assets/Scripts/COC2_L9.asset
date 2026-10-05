@@ -53,8 +53,8 @@ MonoBehaviour:
       for collection."
     image: {fileID: 0}
   hasARActivity: 0
-  hasQuiz: 0
+  hasQuiz: 1
   requiresARActivity: 0
-  requiresQuiz: 0
+  requiresQuiz: 1
   arActivity: {fileID: 0}
-  quizData: {fileID: 0}
+  quizData: {fileID: 11400000, guid: 8fc3a6ae47af40144ab4d25ea6e70ec1, type: 2}

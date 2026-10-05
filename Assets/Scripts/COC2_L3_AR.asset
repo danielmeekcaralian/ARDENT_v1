@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 755c25e4a01f9304d8fccac6c6c06506, type: 3}
+  m_Name: COC2_L3_AR
+  m_EditorClassIdentifier: Assembly-CSharp::ARActivityData
+  activityID: 7
+  activityTitle: Tools, Equipment, and Testing Devices
+  activityType: 0
+  assemblyActivity: {fileID: 0}
+  instruction: Learn the tools and equipment used in installing and testing network
+    cables.
+  availableObjects:
+  - libraryItemId: 7a502d8e70dca8e49918c81940882a94
+    inventoryImage: {fileID: 3325523679393225663, guid: 2e1c97c9c4d942d1a852a7b753e4f881, type: 3}
+    prefab: {fileID: 6682412120384131157, guid: 7a502d8e70dca8e49918c81940882a94, type: 3}
+  - libraryItemId: 79d4872c0875364438dee09179199ff8
+    inventoryImage: {fileID: 3623331934800362207, guid: bd711cb11b3c447ca52f27bf47ba0929, type: 3}
+    prefab: {fileID: 4267834767125913651, guid: 79d4872c0875364438dee09179199ff8, type: 3}
+  - libraryItemId: bacecb26911c13f4c81c2c1fac3f6f2b
+    inventoryImage: {fileID: -5883172773260258095, guid: e10d28ba1a35d6e45be412e70c52824a, type: 3}
+    prefab: {fileID: 7975935542742267552, guid: bacecb26911c13f4c81c2c1fac3f6f2b, type: 3}
+  - libraryItemId: 80893bfa94bbc584594c117f1e2e467f
+    inventoryImage: {fileID: -6905653086546877105, guid: ee4a1936e6c873541a1e2d2fbc2c9ee2, type: 3}
+    prefab: {fileID: 1869613396810114494, guid: 80893bfa94bbc584594c117f1e2e467f, type: 3}
+  - libraryItemId: 9e65dfc22df925047a122f58d08492e0
+    inventoryImage: {fileID: 3365149904192815282, guid: 8c623e2c2c5b46139e37d931a833e8f3, type: 3}
+    prefab: {fileID: 7085181272562797589, guid: 9e65dfc22df925047a122f58d08492e0, type: 3}
+  - libraryItemId: 4dab9b20ecffae2459ce7f77db6257bb
+    inventoryImage: {fileID: 244550277274113096, guid: e494790bed844ac9a63ba47e218ff24c, type: 3}
+    prefab: {fileID: 1950553451228401510, guid: 4dab9b20ecffae2459ce7f77db6257bb, type: 3}
+  libraryBonusObjects: []
+  requirePlanePlacement: 1
+  allowRotation: 1
+  allowScaling: 1
+  allowMovement: 1

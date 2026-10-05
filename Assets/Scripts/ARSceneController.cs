@@ -128,7 +128,6 @@ public class ARSceneController : MonoBehaviour
             var rj45 = GetComponent<RJ45ARSession>();
             if (rj45 == null) rj45 = gameObject.AddComponent<RJ45ARSession>();
             rj45.Initialize(placementManager);
-            return;
         }
 
         var checkpoints = GetComponent<ARCheckpointSession>();

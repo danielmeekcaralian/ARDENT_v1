@@ -107,8 +107,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da511c397e8802a449d906edaf97c398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARObjectInfo
-  objectName: 
-  information: 
+  objectName: Fish Tapes
+  information: A good fish tape is the best friend of the installer who does MACs
+    (moves, adds, changes) or retrofit installations on existing buildings.
 --- !u!65 &-910216925869354252
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -55,16 +55,9 @@ public sealed class HardwareCompatibilityPanel : MonoBehaviour
 
     public static List<P> AvailableProfiles(LessonDatabase database, HardwareProfileCatalog catalog)
     {
-        var profiles = new List<P>();
-        if (catalog == null) return profiles;
-        foreach (var item in ARSandboxSession.GetUnlockedItems(database))
-        {
-            if (item == null) continue;
-            var profile = catalog.Find(item.prefab);
-            if (profile != null && IsBuildKind(profile.kind) && !profiles.Contains(profile)) profiles.Add(profile);
-        }
-        profiles.Sort((a, b) => string.Compare(Name(a), Name(b), System.StringComparison.OrdinalIgnoreCase));
-        return profiles;
+        // Compatibility is available to everyone; lesson ownership only controls AR inventory.
+        return HardwareCompatibilityCatalog.Collect(catalog,
+            Resources.Load<HardwareCompatibilityCatalog>(HardwareCompatibilityCatalog.ResourcePath));
     }
 
     private static bool IsBuildKind(P.ComponentKind kind)
@@ -110,13 +103,13 @@ public sealed class HardwareCompatibilityPanel : MonoBehaviour
         }
         checkButton.interactable = complete;
         resultText.text = missing.Count > 0
-            ? "No unlocked profiles for: " + string.Join(", ", missing) + ". Unlock these items through lessons and add their hardware profiles."
+            ? "No compatibility profiles for: " + string.Join(", ", missing) + ". Add these entries to the compatibility catalog."
             : complete ? "Press Check Build to check the selected parts." : "Choose a motherboard, CPU, RAM, and GPU.";
     }
 
     private void Check()
     {
-        // Keep mismatched options selectable for learning, but revalidate ownership.
+        // Keep mismatched options selectable for learning, but revalidate catalog membership.
         var available = AvailableProfiles(library.lessonDatabase, Resources.Load<HardwareProfileCatalog>(HardwareProfileCatalog.ResourcePath));
         for (int i = 0; i < dropdowns.Length; i++)
             if (Selected(i) == null || Selected(i).kind != Kinds[i] || !available.Contains(Selected(i)))

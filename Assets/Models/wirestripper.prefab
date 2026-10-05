@@ -107,8 +107,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da511c397e8802a449d906edaf97c398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ARObjectInfo
-  objectName: 
-  information: 
+  objectName: Wire Stripper
+  information: A tool used to remove insulation from wires so the conductors can
+    be exposed for connection, termination, or splicing.
 --- !u!65 &-8166053759484828442
 BoxCollider:
   m_ObjectHideFlags: 0

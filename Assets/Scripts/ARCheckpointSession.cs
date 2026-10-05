@@ -18,6 +18,9 @@ public class ARCheckpointSession : MonoBehaviour
     private ARPlacementManager placement;
     private ARAssemblyManager assembly;
     private NetworkConnectionManager network;
+    private RJ45ARSession rj45;
+    private string lastRJ45Json;
+    private bool IsRJ45 => activity != null && activity.activityType == ARActivityType.RJ45Termination;
     private bool IsNetwork => activity != null && activity.activityType == ARActivityType.NetworkDesign;
     private float nextNetworkSave;
     private string lastNetworkJson;
@@ -45,14 +48,15 @@ public class ARCheckpointSession : MonoBehaviour
         placement = currentPlacement;
         assembly = FindFirstObjectByType<ARAssemblyManager>();
         network = FindFirstObjectByType<NetworkConnectionManager>();
+        rj45 = FindFirstObjectByType<RJ45ARSession>();
         signature = ARCheckpointStore.Signature(activity);
         bool isAssembly = activity.activityType == ARActivityType.Assembly;
         if (!isAssembly && activity.activityType != ARActivityType.ToolIdentification &&
-            activity.activityType != ARActivityType.HardwareIdentification && !IsNetwork) return;
+            activity.activityType != ARActivityType.HardwareIdentification && !IsNetwork && !IsRJ45) return;
         if (!sceneUIReady) return;
         pending = ARCheckpointStore.Load(lesson.lessonID, signature, isAssembly,
             activity.assemblyActivity?.steps?.Length ?? 0, activity.assemblyActivity != null && activity.assemblyActivity.includeDisassembly,
-            IsNetwork ? activity.availableObjects?.Length ?? 0 : -1);
+            IsNetwork ? activity.availableObjects?.Length ?? 0 : -1, IsRJ45);
         if (pending != null) ShowPrompt("Continue your saved activity?", false);
     }
 
@@ -65,6 +69,21 @@ public class ARCheckpointSession : MonoBehaviour
     {
         if (!sceneUIReady || lesson == null || pending != null || restoring || finished) return;
         var data = new ARCheckpointData { lessonId = lesson.lessonID, signature = signature };
+        if (IsRJ45)
+        {
+            if (rj45 == null) return;
+            try
+            {
+                data.rj45 = rj45.CaptureCheckpoint();
+                if (data.rj45 == null) return;
+                if (!ARCheckpointStore.IsValid(data, lesson.lessonID, signature, false, 0, false, -1, true))
+                    throw new InvalidOperationException("RJ45 snapshot failed validation; previous save preserved.");
+                string json = JsonUtility.ToJson(data.rj45);
+                if (json != lastRJ45Json && ARCheckpointStore.Save(data)) lastRJ45Json = json;
+            }
+            catch (Exception ex) { Debug.LogWarning("RJ45 checkpoint could not be saved: " + ex.Message); }
+            return;
+        }
         if (IsNetwork)
         {
             if (network == null || !network.Available) return;
@@ -106,7 +125,7 @@ public class ARCheckpointSession : MonoBehaviour
     public void Resume()
     {
         if (pending == null) return;
-        if (activity.activityType != ARActivityType.Assembly && !IsNetwork)
+        if (activity.activityType != ARActivityType.Assembly && !IsNetwork && !IsRJ45)
         {
             var saved = pending;
             pending = null;
@@ -132,11 +151,18 @@ public class ARCheckpointSession : MonoBehaviour
         pending = null;
         waitingForSurface = false;
         ClosePrompt();
+        if (IsRJ45 && rj45 != null)
+        {
+            restoring = true;
+            try { rj45.ClearCheckpointWorkspace(true); }
+            finally { restoring = false; }
+            lastRJ45Json = null;
+        }
     }
 
     private void Update()
     {
-        if (IsNetwork && Time.unscaledTime >= nextNetworkSave)
+        if ((IsNetwork || IsRJ45) && Time.unscaledTime >= nextNetworkSave)
         {
             nextNetworkSave = Time.unscaledTime + 1f;
             SaveCheckpoint();
@@ -157,10 +183,17 @@ public class ARCheckpointSession : MonoBehaviour
             if (uiHits.Count > 0) return;
         }
         if (!placement.TryCheckpointSurface(point, out var pose)) return;
+        if (IsRJ45 && Vector3.Dot(pose.rotation * Vector3.up, Vector3.up) < .95f) return;
         restoring = true;
         try
         {
-            if (IsNetwork)
+            if (IsRJ45)
+            {
+                if (rj45 == null) throw new InvalidOperationException("RJ45 session is missing.");
+                rj45.RestoreCheckpoint(pending.rj45, pose);
+                lastRJ45Json = null;
+            }
+            else if (IsNetwork)
             {
                 if (network == null) throw new InvalidOperationException("Network manager is missing.");
                 network.RestoreNetworkCheckpoint(pending.network, pose);
@@ -173,7 +206,7 @@ public class ARCheckpointSession : MonoBehaviour
             }
             waitingForSurface = false;
             pending = null;
-            if (IsNetwork) networkResumeFrame = Time.frameCount;
+            if (IsNetwork || IsRJ45) networkResumeFrame = Time.frameCount;
             ClosePrompt();
             var mode = FindFirstObjectByType<ARModeManager>();
             if (mode != null) mode.SetEditMode();
@@ -181,7 +214,8 @@ public class ARCheckpointSession : MonoBehaviour
         catch (Exception ex)
         {
             Debug.LogWarning("Could not restore AR checkpoint: " + ex.Message);
-            if (IsNetwork) { if (network != null) network.StartNetworkOver(); }
+            if (IsRJ45) { if (rj45 != null) rj45.ClearCheckpointWorkspace(false); }
+            else if (IsNetwork) { if (network != null) network.StartNetworkOver(); }
             else
             {
                 placement.ClearCheckpointWorkspace();
