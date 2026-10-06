@@ -8,7 +8,8 @@ public enum ARActivityType
     Disassembly,
     Sandbox,
     NetworkDesign,
-    RJ45Termination
+    RJ45Termination,
+    NetworkCables
 }
 
 [CreateAssetMenu(
@@ -40,6 +41,7 @@ public class ARActivityData : ScriptableObject
     {
         // Keep the RJ45 workstation out of the library and Sandbox inventory.
         if (activityType != ARActivityType.RJ45Termination &&
+            activityType != ARActivityType.NetworkCables &&
             availableObjects != null)
         {
             foreach (var item in availableObjects)

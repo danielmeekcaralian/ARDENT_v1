@@ -292,7 +292,7 @@ MonoBehaviour:
       devices. Server computers, for example, can be installed into a rack-mountable
       chassis.  '
     image: {fileID: 0}
-  hasARActivity: 0
+  hasARActivity: 1
   hasQuiz: 1
   requiresARActivity: 0
   requiresQuiz: 1

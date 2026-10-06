@@ -397,6 +397,7 @@ public partial class ARAssemblyManager : MonoBehaviour
         );
 
         installedParts.Add(placedObject);
+        ArdentAudioManager.Play(ArdentSound.CorrectPlacement);
         AdvanceStep();
         ARCheckpointSession.SaveCurrent();
 

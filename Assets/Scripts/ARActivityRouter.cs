@@ -90,6 +90,7 @@ public class ARActivityRouter : MonoBehaviour
                 break;
 
             case ARActivityType.RJ45Termination:
+            case ARActivityType.NetworkCables:
             case ARActivityType.NetworkDesign:
             case ARActivityType.Sandbox:
                 // Shared inventory and interaction systems are configured by ARSceneController.

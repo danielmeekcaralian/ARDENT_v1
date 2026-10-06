@@ -125,6 +125,7 @@ public class LessonProgressUI : MonoBehaviour
         if (!shownSubtopics.Contains(index))
         {
             shownSubtopics.Add(index);
+            ArdentAudioManager.Play(ArdentSound.SubtopicComplete);
 
             // Get the COMPLETED subtopic name
             if (currentLesson != null &&

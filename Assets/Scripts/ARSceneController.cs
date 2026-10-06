@@ -130,6 +130,13 @@ public class ARSceneController : MonoBehaviour
             rj45.Initialize(placementManager);
         }
 
+        if (activityData.activityType == ARActivityType.NetworkCables)
+        {
+            var cables = GetComponent<NetworkCableARSession>();
+            if (cables == null) cables = gameObject.AddComponent<NetworkCableARSession>();
+            cables.Initialize(placementManager);
+        }
+
         var checkpoints = GetComponent<ARCheckpointSession>();
         if (checkpoints == null) checkpoints = gameObject.AddComponent<ARCheckpointSession>();
         checkpoints.Initialize(currentLesson, activityProgress, placementManager);

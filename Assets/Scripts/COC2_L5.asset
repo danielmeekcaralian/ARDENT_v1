@@ -122,9 +122,9 @@ MonoBehaviour:
     content: "The TIA (along with the EIA) was instrumental in the development of
       the ANSI/TIA/ EIA-568 Commercial Building Telecommunications Cabling Standard.
       \n\nFigure 1.1 A telecommunications outlet with a UTP for voice and a UTP/
-      ScTP/fiber for data\n\n\t\U0001F60A Table 1.1 Wire Color Abbreviations \n\nFigure
-      1.2 RJ45 Modular Jack wire pattern assignments for T568A and T568B \n\n\t\U0001F60A
-      Table 1.2 Application-Specific Pair Assignments for UTP Cabling \n "
+      ScTP/fiber for data\n\nTable 1.1 Wire Color Abbreviations \n\nFigure 1.2 RJ45
+      Modular Jack wire pattern assignments for T568A and T568B \n\nTable 1.2 Application-Specific
+      Pair Assignments for UTP Cabling \n "
     image: {fileID: 0}
   - subtopicID: 0905
     slideType: 0

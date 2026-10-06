@@ -76,9 +76,9 @@ MonoBehaviour:
       \r\n\r\nAnti-static wrist strap \u2013 use to prevent body from building up
       static-electricity that usually damage electronics or cause safety issues."
     image: {fileID: 0}
-  hasARActivity: 0
+  hasARActivity: 1
   hasQuiz: 1
-  requiresARActivity: 0
+  requiresARActivity: 1
   requiresQuiz: 1
-  arActivity: {fileID: 0}
+  arActivity: {fileID: 11400000, guid: 86269978d8cc8654ba5d1e064a6ff33c, type: 2}
   quizData: {fileID: 11400000, guid: 9c6a11cd76d183a42966b118a8c06a5f, type: 2}

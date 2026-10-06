@@ -37,6 +37,9 @@ MonoBehaviour:
   - libraryItemId: 4dab9b20ecffae2459ce7f77db6257bb
     inventoryImage: {fileID: 244550277274113096, guid: e494790bed844ac9a63ba47e218ff24c, type: 3}
     prefab: {fileID: 1950553451228401510, guid: 4dab9b20ecffae2459ce7f77db6257bb, type: 3}
+  - libraryItemId: 788384a98fc610149b2602628c0f585b
+    inventoryImage: {fileID: -6066461467127584615, guid: f7fbf78f1940f7f4baa7331d6a8f46d2, type: 3}
+    prefab: {fileID: 6309014656387585736, guid: 788384a98fc610149b2602628c0f585b, type: 3}
   libraryBonusObjects: []
   requirePlanePlacement: 1
   allowRotation: 1

@@ -26,7 +26,7 @@ public static class NetworkModelsScaleSetup
         if (EditorApplication.isPlayingOrWillChangePlaymode || PrefabStageUtility.GetCurrentPrefabStage() != null)
         { Debug.LogWarning("Exit Play Mode and save/close Prefab Mode before resizing."); return; }
 
-        string pcPath = "Assets/Resources/3D/pc_unit.fbx";
+        string pcPath = "Assets/Models/3D/pc_unit.fbx";
         using (var sha = SHA256.Create())
         {
             if (!File.Exists(pcPath) || BitConverter.ToString(sha.ComputeHash(File.ReadAllBytes(pcPath))).Replace("-", "").ToLowerInvariant() != PcMeshHash)

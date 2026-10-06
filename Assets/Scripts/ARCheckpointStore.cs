@@ -16,6 +16,7 @@ public class ARCheckpointData
     public int phase;
     public NetworkCheckpointData network;
     public RJ45CheckpointData rj45;
+    public NetworkCableCheckpointData networkCable;
 }
 
 public static class ARCheckpointStore
@@ -58,17 +59,27 @@ public static class ARCheckpointStore
             text.Append("|rj45-checkpoint-v1");
             if(activity.availableObjects!=null)foreach(var item in activity.availableObjects)text.Append('|').Append(item?.LibraryItemId);
         }
+        if (activity.activityType == ARActivityType.NetworkCables)
+        {
+            text.Append("|network-cables-v1");
+            if (activity.availableObjects != null)
+                foreach (var item in activity.availableObjects) text.Append('|').Append(item?.LibraryItemId);
+        }
         using (var hash = SHA256.Create())
             return Convert.ToBase64String(hash.ComputeHash(Encoding.UTF8.GetBytes(text.ToString())));
     }
 
-    public static bool IsValid(ARCheckpointData data, int lesson, string signature, bool assembly, int steps, bool disassembly, int networkPrefabCount = -1, bool rj45 = false)
+    public static bool IsValid(ARCheckpointData data, int lesson, string signature, bool assembly, int steps, bool disassembly, int networkPrefabCount = -1, bool rj45 = false, bool networkCable = false)
     {
         if (data == null || data.version != 1 || data.lessonId != lesson || data.signature != signature ||
             data.inspected == null || data.inspected.Length > 10000) return false;
-        if (rj45) return !assembly && data.network == null && data.assembled == 0 && data.removed == 0 && data.phase == 0 &&
+        // JsonUtility materializes empty serializable child objects when loading JSON,
+        // so unused network/RJ45 payloads cannot reliably be checked for null.
+        // Validate only the payload that belongs to the current activity type.
+        if (networkCable) return !assembly && data.assembled == 0 && data.removed == 0 && data.phase == 0 &&
+            data.inspected.Length == 0 && NetworkCableCheckpointRules.IsValid(data.networkCable);
+        if (rj45) return !assembly && data.assembled == 0 && data.removed == 0 && data.phase == 0 &&
             data.inspected.Length == 0 && RJ45CheckpointRules.IsValid(data.rj45);
-        if(data.rj45 != null) return false;
         if (networkPrefabCount >= 0)
             return !assembly && data.assembled == 0 && data.removed == 0 && data.phase == 0 &&
                 data.inspected.Length == 0 && NetworkCheckpointRules.IsValid(data.network, networkPrefabCount);
@@ -79,7 +90,7 @@ public static class ARCheckpointStore
         return data.phase == 3 && disassembly && data.assembled == steps;
     }
 
-    public static ARCheckpointData Load(int lesson, string signature, bool assembly, int steps, bool disassembly, int networkPrefabCount = -1, bool rj45 = false)
+    public static ARCheckpointData Load(int lesson, string signature, bool assembly, int steps, bool disassembly, int networkPrefabCount = -1, bool rj45 = false, bool networkCable = false)
     {
         foreach (var path in new[] { PathFor(lesson), PathFor(lesson) + ".bak" })
         {
@@ -88,7 +99,7 @@ public static class ARCheckpointStore
                 if (!File.Exists(path)) continue;
                 if (new FileInfo(path).Length > 4 * 1024 * 1024) continue;
                 var data = JsonUtility.FromJson<ARCheckpointData>(File.ReadAllText(path));
-                if (IsValid(data, lesson, signature, assembly, steps, disassembly, networkPrefabCount, rj45)) return data;
+                if (IsValid(data, lesson, signature, assembly, steps, disassembly, networkPrefabCount, rj45, networkCable)) return data;
             }
             catch (Exception ex) { Debug.LogWarning("Could not read AR checkpoint: " + ex.Message); }
         }

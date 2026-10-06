@@ -38,34 +38,33 @@ MonoBehaviour:
     image: {fileID: 0}
   - subtopicID: 0601
     slideType: 0
-    content: "\t- Coaxial cables \n\t- Fiber-optic cables \n\nTwisted-Pair Cables
-      \r\t\u2192 If the pair of wires are not twisted, electromagnetic noises from,
-      e.g., motors, will affect the closer wire more than the further one, thereby
-      causing errors.\t"
+    content: "\t- Coaxial cables\n\t- Fiber-optic cables\n\nTwisted-Pair Cables\n\t\u2192
+      If the pair of wires are not twisted, electromagnetic noises from, e.g., motors,
+      will affect the closer wire more than the further one, thereby causing errors.\t"
     image: {fileID: 0}
   - subtopicID: 0601
     slideType: 0
-    content: "Unshielded Twisted-Pair (UTP)  \r\n\t\u2192 Typically wrapped inside
-      a plastic cover (for mechanical protection) \r\n\t\u2192 A sample UTP cable
-      with 5 unshielded twisted pairs of wires \n\nShielded Twisted-Pair (STP) \r\n\t\u2192
+    content: "Unshielded Twisted-Pair (UTP)\n\t\u2192 Typically wrapped inside a
+      plastic cover (for mechanical protection)\n\t\u2192 A sample UTP cable with
+      5 unshielded twisted pairs of wires\n\nShielded Twisted-Pair (STP)\n\t\u2192
       STP cables are similar to UTP cables, except there is a metal foil or braided-metal-mesh
       cover that encases each pair of insulated wires "
     image: {fileID: 0}
   - subtopicID: 0601
     slideType: 0
-    content: "Categories of UTP Cables \r\n\r\n\tEIA classifies UTP cables according
-      to the quality: \n\n\t\tCategory 1 \u2015 the lowest quality, only good for
-      voice, mainly found in very old buildings, not recommended now.\n\r\n\t\tCategory
-      2 \u2015 good for voice and low data rates (up to 4Mbps for low-speed token
-      ring networks) \r\n "
+    content: "Categories of UTP Cables\n\nEIA classifies UTP cables according to
+      the quality:\n\nCategory 1 \u2015 the lowest quality, only good for voice,
+      mainly found in very old buildings, not recommended now.\n\nCategory 2 \u2015
+      good for voice and low data rates (up to 4Mbps for low-speed token ring networks)
+      \r\n "
     image: {fileID: 0}
   - subtopicID: 0601
     slideType: 0
-    content: "\t\tCategory 3 \u2015 at least 3 twists per foot, for up to 10 Mbps
-      (common in phone networks in residential buildings).\n\n\t\tCategory 4 \u2015
-      up to 16 Mbps (mainly for token rings).\n\r\n\t\tCategory 5 (or 5e) \u2015
-      up to 100 Mbps (common for networks targeted for high-speed data communications).\n\r\n\t\tCategory
-      6 \u2015 more twists than Cat 5, up to 1 Gbps.\n\t"
+    content: "Category 3 \u2015 at least 3 twists per foot, for up to 10 Mbps (common
+      in phone networks in residential buildings).\n\nCategory 4 \u2015 up to 16
+      Mbps (mainly for token rings).\n\nCategory 5 (or 5e) \u2015 up to 100 Mbps
+      (common for networks targeted for high-speed data communications).\n\nCategory
+      6 \u2015 more twists than Cat 5, up to 1 Gbps.\t"
     image: {fileID: 0}
   - subtopicID: 0601
     slideType: 0
@@ -76,12 +75,11 @@ MonoBehaviour:
     image: {fileID: 0}
   - subtopicID: 0601
     slideType: 0
-    content: "Fiber-Optic Cables \n\r\n\t\u2022 Light travels at 3\xD7108 ms-1 in
-      free space and is the fastest possible speed in the Universe \n\r\n\t\u2022
-      Light slows down in denser media, e.g. glass \n\r\n\t\u2022 Refraction occurs
-      at interface, with light bending away from the normal when it enters a less
-      dense medium \n\n\t\u2022 Beyond the critical angle  total internal reflection
-      \n"
+    content: "Fiber-Optic Cables\n\n\t\u2022 Light travels at 3\xD7108 ms-1 in free
+      space and is the fastest possible speed in the Universe \n\r\n\t\u2022 Light
+      slows down in denser media, e.g. glass \n\r\n\t\u2022 Refraction occurs at
+      interface, with light bending away from the normal when it enters a less dense
+      medium \n\n\t\u2022 Beyond the critical angle  total internal reflection \n"
     image: {fileID: 0}
   - subtopicID: 0601
     slideType: 0
@@ -95,14 +93,14 @@ MonoBehaviour:
     image: {fileID: 0}
   - subtopicID: 0602
     slideType: 0
-    content: "Advantages and Disadvantages \n\U0001F60A Noise resistance \u2015 external
-      light is blocked by outer jacket .\r\n\U0001F60A Less signal attenuation \u2015
-      a signal can run for miles without regeneration (currently, the lowest measured
-      loss is about ~4% or 0.16dB per km) .\r\n\U0001F60A Higher bandwidth \u2015
-      currently, limits on data rates come from the signal generation/reception technology,
-      not the fiber itself .\r\n\U0001F60ACost \u2015 Optical fibers are expensive
-      .\r\n\U0001F60AInstallation/maintenance \u2015 any crack in the core will degrade
-      the signal, and all connections must be perfectly aligned. "
+    content: "Advantages and Disadvantages\n\tNoise resistance \u2015 external light
+      is blocked by outer jacket.\n\n\tLess signal attenuation \u2015 a signal can
+      run for miles without regeneration (currently, the lowest measured loss is
+      about ~4% or 0.16dB per km).\n\n\tHigher bandwidth \u2015 currently, limits
+      on data rates come from the signal generation/reception technology, not the
+      fiber itself. \n\tCost \u2015 Optical fibers are expensive.\n\n\tInstallation/maintenance
+      \u2015 any crack in the core will degrade the signal, and all connections must
+      be perfectly aligned. "
     image: {fileID: 0}
   - subtopicID: 0602
     slideType: 0

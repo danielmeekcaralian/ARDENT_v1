@@ -1717,6 +1717,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bbbf6074300d414fa5a251e60e6f0c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChirbitTutorial
+  useCorners: 0
+  autoStart: 1
+  sandboxOnly: 0
   root: {fileID: 723717806}
   dialogue: {fileID: 1326496985}
   highlight: {fileID: 794473902}
@@ -1733,15 +1736,19 @@ MonoBehaviour:
   - target: {fileID: 2057757234}
     message: Hi! I'm Chirbit, your guide! Start Learning opens your lessons. Study
       each topic, then practice what you learn.
+    preferredCorner: 0
   - target: {fileID: 398721943}
     message: Visit the Hardware Library to explore your unlocked items, open the
       AR Sandbox, and check PC component compatibility. Compatibility entries are
       available right away!
+    preferredCorner: 0
   - target: {fileID: 586329484}
     message: Open Settings to adjust the app to your preferences. You're ready to
       explore!
+    preferredCorner: 0
   spotlightPadding: 12
   dialogueMargin: 24
+  tutorialID: 
 --- !u!1 &1326496984
 GameObject:
   m_ObjectHideFlags: 0

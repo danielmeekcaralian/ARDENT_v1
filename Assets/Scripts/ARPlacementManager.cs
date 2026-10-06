@@ -35,6 +35,7 @@ public partial class ARPlacementManager : MonoBehaviour
         {
             if (ChirbitTutorial.BlocksARInput || ARCheckpointSession.BlocksInput || UIManager.HasOpenPanel) return false;
             if (IsRJ45Activity) { var session = FindFirstObjectByType<RJ45ARSession>(); return session != null && session.CanPlace; }
+            if (IsNetworkCableActivity) { var session = FindFirstObjectByType<NetworkCableARSession>(); return session != null && session.CanPlace; }
             if (!IsAssemblyActivity) return true;
             var manager = FindFirstObjectByType<ARAssemblyManager>();
             return manager == null || manager.CanPlaceObjects;
@@ -50,6 +51,7 @@ public partial class ARPlacementManager : MonoBehaviour
 
     private float assemblyScale = 1f;
     public bool IsRJ45Activity => currentActivity != null && currentActivity.activityType == ARActivityType.RJ45Termination;
+    public bool IsNetworkCableActivity => currentActivity != null && currentActivity.activityType == ARActivityType.NetworkCables;
     public bool IsNetworkActivity => currentActivity != null && currentActivity.activityType == ARActivityType.NetworkDesign;
     public bool IsSandboxActivity => currentActivity != null && currentActivity.activityType == ARActivityType.Sandbox;
     public bool IsAssemblyActivity =>
@@ -435,6 +437,13 @@ public partial class ARPlacementManager : MonoBehaviour
             newObject = session.PlaceWorkstation(selectedObjectData.prefab, tapPose, GetPlacementParent(tapPose));
             if (newObject == null) return;
         }
+        else if (IsNetworkCableActivity)
+        {
+            var session = FindFirstObjectByType<NetworkCableARSession>();
+            if (session == null) return;
+            newObject = session.PlaceWorkstation(selectedObjectData.prefab, tapPose, GetPlacementParent(tapPose));
+            if (newObject == null) return;
+        }
         else newObject = Instantiate(selectedObjectData.prefab, tapPose.position, tapPose.rotation, GetPlacementParent(tapPose));
         if (IsAssemblyActivity)
         {
@@ -513,6 +522,8 @@ public partial class ARPlacementManager : MonoBehaviour
             );
         }
 
+        ArdentAudioManager.Play(ArdentSound.PlaceItem);
+
         Debug.Log(
             "AR object placed at tap position: " +
             newObject.name
@@ -526,6 +537,7 @@ public partial class ARPlacementManager : MonoBehaviour
     public void ResetObject()
     {
         if (IsRJ45Activity) { FindFirstObjectByType<RJ45ARSession>()?.Reposition(); return; }
+        if (IsNetworkCableActivity) { FindFirstObjectByType<NetworkCableARSession>()?.Reposition(); return; }
         var manager = FindFirstObjectByType<ARAssemblyManager>();
         if ((IsAssemblyActivity || IsSandboxActivity) && manager != null && !manager.CanDeleteObject(currentObject))
             return;

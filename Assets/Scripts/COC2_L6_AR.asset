@@ -12,14 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 755c25e4a01f9304d8fccac6c6c06506, type: 3}
   m_Name: COC2_L6_AR
   m_EditorClassIdentifier: Assembly-CSharp::ARActivityData
-  activityID: 
-  activityTitle: 
-  activityType: 0
+  activityID: 10
+  activityTitle: Network Cables
+  activityType: 7
   assemblyActivity: {fileID: 0}
-  instruction: 
-  availableObjects: []
+  instruction: Place the workstation, identify UTP, STP, coaxial, and fiber optic
+    cables, then drag each connector to its matching port.
+  availableObjects:
+  - libraryItemId: 3ab0291983dff8d46aa79d83481898de
+    inventoryImage: {fileID: 0}
+    prefab: {fileID: 1102510287634447656, guid: 3ab0291983dff8d46aa79d83481898de, type: 3}
   libraryBonusObjects: []
   requirePlanePlacement: 1
-  allowRotation: 1
-  allowScaling: 1
-  allowMovement: 1
+  allowRotation: 0
+  allowScaling: 0
+  allowMovement: 0

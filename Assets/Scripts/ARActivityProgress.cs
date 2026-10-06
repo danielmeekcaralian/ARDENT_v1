@@ -22,7 +22,7 @@ public class ARActivityProgress : MonoBehaviour
         currentActivity = activity;
 
         inspectedObjects.Clear();
-        if (progressText != null) progressText.gameObject.SetActive(activity == null || (activity.activityType != ARActivityType.Sandbox && activity.activityType != ARActivityType.NetworkDesign && activity.activityType != ARActivityType.RJ45Termination));
+        if (progressText != null) progressText.gameObject.SetActive(activity == null || (activity.activityType != ARActivityType.Sandbox && activity.activityType != ARActivityType.NetworkDesign && activity.activityType != ARActivityType.RJ45Termination && activity.activityType != ARActivityType.NetworkCables));
 
         if (completionButton != null)
         {
@@ -190,6 +190,16 @@ public class ARActivityProgress : MonoBehaviour
         return true;
     }
 
+    public bool TryCompleteNetworkCableActivity(ARActivityData expectedActivity)
+    {
+        var lesson = LessonSession.CurrentLesson;
+        if (ARSandboxSession.IsActive || expectedActivity == null || currentActivity != expectedActivity ||
+            expectedActivity.activityType != ARActivityType.NetworkCables || lesson == null ||
+            lesson.arActivity != expectedActivity || ProgressManager.Instance == null) return false;
+        CompleteActivity();
+        return true;
+    }
+
     public void CompleteActivity()
     {
         if (ARSandboxSession.IsActive || (currentActivity != null && currentActivity.activityType == ARActivityType.Sandbox)) return;
@@ -220,6 +230,7 @@ public class ARActivityProgress : MonoBehaviour
         );
 
         ARCheckpointSession.CompleteCurrent();
+        ArdentAudioManager.Play(ArdentSound.Success);
 
         // Show the button that allows the user
         // to open the completion popup.

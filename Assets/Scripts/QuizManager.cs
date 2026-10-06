@@ -219,11 +219,13 @@ public class QuizManager : MonoBehaviour
         {
             resultMessage.text = "PASSED!";
             resultMascot.sprite = happyMascotSprite;
+            ArdentAudioManager.Play(ArdentSound.Success);
         }
         else
         {
             resultMessage.text = "FAILED";
             resultMascot.sprite = sadMascotSprite;
+            ArdentAudioManager.Play(ArdentSound.Fail);
         }
 
         questionText.gameObject.SetActive(false);

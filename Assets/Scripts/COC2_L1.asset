@@ -48,8 +48,8 @@ MonoBehaviour:
     image: {fileID: 0}
   - subtopicID: 0502
     slideType: 0
-    content: "Why Networking? \r\n\u2192Sharing information (i.e. data communication)\r\n\u2192Sharing
-      hardware or software \r\u2192Centralize administration and support \r\n\t\u2022E.g.
+    content: "Why Networking?\n\u2022 Sharing information (i.e. data communication)\n\u2022
+      Sharing hardware or software\n\u2022 Centralize administration and support\n\nE.g.
       Internet-based, so everyone can access the same administrative or support application
       from their PCs "
     image: {fileID: 0}
@@ -90,12 +90,11 @@ MonoBehaviour:
     image: {fileID: 0}
   - subtopicID: 0502
     slideType: 0
-    content: "\t\t\u2192 Frame relay \r\n\t\t\t\u2022 Each link offers 1.544Mbps
-      or even higher \n\n\t\t\u2192 ATM \u2013 Asynchronous Transfer Mode \r\n\t\t\t\u2022
-      Support B-ISDN: 155Mbps or 622Mbps or higher \n\r\n\t\t\u2192 SONET \u2013
-      Synchronous Optical Network \r\n\t\t\t\u2022 Basic rate OC1: 51.84Mbps \r\t\t\t\u2022
-      Support OC12 and up to OC192 (9953.28Mbps) or even higher in the futureExample
-      of WAN: "
+    content: "\u2192 Frame relay\n\t\u2022 Each link offers 1.544Mbps or even higher
+      \n\n\u2192 ATM \u2013 Asynchronous Transfer Mode \n\t\u2022 Support B-ISDN:
+      155Mbps or 622Mbps or higher \n\n\u2192 SONET \u2013 Synchronous Optical Network\n\t\u2022
+      Basic rate OC1: 51.84Mbps\n\t\u2022 Support OC12 and up to OC192 (9953.28Mbps)
+      or even higher in the futureExample of \tWAN: "
     image: {fileID: 0}
   - subtopicID: 0502
     slideType: 0

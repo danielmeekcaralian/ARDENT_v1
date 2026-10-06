@@ -284,7 +284,8 @@ public class ProgressManager : MonoBehaviour
             );
         }
         // Also handles a repeated Gold result and items added to an existing lesson.
-        HardwareLibraryProgress.UnlockGoldLesson(lesson);
+        var newlyUnlocked = HardwareLibraryProgress.UnlockGoldLesson(lesson);
+        if (newlyUnlocked.Count > 0) ArdentAudioManager.Play(ArdentSound.ItemUnlock);
     }
 
     public void ResetProgress()

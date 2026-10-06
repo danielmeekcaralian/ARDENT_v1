@@ -195,6 +195,7 @@ public partial class ARAssemblyManager
         if (Quaternion.Angle(candidate.transform.rotation, target.transform.rotation) > rule.RotationTolerance)
         { SandboxMessage($"Rotate {SandboxPartName(candidate)} to match the {SandboxTargetName(rule.TargetID)}, or use Adjust > Align Rotation."); return false; }
         part.Attach(host, target);
+        ArdentAudioManager.Play(ArdentSound.CorrectPlacement);
         SandboxMessage($"{SandboxPartName(candidate)} installed. Move or resize the host object to move its installed components together. Drag this component away to detach." + SandboxCompatibilityNotice(compatibility, rule.TargetID));
         return true;
     }
