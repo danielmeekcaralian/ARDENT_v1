@@ -1,0 +1,188 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 035a2531ee473eb48b75e12ca5d634d6, type: 3}
+  m_Name: COC2_L5
+  m_EditorClassIdentifier: Assembly-CSharp::LessonData
+  lessonID: 9
+  cocID: COC_02
+  lessonTitle: Splicing
+  description: "Learn the standards and step-by-step procedures for structured cabling, including wall-plate installation, T568-A/B wiring schemes, and how to terminate RJ45, Cat 5e, and keystone jack connections."
+  lessonSceneName: LessonScene
+  requiredGoldLessonID: 8
+  learningObjectives:
+  - "• Identify standard splicing based on EIA/TIA."
+  - "• Perform splicing based on EIA/TIA."
+  subtopics:
+  - subtopicID: 0901
+    subtopicName: "Structured Cabling and Standardization"
+  - subtopicID: 0902
+    subtopicName: American National Standards Institute (ANSI)
+  - subtopicID: 0903
+    subtopicName: Electronic Industries Alliance (EIA)
+  - subtopicID: 0904
+    subtopicName: "Telecommunications Industry Association (TIA)"
+  - subtopicID: 0905
+    subtopicName: 110-Blocks
+  - subtopicID: 0906
+    subtopicName: Wall-Plate Location
+  - subtopicID: 0907
+    subtopicName: Vertical Position
+  - subtopicID: 0908
+    subtopicName: Horizontal Position
+  - subtopicID: 0909
+    subtopicName: Wall-Plate Mounting System
+  - subtopicID: 0910
+    subtopicName: Outlet Boxes
+  - subtopicID: 0911
+    subtopicName: Cut-In Mounting
+  - subtopicID: 0912
+    subtopicName: Remodel Boxes
+  - subtopicID: 0913
+    subtopicName: Surface-Mount Outlet Boxes
+  - subtopicID: 0914
+    subtopicName: Fixed-Design wall Plates
+  - subtopicID: 0915
+    subtopicName: "Steps in making RJ45 and Cat 5e Network Cable"
+  - subtopicID: 0916
+    subtopicName: How to Terminate Punch Down Style Keystone Jacks
+  slides:
+  - subtopicID: 0901
+    slideType: 0
+    content: "<size=115%><b>Structured Cabling and Standardization</b></size>\n\nTypical business environments and requirements change quickly. Companies restructure and reorganize at alarming rates. In some companies, the average employee changes work locations once every two years."
+    image: {fileID: 0}
+  - subtopicID: 0901
+    slideType: 0
+    content: "In the early 1990s, cabling systems were proprietary, vendor-specific, and lacked flexibility. Some of the downsides of pre-1990 cabling systems included the following:\n\n• Vendor-specific cabling locked the customer into a proprietary system.\n\n• Upgrades or new systems often required a completely new cabling infrastructure.\n\n• Moves and changes often necessitated major cabling plant reconfigurations. Some coaxial and twinax cabling systems required that entire areas (or the entire system) be brought down in order to make changes.\n\n• Companies often had several cabling infrastructures that had to be maintained for their various applications.\n\n• Troubleshooting proprietary systems was time consuming and difficult unless you were intimately familiar with a system."
+    image: {fileID: 0}
+  - subtopicID: 0901
+    slideType: 0
+    content: "A properly designed structured cabling system is based around components or wiring units.\n\nA number of documents are related to data cabling. In the United States, the Standard is ANSI/TIA/EIA-568-B, also known as the Commercial Building Telecommunications Cabling Standard."
+    image: {fileID: 0}
+  - subtopicID: 0902
+    slideType: 0
+    content: "<size=115%><b>American National Standards Institute (ANSI)</b></size>\n\nFive engineering societies and three U. S. government agencies founded the American National Standards Institute (ANSI) in 1918 as a private, nonprofit membership organization sustained by its membership. ANSI’s mission is to encourage voluntary compliance with Standards and methods. ANSI’s membership includes almost 1,400 private companies and government organizations in the United States as well as international members.\n\nTo gain ANSI approval, a document must be developed by a representative cross section of interested industry participants."
+    image: {fileID: 0}
+  - subtopicID: 0903
+    slideType: 0
+    content: "<size=115%><b>Electronic Industries Alliance (EIA)</b></size>\n\nThe Electronic Industries Alliance (EIA) was established in 1924 and was originally known as the Radio Manufacturers Association. Since then, the EIA has evolved into an organization that represents a wide variety of electronics manufacturers in the United States and abroad; these manufacturers make products for a wide range of markets."
+    image: {fileID: 0}
+  - subtopicID: 0904
+    slideType: 0
+    content: "<size=115%><b>Telecommunications Industry Association (TIA)</b></size>\n\nThe Telecommunications Industry Association (TIA) is a trade organization that consists of a membership of over 1,100 telecommunications and electronics companies that provide services, materials, and products throughout the world. The TIA membership manufactures and distributes virtually all the telecommunication products used in the world today. TIA’s mission is to represent its membership on issues relating to Standards, public policy, and market development."
+    image: {fileID: 0}
+  - subtopicID: 0904
+    slideType: 0
+    content: "The TIA (along with the EIA) was instrumental in the development of the ANSI/TIA/ EIA-568 Commercial Building Telecommunications Cabling Standard.\n\nFigure 1.1 A telecommunications outlet with a UTP for voice and a UTP/ ScTP/fiber for data\n\nTable 1.1 Wire Color Abbreviations\n\nFigure 1.2 RJ45 Modular Jack wire pattern assignments for T568A and T568B\n\nTable 1.2 Application-Specific Pair Assignments for UTP Cabling"
+    image: {fileID: 0}
+  - subtopicID: 0905
+    slideType: 0
+    content: "<size=115%><b>110-Blocks</b></size>\n\nThe telecommunications industry used the 66-style block for many years, and it was considered the mainstay of the industry. The 66-blocks were traditionally used only for voice applications; though we have seen them used to cross-connect data circuits, this is not recommended.\n\n• 110-Connector Block\n\n• A 110-block to RJ-45 patch cable"
+    image: {fileID: 0}
+  - subtopicID: 0905
+    slideType: 0
+    content: "The 110-wiring block will consist of a few or many rows of 110-connector blocks. The wires are inserted into the connecting block and terminated by a punch-down tool or vendor-specific tool.\n\n• 110-block with RJ-45 connectors on the front\n\n• 110-block with 50-pin Telco Connectors\n\n• 110-block side of a patch panel"
+    image: {fileID: 0}
+  - subtopicID: 0905
+    slideType: 0
+    content: "• 96-port patch panel\n\n• Structured cabling system designed for use with data\n\n• Structured cabling system terminated into 110-connecting blocks with 50-pin telco connectors\n\n• Structured cabling using 110-blocks and 110-block patch cords\n\n• Structured cabling that includes data backbone cabling"
+    image: {fileID: 0}
+  - subtopicID: 0906
+    slideType: 0
+    content: "<size=115%><b>Wall-Plate Location</b></size>\n\nWhen installing wall plates, you must decide the best location on the wall. Obviously, the wall plate should be fairly near the workstation, and in fact, the ANSI/-TIA/EIA-568-B Standard says that the maximum length from the workstation to the wall-plate patch cable can be no longer than 5 meters (16 feet). This short distance will affect exactly where you place your wall plate in your design. If you already have your office laid out, you will have to locate the wall plates as close as possible to the workstations so that your wiring system will conform to the Standard."
+    image: {fileID: 0}
+  - subtopicID: 0907
+    slideType: 0
+    content: "<size=115%><b>Vertical Position</b></size>\n\nWhen deciding the vertical position of your wall plates, you must take into account either the residential or commercial National Electrical Code (NEC) sections."
+    image: {fileID: 0}
+  - subtopicID: 0908
+    slideType: 0
+    content: "<size=115%><b>Horizontal Position</b></size>\n\nWall plates should be placed horizontally so that they are as close as possible to work-area equipment (computers, phones, etc.). In fact, the ANSI/TIA/EIA-568-B Standard requires that work-area cables should not exceed 5 meters (16 feet). Wall plates should be spaced so that they are within 5 meters of any possible workstation location."
+    image: {fileID: 0}
+  - subtopicID: 0909
+    slideType: 0
+    content: "<size=115%><b>Wall-Plate Mounting System</b></size>\n\nAnother decision you must make regarding your wall plates is how you will mount them to the wall. Three main systems, each with their own unique applications, are used to attach wall plates to a wall:\n\n• Outlet boxes\n\n• Cut-in plates\n\n• Surface-mount outlet boxes"
+    image: {fileID: 0}
+  - subtopicID: 0910
+    slideType: 0
+    content: "<size=115%><b>Outlet Boxes</b></size>\n\nThe most common wall-plate mounting in commercial applications is the outlet box, which is simply a plastic or metal box attached to a stud in a wall cavity. Outlet boxes have screw holes in them that allow a wall plate to be attached."
+    image: {fileID: 0}
+  - subtopicID: 0911
+    slideType: 0
+    content: "<size=115%><b>Cut-In Mounting</b></size>\n\nOutlet boxes work well as wall-plate supports when you are able to access the studs during the construction of a building."
+    image: {fileID: 0}
+  - subtopicID: 0912
+    slideType: 0
+    content: "<size=115%><b>Remodel Boxes</b></size>\n\nRemodel boxes are simply plastic or metal boxes that mount to the hole in the drywall using screws or special friction fasteners. The main difference between remodel boxes and regularoutlet boxes is that remodel boxes are slightly smaller and can only be mounted in existing walls.\n\nCommon Metal box with conduit, In a commercial Installation\n\nCommon remodel boxes\n\nCommon remodel boxes"
+    image: {fileID: 0}
+  - subtopicID: 0913
+    slideType: 0
+    content: "<size=115%><b>Surface-Mount Outlet Boxes</b></size>\n\nThe final type of wall-plate mounting system is the surface-mount outlet box, which is used where it is not easy or possible to run the cable inside the wall (in concrete, mortar, or brick walls, for example). Cable is run in a surface-mount raceway (a round or flat conduit) to an outlet box mounted (either by adhesive or screws) on the surface of the wall."
+    image: {fileID: 0}
+  - subtopicID: 0913
+    slideType: 0
+    content: "<size=115%><b>Installed cover-plate mounting bracket</b></size>\n\nSurface-mount outlet box and conduit\n\nFixed-design wall plate\n\nModular wall plates with multiple jack locations"
+    image: {fileID: 0}
+  - subtopicID: 0914
+    slideType: 0
+    content: "<size=115%><b>Fixed-Design Wall Plates</b></size>\n\nA fixed-design wall plate cannot have its jack configuration changed. In this type of wall plate, the jack configuration is determined at the factory, and the jacks are molded as part of the plate assembly.\nYou must understand a few issues before choosing a particular fixed-design wall plate for your cabling installation, including the following:\n\n• Number of jacks\n• Types of jacks\n• Labeling"
+    image: {fileID: 0}
+  - subtopicID: 0914
+    slideType: 0
+    content: "<size=115%><b>Fixed design wall plates with varying numbers of sockets</b></size>\n\nFixed Design plats with single RJ11 or RJ-45 Jack\n\nUsing insulation displacement connectors\n\nCommon snap-in jack showing both T568-A and T568-B wiring schemes\n\nWiring Scheme for T568-A\n\nWiring Scheme for T568-B"
+    image: {fileID: 0}
+  - subtopicID: 0915
+    slideType: 0
+    content: "<size=115%><b>Steps in making RJ45 and Cat 5e Network Cable</b></size>\n\n<b>Step 1: Strip Cable Ends</b>\n\n-Strip 1 to 1 ½ of insulating sheath\n-Avoid cutting into conductor insulation\n\n<b>Step 2: Untwist wire ends</b>\n\n-Sort Wires by insulation colors"
+    image: {fileID: 0}
+  - subtopicID: 0915
+    slideType: 0
+    content: "<b>Step 3: Arrange wires</b>\n\n• TIA/EIA 568A: GW-G OW-Bl BlW-O BrW-Br\n\n• TIA/EIA 568B: OW-O GW-Bl BlW-G BrW-Br\n\n<b>Step 4: Trim wires to size</b>\n\n-Trim all wires evenly\n\n-Leave about ½” of wires exposed"
+    image: {fileID: 0}
+  - subtopicID: 0915
+    slideType: 0
+    content: "<b>Step 5: Attach RJ45 Connector</b>\n\n-Maintain wire order left-to-right, with RJ45 tab facing downward\n\n<b>Step 6: Check</b>\n\n-Do all wires extend to end?\n\n-Is sheath well inside connector?"
+    image: {fileID: 0}
+  - subtopicID: 0915
+    slideType: 0
+    content: "<b>Step 7: Crimp</b>\n\n-Squeeze firmly to crimp connector onto cable end\n\n<b>Step 8: Test</b>\n\n-Test cable using LAN Cable Tester\n\n• Does the cable work?"
+    image: {fileID: 0}
+  - subtopicID: 0916
+    slideType: 0
+    content: "<size=115%><b>How to Terminate Punch Down Style Keystone Jacks</b></size>\n\n<b>Step 1: Make sure the stripper is adjusted properly on a scrap piece of cable. The Stripper should be adjusted to only score the jacket to make removing it easier and not nick the twisted pairs. Using a Coaxial Stripper strip around 1 inch of the jacket off. Be careful not to nick the conductors as this will cause the wire to break or short out the connection causing problems down the road. Inspect all wires for damage before proceeding to step 2.</b>"
+    image: {fileID: 0}
+  - subtopicID: 0916
+    slideType: 0
+    content: "<b>Step 2: Straighten the pairs out completely and lay them over the top of the keystone jack noting the color pattern for the 568b wiring.</b>\nNote: Each keystone jack is slightly different in how they are labeled and how the colors are arranged. The 568B standard is most commonly used and ends of the cable must have the same standards to communicate."
+    image: {fileID: 0}
+  - subtopicID: 0916
+    slideType: 0
+    content: "We have the 3 most common keystone jack styles pictured here. The first jack pictured has the 2 standard pairs on the right, and the 2 variable pairs on the left. The A standard is the center column and the B standard is on the left. Both A and B standard applies to the right side of the jack. The solid color box with the lower right corner missing represents the solid color wire with the white stripe. The white box with the colored tip represents the white wire with the colored stripe."
+    image: {fileID: 0}
+  - subtopicID: 0916
+    slideType: 0
+    content: "The second jack pictured here has both A and B standards on both sides of the jack, with the color code running down the center. The solid color rectangle represents the solid color wire with the white stripe, wile the half white half color rectangle represents the white wire with the colored stripe. The third jack pictured here has the A and B standard codes labeled on the outside of the jack. With the A standard on top and the B standard on the bottom. The solid box represents the solid wire with the white stripe Wile the box with the white diagonal stripe going through the middle, represents the white wire with the colored stripe."
+    image: {fileID: 0}
+  - subtopicID: 0916
+    slideType: 0
+    content: "<b>Step 3: Keeping the pairs as twisted as possible press the wire into the correct groove with your thumbs. If you completely straighten the wires to run them through the jack you will risk cross talk between the pairs.</b>\n\n<b>Step 4: Using a punch down tool punch the wires down into the blades built into the keystone jack. The blades in the jack are designed to work with solid cable, and may not work with stranded cable. Make sure the blade (as noted in the picture) is facing the outside of the keystone jack. If you reverse it you will cut the wires inside the keystone jack rendering them useless.</b>"
+    image: {fileID: 0}
+  - subtopicID: 0916
+    slideType: 0
+    content: "Steps on Punching Down Ethernet Cat 5e & Cat 6 to a Patch Panel\n\nProcedure steps:\n\n1. Install patch panel on rack using four thread-forming screws, supplied.\n\n2. Untwist no more than 0.5 in. (12.7 mm) of conductors at termination end of cable. Untwisting more may induce unwanted EMI.\n\n3. Push down the 110 punch-down tool all of the way to the edge of the 110 connector to install twisted pairs and trim excess, as shown in the following illustration. (Use the following table to match up conductor colors with connectors."
+    image: {fileID: 0}
+  hasARActivity: 1
+  hasQuiz: 1
+  requiresARActivity: 1
+  requiresQuiz: 1
+  arActivity: {fileID: 11400000, guid: fb041c216bde91d4891c095f723d5e6d, type: 2}
+  quizData: {fileID: 11400000, guid: 59758daa74d9c274d87a424f2e26dd9e, type: 2}
+  youtubeVideoUrl: https://youtu.be/flkxoErd4oA

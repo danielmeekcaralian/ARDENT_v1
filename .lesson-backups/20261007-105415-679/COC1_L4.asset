@@ -1,0 +1,108 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 035a2531ee473eb48b75e12ca5d634d6, type: 3}
+  m_Name: COC1_L4
+  m_EditorClassIdentifier: Assembly-CSharp::LessonData
+  lessonID: 4
+  cocID: COC_01
+  lessonTitle: Assemble/Disassemble Computer Hardware
+  description: "Learn to assemble and disassemble a PC safely and efficiently using a logical and methodical approach."
+  lessonSceneName: LessonScene
+  requiredGoldLessonID: 3
+  learningObjectives:
+  - "• Identify procedures in assembling/ disassembling computer."
+  - "• Assemble/disassemble computer system unit."
+  subtopics: []
+  slides:
+  - subtopicID: 0401
+    slideType: 0
+    content: "<b>Step 1: Prepare your workplace</b>\n<b>Step 2: Prepare the Motherboard</b>\n<b>Step 3: Install the CPU</b>\n<b>Step 4: Install the CPU Heat Sink</b>\n<b>Step 5: Install Memory (RAM Modules)</b>\n<b>Step 6: Place the motherboard into the case</b>\n<b>Step 7: Connect the Power Supply</b>\n<b>Step 8: Install Graphics/Video Cards</b>\n<b>Step 9: Install Internal Drives</b>\n<b>Step 10: Install the Add-in Cards</b>"
+    image: {fileID: 0}
+  - subtopicID: 0402
+    slideType: 0
+    content: "One of the basic skills that you must acquire in computer hardware servicing is to independently assemble and disassemble a personal computer or simply setting up a PC. Computer assembly is a large part of a technician's job. Work in a logical, methodical manner when working with computer components. Improve computer assembly skills dramatically with practice\n\n<b>Step 1: Prepare your workplace</b>\n\n<b>1. Take Inventory:</b>\n\nBefore you start, take an inventory of your parts. Do not begin assembling your computer if you don't have everything you need. Begin the step-by-step process once you are ready with everything you need.\n\n<b>2. Make Space, Make Time:</b>\n\n<b>Building a PC takes up space</b> — About a dining room table worth. So make sure you have plenty of working room and a few hours to proceed with minimal interruption. Work on a flat, stable tabletop surface, or bare floor, where you have room to layout all of the items."
+    image: {fileID: 0}
+  - subtopicID: 0402
+    slideType: 0
+    content: "<b>3. Prepare Grounding Protection:</b>\n\nUse an inexpensive antistatic wrist strap. Make sure you are wearing your antistatic wrist strap correctly (it does you no good at all if you do not wear it!), and you are ready to proceed.\n\n<b>4. Have the Drivers Ready:</b>\n\nAssuming you have another internet connected PC, download the latest drivers from the vendors' websites for each component you will be installing. Sometimes drivers are updated between the time the component was manufactured and the time you are installing it. It is always best to have the latest. Copy them to a CD for easy access."
+    image: {fileID: 0}
+  - subtopicID: 0402
+    slideType: 0
+    content: "<b>Step 2: Prepare the Motherboard</b>\n\n1. Great care should be taken when installing the motherboard. First, take the board out of its packaging and put it on top of the antistatic bag it came in. Remember, you always want to safeguard your components from potentially hazardous static electricity (wear your strap).\n\n2. Before you secure the motherboard onto the PC case/chassis, inspect it carefully for any visible defects.\n\n3. Next, review the motherboard manual, to make sure you are familiar with the motherboard layout and understand which socket is which. Manuals are extremely helpful, usually easy to read, and include illustrations. Below you can find instructions on how to install the processor, the heat sink and the memory modules on the motherboard. You should not place the motherboard in the computer case until you are told to do so."
+    image: {fileID: 0}
+  - subtopicID: 0402
+    slideType: 0
+    content: "<b>Step 3: Install the CPU</b>\n\n1. Use the unlocking mechanism to open the CPU socket which is usually a lever.\n\n2. Carefully line up the pins and place the chip in its socket; it will fit only when oriented the proper way. An arrow or a missing pin on one corner of the chip will show you how to line things up.\n\n3. Align Triangular CPU and socket key marks.\n\n4. Lower the lever to lock the CPU into place."
+    image: {fileID: 0}
+  - subtopicID: 0402
+    slideType: 0
+    content: "<b>Step 4: Install the CPU Heat Sink</b>\n\n1. Follow the manufacturer's directions to install the heat sink and the fan that will cool the processor. If you bought an OEM CPU and a separate heat sink, you may need to spread a thin layer of the thermal grease that came with the heat sink over the chip to ensure proper transfer of heat (some heat sinks come with this grease already applied).\n\n2. Attach the clip that holds the heat sink in place keeping in mind that it may require a fair amount of force. Again, follow the instructions that came with the heat sink. They will show you how to fit it correctly. If you are in doubt, you can visit the manufacturer's website for more information.\n\n3. Plug the CPU fan's power connector into the proper connector on the motherboard."
+    image: {fileID: 0}
+  - subtopicID: 0402
+    slideType: 0
+    content: "<b>Step 5: Install Memory (RAM Modules)</b>\n\nIn order to install the memory modules, insert them into the proper sockets and push down firmly but evenly until the clips on both sides of the socket pop into place. If your motherboard supports dual-channel memory, consult the user manual to determine which pairs of RAM sockets you should use. The motherboard and the CPU are the brain and nerve center of your PC, so selecting these components is the most important decision you'll make.\n\n<b>Step 6: Place the motherboard into the case</b>\n\n1. Some PC cases have a removable motherboard tray. If yours does, remove the screws holding it in place and pull it out of the case."
+    image: {fileID: 0}
+  - subtopicID: 0402
+    slideType: 0
+    content: "2. Note the pattern of the holes in your motherboard and screw brass standoffs into the motherboard tray or into the PC case in the correct locations (ALWAYS check the manual and follow their instructions to the letter).\n\n3. Check the layout of the sockets on the motherboard, and confirm that the ports on your motherboard's back panel match the holes on the case's Input/Output (I/O) shield that is installed in your case. If necessary, remove the old I/O shield by tapping it firmly a few times with the butt-end of a screwdriver, and then replace it with the shield that came with the new motherboard.\n\n4. Carefully position the motherboard on top of the brass standoffs, line up all the holes, and use the screws that accompanied the case to fasten down the motherboard. If you are using a removable tray in your system, slide the tray and motherboard back into the case and then secure the tray."
+    image: {fileID: 0}
+  - subtopicID: 0402
+    slideType: 0
+    content: "<b>Step 7: Connect the Power Supply</b>\n\nMaking the proper connections is crucial to successfully assembling your PC system. Fortunately, manufacturers provide color-coded power cables and unique connector shapes to make the job easy.\n\n1. First, plug the large ATX power connector from your power supply into the matching port on your motherboard. Look Figure X for details.\n\n2. Locate the smaller, square processor power connector (you cannot miss it - it is the one sprouting the yellow and black wires) and attach it to the motherboard. Note: your connector is usually located near the processor. As always, refer to your motherboard's manual for the exact locations.\n\n3. Use your motherboard user manual and find the description about front-panel connectors."
+    image: {fileID: 0}
+  - subtopicID: 0402
+    slideType: 0
+    content: "4. Attach each of the tiny leads from the power and reset switches, the hard-disk activity lights, the PC speaker, and any front-panel USB and FireWire ports to the corresponding pin on.\n\n<b>Step 8: Install Graphics/Video Cards</b>\n\n1. Begin by removing the backplane cover from the AGP or PCI Express X16 slot (the metal piece where the monitor connector will emerge)\n\n2. Install the graphics board in that slot, and then secure the card with a screw"
+    image: {fileID: 0}
+  - subtopicID: 0402
+    slideType: 0
+    content: "3. When the drives are installed, connect power and data cables to each one. Parallel ATA drives use wide, flat data cables that can be installed only in the correct way. Floppy drives use a similar but smaller cable; SATA drives use a thin, 1cm-wide data cable. SATA drives use a new type of power connector that many power supplies don't come with. Fortunately, many motherboards ship with adapters for converting a standard four-pin power connector to a SATA power connector"
+    image: {fileID: 0}
+  - subtopicID: 0402
+    slideType: 0
+    content: "<b>Step 10: Install the Add-in Cards</b>\n\n1. For each add-in card, you must choose a free PCI slot.\n\n2. Remove its backplane cover to allow access from the rear of the case.\n\n3. Carefully position the card above the slot, and press down firmly to seat the card.\n\n4. Secure the card with a screw.\n\nMany motherboards have additional sound connectors or ports housed on small add-in boards. Some of these plug into slots on the motherboard; others screw into the back of the case in place of slot covers. Usually the additional ports are not essential to your PC's operation. For example, if you install a sound card, you do not need connectors to the motherboard's built-in sound chip. Check your motherboard manual to determine what each of these boards does."
+    image: {fileID: 0}
+  - subtopicID: 0402
+    slideType: 0
+    content: "<size=115%><b>Connecting Peripherals of a Personal Computer</b></size>\n\nWhen attaching hardware and peripherals of the computer, ensure that they are connected to the correct locations or ports. For example, some mouse and keyboard cables use the same type of PS/2 connector. So, you must know first the different ports that can be found in the back panel of the computer.\n\nKeep in mind:\n\n1. When attaching cables, never force a connection.\n\n2. Plug in the power cable after you have connected all other"
+    image: {fileID: 0}
+  - subtopicID: 0402
+    slideType: 0
+    content: "<size=115%><b>Steps in Connecting Peripherals of a PC</b></size>\n\n<b>Step 1: Attach the monitor cable to the video port.</b>\n\n<b>Step 2: Secure the cable by tightening the screws on the connector.</b>\n\n<b>Step 3: Plug the keyboard cable into the PS/2 keyboard port.</b>\n\n<b>Step 4: Plug the mouse cable into the PS/2 mouse port.</b>\n\n<b>Step 5: Plug the USB cable into a USB port.</b>\n\n<b>Step 6: Plug the network cable into the network port.</b>\n\n<b>Step 7: Plug the power cable into the power supply.</b>"
+    image: {fileID: 0}
+  - subtopicID: 0402
+    slideType: 0
+    content: "<size=115%><b>Personal Computer Disassembly</b></size>\n\nBefore starting computer disassembly, make sure you have the tools you need and they're all close by and handy and be sure to have a container to keep the screws in so you have them when you want to put things back together.\n\n<b>Step1. Unplugging</b> — The first thing you do is to unplug every cable that is plugged in to your computer. That includes the cables such as Power, USB, Mouse, Keyboard, Internet, Ethernet, Modem, AM\\FM Antenna, Cable TV, etc. Just unplug all the cables for safety purposes. Now that your computer is fully unplugged, move your PC to a clean work space.\n\nStep2. Opening the Outer Shell/Case- First, unscrew the four screws at the back of the computer. On most computer cases, there will be large knobs that you can unscrew by hand or by screw driver on the back-right side of the computer. The left side has small screws because on that side you can't access much on the inside."
+    image: {fileID: 0}
+  - subtopicID: 0402
+    slideType: 0
+    content: "Once the screws are removed, you can remove the side panels. On most computers, they just slide off. Start with the left side panel (the side that once had the knobs), slide it towards the back of the computer. Now you can remove the left panel. Just like the other side, slide it towards the back of the computer.\n\nNOTICE: If you are working on a carpet, about every five minutes touch something that is grounded (Sink faucet / pipe, wire coming from the ground part of a wall outlet). This is done so you do not shock your motherboard or other parts."
+    image: {fileID: 0}
+  - subtopicID: 0402
+    slideType: 0
+    content: "<b>Step3. Removing the System Fan</b> — First, unplug the fan from the motherboard. You can find the plug by following the wire from the fan. It should be labeled \"SYS_FAN1\". Next, you will have to unscrew the fan from the outside. You should now be able to lift the fan out of the PC.\n\nStep4. Removing the CPU Fan- The CPU fan is located right on top of the CPU heat sink, which is a large piece of metal with fins on the top. The CPU fan plugs into the motherboard in an awkward place, that is hard to access. But just follow the wires and you should easily find it. It is labeled \"CPU FAN1\". To remove the fan from the heat sink, remove the four screws securing it in place.\n\n<b>Step 5: Power Supply - The first thing to do is unplug every wire coming from the power supply. You must disconnect the motherboard (very large connector/plug), CD/DVD drive(s) power, internal hard drive power and portable hard drive slot power. Once everything is unplugged, unscrew the four screws holding the power supply in place, on the back of the computer. Next, push the power supply from the outside, and then lift it out.</b>"
+    image: {fileID: 0}
+  - subtopicID: 0402
+    slideType: 0
+    content: "<b>Step 6: CD/ DVD Drive(s)-First, unplug the ribbon from the back of the drive. Once that is completed, pull on the tab securing the drive in place, then push it out from the inside.</b>\n\n<b>Step 7: Hard Drive - First, unplug the connector at the back of the slot, and unplug the other end from the motherboard. Also unplug the SATA cable from the motherboard and the hard drive. The portable hard drive slot is secured the same way the CD/DVD drive is, with a tab. Pull on the tab, then slide the slot out.</b>\n\nTo remove the hard drive from the side of the slot, unscrew the four screws securing it in place. You must be very careful not to drop the hard drive, since it is very delicate!"
+    image: {fileID: 0}
+  - subtopicID: 0402
+    slideType: 0
+    content: "<b>Step 8: Memory (RAM) - To remove the RAM, push down on both tabs holding the RAM in place, which are located at both ends of the RAM.</b>\n\n<b>Step 9: Motherboard - The motherboard has screws holding it to the frame, which are indicated by large white circles around them. Remove them and then lift the motherboard out of the frame.</b>"
+    image: {fileID: 0}
+  hasARActivity: 1
+  hasQuiz: 1
+  requiresARActivity: 1
+  requiresQuiz: 1
+  arActivity: {fileID: 11400000, guid: 5840727571e90784ab43f520b3b7d378, type: 2}
+  quizData: {fileID: 11400000, guid: a0358e317d186764bbca88c94ef4ed68, type: 2}
+  youtubeVideoUrl: https://youtu.be/pbm62gd4-04

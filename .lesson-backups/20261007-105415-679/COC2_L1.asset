@@ -1,0 +1,143 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 035a2531ee473eb48b75e12ca5d634d6, type: 3}
+  m_Name: COC2_L1
+  m_EditorClassIdentifier: Assembly-CSharp::LessonData
+  lessonID: 5
+  cocID: COC_02
+  lessonTitle: Network Design
+  description: "Learn the basic concepts of networking, including network types and topologies."
+  lessonSceneName: LessonScene
+  requiredGoldLessonID: 4
+  learningObjectives:
+  - "• What is network design."
+  - "• What is network."
+  - "• Plan cable route using designed network."
+  subtopics:
+  - subtopicID: 0501
+    subtopicName: What is Network Design
+  - subtopicID: 0502
+    subtopicName: Why Networking?
+  - subtopicID: 0503
+    subtopicName: Network Analysis?
+  slides:
+  - subtopicID: 0501
+    slideType: 0
+    content: "Network Design is a category of systems design that deals with data transport mechanisms. As with other systems design disciplines, network design follows an analysis stage, where requirements are generated, and precedes implementation. Where the system (relevant system component) is constructed."
+    image: {fileID: 0}
+  - subtopicID: 0501
+    slideType: 0
+    content: "Network planning and design is an iterative process, encompassing topological design, network-synthesis, and network-realization, and is aimed at ensuring that a new telecommunications network or service meets the needs of the subscriber and operator.\n\nWhat is a Network?\nA network consists of 2 or more computers connected together, and they can communicate and share resources (e. g. information)"
+    image: {fileID: 0}
+  - subtopicID: 0502
+    slideType: 0
+    content: "Why Networking?\n• Sharing information (i. e. data communication)\n• Sharing hardware or software\n• Centralize administration and support\n\nE. g. Internet-based, so everyone can access the same administrative or support application from their PCs"
+    image: {fileID: 0}
+  - subtopicID: 0502
+    slideType: 0
+    content: "How many kinds of Networks?\nDepending on one’s perspective, we can classify networks in different ways\na) Based on transmission media: Wired (UTP, coaxial cables, fiber-optic cables) and Wireless\nb) Based on network size: LAN and WAN (and MAN)\nc) Based on management method: Peer-to-peer and Client/Server\nd) Based on topology (connectivity): Bus, Star, Ring …"
+    image: {fileID: 0}
+  - subtopicID: 0502
+    slideType: 0
+    content: "LAN and WAN\nLocal Area Network (LAN)\n• Small network, short distance\n• Within a room, a floor, a building\n• Limited by no. of computers and distance covered\n• Usually one kind of technology throughout the LAN"
+    image: {fileID: 0}
+  - subtopicID: 0502
+    slideType: 0
+    content: "• Serve a department within an organization\n\nExamples:\n• Network inside the Student Computer Room\n• Network inside CF502\n• Network inside your home"
+    image: {fileID: 0}
+  - subtopicID: 0502
+    slideType: 0
+    content: "Wide Area Network (WAN)\n• A network that uses long-range telecommunication links to connect 2 or more LANs/ computers housed in different places far apart.\n• Towns, states, countries\nExamples:\n• Network of our Campus\n• Internet"
+    image: {fileID: 0}
+  - subtopicID: 0502
+    slideType: 0
+    content: "<size=115%><b>Example WAN technologies</b></size>\n\n• ISDN – Integrated Service Digital Network\n• Basic rate: 192 Kbps Primary rate: 1.544Mbps\n\n• T-Carriers ― basically digital phone lines\n• T1: 1.544Mbps T3: 28×T1"
+    image: {fileID: 0}
+  - subtopicID: 0502
+    slideType: 0
+    content: "• Frame relay\n• Each link offers 1.544Mbps or even higher\n\n• ATM – Asynchronous Transfer Mode\n• Support B-ISDN: 155Mbps or 622Mbps or higher\n\n• SONET – Synchronous Optical Network\n• Basic rate OC1: 51.84Mbps\n• Support OC12 and up to OC192 (9953.28Mbps) or even higher in the futureExample of WAN:"
+    image: {fileID: 0}
+  - subtopicID: 0502
+    slideType: 0
+    content: "Broadband Cable Network\n• Cable TV services have been extensively developed in most modern cities.\n• Cable TV companies try to make use of their coaxial cable installed (that are supposed to carry TV signals) to deliver broadband data services.\n• Many cable network wiring has been replaced with hybrid fiber-coax (HFC) ― i. e. use of fiber-optic cable to connect to the subscribers’ buildings, and then the original coaxial cable to connect to each household."
+    image: {fileID: 0}
+  - subtopicID: 0502
+    slideType: 0
+    content: "The connection is shared by a number of subscribers, hence may raise performance and security problems.\n\n• Cable is an asymmetrical technology\n• Downstream: max 36 Mbps\n• Upstream: max 10 Mbps\n\n• May be reduced to 3 – 10 Mbps downstream and 2 Mbps upstream, depending on no. of subscribers"
+    image: {fileID: 0}
+  - subtopicID: 0502
+    slideType: 0
+    content: "• Need a special cable modem• xDSL (Digital Subscriber Line)\n• A technology that provides digital data transmission over unused frequencies on traditional telephone lines\n• For example, ADSL (Asymmetric DSL): DL > UL\n• Speed\n\n• Downlink\n\n• 128Kbps - 4Mbps"
+    image: {fileID: 0}
+  - subtopicID: 0502
+    slideType: 0
+    content: "• Uplink\n\n• 64Kbps - 800Kbps\n\n• Need a DSL modem\n\n• Splitters are needed to separate the voice and data signal"
+    image: {fileID: 0}
+  - subtopicID: 0502
+    slideType: 0
+    content: "<size=115%><b>Peer-to-Peer Networks</b></size>\n\n• Peer-to-peer network is also called workgroup\n\n• No hierarchy among computers ⇒ all are equal\n\n• No administrator responsible for the network"
+    image: {fileID: 0}
+  - subtopicID: 0502
+    slideType: 0
+    content: "<size=115%><b>Advantages of peer-to-peer networks</b></size>\n\n• Low cost\n\n• Simple to configure\n\n• User has full accessibility of the computer\n\nDisadvantages of peer-to-peer networks:\n\n• May have duplication in resources\n\n• Difficult to uphold security policy\n\n• Difficult to handle uneven loading"
+    image: {fileID: 0}
+  - subtopicID: 0502
+    slideType: 0
+    content: "<size=115%><b>Where peer-to-peer network is appropriate</b></size>\n\n• 10 or less users\n\n• No specialized services required\n\n• Security is not an issue\n\n• Only limited growth in the foreseeable future"
+    image: {fileID: 0}
+  - subtopicID: 0502
+    slideType: 0
+    content: "<size=115%><b>Clients and Servers</b></size>\n\n• Network Clients (Workstation)\n\n• Computers that request network resources or services\n\n• Network Servers"
+    image: {fileID: 0}
+  - subtopicID: 0502
+    slideType: 0
+    content: "• Computers that manage and provide network resources and services to clients\n\n• Usually have more processing power, memory and hard disk space than clients\n\n• Run Network Operating System that can manage not only data, but also users, groups, security, and applications on the network\n\n• Servers often have a more stringent requirement on its performance and reliability"
+    image: {fileID: 0}
+  - subtopicID: 0502
+    slideType: 0
+    content: "<size=115%><b>Advantages of client/server networks</b></size>\n\n• Facilitate resource sharing – centrally administrate and control\n\n• Facilitate system backup and improve fault tolerance\n\n• Enhance security – only administrator can have access to Server\n\n• Support more users – difficult to achieve with peer-to-peer networks"
+    image: {fileID: 0}
+  - subtopicID: 0502
+    slideType: 0
+    content: "<size=115%><b>Disadvantages of client/server networks</b></size>\n\n• High cost for Servers\n\n• Need expert to configure the network\n\n• Introduce a single point of failure to the system"
+    image: {fileID: 0}
+  - subtopicID: 0502
+    slideType: 0
+    content: "<size=115%><b>Bus Topology</b></size>\n\n• Simple and low-cost\n\n• A single cable called a trunk (backbone, segment)\n\n• Only one computer can send messages at a time\n\n• Passive topology - computer only listen for, not regenerate data"
+    image: {fileID: 0}
+  - subtopicID: 0502
+    slideType: 0
+    content: "<size=115%><b>Star Topology</b></size>\n\n• Each computer has a cable connected to a single point\n\n• More cabling, hence higher cost\n\n• All signals transmission through the hub; if down, entire network down\n\n• Depending on the intelligence of hub, two or more computers may send message at the same time\n\n• How to construct a network with Bus / Star Topology?"
+    image: {fileID: 0}
+  - subtopicID: 0502
+    slideType: 0
+    content: "<size=115%><b>Ring Topology</b></size>\n\n• Every computer serves as a repeater to boost signals\n\n• Typical way to send data:\n\n• Token passing\n\n• only the computer who gets the token can send data"
+    image: {fileID: 0}
+  - subtopicID: 0502
+    slideType: 0
+    content: "<size=115%><b>Disadvantages</b></size>\n\n• Difficult to add computers\n\n• More expensive\n\n• If one computer fails, whole network fails"
+    image: {fileID: 0}
+  - subtopicID: 0503
+    slideType: 0
+    content: "Network Analysis may be conducted at an inter-organizational or departmental level. The requirements generated during the analysis may therefore define an inter-network connecting two or more organizations, an enterprise network that connects the departments of a single organization or a departmental network to be designed around specific divisional needs. Hundreds or thousands of mile apart. The distance between physical connections often dictates the type of technology that must be used to facilitate data transmission."
+    image: {fileID: 0}
+  - subtopicID: 0503
+    slideType: 0
+    content: "Components that exist within close physical proximity (usually within the same building) and can be connected to each other directly or through hubs or switches using owned equipment are considered part of a local area network (LAN). It is generally impractical and often impossible to connect to form a greater network, such as a metropolitan area network (MAN) or Wide area network (WAN)."
+    image: {fileID: 0}
+  hasARActivity: 1
+  hasQuiz: 1
+  requiresARActivity: 1
+  requiresQuiz: 1
+  arActivity: {fileID: 11400000, guid: 4cd62eb543ffd1b4db708a192da1d1be, type: 2}
+  quizData: {fileID: 11400000, guid: 342cc4e3f450a484d8ce43150d55b181, type: 2}
+  youtubeVideoUrl: https://youtu.be/QcPNOcLlFrg?si=qiH4YQba9Bdcbqw

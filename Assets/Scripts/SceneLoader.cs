@@ -6,13 +6,13 @@ public class SceneLoader : MonoBehaviour
     // Start Learning button
     public void LoadStartLearning()
     {
-        SceneManager.LoadScene("Start_Learning");
+        ArdentMotion.LoadScene("Start_Learning");
     }
 
     // Hardware Library button
     public void LoadHardwareLibrary()
     {
-        SceneManager.LoadScene("Hardware_Library");
+        ArdentMotion.LoadScene("Hardware_Library");
     }
 
     // Back button
@@ -24,31 +24,31 @@ public class SceneLoader : MonoBehaviour
         switch (currentScene)
         {
             case "Start_Learning":
-                SceneManager.LoadScene("MainMenu");
+                ArdentMotion.LoadScene("MainMenu");
                 break;
 
             case "COCScene":
-                SceneManager.LoadScene("Start_Learning");
+                ArdentMotion.LoadScene("Start_Learning");
                 break;
 
             case "ActivitySelectionScene":
-                SceneManager.LoadScene("COCScene");
+                ArdentMotion.LoadScene("COCScene");
                 break;
 
             case "LessonScene":
-                SceneManager.LoadScene("ActivitySelectionScene");
+                ArdentMotion.LoadScene("ActivitySelectionScene");
                 break;
 
             case "ARScene":
-                SceneManager.LoadScene(ARSandboxSession.IsActive ? "Hardware_Library" : "ActivitySelectionScene");
+                ArdentMotion.LoadScene(ARSandboxSession.IsActive ? "Hardware_Library" : "ActivitySelectionScene");
                 break;
 
             case "QuizScene":
-                SceneManager.LoadScene("ActivitySelectionScene");
+                ArdentMotion.LoadScene("ActivitySelectionScene");
                 break;
 
             case "Hardware_Library":
-                SceneManager.LoadScene("MainMenu");
+                ArdentMotion.LoadScene("MainMenu");
                 break;
 
             default:

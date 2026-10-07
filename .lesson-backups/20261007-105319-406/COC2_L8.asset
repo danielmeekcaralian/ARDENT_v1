@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 035a2531ee473eb48b75e12ca5d634d6, type: 3}
+  m_Name: COC2_L8
+  m_EditorClassIdentifier: Assembly-CSharp::LessonData
+  lessonID: 12
+  cocID: COC_02
+  lessonTitle: OHS Standards and 5S
+  description: Learn the occupational safety standards to follow while working, and
+    apply the 5S principles for maintaining an organized and safe workplace.
+  lessonSceneName: LessonScene
+  requiredGoldLessonID: 11
+  learningObjectives:
+  - "• Identify the OHS standards to be followed while working."
+  - "• Follow the 5S Principles in working."
+  subtopics:
+  - subtopicID: 1201
+    subtopicName: OHS standard
+  - subtopicID: 1202
+    subtopicName: Don't forget to follow the 5s in working
+  slides:
+  - subtopicID: 1201
+    slideType: 0
+    content: "While doing the job in the workplace it is better to identify and follow the following OHS Standards to avoid accidents.\n\n1. Do not work alone so that there is someone who can take care of you in case of emergency.\n\n2. Always power off the computer and unplug the computer before and after working on it."
+    image: {fileID: 0}
+  - subtopicID: 1201
+    slideType: 0
+    content: "3. Take away any liquid near your working area to avoid getting electrocuted or accidentally damaging computer parts.\n\n4. Be careful with tools that may cause short circuit.\n\n5. Always ground or discharge yourself before touching any part of the computer."
+    image: {fileID: 0}
+  - subtopicID: 1201
+    slideType: 0
+    content: "6. Do not use excessive force if things do not quite slip into place.\n\n7. Clean the area before and after using it to maintain sanitation and prevent accidents.\n\n8. Hold on the handle of the crimping tool and not the area were the blades are located."
+    image: {fileID: 0}
+  - subtopicID: 1201
+    slideType: 0
+    content: "9. Always wear personal protective equipment (PPE) in accordance with the organization’s OHS procedures and practices.\n\n10. Make sure that the pins are properly aligned when connecting a cable connector\n\n11. Contingency measures during workplace accidents, and other emergencies are recognized."
+    image: {fileID: 0}
+  - subtopicID: 1202
+    slideType: 0
+    content: "<size=115%><b>Do not forget to follow the 5S in working</b></size>\n\n1. Seiri Sorting/Putting things in order (Remove/discard what is not needed so that there are fewer hazards and less clutter to interfere with work. Only keep what is needed.)\n\n2. Seiton Orderliness/Proper Arrangement (Place things in such a way that they can be easily reached whenever they are needed. \"There must be a place for everything, and everything must be in its place.\")"
+    image: {fileID: 0}
+  - subtopicID: 1202
+    slideType: 0
+    content: "3. Seiso Clean/cleanliness. (Keep workplace and things clean and polished; no trash or dirt in the workplace)\n\n4. Seiketsu Standardize/Purity (Maintain cleanliness after cleaning, consistently- perpetual cleaning. Such cleaning is part of every one's work.)\n\n5. Shitsuke Sustaining/discipline/commitment (Maintain standards and keep the facility in safe and efficient order day after day, year after year.)"
+    image: {fileID: 0}
+  hasARActivity: 0
+  hasQuiz: 1
+  requiresARActivity: 0
+  requiresQuiz: 1
+  arActivity: {fileID: 0}
+  quizData: {fileID: 11400000, guid: 1186495f2aa5c9649b1ad25a8486a5e3, type: 2}
+  youtubeVideoUrl: https://youtu.be/gPRZnJOZLs0

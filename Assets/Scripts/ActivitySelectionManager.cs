@@ -106,7 +106,7 @@ public class ActivitySelectionManager : MonoBehaviour
             return;
         }
 
-        SceneManager.LoadScene(
+        ArdentMotion.LoadScene(
             currentLesson.lessonSceneName
         );
     }
@@ -125,7 +125,7 @@ public class ActivitySelectionManager : MonoBehaviour
             return;
         }
 
-        SceneManager.LoadScene("ARScene");
+        ArdentMotion.LoadScene("ARScene");
     }
 
     public void OpenQuiz()
@@ -142,7 +142,7 @@ public class ActivitySelectionManager : MonoBehaviour
             return;
         }
 
-        SceneManager.LoadScene("QuizScene");
+        ArdentMotion.LoadScene("QuizScene");
     }
 
     public void GoBack()
@@ -157,6 +157,6 @@ public class ActivitySelectionManager : MonoBehaviour
             return;
         }
 
-        SceneManager.LoadScene("COCScene");
+        ArdentMotion.LoadScene("COCScene");
     }
 }

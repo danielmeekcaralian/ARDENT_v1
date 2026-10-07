@@ -373,7 +373,7 @@ public class LessonSlideManager : MonoBehaviour
             return;
         }
 
-        lessonCompletePopup.SetActive(true);
+        ArdentMotion.SetPanelVisible(lessonCompletePopup, true);
 
         if (lessonCompleteTitleText != null &&
         currentLesson != null)
@@ -448,16 +448,16 @@ public class LessonSlideManager : MonoBehaviour
 
     private void OpenARActivity()
     {
-        SceneManager.LoadScene("ARScene");
+        ArdentMotion.LoadScene("ARScene");
     }
 
     private void OpenQuiz()
     {
-        SceneManager.LoadScene("QuizScene");
+        ArdentMotion.LoadScene("QuizScene");
     }
 
     private void ReturnToLessonsMenu()
     {
-        SceneManager.LoadScene("COCScene");
+        ArdentMotion.LoadScene("COCScene");
     }
 }

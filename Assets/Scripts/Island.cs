@@ -103,7 +103,7 @@ public class Island : MonoBehaviour
 
             LessonSession.SetCOC(cocID);
 
-            SceneManager.LoadScene("COCScene");
+            ArdentMotion.LoadScene("COCScene");
         }
         else
         {

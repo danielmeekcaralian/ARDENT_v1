@@ -202,14 +202,14 @@ public partial class ARInteractionManager
         CancelPrecisionAdjustment();
         precisionSelection = selectedObject;
         precisionPanelOpen = true;
-        precisionPanel.SetActive(true);
+        ArdentMotion.SetPanelVisible(precisionPanel, true);
     }
 
     public void ClosePrecisionPanel()
     {
         CancelPrecisionAdjustment();
         precisionPanelOpen = false;
-        if (precisionPanel != null && precisionPanel.activeSelf) precisionPanel.SetActive(false);
+        if (precisionPanel != null && precisionPanel.activeSelf) ArdentMotion.SetPanelVisible(precisionPanel, false);
     }
 
     public void AlignSelectedRotation()

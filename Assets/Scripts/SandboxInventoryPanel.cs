@@ -25,7 +25,7 @@ public class SandboxInventoryPanel : MonoBehaviour
         if (active == this) active = null;
         if (closeButton != null) closeButton.onClick.RemoveListener(Close);
     }
-    public void Close() { gameObject.SetActive(false); }
+    public void Close() { ArdentMotion.SetPanelVisible(gameObject, false); }
 
     public bool Populate(ARObjectData[] available, Action<ARObjectData> select)
     {

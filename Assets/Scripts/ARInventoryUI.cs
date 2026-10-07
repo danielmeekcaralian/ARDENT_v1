@@ -104,13 +104,12 @@ public class ARInventoryUI : MonoBehaviour
 
         placementManager.SelectObject(objectData);
 
-        if (VisibleInventory != null)
-            VisibleInventory.SetActive(false);
+        ArdentMotion.SetPanelVisible(VisibleInventory, false);
     }
 
     public void OpenInventory()
     {
-        if (VisibleInventory != null) VisibleInventory.SetActive(true);
+        ArdentMotion.SetPanelVisible(VisibleInventory, true);
     }
 
     public void ToggleInventory()
@@ -119,13 +118,11 @@ public class ARInventoryUI : MonoBehaviour
             return;
         if (placementManager != null && !placementManager.CanPlaceObjects)
         {
-            VisibleInventory.SetActive(false);
+            ArdentMotion.SetPanelVisible(VisibleInventory, false);
             return;
         }
 
-        VisibleInventory.SetActive(
-            !VisibleInventory.activeSelf
-        );
+        ArdentMotion.SetPanelVisible(VisibleInventory, !VisibleInventory.activeSelf);
     }
 
     public void SetActivity(ARActivityData activity)

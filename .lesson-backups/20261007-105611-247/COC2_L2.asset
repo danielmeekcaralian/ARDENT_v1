@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 035a2531ee473eb48b75e12ca5d634d6, type: 3}
+  m_Name: COC2_L2
+  m_EditorClassIdentifier: Assembly-CSharp::LessonData
+  lessonID: 6
+  cocID: COC_02
+  lessonTitle: Network Materials
+  description: Identify the different cable types used in setting up computer network.
+  lessonSceneName: LessonScene
+  requiredGoldLessonID: 5
+  learningObjectives:
+  - "• Identify materials used in networking."
+  - "• Explain the use of each networking material."
+  - "• Demonstrate how to use networking materials."
+  subtopics:
+  - subtopicID: 0601
+    subtopicName: "Network Cables"
+  - subtopicID: 0602
+    subtopicName: Advantages and Disadvantages
+  slides:
+  - subtopicID: 0601
+    slideType: 0
+    content: "Every network installation requires suitable materials to function correctly.\nNetwork cables are among the essential materials used in an installation.\n\nExamples of guided network media include:\n• Twisted-Pair cables:\n• Unshielded Twisted-Pair (UTP) cables\n• Shielded Twisted-Pair (STP) cables"
+    image: {fileID: 0}
+  - subtopicID: 0601
+    slideType: 0
+    content: "• Coaxial cables\n• Fiber-optic cables\n\nTwisted-Pair Cables\n• If the pair of wires are not twisted, electromagnetic noises from, e. g., motors, will affect the closer wire more than the further one, thereby causing errors."
+    image: {fileID: 0}
+  - subtopicID: 0601
+    slideType: 0
+    content: "Unshielded Twisted-Pair (UTP)\n• Typically wrapped inside a plastic cover (for mechanical protection)\n• A sample UTP cable with 5 unshielded twisted pairs of wires\n\nShielded Twisted-Pair (STP)\n• STP cables are similar to UTP cables, except there is a metal foil or braided-metal-mesh cover that encases each pair of insulated wires"
+    image: {fileID: 0}
+  - subtopicID: 0601
+    slideType: 0
+    content: "<size=115%><b>Categories of UTP Cables</b></size>\n\nEIA classifies UTP cables according to the quality:\n\nCategory 1 ― the lowest quality, only good for voice, mainly found in very old buildings, not recommended now.\n\nCategory 2 ― good for voice and low data rates (up to 4Mbps for low-speed token ring networks)"
+    image: {fileID: 0}
+  - subtopicID: 0601
+    slideType: 0
+    content: "Category 3 ― at least 3 twists per foot, for up to 10 Mbps (common in phone networks in residential buildings).\n\nCategory 4 ― up to 16 Mbps (mainly for token rings).\n\nCategory 5 (or 5e) ― up to 100 Mbps (common for networks targeted for high-speed data communications).\n\nCategory 6 ― more twists than Cat 5, up to 1 Gbps."
+    image: {fileID: 0}
+  - subtopicID: 0601
+    slideType: 0
+    content: "<size=115%><b>Coaxial Cables</b></size>\n\n• In general, coaxial cables, or coax, carry signals of higher freq (100KHz–500MHz) than UTP cables.\n\n• Outer metallic wrapping serves both as a shield against noise and as the second conductor that completes the circuit."
+    image: {fileID: 0}
+  - subtopicID: 0601
+    slideType: 0
+    content: "<size=115%><b>Fiber-Optic Cables</b></size>\n\n• Light travels at 3×108 ms-1 in free space and is the fastest possible speed in the Universe\n\n• Light slows down in denser media, e. g. glass\n\n• Refraction occurs at interface, with light bending away from the normal when it enters a less dense medium\n\n• Beyond the critical angle total internal reflection"
+    image: {fileID: 0}
+  - subtopicID: 0601
+    slideType: 0
+    content: "• An optical fiber consists of a core (denser material) and a cladding (less dense material)\n\n• Simplest one is a multimode step-index optical fiber\n\n• Multimode = multiple paths, whereas step-index = refractive index follows a step-function profile (i. e. an abrupt change of refractive index between the core and the cladding)\n\n• Light bounces back and forth along the core\n\n• Common light sources: LEDs and lasers"
+    image: {fileID: 0}
+  - subtopicID: 0602
+    slideType: 0
+    content: "Advantages and Disadvantages\nNoise resistance ― external light is blocked by outer jacket.\n\nLess signal attenuation ― a signal can run for miles without regeneration (currently, the lowest measured loss is about ~4% or 0.16dB per km).\n\nHigher bandwidth ― currently, limits on data rates come from the signal generation/reception technology, not the fiber itself.\nCost ― Optical fibers are expensive.\n\nInstallation/maintenance ― any crack in the core will degrade the signal, and all connections must be perfectly aligned."
+    image: {fileID: 0}
+  - subtopicID: 0602
+    slideType: 0
+    content: "Other than network cables. The other materials needed to be used for network are:\n\n<b>1. RJ45 (Registered Jack)</b> — Standard for a physical interface between customer wiring and telephone company wiring. A commonly-used name for the 8P8C modular connector used in Ethernet and other data links\n\n2. Cat 5e I/O Jack Keystone or Modular Jack- a network cable (Cat 5e) from patch panel at the network switch end needs to be connected to a Network I/O system that comprises of keystone jack, faceplate (wall) & surface mount box (SMB). Let us take a closer look at the components involved in Network I/O Termination at he System (User) end.\n\n<b>3. Network Switch</b> — A computer networking device that connects devices together on a computer network by using packet switching to receive, process, and forward data to the destination device."
+    image: {fileID: 0}
+  - subtopicID: 0602
+    slideType: 0
+    content: "4. Ethernet Hub/active hub/ network hub/ repeater hub/ multiport repeater – also known simply as hub is a network hardware device for connecting multiple Ethernet devices together making them act as a single network segment. It has multiple input/output (I/O) ports, in which a signal introduced at the input of any port appears at the output of every port except the original incoming.\n\n<b>5. Patch Panel</b> — (Patch bay, patch field or jack field) is a device or unit featuring a number of jacks, usually of the same or similar type, for the use of connecting and routing circuits for monitoring, interconnecting, and testing circuits in a convenient, flexible manner.\n\n<b>6. Router</b> — A networking device that forwards data packets between computer networks. Router perform the traffic directing functions on the internet."
+    image: {fileID: 0}
+  - subtopicID: 0602
+    slideType: 0
+    content: "<b>7. Cabinets and Raceway Rackss</b> — Support materials store and protect your switches, routers, servers, and other vital components of your network.\n\n8. LAN Card (NIC)- Network Interface Card (Network Adapter, LAN Adapter or Physical Network Interface) a computer hardware component that connects a computer to a computer network.\n\n<b>9. Wi-Fi (Card/USB)</b> — A device that adds wireless connectivity to a laptop or desktop computer. All of the adapters below are available as external (USB) modules as well as PCI or PCI Express (PCIe) cards that plug into an empty slot on the motherboard.\n\nSeveral tools are also required to install and maintain a computer network."
+    image: {fileID: 0}
+  hasARActivity: 1
+  hasQuiz: 1
+  requiresARActivity: 1
+  requiresQuiz: 1
+  arActivity: {fileID: 11400000, guid: e61ad7eb1d4591b49ab1fdf68d3d1bd8, type: 2}
+  quizData: {fileID: 11400000, guid: f006f7a29e102314886916c0133a8690, type: 2}
+  youtubeVideoUrl: https://youtu.be/HAceoquch1c

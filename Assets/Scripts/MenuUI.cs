@@ -9,7 +9,7 @@ public class MenuUI : MonoBehaviour
     {
         if (UIManager.Instance == null && !SceneManager.GetSceneByName("UI_Scene").isLoaded)
         {
-            SceneManager.LoadScene(
+            ArdentMotion.LoadScene(
                 "UI_Scene",
                 LoadSceneMode.Additive
             );

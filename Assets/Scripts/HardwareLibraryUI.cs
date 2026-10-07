@@ -188,11 +188,11 @@ public class HardwareLibraryUI : MonoBehaviour
             if (unlockRequirementText != null) unlockRequirementText.text = "Earn Gold in a lesson to unlock items for the AR Sandbox.";
             return;
         }
-        SceneManager.LoadScene("ARScene");
+        ArdentMotion.LoadScene("ARScene");
     }
     private void OnDestroy()
     {
         if (viewInARButton != null) viewInARButton.onClick.RemoveListener(OpenSandbox);
     }
-    public void BackToMenu() { SceneManager.LoadScene("MainMenu"); }
+    public void BackToMenu() { ArdentMotion.LoadScene("MainMenu"); }
 }

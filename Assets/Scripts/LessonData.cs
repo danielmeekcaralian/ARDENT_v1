@@ -42,4 +42,8 @@ public class LessonData : ScriptableObject
 
     [Header("Quiz")]
     public QuizData quizData;
+
+    [Header("Quiz Remediation")]
+    [Tooltip("Optional YouTube lesson or tutorial shown after a failed quiz. Leave empty when no video is available.")]
+    public string youtubeVideoUrl;
 }

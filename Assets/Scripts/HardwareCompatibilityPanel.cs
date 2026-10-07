@@ -87,7 +87,7 @@ public sealed class HardwareCompatibilityPanel : MonoBehaviour
         }
         ResetResult();
         panel.transform.SetAsLastSibling();
-        panel.SetActive(true);
+        ArdentMotion.SetPanelVisible(panel, true);
     }
 
     private void SelectionChanged(int value) { ResetResult(); }
@@ -135,7 +135,7 @@ public sealed class HardwareCompatibilityPanel : MonoBehaviour
     public void Close()
     {
         foreach (var dropdown in dropdowns) if (dropdown != null) dropdown.Hide();
-        if (panel != null) panel.SetActive(false);
+        ArdentMotion.SetPanelVisible(panel, false);
     }
 
     private void Unbind()

@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,6 +28,7 @@ public class QuizManager : MonoBehaviour
     [SerializeField] private Button activityMenuButton;
     [SerializeField] private Button retryButton;
     [SerializeField] private Button nextLessonButton;
+    [SerializeField] private Button watchVideoButton;
 
     [SerializeField] private Image resultMascot;
     [SerializeField] private Sprite happyMascotSprite;
@@ -49,6 +51,8 @@ public class QuizManager : MonoBehaviour
         }
 
         quizData = currentLesson.quizData;
+
+        ResolveWatchVideoButton();
 
         if (quizData == null)
         {
@@ -77,13 +81,18 @@ public class QuizManager : MonoBehaviour
             selectedAnswers[i] = -1;
         }
 
-        resultsPanel.SetActive(false);
+        ArdentMotion.SetPanelVisible(resultsPanel, false);
 
         nextButton.onClick.AddListener(NextQuestion);
         backButton.onClick.AddListener(PreviousQuestion);
         activityMenuButton.onClick.AddListener(BackToActivities);
         retryButton.onClick.AddListener(RetryQuiz);
         nextLessonButton.onClick.AddListener(NextLesson);
+        if (watchVideoButton != null)
+        {
+            watchVideoButton.onClick.AddListener(OpenLessonVideo);
+            watchVideoButton.gameObject.SetActive(false);
+        }
 
         DisplayQuestion();
     }
@@ -202,10 +211,8 @@ public class QuizManager : MonoBehaviour
 
         int roundedPercentage = Mathf.RoundToInt(percentage);
 
-        if (nextLessonButton != null)
-        {
-            nextLessonButton.interactable = roundedPercentage >= 100;
-        }
+        bool passed = percentage >= quizData.passingPercentage;
+        ConfigureResultActions(passed, roundedPercentage);
 
         SaveQuizProgress(roundedPercentage);
 
@@ -215,7 +222,7 @@ public class QuizManager : MonoBehaviour
         percentageText.text =
             $"{percentage:0}%";
 
-        if (percentage >= quizData.passingPercentage)
+        if (passed)
         {
             resultMessage.text = "PASSED!";
             resultMascot.sprite = happyMascotSprite;
@@ -234,7 +241,7 @@ public class QuizManager : MonoBehaviour
         nextButton.gameObject.SetActive(false);
         backButton.gameObject.SetActive(false);
 
-        resultsPanel.SetActive(true);
+        ArdentMotion.SetPanelVisible(resultsPanel, true);
 
         Debug.Log(
             $"Quiz Complete! Score: {score}/{totalQuestions} ({percentage:0}%)"
@@ -284,7 +291,7 @@ public class QuizManager : MonoBehaviour
             selectedAnswers[i] = -1;
         }
 
-        resultsPanel.SetActive(false);
+        ArdentMotion.SetPanelVisible(resultsPanel, false);
 
         questionText.gameObject.SetActive(true);
         questionCounter.gameObject.SetActive(true);
@@ -295,9 +302,60 @@ public class QuizManager : MonoBehaviour
         DisplayQuestion();
     }
 
+    private void ResolveWatchVideoButton()
+    {
+        if (watchVideoButton != null || resultsPanel == null) return;
+        foreach (var button in resultsPanel.GetComponentsInChildren<Button>(true))
+            if (button.name == "WatchVideoButton")
+            {
+                watchVideoButton = button;
+                return;
+            }
+    }
+
+    private void ConfigureResultActions(bool passed, int roundedPercentage)
+    {
+        if (nextLessonButton != null)
+        {
+            nextLessonButton.gameObject.SetActive(passed);
+            nextLessonButton.interactable = roundedPercentage >= 100;
+        }
+
+        bool hasVideo = !passed && TryGetYoutubeUrl(LessonSession.CurrentLesson, out _);
+        if (watchVideoButton != null)
+        {
+            watchVideoButton.gameObject.SetActive(hasVideo);
+            watchVideoButton.interactable = hasVideo;
+        }
+    }
+
+    private void OpenLessonVideo()
+    {
+        if (!TryGetYoutubeUrl(LessonSession.CurrentLesson, out string url))
+        {
+            Debug.LogWarning("This lesson does not have a valid YouTube tutorial URL.", this);
+            return;
+        }
+
+        Application.OpenURL(url);
+    }
+
+    private static bool TryGetYoutubeUrl(LessonData lesson, out string url)
+    {
+        url = lesson != null ? lesson.youtubeVideoUrl?.Trim() : null;
+        if (string.IsNullOrWhiteSpace(url) ||
+            !Uri.TryCreate(url, UriKind.Absolute, out Uri uri) ||
+            (uri.Scheme != Uri.UriSchemeHttps && uri.Scheme != Uri.UriSchemeHttp))
+            return false;
+
+        string host = uri.Host.ToLowerInvariant();
+        return host == "youtu.be" || host == "youtube.com" || host.EndsWith(".youtube.com") ||
+            host == "youtube-nocookie.com" || host.EndsWith(".youtube-nocookie.com");
+    }
+
     private void BackToActivities()
     {
-        SceneManager.LoadScene("ActivitySelectionScene");
+        ArdentMotion.LoadScene("ActivitySelectionScene");
     }
 
     private void NextLesson()
@@ -360,7 +418,7 @@ public class QuizManager : MonoBehaviour
 
         LessonSession.SetLesson(nextLesson);
 
-        SceneManager.LoadScene(
+        ArdentMotion.LoadScene(
             "ActivitySelectionScene"
         );
     }

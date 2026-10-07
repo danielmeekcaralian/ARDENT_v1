@@ -86,6 +86,7 @@ public class ChirbitTutorial : MonoBehaviour
         backButton.interactable = index > 0;
         var label = nextButton.GetComponentInChildren<TMP_Text>(); if (label != null) label.text = index == steps.Length - 1 ? "Done" : "Next";
         Canvas.ForceUpdateCanvases(); Layout();
+        ArdentMotion.AnimateDialogue(dialogue, messageText);
     }
     private void Back() { if (showing && index > 0) { index--; Show(); } }
     private void Next() { if (!showing) return; if (index == steps.Length - 1) Finish(); else { index++; Show(); } }
@@ -96,7 +97,12 @@ public class ChirbitTutorial : MonoBehaviour
     {
         if (!showing) return; showing = false; if (activeAR == this) activeAR = null;
         if (events != null) { events.sendNavigationEvents = previousNavigation; if (previousSelection != null && previousSelection.activeInHierarchy) events.SetSelectedGameObject(previousSelection); }
-        if (root != null) root.gameObject.SetActive(false);
+        if (root != null)
+        {
+            GameObject overlay = root.gameObject;
+            ArdentMotion.HidePanel(dialogue != null ? dialogue.gameObject : overlay,
+                () => { if (overlay != null) overlay.SetActive(false); });
+        }
     }
     private void LateUpdate() { if (showing) Layout(); }
     private void Layout()
@@ -221,5 +227,5 @@ public class ChirbitTutorial : MonoBehaviour
         if (nextButton != null) nextButton.onClick.RemoveListener(Next);
         if (skipButton != null) skipButton.onClick.RemoveListener(Skip);
     }
-    public static void ReplayMainMenu() { replayRequested = true; SceneManager.LoadScene("MainMenu"); }
+    public static void ReplayMainMenu() { replayRequested = true; ArdentMotion.LoadScene("MainMenu"); }
 }

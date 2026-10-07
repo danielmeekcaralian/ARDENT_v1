@@ -1,0 +1,6 @@
+Validation: PASS
+Lessons: 13
+Slides: 223
+Changed lessons: 3
+Changed text fields: 6
+Protected fields unchanged: lesson IDs, COC IDs, unlock IDs, subtopic IDs, slide ordering, slide types, images

@@ -334,8 +334,8 @@ public class ARCheckpointSession : MonoBehaviour
 
     private void ClosePrompt()
     {
-        if (resumePanel != null) resumePanel.SetActive(false);
-        if (surfacePlacementPanel != null) surfacePlacementPanel.SetActive(false);
+        ArdentMotion.SetPanelVisible(resumePanel, false);
+        ArdentMotion.SetPanelVisible(surfacePlacementPanel, false);
     }
 
     private void ShowPrompt(string message, bool surface)
@@ -345,12 +345,12 @@ public class ARCheckpointSession : MonoBehaviour
         if (surface)
         {
             instructionText.text = message;
-            surfacePlacementPanel.SetActive(true);
+            ArdentMotion.SetPanelVisible(surfacePlacementPanel, true);
         }
         else
         {
             messageText.text = message;
-            resumePanel.SetActive(true);
+            ArdentMotion.SetPanelVisible(resumePanel, true);
         }
     }
 }

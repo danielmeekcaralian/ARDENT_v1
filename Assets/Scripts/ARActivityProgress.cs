@@ -256,13 +256,13 @@ public class ARActivityProgress : MonoBehaviour
             return;
         }
 
-        completionPanel.SetActive(true);
+        ArdentMotion.SetPanelVisible(completionPanel, true);
     }
 
     public void ContinueFromCompletion()
     {
-        if (ARSandboxSession.IsActive) { SceneManager.LoadScene("Hardware_Library"); return; }
-        SceneManager.LoadScene("ActivitySelectionScene");
+        if (ARSandboxSession.IsActive) { ArdentMotion.LoadScene("Hardware_Library"); return; }
+        ArdentMotion.LoadScene("ActivitySelectionScene");
     }
 }
 

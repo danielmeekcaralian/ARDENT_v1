@@ -6,7 +6,7 @@ public static class ArdentSettings
     public static float Rotation => Read("Rotation", 1f, .25f, 2f);
     public static float Zoom => Read("Zoom", 1f, .25f, 2f);
     public static float CardGap => Read("CardGap", .05f, .01f, .30f);
-    public static float MusicVolume => Read("MusicVolume", .60f, 0f, 1f);
+    public static float MusicVolume => Read("MusicVolume", .40f, 0f, 1f);
     public static float SfxVolume => Read("SfxVolume", .80f, 0f, 1f);
     public static bool ShowCards => PlayerPrefs.GetInt(Prefix + "ShowCards", 1) != 0;
     private static float Read(string key, float fallback, float min, float max)

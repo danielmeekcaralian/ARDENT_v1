@@ -53,43 +53,42 @@ public class UIManager : MonoBehaviour
                     var label = button.GetComponentInChildren<TMPro.TMP_Text>(true);
                     if (label != null) label.text = ARSandboxSession.IsActive ? "Return to Library" : "Main Menu";
                 }
-        if (menuPanel != null) menuPanel.SetActive(true);
-        if (settingsPanel != null) settingsPanel.SetActive(false);
-        if (infoPanel != null) infoPanel.SetActive(false);
-        if (helpPanel != null) helpPanel.SetActive(false);
+        ArdentMotion.SetPanelVisible(menuPanel, true);
+        ArdentMotion.SetPanelVisible(settingsPanel, false);
+        ArdentMotion.SetPanelVisible(infoPanel, false);
+        ArdentMotion.SetPanelVisible(helpPanel, false);
     }
 
     public void OpenSettings()
     {
-        if (menuPanel != null) menuPanel.SetActive(false);
-        if (settingsPanel != null) settingsPanel.SetActive(true);
-        if (infoPanel != null) infoPanel.SetActive(false);
-        if (helpPanel != null) helpPanel.SetActive(false);
+        ArdentMotion.SetPanelVisible(menuPanel, false);
+        ArdentMotion.SetPanelVisible(settingsPanel, true);
+        ArdentMotion.SetPanelVisible(infoPanel, false);
+        ArdentMotion.SetPanelVisible(helpPanel, false);
     }
 
     public void OpenInfo()
     {
-        if (menuPanel != null) menuPanel.SetActive(false);
-        if (settingsPanel != null) settingsPanel.SetActive(false);
-        if (infoPanel != null) infoPanel.SetActive(true);
-        if (helpPanel != null) helpPanel.SetActive(false);
+        ArdentMotion.SetPanelVisible(menuPanel, false);
+        ArdentMotion.SetPanelVisible(settingsPanel, false);
+        ArdentMotion.SetPanelVisible(infoPanel, true);
+        ArdentMotion.SetPanelVisible(helpPanel, false);
     }
 
     public void OpenHelp()
     {
-        if (menuPanel != null) menuPanel.SetActive(false);
-        if (settingsPanel != null) settingsPanel.SetActive(false);
-        if (infoPanel != null) infoPanel.SetActive(false);
-        if (helpPanel != null) helpPanel.SetActive(true);
+        ArdentMotion.SetPanelVisible(menuPanel, false);
+        ArdentMotion.SetPanelVisible(settingsPanel, false);
+        ArdentMotion.SetPanelVisible(infoPanel, false);
+        ArdentMotion.SetPanelVisible(helpPanel, true);
     }
 
     public void CloseButton()
     {
-        if (settingsPanel != null) settingsPanel.SetActive(false);
-        if (infoPanel != null) infoPanel.SetActive(false);
-        if (helpPanel != null) helpPanel.SetActive(false);
-
-        if (menuPanel != null) menuPanel.SetActive(false);
+        ArdentMotion.SetPanelVisible(settingsPanel, false);
+        ArdentMotion.SetPanelVisible(infoPanel, false);
+        ArdentMotion.SetPanelVisible(helpPanel, false);
+        ArdentMotion.SetPanelVisible(menuPanel, false);
     }
 
     // -------------------
@@ -99,7 +98,7 @@ public class UIManager : MonoBehaviour
     public void GoToMainMenu()
     {
         ARCheckpointSession.SaveCurrent();
-        SceneManager.LoadScene(ARSandboxSession.IsActive ? "Hardware_Library" : "MainMenu");
+        ArdentMotion.LoadScene(ARSandboxSession.IsActive ? "Hardware_Library" : "MainMenu");
     }
 
     public void QuitGame()

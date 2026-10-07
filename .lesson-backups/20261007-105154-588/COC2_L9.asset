@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 035a2531ee473eb48b75e12ca5d634d6, type: 3}
+  m_Name: COC2_L9
+  m_EditorClassIdentifier: Assembly-CSharp::LessonData
+  lessonID: 13
+  cocID: COC_02
+  lessonTitle: Disposing Excess Components
+  description: Learn the proper procedure for disposing of excess or leftover  copper
+    cable and networking materials.
+  lessonSceneName: LessonScene
+  requiredGoldLessonID: 12
+  learningObjectives:
+  - "\u2022 Identify ways of disposing excess components and materials used in networking "
+  - "\u2022 Follow proper ways of segregation of disposal  "
+  subtopics:
+  - subtopicID: 1301
+    subtopicName: Proper Ways of Copper Cable Disposal
+  slides:
+  - subtopicID: 1301
+    slideType: 0
+    content: "Proper Ways of Copper Cable Disposal \r\n\r\n1.) Keep/Store in box
+      or any storage and not in a garbage bin.  \n\r\n2.) Bundle your copper wire
+      to make it manageable to handle, and weigh it. It is useful to have an estimate
+      of how much copper you have so you can discuss price and transportation with
+      the recycling company.  "
+    image: {fileID: 0}
+  - subtopicID: 1301
+    slideType: 0
+    content: "3.) Find a scrap metal company online or in your local phone book.
+      Copper recycling is a very common thing in the scrap metal world, and recyclers
+      make money by selling the scrap to smelting companies. \n\r\n4.) Call a few
+      local companies and ask about prices and transportation. Some companies only
+      deal in very large amounts of copper, such as leftovers from a building site,
+      but others will take any weight. "
+    image: {fileID: 0}
+  - subtopicID: 1301
+    slideType: 0
+    content: "5.) Tell the scrap metal representative if you have insulated copper
+      wire. Depending on the type of insulation, the recycler must either burn off
+      the insulation or use a mechanical process and bury the waste if burning will
+      produce pollutants. \n\r\n6.) Follow the scrap metal company's instructions
+      for transport of the wire, whether it means dropping it off or placing it outside
+      for collection."
+    image: {fileID: 0}
+  hasARActivity: 0
+  hasQuiz: 1
+  requiresARActivity: 0
+  requiresQuiz: 1
+  arActivity: {fileID: 0}
+  quizData: {fileID: 11400000, guid: 8fc3a6ae47af40144ab4d25ea6e70ec1, type: 2}

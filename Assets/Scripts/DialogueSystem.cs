@@ -73,12 +73,12 @@ public class DialogueSystem : MonoBehaviour
 
         if (dialoguePanel != null)
         {
-            dialoguePanel.SetActive(true);
+            ArdentMotion.SetPanelVisible(dialoguePanel, true);
         }
 
         if (characterSprite != null)
         {
-            characterSprite.SetActive(true);
+            ArdentMotion.SetPanelVisible(characterSprite, true);
         }
 
         StartCoroutine(TypeLine());
@@ -141,12 +141,12 @@ public class DialogueSystem : MonoBehaviour
 
         if (dialoguePanel != null)
         {
-            dialoguePanel.SetActive(false);
+            ArdentMotion.SetPanelVisible(dialoguePanel, false);
         }
 
         if (characterSprite != null)
         {
-            characterSprite.SetActive(false);
+            ArdentMotion.SetPanelVisible(characterSprite, false);
         }
 
         PlayerPrefs.SetInt("IntroPlayed", 1);

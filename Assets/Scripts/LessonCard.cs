@@ -68,6 +68,6 @@ public class LessonCard : MonoBehaviour
     private void StartLesson()
     {
         LessonSession.SetLesson(currentLesson);
-        SceneManager.LoadScene("ActivitySelectionScene");
+        ArdentMotion.LoadScene("ActivitySelectionScene");
     }
 }
